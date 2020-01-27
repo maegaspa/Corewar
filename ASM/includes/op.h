@@ -10,10 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-/*
-** Toutes les tailles sont en octets.
-** On part du principe qu'un int fait 32 bits. Est-ce vrai chez vous ?
-*/
+#ifndef OP_H
+# define OP_H
 
 #define IND_SIZE				2
 #define REG_SIZE				4
@@ -73,4 +71,18 @@ typedef struct		header_s
   char				prog_name[PROG_NAME_LENGTH + 1];
   unsigned int		prog_size;
   char				comment[COMMENT_LENGTH + 1];
-}					header_t;
+}
+
+typedef struct		          s_op
+{
+	char	name[5];
+	int		nb_params;
+	char	params_type[3];
+	int		id;
+	int		cycles;
+	char	description[50];
+	int		acb;
+	int		label_size;
+} 							t_op;
+
+#endif
