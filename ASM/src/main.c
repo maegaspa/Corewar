@@ -3,11 +3,20 @@
 
 int 	read_instruction(t_file *file)
 {
+	int i;
+
 	file->count = -1;
 	file->nb_instruction = 0;
 	while (file->file[++file->count])
+	{
+		i = 0;
+		while (file->file[file->count][i] == ' ' || file->file[file->count][i] == '\t')
+			i++;
+		if (file->file[file->count][i] == COMMENT_CHAR)
+				file->count++;
 		if (is_instruction(file->file[file->count]) == SUCCES)
 			file->nb_instruction++;
+	}
 	file->ligne_error = file->count;
 	if (file->nb_instruction == 2)
 		return (ERROR_NOINST);
@@ -52,16 +61,26 @@ int 	is_label_or_instruction(t_tab *tab, t_file *file)
 int 	check_param(t_tab *tab, t_file *file)
 {
 	int i;
+	int j;
 
 	tab->info_ins[file->cnt_tab].parameter = ft_strsplit2(&file->file[file->count][++file->len]);
 	printf("PARAM :");
 	i = -1;
+	j = 0;
 	while (tab->info_ins[file->cnt_tab].parameter[++i])
 	{
+		if (tab->info_ins[file->cnt_tab].parameter[i][0] == COMMENT_CHAR)
+		{
+			tab->info_ins[file->cnt_tab].nb_parameter = i;
+			j = 1;
+		}
+		if (j == 1)
+			ft_strdel(&tab->info_ins[file->cnt_tab].parameter[i]);
 		printf("[%s] ", tab->info_ins[file->cnt_tab].parameter[i]);
 	}
-	tab->info_ins[file->cnt_tab].nb_parameter = i;
-	if (i != file->op[tab->info_ins[file->cnt_tab].id_inst - 1].nb_params)
+	if (j != 1)
+		tab->info_ins[file->cnt_tab].nb_parameter = i;
+	if (tab->info_ins[file->cnt_tab].nb_parameter != file->op[tab->info_ins[file->cnt_tab].id_inst - 1].nb_params)
 		return (ERROR_PARAM);
 	printf("\n[%d]\n", tab->info_ins[file->cnt_tab].nb_parameter);
 	return (SUCCES);
@@ -69,6 +88,8 @@ int 	check_param(t_tab *tab, t_file *file)
 
 int 	lexer_analysis(t_tab *tab, t_file *file)
 {
+	int i;
+
 	file->count = -1;
 	file->cnt_tab = 0;
 	while (file->file[++file->count])
@@ -77,6 +98,11 @@ int 	lexer_analysis(t_tab *tab, t_file *file)
 		{
 			file->ligne_error = file->count;
 			tab->info_ins[file->cnt_tab].label = NULL;
+			i = 0;
+			while (file->file[file->count][i] == ' ' || file->file[file->count][i] == '\t')
+				i++;
+			if (file->file[file->count][i] == COMMENT_CHAR)
+				file->count++;
 			if ((file->error = is_label_or_instruction(tab, file)) < 1)
 				return (file->error);
 			if ((file->error = check_param(tab, file)) < 1)
