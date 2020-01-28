@@ -26,7 +26,7 @@ int 		is_label(char *str)
 	while (str[++i])
 	{
 		j = -1;
-		if (str[i] == ':')
+		if (str[i] == LABEL_CHAR)
 		{
 			if (count != ft_strlen(str) - 1)
 				return (ERROR_LABEL);

@@ -83,8 +83,12 @@ void 	free_error(t_tab *tab, t_file *file, t_description *desc)
 		i = -1;
 		while (++i < tab->nb_instruction)
 		{
-			//if (tab->info_ins[i].label) //askip Conditional jump
-			//	ft_strdel(&tab->info_ins[i].label);
+			if (tab->info_ins[i].label)
+				ft_strdel(&tab->info_ins[i].label);
+			if (tab->info_ins[i].direct_str)
+				ft_strdel(&tab->info_ins[i].direct_str);
+			if (tab->info_ins[i].indirect_str)
+				ft_strdel(&tab->info_ins[i].indirect_str);
 			if (tab->info_ins[i].instruction)
 				ft_strdel(&tab->info_ins[i].instruction);
 			j = -1;

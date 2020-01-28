@@ -35,11 +35,11 @@ static unsigned int	count_word2(const char *s)
 	i = 0;
 	while (*s)
 	{
-		while (*s == ' ' || *s == '\t' || *s == ',')
+		while (*s == ' ' || *s == '\t' || *s == SEPARATOR_CHAR)
 			s++;
 		if (*s != '\0')
 			i++;
-		while (*s && *s != ' ' && *s != '\t' && *s != ',')
+		while (*s && *s != ' ' && *s != '\t' && *s != SEPARATOR_CHAR)
 			s++;
 	}
 	return (i);
@@ -93,10 +93,10 @@ char				**ft_strsplit2(char const *s)
 		return (NULL);
 	while (s[n])
 	{
-		while (s[n] == ' ' || s[n] == '\t' || s[n] == ',')
+		while (s[n] == ' ' || s[n] == '\t' || s[n] == SEPARATOR_CHAR)
 			n++;
 		i = n;
-		while (s[n] && s[n] != ' ' && s[n] != '\t' && s[n] != ',')
+		while (s[n] && s[n] != ' ' && s[n] != '\t' && s[n] != SEPARATOR_CHAR)
 			n++;
 		if (n > i)
 			tab[j++] = strndup(s + i, n - i);

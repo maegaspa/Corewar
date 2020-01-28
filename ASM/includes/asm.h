@@ -16,7 +16,13 @@ typedef struct s_instruction
 	char	*instruction;
 	int 	id_inst;
 	char	**parameter;
+	int 	*type_param;
 	int 	nb_parameter;
+	int 	registre;
+	int 	direct;
+	char 	*direct_str;
+	int 	indirect;
+	char 	*indirect_str;
 	char 	*label;
 }				t_instruction;
 
@@ -46,6 +52,8 @@ typedef struct s_file
 	int 	len1;
 	int 	len2;
 	int 	len;
+	int 	i;
+	int 	j;
 }				t_file;
 
 #define SUCCES 1
@@ -84,5 +92,11 @@ void 	free_error(t_tab *tab, t_file *file, t_description *desc);
 void	print_line_error(t_file *file);
 void 	print_error(t_file *file);
 int 	file_check(t_file *file, t_description *desc, char *file_name);
+int		ft_atoi_base(char *str, char *base);
+void 	init_param(t_tab *tab, t_file *file);
+int 	lexer_param(t_file *file, t_tab *tab, char *str);
+int 	ft_check_type(int d_type, int type);
+int 	define_param(t_tab *tab, t_file *file);
+int 	check_label(t_tab *tab, char *str);
 
 #endif

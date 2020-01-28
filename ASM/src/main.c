@@ -76,6 +76,7 @@ int 	lexer_analysis(t_tab *tab, t_file *file)
 		if (is_instruction(file->file[file->count]) == SUCCES && file->ligne_name != file->count && file->ligne_comment != file->count)
 		{
 			file->ligne_error = file->count;
+			tab->info_ins[file->cnt_tab].label = NULL;
 			if ((file->error = is_label_or_instruction(tab, file)) < 1)
 				return (file->error);
 			if ((file->error = check_param(tab, file)) < 1)
@@ -87,6 +88,7 @@ int 	lexer_analysis(t_tab *tab, t_file *file)
 	return (SUCCES);
 }
 
+
 int 	lexer(t_tab *tab, t_file *file)
 {
 	if ((file->error = read_instruction(file)) < 1)
@@ -94,6 +96,8 @@ int 	lexer(t_tab *tab, t_file *file)
 	if ((file->error = init_instruction_tab(tab, file)) < 1)
 		return (file->error);
 	if ((file->error = lexer_analysis(tab, file)) < 1)
+		return (file->error);
+	if ((file->error = define_param(tab, file)) < 1)
 		return (file->error);
 	return (SUCCES);
 }

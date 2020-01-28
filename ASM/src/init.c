@@ -1,6 +1,15 @@
 #include "../includes/asm.h"
 #include <stdio.h>
 
+void 	init_param(t_tab *tab, t_file *file)
+{
+	tab->info_ins[file->j].registre = 0;
+	tab->info_ins[file->j].direct_str = NULL;
+	tab->info_ins[file->j].direct = 0;
+	tab->info_ins[file->j].indirect_str = NULL;
+	tab->info_ins[file->j].indirect = 0;
+}
+
 void 	init_struct_file(t_file *file)
 {
 	file->name = 0;

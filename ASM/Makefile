@@ -17,6 +17,7 @@ FILES = src/error\
 		src/main\
 		src/op\
 		src/utils\
+		src/param\
 
 #----------------------------------COLOR---------------------------------------#
 
