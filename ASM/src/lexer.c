@@ -120,8 +120,12 @@ int 		true_syntaxe_info(t_description *desc, char *str, int select, int chose)
 		}
 		if (chose == 1)
 				desc->name[++i] = '\0';
-			if (chose == 2)
-				desc->comment[++i] = '\0';
+		if (chose == 2)
+			desc->comment[++i] = '\0';
+		if (ft_strlen(desc->name) >= PROG_NAME_LENGTH)
+			return (ERROR_MEMORY);
+		if (ft_strlen(desc->comment) >= COMMENT_LENGTH)
+			return (ERROR_MEMORY);
 	}
 	else
 		return (ERROR_CHAR);

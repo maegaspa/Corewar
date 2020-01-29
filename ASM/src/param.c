@@ -34,9 +34,9 @@ int 	lexer_param(t_file *file, t_tab *tab, char *str)
 			return (T_DIR);
 		}
 		i = 1;
-		if (ft_atoi_base(&str[i], "0123456789abcdef") || (ft_atoi_base(&str[i], "0123456789abcdef") == 0 && ft_strchr(&str[i], '0')))
+		if (ft_atoi(&str[i]) || (ft_atoi(&str[i]) == 0 && ft_strchr(&str[i], '0')))
 		{
-			tab->info_ins[file->j].direct = ft_atoi_base(&str[i], "0123456789abcdef");
+			tab->info_ins[file->j].direct = ft_atoi(&str[i]);
 			return (T_DIR);
 		}
 		else
@@ -51,9 +51,9 @@ int 	lexer_param(t_file *file, t_tab *tab, char *str)
 			return (ERROR_MALLOC);
 		return (T_IND);
 	}
-	else if (ft_atoi_base(&str[i], "0123456789abcdef") || (ft_atoi_base(&str[i], "0123456789abcdef") == 0 && ft_strchr(&str[i], '0')))
+	else if (ft_atoi(&str[i]) || (ft_atoi(&str[i]) == 0 && ft_strchr(&str[i], '0')))
 	{
-		tab->info_ins[file->j].indirect = ft_atoi_base(&str[i], "0123456789abcdef");
+		tab->info_ins[file->j].indirect = ft_atoi(&str[i]);
 		return (T_IND);
 	}
 	return (ERROR_PARAM);
@@ -92,14 +92,19 @@ int 	define_param(t_tab *tab, t_file *file)
 	{
 		//file->ligne_error = file->j add + real file
 		file->i = -1;
-		init_param(tab, file);
+		//printf("---[%d]\n", tab->info_ins[file->j].nb_parameter);
+
 		while (++file->i < tab->info_ins[file->j].nb_parameter)
 		{
-			if ((file->error = lexer_param(file, tab, tab->info_ins[file->j].parameter[file->i])) < 1)
+			if ((file->type = lexer_param(file, tab, tab->info_ins[file->j].parameter[file->i])) < 1)
+			{
+				file->error = file->type; 
 				return (file->error);
-			printf("ret = [%d]", file->error);
-			if ((file->error = ft_check_type(file->op[tab->info_ins[file->j].id_inst - 1].params_type[file->i], file->error)) < 1)
+			}
+			printf("ret = [%d]", file->type);
+			if ((file->error = ft_check_type(file->op[tab->info_ins[file->j].id_inst - 1].params_type[file->i], file->type)) < 1)
 				return (file->error);
+			tab->info_ins[file->j].type_param[file->i] = file->type;
 			printf("=[%d]\n", file->op[tab->info_ins[file->j].id_inst - 1].params_type[file->i]);
 		}
 		printf("\n");

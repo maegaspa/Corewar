@@ -94,21 +94,25 @@ int 	lexer_analysis(t_tab *tab, t_file *file)
 	file->cnt_tab = 0;
 	while (file->file[++file->count])
 	{
-		if (is_instruction(file->file[file->count]) == SUCCES && file->ligne_name != file->count && file->ligne_comment != file->count)
-		{
-			file->ligne_error = file->count;
-			tab->info_ins[file->cnt_tab].label = NULL;
-			i = 0;
-			while (file->file[file->count][i] == ' ' || file->file[file->count][i] == '\t')
+		i = 0;
+		while (file->file[file->count][i] == ' ' || file->file[file->count][i] == '\t')
 				i++;
-			if (file->file[file->count][i] == COMMENT_CHAR)
+		if (file->file[file->count][i] == COMMENT_CHAR)
 				file->count++;
-			if ((file->error = is_label_or_instruction(tab, file)) < 1)
-				return (file->error);
-			if ((file->error = check_param(tab, file)) < 1)
-				return (file->error);
-			printf("\n");
-			file->cnt_tab++;
+		else
+		{
+			printf("DDD\n");
+			if (is_instruction(file->file[file->count]) == SUCCES && file->ligne_name != file->count && file->ligne_comment != file->count)
+			{
+				file->ligne_error = file->count;
+				tab->info_ins[file->cnt_tab].label = NULL;
+				if ((file->error = is_label_or_instruction(tab, file)) < 1)
+					return (file->error);
+				if ((file->error = check_param(tab, file)) < 1)
+					return (file->error);
+				printf("\n");
+				file->cnt_tab++;
+			}
 		}
 	}
 	return (SUCCES);
@@ -122,6 +126,8 @@ int 	lexer(t_tab *tab, t_file *file)
 	if ((file->error = init_instruction_tab(tab, file)) < 1)
 		return (file->error);
 	if ((file->error = lexer_analysis(tab, file)) < 1)
+		return (file->error);
+	if ((file->error = init_param(tab, file)) < 1)
 		return (file->error);
 	if ((file->error = define_param(tab, file)) < 1)
 		return (file->error);
@@ -147,6 +153,12 @@ int 	main(int ac, char **av)
 		return (file.error);
 	}
 	if ((file.error = lexer(&tab, &file)) < 1)
+	{
+		print_error(&file);
+		free_error(&tab, &file, &desc);
+		return (file.error);
+	}
+	if ((file.error = convertion(&desc, &file)) < 1)
 	{
 		print_error(&file);
 		free_error(&tab, &file, &desc);

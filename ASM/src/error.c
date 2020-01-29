@@ -85,12 +85,26 @@ void 	free_error(t_tab *tab, t_file *file, t_description *desc)
 		{
 			if (tab->info_ins[i].label)
 				ft_strdel(&tab->info_ins[i].label);
-			if (tab->info_ins[i].direct_str)
-				ft_strdel(&tab->info_ins[i].direct_str);
-			if (tab->info_ins[i].indirect_str)
-				ft_strdel(&tab->info_ins[i].indirect_str);
 			if (tab->info_ins[i].instruction)
 				ft_strdel(&tab->info_ins[i].instruction);
+			j = -1;
+			while (++j < tab->info_ins[i].nb_parameter)
+			{
+				if (tab->info_ins[i].direct_str != NULL)
+				{
+					ft_strdel(&tab->info_ins[i].direct_str);
+					break;
+				}
+				if (tab->info_ins[i].indirect_str != NULL)
+				{
+					ft_strdel(&tab->info_ins[i].indirect_str);
+					break;
+				}
+				if (tab->info_ins[i].instruction && (tab->info_ins[i].type_param[j] != T_REG && tab->info_ins[i].type_param[j] != T_IND && tab->info_ins[i].type_param[j] != T_DIR))
+					break;
+			}
+			if (tab->info_ins[i].check)
+				free(tab->info_ins[i].type_param);
 			j = -1;
 			while (++j < tab->info_ins[i].nb_parameter)
 				ft_strdel(&tab->info_ins[i].parameter[j]);

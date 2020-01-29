@@ -27,6 +27,7 @@ typedef struct s_instruction
 	int 	indirect;
 	char 	*indirect_str;
 	char 	*label;
+	int 	check;
 }				t_instruction;
 
 typedef struct s_tab
@@ -45,6 +46,7 @@ typedef struct s_file
 	int 	ligne_comment;
 	int 	count;
 	int 	error;
+	int 	type;
 	int 	ligne_error;
 	int 	nb_instruction;
 	int 	free_cnt;
@@ -52,11 +54,13 @@ typedef struct s_file
 	int 	cnt_tab;
 	int 	cnt_split;
 	int 	cnt_inst;
+	int 	fd;
 	int 	len1;
 	int 	len2;
 	int 	len;
 	int 	i;
 	int 	j;
+	int 	k;
 }				t_file;
 
 #define SUCCES 1
@@ -96,10 +100,13 @@ void	print_line_error(t_file *file);
 void 	print_error(t_file *file);
 int 	file_check(t_file *file, t_description *desc, char *file_name);
 int		ft_atoi_base(char *str, char *base);
-void 	init_param(t_tab *tab, t_file *file);
+int  	init_param(t_tab *tab, t_file *file);
 int 	lexer_param(t_file *file, t_tab *tab, char *str);
 int 	ft_check_type(int d_type, int type);
 int 	define_param(t_tab *tab, t_file *file);
 int 	check_label(t_tab *tab, char *str);
+int		create_cor(t_description *desc, t_file *file);
+int 	convertion(t_description *desc, t_file *file);
+char	*gettohexa(int n);
 
 #endif

@@ -1,13 +1,26 @@
 #include "../includes/asm.h"
 #include <stdio.h>
 
-void 	init_param(t_tab *tab, t_file *file)
+int 	init_param(t_tab *tab, t_file *file)
 {
-	tab->info_ins[file->j].registre = 0;
-	tab->info_ins[file->j].direct_str = NULL;
-	tab->info_ins[file->j].direct = 0;
-	tab->info_ins[file->j].indirect_str = NULL;
-	tab->info_ins[file->j].indirect = 0;
+	int 	i;
+
+	i = -1;
+	while (++i < tab->nb_instruction)
+	{
+		tab->info_ins[i].registre = 0;
+		tab->info_ins[i].direct_str = NULL;
+		tab->info_ins[i].direct = 0;
+		tab->info_ins[i].indirect_str = NULL;
+		tab->info_ins[i].indirect = 0;
+		if (!(tab->info_ins[i].type_param = malloc(sizeof(int) * tab->info_ins[i].nb_parameter)))
+				return (ERROR_MALLOC);
+		tab->info_ins[i].check = 1;
+		file->k = -1;
+		while (++file->k < tab->info_ins[i].nb_parameter)
+			tab->info_ins[i].type_param[file->k] = -1;
+	}
+	return (SUCCES);
 }
 
 void 	init_struct_file(t_file *file)

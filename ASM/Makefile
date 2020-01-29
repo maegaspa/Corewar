@@ -18,6 +18,7 @@ FILES = src/error\
 		src/op\
 		src/utils\
 		src/param\
+		src/convert_desc
 
 #----------------------------------COLOR---------------------------------------#
 

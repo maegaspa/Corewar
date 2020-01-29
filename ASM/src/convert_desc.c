@@ -41,6 +41,7 @@ char	*add_cor(char *str)
 	i = ft_strlen(str);
 	new_name = ft_strnew(ft_strlen(str) + 4);
 	ft_strcat(new_name, str);
+	ft_strdel(&str);
 	if (new_name[i - 1] == '.')
 	{
 		new_name[i] = 'c';
@@ -50,42 +51,71 @@ char	*add_cor(char *str)
 	return (new_name);
 }
 
-void	create_cor(t_description *desc, t_file *file)
+int 	write_name(t_description *desc, t_file *file)
 {
-	char	*file_name;
-	int		fd;
+	int 	i;
+	int 	len;
+	unsigned char 	*hex;
+	char 	*nb;
 
-	file_name = add_cor(desc->file_name);
-	fd = open(file_name, O_CREAT | O_WRONLY | O_TRUNC, 0600);
-	write_binary_int(COREWAR_EXEC_MAGIC, fd);
-	//write(fd, desc->name, PROG_NAME_LENGTH);
-	//write_binary_int(0, fd);
-	//rite(fd, desc->comment, COMMENT_LENGTH);
+	i = -1;
+	len = PROG_NAME_LENGTH - ft_strlen(desc->name) + 2;
+	while (desc->name[++i])
+	{
+		hex = (unsigned char *)ft_strnew(1);
+		nb = gettohexa(desc->name[i]);
+		hex[0] = ft_atoi_base(nb, "0123456789abcdef") & 0xFF;
+		printf("%s-", hex);
+		write(file->fd, hex, 1);
+		free(nb);
+		free(hex);
+	}
+	while (--len > -1)
+		write(file->fd, "", 1);
+	return (SUCCES);
 }
 
-//int main(void)
-//{
-//	char	*new_name;
-//    int		i;
-//    char	*desc = "zork.";
-//    int fd;
-//    unsigned int	magic = 0xea83f3;
-//    char			*name = "zork";
-//	int				nam_length = 5;
-//
-//    i = ft_strlen(desc);
-//    new_name = ft_strnew(ft_strlen(desc) + 4);
-//    ft_strcat(new_name, desc);
-//    if (new_name[i - 1] == '.')
-//    {
-//    	new_name[i] = 'c';
-//    	new_name[i + 1] = 'o';
-//    	new_name[i + 2] = 'r';
-//    }
-//    fd = open(new_name, O_CREAT | O_WRONLY | O_TRUNC, 0600);
-//    printf("%s\n", new_name);
-//    printf("magic = %d\n", magic);
-//	write_binary_int(magic, fd);
-//	write(fd, name, 5);
-//	return (0);
-//}
+int 	write_comment(t_description *desc, t_file *file)
+{
+	int 	i;
+	int 	len;
+	unsigned char 	*hex;
+	char 	*nb;
+
+	i = -1;
+	len = COMMENT_LENGTH - ft_strlen(desc->comment);
+	while (desc->comment[++i])
+	{
+		hex = (unsigned char *)ft_strnew(1);
+		nb = gettohexa(desc->comment[i]);
+		hex[0] = ft_atoi_base(nb, "0123456789abcdef") & 0xFF;
+		printf("%s-", hex);
+		write(file->fd, hex, 1);
+		free(nb);
+		free(hex);
+	}
+	while (--len > -1)
+		write(file->fd, "", 1);
+	return (SUCCES);
+}
+
+int		create_cor(t_description *desc, t_file *file)
+{
+	desc->file_name = add_cor(desc->file_name);
+	file->fd = open(desc->file_name, O_CREAT | O_WRONLY | O_TRUNC, 0600);
+	write_binary_int(COREWAR_EXEC_MAGIC, file->fd);
+	if ((file->error = write_name(desc, file)) < 1)
+		return (file->error);
+	if ((file->error = write_comment(desc, file)) < 1)
+		return (file->error);
+	//write_binary_int(0, fd);
+	//rite(fd, desc->comment, COMMENT_LENGTH);
+	return (SUCCES);
+}
+
+int 	convertion(t_description *desc, t_file *file)
+{
+	if ((file->error = create_cor(desc, file)) < 1)
+		return (file->error);
+	return (SUCCES);
+}
