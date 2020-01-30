@@ -1,6 +1,11 @@
 Error : file.cor
 
 Error : usage
+-n = rank player
 ./corewar [-dump nbr_cycles] [[-n number] champion1.cor]
 -dump = Dumps memory after N cycles then exits 32 display mode
 -dump-long = Dumps memory after N cycles then exits 64 display mode
+
+Error : empty file
+
+Error : memory
