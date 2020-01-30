@@ -14,7 +14,7 @@ int 	read_instruction(t_file *file)
 			i++;
 		if (file->file[file->count][i] == COMMENT_CHAR)
 				file->count++;
-		if (is_instruction(file->file[file->count]) == SUCCES)
+		if (is_instruction(file->file[file->count]) == SUCCESS)
 			file->nb_instruction++;
 	}
 	file->ligne_error = file->count;
@@ -22,7 +22,7 @@ int 	read_instruction(t_file *file)
 		return (ERROR_NOINST);
 	file->nb_instruction -= 2;
 	printf("nb_instruction [%d]\n", file->nb_instruction);
-	return (SUCCES);
+	return (SUCCESS);
 }
 
 int 	is_label_or_instruction(t_tab *tab, t_file *file)
@@ -32,7 +32,7 @@ int 	is_label_or_instruction(t_tab *tab, t_file *file)
 	file->cnt_split = 0;
 	file->cnt_inst = 0;
 	file->split = ft_strsplitwsp(file->file[file->count], file);
-	if (is_label(file->split[file->cnt_split]) == SUCCES)
+	if (is_label(file->split[file->cnt_split]) == SUCCESS)
 	{
 		printf("%d\n", file->count);
 		tab->info_ins[file->cnt_tab].label = strndup(file->split[file->cnt_split], (ft_strlen(file->split[file->cnt_split]) - 1));
@@ -41,7 +41,7 @@ int 	is_label_or_instruction(t_tab *tab, t_file *file)
 	}
 	else if ((file->error = is_label(file->split[file->cnt_split])) < 1 && file->error != FAILURE)
 		return (file->error);
-	if (is_instruction_name(file->split[file->cnt_split], file, tab) == SUCCES)
+	if (is_instruction_name(file->split[file->cnt_split], file, tab) == SUCCESS)
 	{
 		tab->info_ins[file->cnt_tab].instruction = strndup(file->split[file->cnt_split], (ft_strlen(file->split[file->cnt_split])));
 		printf("INSTRUCTION[%d] : [%s]\n", file->cnt_tab, tab->info_ins[file->cnt_tab].instruction);
@@ -55,7 +55,7 @@ int 	is_label_or_instruction(t_tab *tab, t_file *file)
 		file->len = file->len1 - 1;
 	printf("[%d]->(%c)|[%d]->(%c)\n", file->len1, file->file[file->count][file->len1], file->len2, file->file[file->count][file->len2]);
 	free_split(file);
-	return (SUCCES);
+	return (SUCCESS);
 }
 
 int 	check_param(t_tab *tab, t_file *file)
@@ -83,7 +83,7 @@ int 	check_param(t_tab *tab, t_file *file)
 	if (tab->info_ins[file->cnt_tab].nb_parameter != file->op[tab->info_ins[file->cnt_tab].id_inst - 1].nb_params)
 		return (ERROR_PARAM);
 	printf("\n[%d]\n", tab->info_ins[file->cnt_tab].nb_parameter);
-	return (SUCCES);
+	return (SUCCESS);
 }
 
 int 	lexer_analysis(t_tab *tab, t_file *file)
@@ -101,8 +101,7 @@ int 	lexer_analysis(t_tab *tab, t_file *file)
 				file->count++;
 		else
 		{
-			printf("DDD\n");
-			if (is_instruction(file->file[file->count]) == SUCCES && file->ligne_name != file->count && file->ligne_comment != file->count)
+			if (is_instruction(file->file[file->count]) == SUCCESS && file->ligne_name != file->count && file->ligne_comment != file->count)
 			{
 				file->ligne_error = file->count;
 				tab->info_ins[file->cnt_tab].label = NULL;
@@ -115,7 +114,7 @@ int 	lexer_analysis(t_tab *tab, t_file *file)
 			}
 		}
 	}
-	return (SUCCES);
+	return (SUCCESS);
 }
 
 
@@ -127,17 +126,17 @@ int 	lexer(t_tab *tab, t_file *file)
 		return (file->error);
 	if ((file->error = lexer_analysis(tab, file)) < 1)
 		return (file->error);
-	if ((file->error = init_param(tab, file)) < 1)
+	if ((file->error = init_param(tab)) < 1)
 		return (file->error);
 	if ((file->error = define_param(tab, file)) < 1)
 		return (file->error);
-	return (SUCCES);
+	return (SUCCESS);
 }
 
 int 	main(int ac, char **av)
 {
 	t_file file;
-	t_description desc;
+	t_header head;
 	t_tab tab;
 
 	set_op_tab(&file);
@@ -146,25 +145,25 @@ int 	main(int ac, char **av)
 		ft_putstr_fd("Usage: ./asm <file.s>\n", 2);
 		return (ERROR_USAGE);
 	}
-	if ((file.error = file_check(&file, &desc, av[1])) < 1)
+	if ((file.error = file_check(&file, &head, av[1])) < 1)
 	{
 		print_error(&file);
-		free_error(&tab, &file, &desc);
+		free_error(&tab, &file);
 		return (file.error);
 	}
 	if ((file.error = lexer(&tab, &file)) < 1)
 	{
 		print_error(&file);
-		free_error(&tab, &file, &desc);
+		free_error(&tab, &file);
 		return (file.error);
 	}
-	if ((file.error = convertion(&desc, &file)) < 1)
+	if ((file.error = convertion(&head, &file)) < 1)
 	{
 		print_error(&file);
-		free_error(&tab, &file, &desc);
+		free_error(&tab, &file);
 		return (file.error);
 	}
 	print_error(&file);
-	free_error(&tab, &file, &desc);
-	return (SUCCES);
+	free_error(&tab, &file);
+	return (SUCCESS);
 }

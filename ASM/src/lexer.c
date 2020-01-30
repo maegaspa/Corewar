@@ -10,7 +10,7 @@ int 		is_instruction_name(char *str, t_file *file, t_tab *tab)
 		if (!ft_strcmp(file->op[i].name, str))
 		{
 			tab->info_ins[file->cnt_tab].id_inst = file->op[i].id;
-			return (SUCCES);
+			return (SUCCESS);
 		}
 	return (FAILURE);
 }
@@ -30,7 +30,7 @@ int 		is_label(char *str)
 		{
 			if (count != ft_strlen(str) - 1)
 				return (ERROR_LABEL);
-			return (SUCCES);
+			return (SUCCESS);
 		}
 		while (LABEL_CHARS[++j])
 			if (str[i] == LABEL_CHARS[j])
@@ -52,7 +52,7 @@ int 		is_instruction(char *str)
 		if (str[i] != ' ' && str[i] != '\t')
 			j++;
 	if (j)
-		return (SUCCES);
+		return (SUCCESS);
 	return (FAILURE);
 }
 
@@ -66,19 +66,19 @@ int 		is_name_or_comment(char *str, int chose)
 		while (str[i] == ' ' || str[i] == '\t')
 			i++;
 		if (!(ft_strncmp(&str[i], NAME_CMD_STRING, ft_strlen(NAME_CMD_STRING))))
-			return (SUCCES);
+			return (SUCCESS);
 	}
 	if (chose == 2)
 	{
 		while (str[i] == ' ' || str[i] == '\t')
 			i++;
 		if (!(ft_strncmp(&str[i], COMMENT_CMD_STRING, ft_strlen(COMMENT_CMD_STRING))))
-			return (SUCCES);
+			return (SUCCESS);
 	}
 	return (0);
 }
 
-int 		true_syntaxe_info(t_description *desc, char *str, int select, int chose)
+int 		true_syntaxe_info(t_header *head, char *str, int select, int chose)
 {
 	int i;
 	int count;
@@ -106,28 +106,24 @@ int 		true_syntaxe_info(t_description *desc, char *str, int select, int chose)
 		}
 		if (count == 0)
 			return (ERROR_CHAR);
-		if (chose == 1 && !(desc->name = ft_memalloc(i + 1)))
-			return (ERROR_MALLOC);
-		if (chose == 2 && !(desc->comment = ft_memalloc(i + 1)))
-			return (ERROR_MALLOC);
 		i = -1;
 		while (str[++tmp] != '\"')
 		{
 			if (chose == 1)
-				desc->name[++i] = str[tmp];
+				head->prog_name[++i] = str[tmp];
 			if (chose == 2)
-				desc->comment[++i] = str[tmp];
+				head->comment[++i] = str[tmp];
 		}
 		if (chose == 1)
-				desc->name[++i] = '\0';
+			head->prog_name[++i] = '\0';
 		if (chose == 2)
-			desc->comment[++i] = '\0';
-		if (ft_strlen(desc->name) >= PROG_NAME_LENGTH)
+			head->comment[++i] = '\0';
+		if (i >= PROG_NAME_LENGTH)
 			return (ERROR_MEMORY);
-		if (ft_strlen(desc->comment) >= COMMENT_LENGTH)
+		if (i >= COMMENT_LENGTH)
 			return (ERROR_MEMORY);
 	}
 	else
 		return (ERROR_CHAR);
-	return (SUCCES);
+	return (SUCCESS);
 }

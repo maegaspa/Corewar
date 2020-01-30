@@ -110,7 +110,7 @@ int 	check_label(t_tab *tab, char *str)
 	while (++i < tab->nb_instruction)
 		if (tab->info_ins[i].label)
 			if (!ft_strcmp(tab->info_ins[i].label, str))
-				return (SUCCES);
+				return (SUCCESS);
 	return (ERROR_LABEL);
 }
 
@@ -139,6 +139,32 @@ int	ft_atoi_base(char *str, char *base)
 			res = (res * base_length) + (get_nb(str[i], base));
 	}
 	return (res * negative);
+}
+
+static void	swap_char(unsigned char *a, unsigned char *b)
+{
+	unsigned char	tmp;
+
+	tmp = *a;
+	*a = *b;
+	*b = tmp;
+}
+
+void		swap_2(unsigned short int *nb)
+{
+	unsigned char	*tmp;
+
+	tmp = (unsigned char *)nb;
+	swap_char(tmp, tmp + 1);
+}
+
+void		swap_4(unsigned int *nb)
+{
+	unsigned char	*tmp;
+
+	tmp = (unsigned char *)nb;
+	swap_char(tmp, tmp + 3);
+	swap_char(tmp + 1, tmp + 2);
 }
 
 char		*strndup(const char *s, size_t n)

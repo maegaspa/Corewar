@@ -13,7 +13,7 @@ int 	lexer_param(t_file *file, t_tab *tab, char *str)
 		{
 			if ((ft_strlen(str) == 3 && ft_atoi_2(str) >= 10) || (ft_strlen(str) == 2 && ft_atoi_2(str) < 10))
 			{
-				tab->info_ins[file->j].registre = ft_atoi_2(str);
+				tab->info_ins[file->j].param[file->i].registre = ft_atoi_2(str);
 				return (T_REG);
 			}
 			else
@@ -29,14 +29,15 @@ int 	lexer_param(t_file *file, t_tab *tab, char *str)
 		{
 			if ((file->error = check_label(tab, &str[i])) < 1)
 				return (file->error);
-			if (!(tab->info_ins[file->j].direct_str = ft_strdup(&str[i])))
+			if (!(tab->info_ins[file->j].param[file->i].direct_str = ft_strdup(&str[i])))
 				return (ERROR_MALLOC);
 			return (T_DIR);
 		}
 		i = 1;
 		if (ft_atoi(&str[i]) || (ft_atoi(&str[i]) == 0 && ft_strchr(&str[i], '0')))
 		{
-			tab->info_ins[file->j].direct = ft_atoi(&str[i]);
+			tab->info_ins[file->j].param[file->i].is_direct = 1;
+			tab->info_ins[file->j].param[file->i].direct = ft_atoi(&str[i]);
 			return (T_DIR);
 		}
 		else
@@ -47,13 +48,14 @@ int 	lexer_param(t_file *file, t_tab *tab, char *str)
 		i = 1;
 		if ((file->error = check_label(tab, &str[i])) < 1)
 			return (file->error);
-		if (!(tab->info_ins[file->j].indirect_str = ft_strdup(&str[i])))
+		if (!(tab->info_ins[file->j].param[file->i].indirect_str = ft_strdup(&str[i])))
 			return (ERROR_MALLOC);
 		return (T_IND);
 	}
 	else if (ft_atoi(&str[i]) || (ft_atoi(&str[i]) == 0 && ft_strchr(&str[i], '0')))
 	{
-		tab->info_ins[file->j].indirect = ft_atoi(&str[i]);
+		tab->info_ins[file->j].param[file->i].is_indirect = 1;
+		tab->info_ins[file->j].param[file->i].indirect = ft_atoi(&str[i]);
 		return (T_IND);
 	}
 	return (ERROR_PARAM);
@@ -63,25 +65,25 @@ int 	ft_check_type(int d_type, int type)
 {
 	if (d_type == T_REG)
 		if (type == T_REG)
-			return (SUCCES);
+			return (SUCCESS);
 	if (d_type == T_IND)
 		if (type == T_IND)
-			return (SUCCES);
+			return (SUCCESS);
 	if (d_type == T_DIR)
 		if (type == T_DIR)
-			return (SUCCES);
+			return (SUCCESS);
 	if (d_type == (T_REG + T_DIR))
 		if (type == T_REG || type == T_DIR)
-			return (SUCCES);
+			return (SUCCESS);
 	if (d_type == (T_IND + T_DIR))
 		if (type == T_IND || type == T_DIR)
-			return (SUCCES);
+			return (SUCCESS);
 	if (d_type == (T_IND + T_REG))
 		if (type == T_IND || type == T_REG)
-			return (SUCCES);
+			return (SUCCESS);
 	if (d_type == (T_REG + T_DIR + T_IND))
 		if (type == T_REG || type == T_DIR || type == T_IND)
-			return (SUCCES);
+			return (SUCCESS);
 	return (FAILURE);
 }
 
@@ -104,10 +106,10 @@ int 	define_param(t_tab *tab, t_file *file)
 			printf("ret = [%d]", file->type);
 			if ((file->error = ft_check_type(file->op[tab->info_ins[file->j].id_inst - 1].params_type[file->i], file->type)) < 1)
 				return (file->error);
-			tab->info_ins[file->j].type_param[file->i] = file->type;
+			tab->info_ins[file->j].param[file->i].type_param = file->type;
 			printf("=[%d]\n", file->op[tab->info_ins[file->j].id_inst - 1].params_type[file->i]);
 		}
 		printf("\n");
 	}
-	return (SUCCES);
+	return (SUCCESS);
 }

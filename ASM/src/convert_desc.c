@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   convert_desc.c                                   .::    .:/ .      .::   */
+/*   convert_head.c                                   .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: maegaspa <maegaspa@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
@@ -51,71 +51,19 @@ char	*add_cor(char *str)
 	return (new_name);
 }
 
-int 	write_name(t_description *desc, t_file *file)
+int		create_cor(t_header *head, t_file *file)
 {
-	int 	i;
-	int 	len;
-	unsigned char 	*hex;
-	char 	*nb;
-
-	i = -1;
-	len = PROG_NAME_LENGTH - ft_strlen(desc->name) + 2;
-	while (desc->name[++i])
-	{
-		hex = (unsigned char *)ft_strnew(1);
-		nb = gettohexa(desc->name[i]);
-		hex[0] = ft_atoi_base(nb, "0123456789abcdef") & 0xFF;
-		printf("%s-", hex);
-		write(file->fd, hex, 1);
-		free(nb);
-		free(hex);
-	}
-	while (--len > -1)
-		write(file->fd, "", 1);
-	return (SUCCES);
+	file->file_name = add_cor(file->file_name);
+	printf("%s\n", file->file_name);
+	file->fd = open(file->file_name, O_CREAT | O_WRONLY | O_TRUNC, 0600);
+	if (write(file->fd, &(*head), sizeof(t_header)) != sizeof(t_header))
+		return (ERROR_WRITE);
+	return (SUCCESS);
 }
 
-int 	write_comment(t_description *desc, t_file *file)
+int 	convertion(t_header *head, t_file *file)
 {
-	int 	i;
-	int 	len;
-	unsigned char 	*hex;
-	char 	*nb;
-
-	i = -1;
-	len = COMMENT_LENGTH - ft_strlen(desc->comment);
-	while (desc->comment[++i])
-	{
-		hex = (unsigned char *)ft_strnew(1);
-		nb = gettohexa(desc->comment[i]);
-		hex[0] = ft_atoi_base(nb, "0123456789abcdef") & 0xFF;
-		printf("%s-", hex);
-		write(file->fd, hex, 1);
-		free(nb);
-		free(hex);
-	}
-	while (--len > -1)
-		write(file->fd, "", 1);
-	return (SUCCES);
-}
-
-int		create_cor(t_description *desc, t_file *file)
-{
-	desc->file_name = add_cor(desc->file_name);
-	file->fd = open(desc->file_name, O_CREAT | O_WRONLY | O_TRUNC, 0600);
-	write_binary_int(COREWAR_EXEC_MAGIC, file->fd);
-	if ((file->error = write_name(desc, file)) < 1)
+	if ((file->error = create_cor(head, file)) < 1)
 		return (file->error);
-	if ((file->error = write_comment(desc, file)) < 1)
-		return (file->error);
-	//write_binary_int(0, fd);
-	//rite(fd, desc->comment, COMMENT_LENGTH);
-	return (SUCCES);
-}
-
-int 	convertion(t_description *desc, t_file *file)
-{
-	if ((file->error = create_cor(desc, file)) < 1)
-		return (file->error);
-	return (SUCCES);
+	return (SUCCESS);
 }

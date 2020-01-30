@@ -7,27 +7,26 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 
-typedef struct s_description
+typedef struct s_parameter
 {
-	char	*name;
-	char	*comment;
-	char 	*file_name;
-}				t_description;
+	int 	registre;
+	int 	is_direct;
+	int 	direct;
+	char 	*direct_str;
+	int 	is_indirect;
+	int 	indirect;
+	char 	*indirect_str;
+	int 	type_param;
+}				t_parameter;
 
 typedef struct s_instruction
 {
 	char	*instruction;
 	int 	id_inst;
 	char	**parameter;
-	int 	*type_param;
 	int 	nb_parameter;
-	int 	registre;
-	int 	direct;
-	char 	*direct_str;
-	int 	indirect;
-	char 	*indirect_str;
 	char 	*label;
-	int 	check;
+	struct s_parameter *param;
 }				t_instruction;
 
 typedef struct s_tab
@@ -39,6 +38,7 @@ typedef struct s_tab
 typedef struct s_file
 {
 	t_op 	op[17];
+	char 	*file_name;
 	char 	**file;
 	int 	name;
 	int 	ligne_name;
@@ -63,7 +63,7 @@ typedef struct s_file
 	int 	k;
 }				t_file;
 
-#define SUCCES 1
+#define SUCCESS 1
 #define ERROR_MALLOC 0
 #define ERROR_INSTRUCT -1
 #define ERROR_CHAR -2
@@ -75,14 +75,15 @@ typedef struct s_file
 #define ERROR_MEMORY -8
 #define ERROR_NOINST -9
 #define ERROR_USAGE -10
-#define FAILURE -11
+#define ERROR_WRITE -11
+#define FAILURE -12
 
 char	**get_file(char *filename);
 void	*ft_realloc(void *old, size_t old_size, size_t new_size);
 char	*strndup(const char *s, size_t n);
 int 	is_name_or_comment(char *str, int chose);
-void 	init_struct_file(t_file *file);
-int 	true_syntaxe_info(t_description *desc, char *str, int select, int chose);
+void 	init_struct_file(t_file *file, t_header *head);
+int 	true_syntaxe_info(t_header *head, char *str, int select, int chose);
 int 	lexer(t_tab *ins_tab, t_file *file);
 int 	read_instruction(t_file *file);
 int 	is_instruction(char *str);
@@ -95,18 +96,21 @@ void	set_op_tab(t_file *file);
 int 	is_label_or_instruction(t_tab *tab, t_file *file);
 int 	check_param(t_tab *tab, t_file *file);
 char	**ft_strsplit2(char const *s);
-void 	free_error(t_tab *tab, t_file *file, t_description *desc);
+void 	free_error(t_tab *tab, t_file *file);
 void	print_line_error(t_file *file);
 void 	print_error(t_file *file);
-int 	file_check(t_file *file, t_description *desc, char *file_name);
+int 	file_check(t_file *file, t_header *head, char *file_name);
 int		ft_atoi_base(char *str, char *base);
-int  	init_param(t_tab *tab, t_file *file);
+int  	init_param(t_tab *tab);
 int 	lexer_param(t_file *file, t_tab *tab, char *str);
 int 	ft_check_type(int d_type, int type);
 int 	define_param(t_tab *tab, t_file *file);
 int 	check_label(t_tab *tab, char *str);
-int		create_cor(t_description *desc, t_file *file);
-int 	convertion(t_description *desc, t_file *file);
+int		create_cor(t_header *head, t_file *file);
+int 	convertion(t_header *head, t_file *file);
+void	swap_4(unsigned int *nb);
+void	swap_2(unsigned short int *nb);
 char	*gettohexa(int n);
+t_op		get_op_by_name(t_file *file, char *name);
 
 #endif
