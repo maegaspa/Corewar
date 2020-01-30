@@ -20,7 +20,7 @@ int 	init_param(t_tab *tab, t_file *file)
 		while (++file->k < tab->info_ins[i].nb_parameter)
 			tab->info_ins[i].type_param[file->k] = -1;
 	}
-	return (SUCCES);
+	return (SUCCESS);
 }
 
 void 	init_struct_file(t_file *file)
@@ -41,5 +41,5 @@ int 		init_instruction_tab(t_tab *tab, t_file *file)
 		return (ERROR_MALLOC);
 	while (++i < tab->nb_instruction)
 		tab->info_ins[i].nb_parameter = 0;
-	return (SUCCES);
+	return (SUCCESS);
 }

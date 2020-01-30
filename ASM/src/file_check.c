@@ -13,7 +13,7 @@ int 	check_file_name(t_description *desc, char *file_name)
 		return (ERROR_DOT_S);
 	}
 	desc->file_name = strndup(file_name, len - 1);
-	return (SUCCES);
+	return (SUCCESS);
 }
 
 
@@ -43,7 +43,7 @@ int		init_file(t_file *file, t_description *desc, char *file_name)
 	if (file->name != 1 || file->comment != 1)
 		return (ERROR_INFO);
 	printf("[%s][%s]\n", desc->name, desc->comment);
-	return (SUCCES);
+	return (SUCCESS);
 }
 
 int 	file_check(t_file *file, t_description *desc, char *file_name)
@@ -52,5 +52,5 @@ int 	file_check(t_file *file, t_description *desc, char *file_name)
 		return (ERROR_DOT_S);
 	if ((file->error = init_file(file, desc, file_name)) < 1)
 		return (file->error);
-	return (SUCCES);
+	return (SUCCESS);
 }

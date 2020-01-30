@@ -63,25 +63,25 @@ int 	ft_check_type(int d_type, int type)
 {
 	if (d_type == T_REG)
 		if (type == T_REG)
-			return (SUCCES);
+			return (SUCCESS);
 	if (d_type == T_IND)
 		if (type == T_IND)
-			return (SUCCES);
+			return (SUCCESS);
 	if (d_type == T_DIR)
 		if (type == T_DIR)
-			return (SUCCES);
+			return (SUCCESS);
 	if (d_type == (T_REG + T_DIR))
 		if (type == T_REG || type == T_DIR)
-			return (SUCCES);
+			return (SUCCESS);
 	if (d_type == (T_IND + T_DIR))
 		if (type == T_IND || type == T_DIR)
-			return (SUCCES);
+			return (SUCCESS);
 	if (d_type == (T_IND + T_REG))
 		if (type == T_IND || type == T_REG)
-			return (SUCCES);
+			return (SUCCESS);
 	if (d_type == (T_REG + T_DIR + T_IND))
 		if (type == T_REG || type == T_DIR || type == T_IND)
-			return (SUCCES);
+			return (SUCCESS);
 	return (FAILURE);
 }
 
@@ -93,7 +93,6 @@ int 	define_param(t_tab *tab, t_file *file)
 		//file->ligne_error = file->j add + real file
 		file->i = -1;
 		//printf("---[%d]\n", tab->info_ins[file->j].nb_parameter);
-
 		while (++file->i < tab->info_ins[file->j].nb_parameter)
 		{
 			if ((file->type = lexer_param(file, tab, tab->info_ins[file->j].parameter[file->i])) < 1)
@@ -109,5 +108,5 @@ int 	define_param(t_tab *tab, t_file *file)
 		}
 		printf("\n");
 	}
-	return (SUCCES);
+	return (SUCCESS);
 }

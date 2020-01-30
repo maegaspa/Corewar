@@ -110,7 +110,7 @@ int 	check_label(t_tab *tab, char *str)
 	while (++i < tab->nb_instruction)
 		if (tab->info_ins[i].label)
 			if (!ft_strcmp(tab->info_ins[i].label, str))
-				return (SUCCES);
+				return (SUCCESS);
 	return (ERROR_LABEL);
 }
 

@@ -63,7 +63,7 @@ typedef struct s_file
 	int 	k;
 }				t_file;
 
-#define SUCCES 1
+#define SUCCESS 1
 #define ERROR_MALLOC 0
 #define ERROR_INSTRUCT -1
 #define ERROR_CHAR -2
@@ -105,8 +105,8 @@ int 	lexer_param(t_file *file, t_tab *tab, char *str);
 int 	ft_check_type(int d_type, int type);
 int 	define_param(t_tab *tab, t_file *file);
 int 	check_label(t_tab *tab, char *str);
-int		create_cor(t_description *desc, t_file *file);
-int 	convertion(t_description *desc, t_file *file);
+int		create_cor(t_description *desc, t_file *file, t_tab *tab);
+int 	convertion(t_description *desc, t_file *file, t_tab *tab);
 char	*gettohexa(int n);
 
 #endif
