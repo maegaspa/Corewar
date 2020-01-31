@@ -32,7 +32,7 @@ void    write_binary_int(int nb, int fd)
 	free(str);
 }
 
-int		write_dir_int(int n_param, t_file, *file, t_tab *tab)
+int		write_dir_int(int n_param, t_file *file, t_tab *tab, int actual_inst)
 {
 	if (n_param == 0)
 		write_binary_int(file->fd, ft_atoi(tab->info_ins[actual_inst].parameter[n_param]));
@@ -43,30 +43,32 @@ int		write_dir_int(int n_param, t_file, *file, t_tab *tab)
 	return (SUCCESS);
 }
 
-int		write_short(int n_param, t_file *file, t_tab *tab)
+int		write_short(int n_param, t_file *file, t_tab *tab, int actual_inst)
 {
-	short val;
+	unsigned short val;
+	char tmp[2];
 
-    val = 0;
-    if (ft_strstr(tab->info_ins[actual_inst].parameter[n_param], LABEL_CHAR))
+	tmp[0] = LABEL_CHAR;
+	tmp[1] = '\0';
+    val = ft_atoi(tab->info_ins[actual_inst].parameter[n_param]);
+    	swap_2(&val);
+    if (ft_strstr(tab->info_ins[actual_inst].parameter[n_param], tmp))
     {
-    	val = swap2((short)ft_atoi(tab->info_ins[actual_inst].parameter[n_param]));
     	if (n_param == 0)
-        	write(file->fd, val, IND_SIZE - size); //trouver la size a retirer pour retrouver le parametre pointé
+        	write(file->fd, &val, IND_SIZE); //trouver la size a retirer pour retrouver le parametre pointé
         if (n_param == 1)
-    		write(file->fd, val, IND_SIZE - size);
+    		write(file->fd, &val, IND_SIZE);
         if (n_param == 2)
-    		write(file->fd, val, IND_SIZE - size);
+    		write(file->fd, &val, IND_SIZE);
     	}
     else
     {
-    	val = swap2((short)ft_atoi(tab->info_ins[actual_inst].parameter[n_param]));
     	if (n_param == 0)
-    		write(file->fd, val, IND_SIZE);
+    		write(file->fd, &val, IND_SIZE);
        	if (n_param == 1)
-    		write(file->fd, val, IND_SIZE);
+    		write(file->fd, &val, IND_SIZE);
        	if (n_param == 2)
-       		write(file->fd, val, IND_SIZE);
+       		write(file->fd, &val, IND_SIZE);
     }
     return (SUCCESS);
 }
@@ -89,13 +91,13 @@ int		write_reg_dir_ind(t_file *file, t_tab *tab, int actual_inst)
     	}
     	if (tab->info_ins[actual_inst].param[n_param].type_param == DIR_CODE)
     	{
-			if () // trouver condition pour size de short
-				write_short(n_param, file, tab);
+			if () // trouver condition pour size de short | faire une fonction qui check le label
+				write_short(n_param, file, tab, actual_inst);
 			else
-				write_dir_int(n_param, file, tab);
+				write_dir_int(n_param, file, tab, actual_inst);
     	}
     	if (tab->info_ins[actual_inst].param[n_param].type_param == IND_CODE)
-			write_short(n_param, file, tab);
+			write_short(n_param, file, tab, actual_inst);
 	}
 	return (SUCCESS);
 }

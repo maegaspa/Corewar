@@ -13,6 +13,8 @@ typedef struct s_parse_file
 	int 	nb_player;
 	int 	rk_player;
 	char 	**file_name;
+	int 	i;
+	int 	j;
 }				t_parse_file;
 
 #endif
