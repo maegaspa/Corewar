@@ -33,13 +33,13 @@ void 	init_struct_file(t_file *file, t_header *head)
 	file->comment = 0;
 	file->count = -1;
 	file->error = 0;
-	ft_bzero(&head, sizeof(t_header));
+	//ft_bzero(&head, sizeof(t_header));
 	head->magic = COREWAR_EXEC_MAGIC;
 	swap_4(&head->magic);
-	//ft_bzero(&head->prog_name, PROG_NAME_LENGTH + 1);
-	//head->prog_size = 0;
-	//swap_4(&head->prog_size);
-	//ft_bzero(&head->comment, COMMENT_LENGTH + 1);
+	ft_bzero(&head->prog_name, PROG_NAME_LENGTH + 1);
+	head->prog_size = 0;
+	swap_4(&head->prog_size);
+	ft_bzero(&head->comment, COMMENT_LENGTH + 1);
 }
 
 int 		init_instruction_tab(t_tab *tab, t_file *file)

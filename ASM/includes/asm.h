@@ -38,6 +38,7 @@ typedef struct s_tab
 typedef struct s_file
 {
 	t_op 	op[17];
+	unsigned char	op_c;
 	char 	*file_name;
 	char 	**file;
 	int 	name;
@@ -106,8 +107,8 @@ int 	lexer_param(t_file *file, t_tab *tab, char *str);
 int 	ft_check_type(int d_type, int type);
 int 	define_param(t_tab *tab, t_file *file);
 int 	check_label(t_tab *tab, char *str);
-int		create_cor(t_header *head, t_file *file);
-int 	convertion(t_header *head, t_file *file);
+int		create_cor(t_header *head, t_file *file, t_tab *tab);
+int 	convertion(t_header *head, t_file *file, t_tab *tab);
 void	swap_4(unsigned int *nb);
 void	swap_2(unsigned short int *nb);
 char	*gettohexa(int n);

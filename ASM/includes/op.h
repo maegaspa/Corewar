@@ -14,8 +14,8 @@
 # define OP_H
 
 #define IND_SIZE				2
-#define REG_SIZE				4
-#define DIR_SIZE				REG_SIZE
+#define REG_SIZE				1
+#define DIR_SIZE				4
 
 
 # define REG_CODE				1
@@ -69,7 +69,7 @@ typedef struct		s_header
 {
   unsigned int		magic;
   char				prog_name[PROG_NAME_LENGTH + 1];
-  //unsigned int		prog_size;
+  unsigned int		prog_size;
   char				comment[COMMENT_LENGTH + 1];
 }					t_header;
 

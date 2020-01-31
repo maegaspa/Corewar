@@ -157,7 +157,7 @@ int 	main(int ac, char **av)
 		free_error(&tab, &file);
 		return (file.error);
 	}
-	if ((file.error = convertion(&head, &file)) < 1)
+	if ((file.error = convertion(&head, &file, &tab)) < 1)
 	{
 		print_error(&file);
 		free_error(&tab, &file);
