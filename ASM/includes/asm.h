@@ -3,9 +3,12 @@
 
 # include "../../libft/includes/ft_printf.h"
 # include "op.h"
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <fcntl.h>
+# include <sys/types.h>
+# include <sys/stat.h>
+# include <fcntl.h>
+# include <string.h>
+# include <errno.h>
+# include <unistd.h>
 
 typedef struct s_parameter
 {

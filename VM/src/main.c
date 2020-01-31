@@ -1,3 +1,29 @@
+/* ************************************************************************** */
+/*                                                          LE - /            */
+/*                                                              /             */
+/*   main.c                                           .::    .:/ .      .::   */
+/*                                                 +:+:+   +:    +:  +:+:+    */
+/*   By: seanseau <marvin@le-101.fr>                +:+   +:    +:    +:+     */
+/*                                                 #+#   #+    #+    #+#      */
+/*   Created: 2020/01/31 18:33:49 by seanseau     #+#   ##    ##    #+#       */
+/*   Updated: 2020/01/31 18:33:52 by seanseau    ###    #+. /#+    ###.fr     */
+/*                                                         /                  */
+/*                                                        /                   */
+/* ************************************************************************** */
+
+/* ************************************************************************** */
+/*                                                          LE - /            */
+/*                                                              /             */
+/*   main.c                                           .::    .:/ .      .::   */
+/*                                                 +:+:+   +:    +:  +:+:+    */
+/*   By: seanseau <marvin@le-101.fr>                +:+   +:    +:    +:+     */
+/*                                                 #+#   #+    #+    #+#      */
+/*   Created: 2020/01/31 13:39:46 by seanseau     #+#   ##    ##    #+#       */
+/*   Updated: 2020/01/31 18:33:04 by seanseau    ###    #+. /#+    ###.fr     */
+/*                                                         /                  */
+/*                                                        /                   */
+/* ************************************************************************** */
+
 #include "../includes/corewar.h"
 #include <stdio.h>
 
@@ -97,15 +123,30 @@ int 	check_argument(t_parse_file *file, int ac, char **av)
 	return (SUCCESS);
 }
 
+void	print_file_parsing(t_parse_file *file)
+{
+	int i = -1;
+	
+	printf("nb_player : |%d|\n", file->nb_player);
+	while (++i < file->nb_player)
+	{
+		printf("player |%s| : rank %d\n", file->file_name[i], file->rank_player[i]);
+	}
+}
+
 int 	main(int ac, char **av)
 {
-	t_parse_file file;
-
+	t_parse_file	file;
+	t_war			war;
+	t_header		head;
 	if (ac > 1 && (file.error = check_argument(&file, ac, av)) < 0)
 	{
 		printf("ERROR\n");
 		return (file.error);
 	}
+//	print_file_parsing(&file);
+	ft_read_player_code(&file, &war, &head);
+
 	//printf("ERROR\n");
 	return (0);
 }
