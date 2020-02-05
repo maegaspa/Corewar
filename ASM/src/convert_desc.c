@@ -14,6 +14,22 @@
 #include "../includes/asm.h"
 #include <stdio.h>
 
+//void	convert_short(unsigned char **ptr, int n)
+//{
+//	(*ptr)[0] = (n >> 8) & 0xFF;
+//	(*ptr)[1] = n & 0xFF;
+//}
+//
+//void	write_binary_short(int fd, short nb)
+//{
+//	unsigned char	*str;
+//
+//	str = (unsigned char *)ft_strnew(2);
+//	convert_short(&str, nb);
+//	write(fd, str, 2);
+//	free(str);
+//}
+
 void	convert_int(unsigned char **str, int nb)
 {
 	(*str)[0] = (nb >> 24) & 0xFF;
@@ -32,14 +48,28 @@ void    write_binary_int(int nb, int fd)
 	free(str);
 }
 
+int		which_direct(t_tab *tab, int actual_inst)
+{
+    if (tab->info_ins[actual_inst].id_inst == 9 || tab->info_ins[actual_inst].id_inst == 10 || tab->info_ins[actual_inst].id_inst == 11
+    	|| tab->info_ins[actual_inst].id_inst == 12 || tab->info_ins[actual_inst].id_inst == 15)
+    	return (1);
+   	if (tab->info_ins[actual_inst].id_inst == 1 || tab->info_ins[actual_inst].id_inst == 2 || tab->info_ins[actual_inst].id_inst == 6
+   		|| tab->info_ins[actual_inst].id_inst == 7 || tab->info_ins[actual_inst].id_inst == 8 || tab->info_ins[actual_inst].id_inst == 13)
+   		return (2);
+   	return (0);
+}
+
 int		write_dir_int(int n_param, t_file *file, t_tab *tab, int actual_inst)
 {
+	int	val;
+
+	val = ft_atoi_2(tab->info_ins[actual_inst].parameter[n_param]);
 	if (n_param == 0)
-		write_binary_int(file->fd, ft_atoi(tab->info_ins[actual_inst].parameter[n_param]));
+		write_binary_int(val, file->fd);
 	if (n_param == 1)
-		write_binary_int(file->fd, ft_atoi(tab->info_ins[actual_inst].parameter[n_param]));
+		write_binary_int(val, file->fd);
 	if (n_param == 2)
-		write_binary_int(file->fd, ft_atoi(tab->info_ins[actual_inst].parameter[n_param]));
+		write_binary_int(val, file->fd);
 	return (SUCCESS);
 }
 
@@ -50,19 +80,24 @@ int		write_short(int n_param, t_file *file, t_tab *tab, int actual_inst)
 
 	tmp[0] = LABEL_CHAR;
 	tmp[1] = '\0';
-    val = ft_atoi(tab->info_ins[actual_inst].parameter[n_param]);
-    	swap_2(&val);
+    val = (short)ft_atoi_2(tab->info_ins[actual_inst].parameter[n_param]);
+    printf("lsddlsld = %s\n", tab->info_ins[actual_inst].parameter[n_param]);
+    printf("[%hd]\n", val);
+    swap_2(&val);
     if (ft_strstr(tab->info_ins[actual_inst].parameter[n_param], tmp))
     {
+    	printf("in if n_param in else = %d\n", n_param);
     	if (n_param == 0)
-        	write(file->fd, &val, IND_SIZE); //trouver la size a retirer pour retrouver le parametre pointé
+        	write(file->fd, &val, IND_SIZE); //trouver la size a retirer pour retrouver le parametre pointé // comptage index de
+        	//byte pour l'ecriture avec un tableau d'index /!\ OU /!\ comptage du nb de byte avec les infos des inst+opc+param pour chaque label, comme ca on obtient la pos pointé en byte (ex num = 15 pour label live avec zork)
         if (n_param == 1)
     		write(file->fd, &val, IND_SIZE);
         if (n_param == 2)
     		write(file->fd, &val, IND_SIZE);
-    	}
+    }
     else
     {
+    	printf("n_param in else = %d\n", n_param);
     	if (n_param == 0)
     		write(file->fd, &val, IND_SIZE);
        	if (n_param == 1)
@@ -82,6 +117,7 @@ int		write_reg_dir_ind(t_file *file, t_tab *tab, int actual_inst)
 	{
     	if (tab->info_ins[actual_inst].param[n_param].type_param == REG_CODE)
 		{
+			printf(" reg n_param in else = %d\n", n_param);
 			if (n_param == 0)
 				write(file->fd, &(tab->info_ins[actual_inst].param[n_param].registre), REG_SIZE);
 			if (n_param == 1)
@@ -91,7 +127,7 @@ int		write_reg_dir_ind(t_file *file, t_tab *tab, int actual_inst)
     	}
     	if (tab->info_ins[actual_inst].param[n_param].type_param == DIR_CODE)
     	{
-			if () // trouver condition pour size de short | faire une fonction qui check le label
+			if (which_direct(tab, actual_inst) == 1) // trouver condition pour size de short | faire une fonction qui check le label
 				write_short(n_param, file, tab, actual_inst);
 			else
 				write_dir_int(n_param, file, tab, actual_inst);
@@ -185,9 +221,9 @@ int		create_cor(t_header *head, t_file *file, t_tab *tab)
 		file->op_c = 0;
 		if ((file->error = write_param(file, tab, i)) < 1)
 			return (file->error);
-		//write_reg_dir_ind(file, tab, i);
-		if (i == 1)
-			break;
+		if ((file ->error = write_reg_dir_ind(file, tab, i) < 1))
+		    return (file->error);
+		//break;
 	}
 	return (SUCCESS);
 }
