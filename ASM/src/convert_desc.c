@@ -14,22 +14,6 @@
 #include "../includes/asm.h"
 #include <stdio.h>
 
-//void	convert_short(unsigned char **ptr, int n)
-//{
-//	(*ptr)[0] = (n >> 8) & 0xFF;
-//	(*ptr)[1] = n & 0xFF;
-//}
-//
-//void	write_binary_short(int fd, short nb)
-//{
-//	unsigned char	*str;
-//
-//	str = (unsigned char *)ft_strnew(2);
-//	convert_short(&str, nb);
-//	write(fd, str, 2);
-//	free(str);
-//}
-
 int		which_direct(t_tab *tab, int actual_inst)
 {
     if (tab->info_ins[actual_inst].id_inst == 9 || tab->info_ins[actual_inst].id_inst == 10 || tab->info_ins[actual_inst].id_inst == 11
@@ -46,41 +30,55 @@ int		get_label_pos(t_tab *tab, t_file *file)
 	int		i;
 	int		n_param;
 	int		add;
-	int 	*tabyte;
+	int     j;
 
 	i = -1;
 	add = 0;
-	if (!(tabyte = (int *)malloc(sizeof(int) * tab->nb_instruction))) // REFAIRE TAB QUI REPREND QUAND str label = (null) -> stocker num du byte, comme ca le nvx tab fais la taille du nb de label;
+	j = 0;
+	if (!(tab->tabyte = (int *)malloc(sizeof(int) * tab->nb_instruction))) // REFAIRE TAB QUI REPREND QUAND str label = (null) -> stocker num du byte, comme ca le nvx tab fais la taille du nb de label;
 		return (ERROR_MALLOC);
+	if (!(tab->n_label = (int *)malloc(sizeof(int) * tab->nb_instruction)))
+	    return (ERROR_MALLOC);
 	while (++i < tab->nb_instruction)
-		tabyte[i] = 0;
+		tab->tabyte[i] = 0;
+	i = -1;
+	while (++i < tab->nb_instruction)
+    	tab->n_label[i] = 0;
 	i = -1;
 	while(++i < tab->nb_instruction)
 	{
 		add = 0;
 		n_param = -1;
 		if (i != 0)
-			tabyte[i] += tabyte[i - 1];
+			tab->tabyte[i] += tab->tabyte[i - 1];
 		if (i != tab->nb_instruction - 1)
-			tabyte[i] += 1;
+			tab->tabyte[i] += 1;
 		if (file->op[tab->info_ins[i].id_inst - 1].acb)
-       		tabyte[i] += 1;
+       		tab->tabyte[i] += 1;
 		while(++n_param < tab->info_ins[i].nb_parameter)
 		{
 			if (tab->info_ins[i].param[n_param].type_param == REG_CODE)
-				tabyte[i] += 1;
+				tab->tabyte[i] += 1;
 			if (tab->info_ins[i].param[n_param].type_param == DIR_CODE)
 			{
 				if (which_direct(tab, i) == 1)
-					tabyte[i] += 2;
+					tab->tabyte[i] += 2;
 				else
-					tabyte[i] += 4;
+					tab->tabyte[i] += 4;
 			}
 			if (tab->info_ins[i].param[n_param].type_param == IND_CODE)
-				tabyte[i] += 2;
+				tab->tabyte[i] += 2;
 		}
-		printf("tabyte[%d] = %d\n", i, tabyte[i]);
+		if (!tab->info_ins[i].label)
+        {
+        	printf("tabyte[i] ici c'est = %d\n", tab->tabyte[i]);
+        	printf("ici i = %d\n", i);
+            tab->n_label[j] = tab->tabyte[i];
+            j++;
+        }
 	}
+	printf("n_label[0] = %d\n", tab->n_label[0]);
+    printf("n_label[1] = %d\n",tab-> n_label[1]);
 	return (SUCCESS);
 }
 
@@ -119,6 +117,7 @@ int		write_dir_int(int n_param, t_file *file, t_tab *tab, int actual_inst)
 int		write_short(int n_param, t_file *file, t_tab *tab, int actual_inst)
 {
 	unsigned short val;
+	int		i;
 	char tmp[2];
 
 	tmp[0] = LABEL_CHAR;
@@ -129,14 +128,29 @@ int		write_short(int n_param, t_file *file, t_tab *tab, int actual_inst)
     swap_2(&val);
     if (ft_strstr(tab->info_ins[actual_inst].parameter[n_param], tmp))
     {
-    	printf("in if n_param in else = %d\n", n_param); //ENCORE COMPARAISON ENTRE LABEL POINTE ET LE BON LABEL; // SI (null) ALORS Num byte, last du tab -> nb_writen_bytes;
-    	if (n_param == 0)
-        	write(file->fd, &val, IND_SIZE); //trouver la size a retirer pour retrouver le parametre pointé // comptage index de
-        	//byte pour l'ecriture avec un tableau d'index /!\ OU /!\ comptage du nb de byte avec les infos des inst+opc+param pour chaque label, comme ca on obtient la pos pointé en byte (ex num = 15 pour label live avec zork)
-        if (n_param == 1)
-    		write(file->fd, &val, IND_SIZE);
-        if (n_param == 2)
-    		write(file->fd, &val, IND_SIZE);
+    	i = -1;
+    	while (++i < tab->nb_instruction)
+    	{
+    		if (tab->info_ins[i].label)
+    			if (ft_strcmp(tab->info_ins[i].label, tab->info_ins[actual_inst].param[n_param].direct_str) == 0)
+    			{
+    				val = (unsigned short)tab->tabyte[i - 1];
+    				if (i < actual_inst)
+    					val = -val;
+    				swap_2(&val);
+    				write(file->fd, &val, IND_SIZE);
+    				printf("i = %d\n", i);
+    			}
+    	}
+    	//printf("in if n_param in else = %d\n", n_param); //ENCORE COMPARAISON ENTRE LABEL POINTE ET LE BON LABEL; // SI (null) ALORS Num byte, last du tab -> nb_writen_bytes;
+//    	if (n_param == 0)
+//        	write(file->fd, &val, IND_SIZE); //trouver la size a retirer pour retrouver le parametre pointé // comptage index de
+//        	//byte pour l'ecriture avec un tableau d'index /!\ OU /!\ comptage du nb de byte avec les infos des inst+opc+param pour chaque label, comme ca on obtient la pos pointé en byte (ex num = 15 pour label live avec zork)
+//        if (n_param == 1)
+//    		write(file->fd, &val, IND_SIZE);
+//    		//write(file->fd, &val, IND_SIZE);
+//        if (n_param == 2)
+//    		write(file->fd, &val, IND_SIZE);
     }
     else
     {
@@ -268,7 +282,6 @@ int		create_cor(t_header *head, t_file *file, t_tab *tab)
 			return (file->error);
 		if ((file ->error = write_reg_dir_ind(file, tab, i) < 1))
 		    return (file->error);
-		//break;
 	}
 	return (SUCCESS);
 }
