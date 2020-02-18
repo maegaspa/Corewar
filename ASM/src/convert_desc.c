@@ -79,6 +79,8 @@ int		get_label_pos(t_tab *tab, t_file *file)
 	}
 	printf("n_label[0] = %d\n", tab->n_label[0]);
     printf("n_label[1] = %d\n",tab-> n_label[1]);
+    printf("n_label[2] = %d\n",tab-> n_label[2]);
+    printf("n_label[3] = %d\n",tab-> n_label[3]);
 	return (SUCCESS);
 }
 
@@ -117,9 +119,11 @@ int		write_dir_int(int n_param, t_file *file, t_tab *tab, int actual_inst)
 int		write_short(int n_param, t_file *file, t_tab *tab, int actual_inst)
 {
 	unsigned short val;
+	unsigned short val2;
 	int		i;
 	char tmp[2];
 
+	val2 = 0;
 	tmp[0] = LABEL_CHAR;
 	tmp[1] = '\0';
     val = (short)ft_atoi_2(tab->info_ins[actual_inst].parameter[n_param]);
@@ -135,8 +139,10 @@ int		write_short(int n_param, t_file *file, t_tab *tab, int actual_inst)
     			if (ft_strcmp(tab->info_ins[i].label, tab->info_ins[actual_inst].param[n_param].direct_str) == 0)
     			{
     				val = (unsigned short)tab->tabyte[i - 1];
+    				printf("%d breeee \n", val);
+    				val2 = (unsigned short)tab->info_ins[i].id_inst;
     				if (i < actual_inst)
-    					val = -val;
+    					val = -val; //-val2;
     				swap_2(&val);
     				write(file->fd, &val, IND_SIZE);
     				printf("i = %d\n", i);

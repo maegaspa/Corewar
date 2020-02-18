@@ -33,6 +33,8 @@ typedef struct s_tab
 {
 	struct s_instruction *info_ins;
 	int 				nb_instruction;
+	int		*n_label;
+	int		*tabyte;
 }				t_tab;
 
 typedef struct s_file
