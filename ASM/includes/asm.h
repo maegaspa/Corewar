@@ -27,6 +27,7 @@ typedef struct s_instruction
 	int 	nb_parameter;
 	char 	*label;
 	struct s_parameter *param;
+	int 	line_error;
 }				t_instruction;
 
 typedef struct s_tab
@@ -50,6 +51,7 @@ typedef struct s_file
 	int 	count;
 	int 	error;
 	int 	type;
+	int 	param_error;
 	int 	ligne_error;
 	int 	nb_instruction;
 	int 	free_cnt;
@@ -79,7 +81,8 @@ typedef struct s_file
 #define ERROR_NOINST -9
 #define ERROR_USAGE -10
 #define ERROR_WRITE -11
-#define FAILURE -12
+#define ERROR_COMMENT -12
+#define FAILURE -13
 
 char	**get_file(char *filename);
 void	*ft_realloc(void *old, size_t old_size, size_t new_size);

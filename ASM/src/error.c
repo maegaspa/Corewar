@@ -4,7 +4,7 @@
 void	print_line_error(t_file *file)
 {
 	ft_putstr_fd("Line ", 2);
-	ft_putnbr_fd(file->ligne_error, 2);
+	ft_putnbr_fd(file->ligne_error + 1, 2);
 	ft_putstr_fd(": \"", 2);
 	ft_putstr_fd(file->file[file->ligne_error], 2);
 	ft_putstr_fd("\"", 2);
@@ -60,6 +60,11 @@ void 	print_error(t_file *file)
 	}
 	if (file->error == ERROR_WRITE)
 		ft_putstr_fd("ERROR: Can't write file.cor\n", 2);
+	if (file->error == ERROR_COMMENT)
+	{
+		ft_putstr_fd("ERROR: Comment bad format : #your comment\n", 2);
+		print_line_error(file);
+	}
 }
 
 void 	free_error(t_tab *tab, t_file *file)

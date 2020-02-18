@@ -2,7 +2,7 @@
 
 NAME = asm
 CC = gcc
-DEBUG = -g -fsanitize=address
+DEBUG = -fsanitize=address
 FLAGS = -Wall -Wextra -Werror -g
 INC = include/asm.h
 HEADER = include

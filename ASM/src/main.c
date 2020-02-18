@@ -63,6 +63,11 @@ int 	check_param(t_tab *tab, t_file *file)
 	int i;
 	int j;
 
+	file->param_error = 0;
+	i = -1;
+	while (file->file[file->count][++i])
+		if (file->file[file->count][i] == SEPARATOR_CHAR)
+			file->param_error++;
 	tab->info_ins[file->cnt_tab].parameter = ft_strsplit2(&file->file[file->count][++file->len]);
 	printf("PARAM :");
 	i = -1;
@@ -80,7 +85,7 @@ int 	check_param(t_tab *tab, t_file *file)
 	}
 	if (j != 1)
 		tab->info_ins[file->cnt_tab].nb_parameter = i;
-	if (tab->info_ins[file->cnt_tab].nb_parameter != file->op[tab->info_ins[file->cnt_tab].id_inst - 1].nb_params)
+	if ((tab->info_ins[file->cnt_tab].nb_parameter != file->op[tab->info_ins[file->cnt_tab].id_inst - 1].nb_params) || (file->param_error + 1 != tab->info_ins[file->cnt_tab].nb_parameter))
 		return (ERROR_PARAM);
 	printf("\n[%d]\n", tab->info_ins[file->cnt_tab].nb_parameter);
 	return (SUCCESS);
@@ -103,6 +108,7 @@ int 	lexer_analysis(t_tab *tab, t_file *file)
 		{
 			if (is_instruction(file->file[file->count]) == SUCCESS && file->ligne_name != file->count && file->ligne_comment != file->count)
 			{
+				tab->info_ins[file->cnt_tab].line_error = file->count;
 				file->ligne_error = file->count;
 				tab->info_ins[file->cnt_tab].label = NULL;
 				if ((file->error = is_label_or_instruction(tab, file)) < 1)

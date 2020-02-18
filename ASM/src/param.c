@@ -95,12 +95,12 @@ int 	define_param(t_tab *tab, t_file *file)
 		//file->ligne_error = file->j add + real file
 		file->i = -1;
 		//printf("---[%d]\n", tab->info_ins[file->j].nb_parameter);
-
+		file->ligne_error = tab->info_ins[file->j].line_error;
 		while (++file->i < tab->info_ins[file->j].nb_parameter)
 		{
 			if ((file->type = lexer_param(file, tab, tab->info_ins[file->j].parameter[file->i])) < 1)
 			{
-				file->error = file->type; 
+				file->error = file->type;
 				return (file->error);
 			}
 			printf("ret = [%d]", file->type);
