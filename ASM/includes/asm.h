@@ -36,6 +36,7 @@ typedef struct s_tab
 	int 				nb_instruction;
 	int		*n_label;
 	int		*tabyte;
+	char	**label_name;
 }				t_tab;
 
 typedef struct s_file

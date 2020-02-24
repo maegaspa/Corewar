@@ -39,14 +39,20 @@ int		get_label_pos(t_tab *tab, t_file *file)
 		return (ERROR_MALLOC);
 	if (!(tab->n_label = (int *)malloc(sizeof(int) * tab->nb_instruction)))
 	    return (ERROR_MALLOC);
+	if (!(tab->label_name = (char **)malloc(sizeof(char*) * 100)))
+    	    return (ERROR_MALLOC);
 	while (++i < tab->nb_instruction)
 		tab->tabyte[i] = 0;
 	i = -1;
 	while (++i < tab->nb_instruction)
     	tab->n_label[i] = 0;
 	i = -1;
+//	tab->n_label[0] = 0;
+//	tab->label_name[0] = tab->info_ins[0].label;
 	while(++i < tab->nb_instruction)
 	{
+		if (!(tab->label_name[i] = (char *)malloc(sizeof(char) * 100)))
+            	    return (ERROR_MALLOC);
 		add = 0;
 		n_param = -1;
 		if (i != 0)
@@ -73,9 +79,12 @@ int		get_label_pos(t_tab *tab, t_file *file)
         {
         	printf("ici i = %d\n", i);
             tab->n_label[j] = tab->tabyte[i];
-            j++;
         }
+        else
+        	tab->label_name[j] = tab->info_ins[i].label;
         printf("tabyte[i] ici c'est = %d\n", tab->tabyte[i]);
+        printf("label_name[%d] = %s\n", j, tab->label_name[j]);
+        j++;
 	}
 	printf("n_label[0] = %d\n", tab->n_label[0]);
     printf("n_label[1] = %d\n",tab-> n_label[1]);
@@ -120,7 +129,7 @@ int		write_short(int n_param, t_file *file, t_tab *tab, int actual_inst)
 {
 	unsigned short val;
 	unsigned short val2;
-	int		k;
+	//int		k;
 	int		i;
 	char tmp[2];
 
@@ -136,36 +145,41 @@ int		write_short(int n_param, t_file *file, t_tab *tab, int actual_inst)
     	i = -1;
     	while (++i < tab->nb_instruction)
     	{
+    		//val = 0;
     		if (tab->info_ins[i].label)
     			if (ft_strcmp(tab->info_ins[i].label, tab->info_ins[actual_inst].param[n_param].direct_str) == 0)
     			{
+    				printf("HEY FDP ICI REGARDES\n");
     				if (i != 0)
     					val = (unsigned short)tab->tabyte[i - 1];
-    				else
-    					val = 0;
-    				printf("VAL = %d\n", val);
+    				dprintf(1, "INFOS = val = %d - i = %d \n", val, i);
     				if (i < actual_inst)
     				{
-    					if (i != 0)
-    					{
-    						val = -val + tab->tabyte[i];
-    						val = -val;
-    					}
+    					if (i == 0)
+    						val = 65536 - tab->tabyte[i];
     					else
-    					{
-    						k = -1;
-    						while (++k < tab->nb_instruction)
-    						{
-    							//printf("tab->n_label[%d] = %d\n", k, tab->n_label[k]);
-    							if (tab->n_label[k] == 0)
-    							{
-    								val = tab->n_label[k - 1] - 2;
-    								val = -val;
-    								break;
-    							}
-    						}
-						}
+    						val = 65536 - tab->tabyte[i - 1];
+//    					if (i != 0)
+//    					{
+//    						val = -val + tab->tabyte[i];
+//    						val = -val;
+//    					}
+//    					else
+//    					{
+//    						k = -1;
+//    						while (++k < tab->nb_instruction)
+//    						{
+//    							//printf("tab->n_label[%d] = %d\n", k, tab->n_label[k]);
+//    							if (tab->n_label[k] == 0)
+//    							{
+//    								val = tab->n_label[k - 1] - 2;
+//    								val = -val;
+//    								break;
+//    							}
+//    						}
+//						}
     				}
+    				printf("VAL = %d\n", val);
     				swap_2(&val);
     				write(file->fd, &val, IND_SIZE);
     				printf("INSTRUCTION i = %d\n", i);
