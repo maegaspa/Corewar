@@ -1,27 +1,13 @@
 /* ************************************************************************** */
-/*                                                          LE - /            */
-/*                                                              /             */
-/*   main.c                                           .::    .:/ .      .::   */
-/*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: seanseau <marvin@le-101.fr>                +:+   +:    +:    +:+     */
-/*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2020/01/31 18:33:49 by seanseau     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/31 18:33:52 by seanseau    ###    #+. /#+    ###.fr     */
-/*                                                         /                  */
-/*                                                        /                   */
-/* ************************************************************************** */
-
-/* ************************************************************************** */
-/*                                                          LE - /            */
-/*                                                              /             */
-/*   main.c                                           .::    .:/ .      .::   */
-/*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: seanseau <marvin@le-101.fr>                +:+   +:    +:    +:+     */
-/*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2020/01/31 13:39:46 by seanseau     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/31 18:33:04 by seanseau    ###    #+. /#+    ###.fr     */
-/*                                                         /                  */
-/*                                                        /                   */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: seanseau <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/02/18 17:21:56 by seanseau          #+#    #+#             */
+/*   Updated: 2020/02/24 13:44:37 by seanseau         ###   ########lyon.fr   */
+/*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/corewar.h"
@@ -145,8 +131,11 @@ int 	main(int ac, char **av)
 		return (file.error);
 	}
 //	print_file_parsing(&file);
-	ft_read_player_code(&file, &war, &head);
-
+	if (read_and_place_players(&file, &war, &head) == -1)
+		return (-1);//free et close a la place
+	if (play_game(&war) == 0)//fonction loop de la VM
+		return (0);//end game (free/close)
+	//free_zob
 	//printf("ERROR\n");
 	return (0);
 }

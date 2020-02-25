@@ -12,6 +12,23 @@ HEADER = include
 FILES = src/main\
 		src/read_champs\
 		src/utils\
+		src/play_game\
+		src/operations/live_fct\
+		src/operations/ld_fct\
+		src/operations/st_fct\
+		src/operations/add_fct\
+		src/operations/sub_fct\
+		src/operations/and_fct\
+		src/operations/or_fct\
+		src/operations/xor_fct\
+		src/operations/zjmp_fct\
+		src/operations/ldi_fct\
+		src/operations/sti_fct\
+		src/operations/fork_fct\
+		src/operations/lld_fct\
+		src/operations/lldi_fct\
+		src/operations/lfork_fct\
+		src/operations/aff_fct\
 
 #----------------------------------COLOR---------------------------------------#
 
