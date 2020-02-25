@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   play_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seanseau <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: hmichel <hmichel@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 17:21:32 by seanseau          #+#    #+#             */
-/*   Updated: 2020/02/25 14:18:23 by seanseau         ###   ########lyon.fr   */
+/*   Updated: 2020/02/25 21:44:24 by hmichel          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,16 +33,27 @@ void	init_tab(t_test *test)
 	test[15] = &aff_fct;
 }
 
-//void	do_processus(t_war *war, t_test *test)
-//{
-//	t_process	*prc;
-//}
-
-void	set_procs(t_war *war)
+int		ft_game(t_war *war)
 {
-	
-}
+	t_proc		*chariot;
 
+	if ((error = ft_start_chariot(war, &chariot)) <= 0)
+		return (error);
+	war->begin = &chariot;
+	//while (ft_game_on())
+	while (war->cycles < war->to_die)
+	{
+		while (chariot != NULL)
+		{
+			ft_exec_opp(chariot, war);
+			chariot = chariot->next;
+		}
+		chariot = (*begin);
+		war->cycles++;
+	}
+	return (SUCCESS);
+}
+/*
 int		play_game(t_war *war)
 {
 	t_test test[16];
@@ -62,4 +73,4 @@ int		play_game(t_war *war)
 
 	ft_printf("%d\n", war->to_die);
 	return (0);
-}
+}*/

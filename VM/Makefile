@@ -13,6 +13,8 @@ FILES = src/main\
 		src/read_champs\
 		src/utils\
 		src/play_game\
+		src/operande\
+		src/parser\
 		src/operations/live_fct\
 		src/operations/ld_fct\
 		src/operations/st_fct\
