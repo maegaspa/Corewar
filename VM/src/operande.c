@@ -6,16 +6,11 @@
 /*   By: hmichel <hmichel@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 21:49:44 by hmichel           #+#    #+#             */
-/*   Updated: 2020/02/25 23:02:52 by hmichel          ###   ########lyon.fr   */
+/*   Updated: 2020/02/26 14:58:41 by seanseau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/corewar.h"
-
-int		ft_get_op(t_war *war, t_chariot *chariot)
-{
-	return (ft_stand_op(war, chariot));
-}
 
 void		ft_stand_op(t_war *war, t_chariot *chariot)
 {
@@ -28,10 +23,16 @@ void		ft_stand_op(t_war *war, t_chariot *chariot)
 	else
 	{
 		if (war->arena[chariot->start_pos + chariot->pc] == '1')
-			war->ope = 16;
+			chariot->ope = 16;
 		else if (war->arena[chariot->start_pos + chariot->pc + 1] <= '9')
-			war->ope = war->arena[chariot->start_pos + chariot->pc] - '0';
+			chariot->ope = war->arena[chariot->start_pos + chariot->pc] - '0';
 		else if (war->arena[chariot->start_pos + chariot->pc + 1] >= 'a')
-			war->ope = war->arena[chariot->start_pos + chariot->pc] - 'a' + 10;
+			chariot->ope = war->arena[chariot->start_pos + chariot->pc] - 'a' + 10;
 	}
+}
+
+int		ft_get_op(t_war *war, t_chariot *chariot)
+{
+	ft_stand_op(war, chariot);
+	return (1);
 }

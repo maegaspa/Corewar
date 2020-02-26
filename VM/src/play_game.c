@@ -6,53 +6,62 @@
 /*   By: hmichel <hmichel@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 17:21:32 by seanseau          #+#    #+#             */
-/*   Updated: 2020/02/25 21:44:24 by hmichel          ###   ########lyon.fr   */
+/*   Updated: 2020/02/26 15:50:05 by seanseau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/corewar.h"
 
-void	init_tab(t_test *test)
+void	init_tab(t_opp *opp_tab)
 {
-	ft_bzero(test, 2);
-	test[0] = &live_fct;
-	test[1] = &ld_fct;
-	test[2] = &st_fct;
-	test[3] = &add_fct;
-	test[4] = &sub_fct;
-	test[5] = &and_fct;
-	test[6] = &or_fct;
-	test[7] = &xor_fct;
-	test[8] = &zjmp_fct;
-	test[9] = &ldi_fct;
-	test[10] = &sti_fct;
-	test[11] = &fork_fct;
-	test[12] = &lld_fct;
-	test[13] = &lldi_fct;
-	test[14] = &lfork_fct;
-	test[15] = &aff_fct;
+	ft_bzero(opp_tab, 2);
+	opp_tab[0] = &live_fct;
+	opp_tab[1] = &ld_fct;
+	opp_tab[2] = &st_fct;
+	opp_tab[3] = &add_fct;
+	opp_tab[4] = &sub_fct;
+	opp_tab[5] = &and_fct;
+	opp_tab[6] = &or_fct;
+	opp_tab[7] = &xor_fct;
+	opp_tab[8] = &zjmp_fct;
+	opp_tab[9] = &ldi_fct;
+	opp_tab[10] = &sti_fct;
+	opp_tab[11] = &fork_fct;
+	opp_tab[12] = &lld_fct;
+	opp_tab[13] = &lldi_fct;
+	opp_tab[14] = &lfork_fct;
+	opp_tab[15] = &aff_fct;
 }
 
 int		ft_game(t_war *war)
 {
-	t_proc		*chariot;
+	t_chariot		*chariot;
+	int				error;
+	t_opp			opp[16];
 
+	init_tab(opp);
 	if ((error = ft_start_chariot(war, &chariot)) <= 0)
 		return (error);
+
+	ft_printf("valeur start pos war begin chariot : %d\n", chariot->start_pos);
+
 	war->begin = &chariot;
 	//while (ft_game_on())
 	while (war->cycles < war->to_die)
 	{
-		while (chariot != NULL)
+		while (chariot)
 		{
-			ft_exec_opp(chariot, war);
+			ft_printf("chariot actuel : start_pos : %d\n", chariot->start_pos);
+		//	ft_exec_opp(chariot, war, opp);
 			chariot = chariot->next;
 		}
-		chariot = (*begin);
+		chariot = (*war->begin);
 		war->cycles++;
 	}
 	return (SUCCESS);
 }
+
+
 /*
 int		play_game(t_war *war)
 {

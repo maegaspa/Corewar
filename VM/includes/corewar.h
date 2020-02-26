@@ -56,7 +56,7 @@ typedef struct			war
 	t_chariot			**begin;
 }						t_war;
 
-typedef int			(*t_test)(t_war *war, t_chariot *proc);
+typedef int			(*t_opp)(t_war *war, t_chariot *proc);
 
 /*
 ** read_champs.c
@@ -68,12 +68,22 @@ int					read_and_place_players(t_parse_file *file, t_war *war, t_header *head);
 */
 unsigned int		u_int_reverse_octet(unsigned int x);
 void				print_arena(t_war *war);
+void				ft_init_war(t_parse_file file, t_war *war);
 
 /*
 ** play_game.c
 */
-int					play_game(t_war *war);
+int					ft_game(t_war *war);
 
+/*
+** ft_process1.c
+*/
+int					ft_start_chariot(t_war *war, t_chariot **begin);
+
+/*
+** parser.c
+*/
+int					check_argument(t_parse_file *file, int ac, char **av);
 
 /*
 ** test_function_tab

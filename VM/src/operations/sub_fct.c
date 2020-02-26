@@ -6,13 +6,13 @@
 /*   By: seanseau <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 16:10:44 by seanseau          #+#    #+#             */
-/*   Updated: 2020/02/24 16:15:49 by seanseau         ###   ########lyon.fr   */
+/*   Updated: 2020/02/26 15:02:49 by seanseau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/corewar.h"
 
-int			sub_fct(t_war *war, t_process *prc)
+int			sub_fct(t_war *war, t_chariot *prc)
 {
 	ft_printf("%d-%d\n", war->nb_player, prc->pc);
 	return (0);

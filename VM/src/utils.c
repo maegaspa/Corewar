@@ -6,7 +6,7 @@
 /*   By: hmichel <hmichel@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 17:21:42 by seanseau          #+#    #+#             */
-/*   Updated: 2020/02/25 21:29:29 by hmichel          ###   ########lyon.fr   */
+/*   Updated: 2020/02/26 15:24:18 by seanseau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ void			ft_init_war(t_parse_file file, t_war *war)
 {
 	war->cycles = 0;
 	war->to_die = CYCLE_TO_DIE; //1536
+	ft_printf("file nb player : %d\n", file.nb_player);
 	war->nb_player = file.nb_player;
 	war->dump = file.dump; // a vpor si bien init dans parser
 }
