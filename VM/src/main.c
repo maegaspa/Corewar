@@ -6,7 +6,7 @@
 /*   By: hmichel <hmichel@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 17:21:56 by seanseau          #+#    #+#             */
-/*   Updated: 2020/02/26 15:20:51 by seanseau         ###   ########lyon.fr   */
+/*   Updated: 2020/02/26 18:37:54 by seanseau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ int 	main(int ac, char **av)
 		printf("ERROR\n");
 		return (file.error);
 	}
-//	print_file_parsing(&file);
+
+	//	print_file_parsing(&file);
 	if (read_and_place_players(&file, &war, &head) == -1)
 		return (-1);//free et close a la place
 	ft_init_war(file, &war);
@@ -34,5 +35,6 @@ int 	main(int ac, char **av)
 		return (0);//end game (free/close)
 	//free_zob
 	//printf("ERROR\n");
+
 	return (0);
 }

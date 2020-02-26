@@ -6,7 +6,7 @@
 /*   By: hmichel <hmichel@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 17:21:32 by seanseau          #+#    #+#             */
-/*   Updated: 2020/02/26 15:50:05 by seanseau         ###   ########lyon.fr   */
+/*   Updated: 2020/02/26 19:41:07 by seanseau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,17 @@ void	init_tab(t_opp *opp_tab)
 	opp_tab[15] = &aff_fct;
 }
 
+
+
+
+void	ft_exec_opp(t_chariot *chariot, t_war *war, t_opp *opp_tab)
+{
+	//check wait, live
+	ft_get_op(war, chariot);
+	ft_printf("ope chariot [%d]: %d\n", chariot->index, chariot->ope);
+	opp_tab[chariot->ope](war, chariot);
+}
+
 int		ft_game(t_war *war)
 {
 	t_chariot		*chariot;
@@ -42,44 +53,16 @@ int		ft_game(t_war *war)
 	init_tab(opp);
 	if ((error = ft_start_chariot(war, &chariot)) <= 0)
 		return (error);
-
-	ft_printf("valeur start pos war begin chariot : %d\n", chariot->start_pos);
-
 	war->begin = &chariot;
-	//while (ft_game_on())
 	while (war->cycles < war->to_die)
 	{
 		while (chariot)
 		{
-			ft_printf("chariot actuel : start_pos : %d\n", chariot->start_pos);
-		//	ft_exec_opp(chariot, war, opp);
+			ft_exec_opp(chariot, war, opp);
 			chariot = chariot->next;
 		}
-		chariot = (*war->begin);
+		//		chariot = (*war->begin);
 		war->cycles++;
 	}
 	return (SUCCESS);
 }
-
-
-/*
-int		play_game(t_war *war)
-{
-	t_test test[16];
-
-	init_tab(test);
-	war->to_die = CYCLE_TO_DIE - 1;
-	set_procs(war);
-
-	while (war->procs)
-	{
-//		do_processus(war, test);
-//		check_live();
-//		cycle_to_die();
-
-//		set_procs();
-	}
-
-	ft_printf("%d\n", war->to_die);
-	return (0);
-}*/

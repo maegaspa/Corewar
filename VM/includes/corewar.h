@@ -41,7 +41,7 @@ typedef struct			s_chariot
 	int					start_pos;
 	int					ope;
 	int					registres[REG_NUMBER];
-	int					player;
+	int					index;
 	struct s_chariot	*next;
 }						t_chariot;
 
@@ -84,6 +84,11 @@ int					ft_start_chariot(t_war *war, t_chariot **begin);
 ** parser.c
 */
 int					check_argument(t_parse_file *file, int ac, char **av);
+
+/*
+** operande.c
+*/
+int					ft_get_op(t_war *war, t_chariot *chariot);
 
 /*
 ** test_function_tab

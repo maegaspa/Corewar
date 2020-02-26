@@ -6,13 +6,13 @@
 /*   By: hmichel <hmichel@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 18:46:10 by hmichel           #+#    #+#             */
-/*   Updated: 2020/02/26 15:48:04 by seanseau         ###   ########lyon.fr   */
+/*   Updated: 2020/02/26 19:21:06 by seanseau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/corewar.h"
 
-t_chariot		*ft_creat_chariot(int pc, int start_pos)
+t_chariot		*ft_creat_chariot(int index, int pc, int start_pos)
 {
 	t_chariot	*new;
 	int			i;
@@ -24,7 +24,7 @@ t_chariot		*ft_creat_chariot(int pc, int start_pos)
 	new->live = 0;
 	new->carry = 0;
 	new->wait = 0;
-	new->player = 0; //inutile ?
+	new->index = index;
 	new->start_pos = start_pos;
 	while (++i < REG_NUMBER)
 		new->registres[i] = 0;
@@ -37,18 +37,18 @@ int			ft_start_chariot(t_war *war, t_chariot **begin)
 	int			i;
 	t_chariot	*temp;
 
-	i = war->nb_player;
+	i = war->nb_player - 1;
 	if (!war->nb_player)
 		return (ERROR_NB_PLAYER);
-	if (!(temp = ft_creat_chariot(0, war->player[i].pos_arena)))
+	if (!(temp = ft_creat_chariot(0, 0, war->player[i].pos_arena)))
 		return (ERROR_MALLOC);
-	while (--i > 0)
+	*begin = temp;
+	while (--i >= 0)
 	{
-		if (!(temp->next = ft_creat_chariot(0, war->player[i].pos_arena)))
+		if (!(temp->next = ft_creat_chariot(temp->index + 1, 0, war->player[i].pos_arena)))
 			(ERROR_MALLOC);
 		temp = temp->next;
 	}
-	*begin = temp;
 	return (SUCCESS);
 }
 
