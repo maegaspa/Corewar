@@ -16,6 +16,7 @@ FILES = src/main\
 		src/operande\
 		src/parser\
 		src/ft_process1\
+		src//op\
 		src/operations/live_fct\
 		src/operations/ld_fct\
 		src/operations/st_fct\

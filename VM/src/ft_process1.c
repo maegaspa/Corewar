@@ -6,7 +6,7 @@
 /*   By: hmichel <hmichel@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 18:46:10 by hmichel           #+#    #+#             */
-/*   Updated: 2020/02/26 19:21:06 by seanseau         ###   ########lyon.fr   */
+/*   Updated: 2020/02/26 22:00:10 by hmichel          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ t_chariot		*ft_creat_chariot(int index, int pc, int start_pos)
 	new->wait = 0;
 	new->index = index;
 	new->start_pos = start_pos;
+	new->ope = -1; // <=> ope non conforme
 	while (++i < REG_NUMBER)
 		new->registres[i] = 0;
 	new->next = NULL;
