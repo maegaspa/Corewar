@@ -20,76 +20,113 @@ int		which_direct(t_tab *tab, int actual_inst)
     	|| tab->info_ins[actual_inst].id_inst == 12 || tab->info_ins[actual_inst].id_inst == 15)
     	return (1);
    	if (tab->info_ins[actual_inst].id_inst == 1 || tab->info_ins[actual_inst].id_inst == 2 || tab->info_ins[actual_inst].id_inst == 6
-   		|| tab->info_ins[actual_inst].id_inst == 7 || tab->info_ins[actual_inst].id_inst == 8 || tab->info_ins[actual_inst].id_inst == 13)
+   		|| tab->info_ins[actual_inst].id_inst == 7 || tab->info_ins[actual_inst].id_inst == 8 || tab->info_ins[actual_inst].id_inst == 13) //CAS : DIRECT LABEL CHAR DEFINI SUR 4 OCTETS
    		return (2);
    	return (0);
+}
+
+int		get_label_init(t_tab *tab)
+{
+	int		i;
+
+	i = -1;
+	if (!(tab->tabyte = (int *)malloc(sizeof(int) * CHAMP_MAX_SIZE))) // REFAIRE TAB QUI REPREND QUAND str label = (null) -> stocker num du byte, comme ca le nvx tab fais la taille du nb de label;
+    	return (ERROR_MALLOC);
+ 	if (!(tab->n_label = (int *)malloc(sizeof(int) * tab->nb_instruction)))
+ 		return (ERROR_MALLOC);
+    if (!(tab->label_name = (char **)malloc(sizeof(char*) * tab->nb_instruction)))
+    	return (ERROR_MALLOC);
+    i = -1;
+    while(++i < tab->nb_instruction)
+    {
+    	if (!(tab->label_name[i] = (char *)malloc(sizeof(char) * 6)))
+    		return (ERROR_MALLOC);
+   		tab->n_label[i] = 0;
+   	}
+   	return (SUCCESS);
 }
 
 int		get_label_pos(t_tab *tab, t_file *file)
 {
 	int		i;
-	int		n_param;
-	int		add;
 	int     j;
+	int 	k;
+	int		n_param;
 
 	i = -1;
-	add = 0;
 	j = 0;
-	if (!(tab->tabyte = (int *)malloc(sizeof(int) * tab->nb_instruction))) // REFAIRE TAB QUI REPREND QUAND str label = (null) -> stocker num du byte, comme ca le nvx tab fais la taille du nb de label;
-		return (ERROR_MALLOC);
-	if (!(tab->n_label = (int *)malloc(sizeof(int) * tab->nb_instruction)))
-	    return (ERROR_MALLOC);
-	if (!(tab->label_name = (char **)malloc(sizeof(char*) * 100)))
-    	    return (ERROR_MALLOC);
-	while (++i < tab->nb_instruction)
-		tab->tabyte[i] = 0;
-	i = -1;
-	while (++i < tab->nb_instruction)
-    	tab->n_label[i] = 0;
-	i = -1;
-//	tab->n_label[0] = 0;
-//	tab->label_name[0] = tab->info_ins[0].label;
+	k = 1;
+	if (!(get_label_init(tab)))
+		return (file->error);
 	while(++i < tab->nb_instruction)
 	{
-		if (!(tab->label_name[i] = (char *)malloc(sizeof(char) * 100)))
-            	    return (ERROR_MALLOC);
-		add = 0;
 		n_param = -1;
-		if (i != 0)
-			tab->tabyte[i] += tab->tabyte[i - 1];
-		if (i != tab->nb_instruction - 1)
-			tab->tabyte[i] += 1;
+		if (tab->info_ins[i].id_inst > 0)
+		{
+			tab->tabyte[j] = tab->info_ins[i].id_inst;
+			j++;
+		}
 		if (file->op[tab->info_ins[i].id_inst - 1].acb)
-       		tab->tabyte[i] += 1;
+		{
+			tab->tabyte[j] = -3;
+       		j++;
+		}
 		while(++n_param < tab->info_ins[i].nb_parameter)
 		{
 			if (tab->info_ins[i].param[n_param].type_param == REG_CODE)
-				tab->tabyte[i] += 1;
+			{
+				tab->tabyte[j] = -1;
+				j++;
+			}
 			if (tab->info_ins[i].param[n_param].type_param == DIR_CODE)
 			{
 				if (which_direct(tab, i) == 1)
-					tab->tabyte[i] += 2;
+				{
+					tab->tabyte[j] = -2;
+					tab->tabyte[j + 1] = -2;
+					j += 2;
+				}
 				else
-					tab->tabyte[i] += 4;
+				{
+					tab->tabyte[j] = -4;
+					tab->tabyte[j + 1] = -4;
+					tab->tabyte[j + 2] = -4;
+					tab->tabyte[j + 3] = -4;
+					j += 4;
+				}
 			}
 			if (tab->info_ins[i].param[n_param].type_param == IND_CODE)
-				tab->tabyte[i] += 2;
+			{
+				tab->tabyte[j] += -2;
+				j += 2;
+			}
 		}
 		if (!tab->info_ins[i].label)
         {
-        	printf("ici i = %d\n", i);
-            tab->n_label[j] = tab->tabyte[i];
+        //	dprintf(1, "k = %d et j = %d et tab->tabyte[j] = %d\n", k, j, tab->tabyte[j]);
+        	if (tab->tabyte[j] != -5)
+        		tab->n_label[k] = j;
         }
         else
-        	tab->label_name[j] = tab->info_ins[i].label;
-        printf("tabyte[i] ici c'est = %d\n", tab->tabyte[i]);
-        printf("label_name[%d] = %s\n", j, tab->label_name[j]);
-        j++;
+        {
+        	tab->label_name[k] = tab->info_ins[i].label;
+        	k++;
+        }
+        //printf("tabyte[%d] ici c'est = %d\n", i, tab->tabyte[i]);
+        //printf("label_name[%d] = %s\n", j, tab->label_name[j]);
+       // printf("\t\t\t\t j = %d\n", j);
 	}
-	printf("n_label[0] = %d\n", tab->n_label[0]);
-    printf("n_label[1] = %d\n",tab-> n_label[1]);
-    printf("n_label[2] = %d\n",tab-> n_label[2]);
-    printf("n_label[3] = %d\n",tab-> n_label[3]);
+	tab->tabyte[j] = -5;
+	tab->n_label[k] = j - 1;
+	i = -1;
+	while (tab->tabyte[++i] != -5)
+		printf("tabyte[%d] = %d\n", i, tab->tabyte[i]);
+	i = -1;
+	while (++i < tab->nb_instruction)
+	{
+		printf("n_label[%d] = %d\n", i, tab->n_label[i]);
+		printf("label_name[%d] = %s\n", i, tab->label_name[i]); //INDEX : LABEL_NAME -> CORRESPOND AU BYTE N = N_label[- 1]
+	}
 	return (SUCCESS);
 }
 
@@ -113,15 +150,51 @@ void    write_binary_int(int nb, int fd)
 
 int		write_dir_int(int n_param, t_file *file, t_tab *tab, int actual_inst)
 {
-	int	val;
+	unsigned int	val;
+	unsigned int val2;
+	int i;
+	char tmp[2];
 
-	val = ft_atoi_2(tab->info_ins[actual_inst].parameter[n_param]);
-	if (n_param == 0)
-		write_binary_int(val, file->fd);
-	if (n_param == 1)
-		write_binary_int(val, file->fd);
-	if (n_param == 2)
-		write_binary_int(val, file->fd);
+	tmp[0] = LABEL_CHAR;
+    tmp[1] = '\0';
+    val = ft_atoi_2(tab->info_ins[actual_inst].parameter[n_param]);
+    i = -1;
+	if (ft_strstr(tab->info_ins[actual_inst].parameter[n_param], tmp))
+	{
+		while (++i < tab->nb_instruction)
+		{
+			if (tab->label_name[i])
+			{
+				//dprintf(1, "YESSSAAAAAAAAAAAI\n");
+				if (ft_strcmp(tab->label_name[i], tab->info_ins[actual_inst].param[n_param].direct_str) == 0)
+    			{
+    				dprintf(1, "[INT]HEY FDP ICI REGARDES [%s]\n", tab->info_ins[actual_inst].param[n_param].direct_str);
+    				//dprintf(1, "YESSSAAAAAAAAAAAI\n");
+    				val = tab->n_label[i];
+    				//dprintf(1, "\t\t\ttab->info_ins[actual_inst].param[n_param].direct_str = %s et val = %d et act = %d et i = %d\n", tab->info_ins[actual_inst].param[n_param].direct_str, val, actual_inst, i);
+    				dprintf(1, "INFOS = val = %d - i = %d - actu_inst = %d\n", val, i, actual_inst);
+    				if (i <= actual_inst)
+    				{
+    					val2 = tab->n_label[actual_inst] - tab->n_label[i];
+    					printf("((%d)) = VAL2 INT\n", val2);
+    					val = 4294967296 - val2;
+    					dprintf(1, "1 YESSSAAAAAAAAAAAI\n");
+    				}
+    				dprintf(1, "VAL = %d\n", val);
+    				write_binary_int(val, file->fd);
+    			}
+    		}
+		}
+	}
+	else
+	{
+		if (n_param == 0)
+			write_binary_int(val, file->fd);
+		if (n_param == 1)
+			write_binary_int(val, file->fd);
+		if (n_param == 2)
+			write_binary_int(val, file->fd);
+	}
 	return (SUCCESS);
 }
 
@@ -137,7 +210,7 @@ int		write_short(int n_param, t_file *file, t_tab *tab, int actual_inst)
 	tmp[0] = LABEL_CHAR;
 	tmp[1] = '\0';
     val = (short)ft_atoi_2(tab->info_ins[actual_inst].parameter[n_param]);
-    printf("lsddlsld = %s\n", tab->info_ins[actual_inst].parameter[n_param]);
+    dprintf(1, "info_ins[%d].param[%d] = %s\n", actual_inst, n_param, tab->info_ins[actual_inst].parameter[n_param]);
     printf("[%hd]\n", val);
     swap_2(&val);
     if (ft_strstr(tab->info_ins[actual_inst].parameter[n_param], tmp))
@@ -146,44 +219,28 @@ int		write_short(int n_param, t_file *file, t_tab *tab, int actual_inst)
     	while (++i < tab->nb_instruction)
     	{
     		//val = 0;
-    		if (tab->info_ins[i].label)
-    			if (ft_strcmp(tab->info_ins[i].label, tab->info_ins[actual_inst].param[n_param].direct_str) == 0)
+    		if (tab->label_name[i])
+    		{
+    			if (ft_strcmp(tab->label_name[i], tab->info_ins[actual_inst].param[n_param].direct_str) == 0)
     			{
-    				printf("HEY FDP ICI REGARDES\n");
-    				if (i != 0)
-    					val = (unsigned short)tab->tabyte[i - 1];
-    				dprintf(1, "INFOS = val = %d - i = %d \n", val, i);
+    				dprintf(1, " [SHORT]HEY FDP ICI REGARDES [%s]\n", tab->info_ins[actual_inst].param[n_param].direct_str);
+    				//if (i != 0)
+    				val = (unsigned short)tab->n_label[i];
+    				//val = (unsigned short)tab->n_label[i + 1];
+    				dprintf(1, "INFOS = val = %d - i = %d - actu_inst = %d\n", val, i, actual_inst);
     				if (i < actual_inst)
     				{
-    					if (i == 0)
-    						val = 65536 - tab->tabyte[i];
-    					else
-    						val = 65536 - tab->tabyte[i - 1];
-//    					if (i != 0)
-//    					{
-//    						val = -val + tab->tabyte[i];
-//    						val = -val;
-//    					}
-//    					else
-//    					{
-//    						k = -1;
-//    						while (++k < tab->nb_instruction)
-//    						{
-//    							//printf("tab->n_label[%d] = %d\n", k, tab->n_label[k]);
-//    							if (tab->n_label[k] == 0)
-//    							{
-//    								val = tab->n_label[k - 1] - 2;
-//    								val = -val;
-//    								break;
-//    							}
-//    						}
-//						}
-    				}
-    				printf("VAL = %d\n", val);
+    					//dprintf(1, "\ntab->tabyte[%d] = %d ET tab->tabyte[%d] = %d\n", tab->n_label[actual_inst], tab->tabyte[tab->n_label[actual_inst]], tab->n_label[i], tab->tabyte[tab->n_label[i]]);
+    					val2 = tab->n_label[actual_inst] - tab->n_label[i] - 2;
+    					printf("[[[[%d]]]] VAL2 SHORT\n", val2);
+						val = -val2;
+   					}
+    				dprintf(1, "VAL = %d\n", val);
     				swap_2(&val);
     				write(file->fd, &val, IND_SIZE);
-    				printf("INSTRUCTION i = %d\n", i);
+    				dprintf(1, "INSTRUCTION i = %d\n", i);
     			}
+    		}
     	}
     	//printf("in if n_param in else = %d\n", n_param); //ENCORE COMPARAISON ENTRE LABEL POINTE ET LE BON LABEL; // SI (null) ALORS Num byte, last du tab -> nb_writen_bytes;
 //    	if (n_param == 0)
@@ -225,6 +282,7 @@ int		write_reg_dir_ind(t_file *file, t_tab *tab, int actual_inst)
            	if (n_param == 2)
             	write(file->fd, &(tab->info_ins[actual_inst].param[n_param].registre), REG_SIZE);
     	}
+    	printf("ici le truc a regarder c'est ici gros fdp act ins = %d et n_param = %d\n", actual_inst, n_param);
     	if (tab->info_ins[actual_inst].param[n_param].type_param == DIR_CODE)
     	{
 			if (which_direct(tab, actual_inst) == 1) // trouver condition pour size de short | faire une fonction qui check le label
@@ -273,7 +331,7 @@ int		write_param(t_file *file, t_tab *tab, int actual_inst)
             	file->op_c += (192 >> 4);
 		}
 		printf("tab->info_ins[%d].label = \t\t%s\n", actual_inst, tab->info_ins[actual_inst].label);
-		printf("tab->info_ins[%d].parameter[j] = \t\t%s\n", actual_inst, tab->info_ins[actual_inst].parameter[n_param]);
+		printf("tab->info_ins[%d].parameter[%d] = \t\t%s\n", actual_inst, n_param, tab->info_ins[actual_inst].parameter[n_param]);
 		printf("tab->info_ins[%d].param->type_param = \t\t%d\n", actual_inst, tab->info_ins[actual_inst].param[n_param].type_param);
 		printf("tab->info_ins[actual_inst].param[n_param].is_direct = %d\n", tab->info_ins[actual_inst].param[n_param].is_direct);
         printf("tab->info_ins[actual_inst].param[n_param].direct_str = %s\n", tab->info_ins[actual_inst].param[n_param].direct_str);
