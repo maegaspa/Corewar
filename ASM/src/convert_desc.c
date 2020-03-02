@@ -102,8 +102,7 @@ int		get_label_pos(t_tab *tab, t_file *file)
 			}
 		}
 		if (!tab->info_ins[i].label)
-        {
-        //	dprintf(1, "k = %d et j = %d et tab->tabyte[j] = %d\n", k, j, tab->tabyte[j]);
+		{
         	if (tab->tabyte[j] != -5)
         		tab->n_label[k] = j;
         }
@@ -112,21 +111,18 @@ int		get_label_pos(t_tab *tab, t_file *file)
         	tab->label_name[k] = tab->info_ins[i].label;
         	k++;
         }
-        //printf("tabyte[%d] ici c'est = %d\n", i, tab->tabyte[i]);
-        //printf("label_name[%d] = %s\n", j, tab->label_name[j]);
-       // printf("\t\t\t\t j = %d\n", j);
 	}
 	tab->tabyte[j] = -5;
 	tab->n_label[k] = j - 1;
 	i = -1;
-	while (tab->tabyte[++i] != -5)
-		printf("tabyte[%d] = %d\n", i, tab->tabyte[i]);
-	i = -1;
-	while (++i < tab->nb_instruction)
-	{
-		printf("n_label[%d] = %d\n", i, tab->n_label[i]);
-		printf("label_name[%d] = %s\n", i, tab->label_name[i]); //INDEX : LABEL_NAME -> CORRESPOND AU BYTE N = N_label[- 1]
-	}
+//	while (tab->tabyte[++i] != -5)
+//		printf("tabyte[%d] = %d\n", i, tab->tabyte[i]);
+//	i = -1;
+//	while (++i < tab->nb_instruction)
+//	{
+//		printf("n_label[%d] = %d\n", i, tab->n_label[i]);
+//		printf("label_name[%d] = %s\n", i, tab->label_name[i]); //INDEX : LABEL_NAME -> CORRESPOND AU BYTE N = N_label[- 1]
+//	}
 	return (SUCCESS);
 }
 
@@ -151,7 +147,7 @@ void    write_binary_int(int nb, int fd)
 int		write_dir_int(int n_param, t_file *file, t_tab *tab, int actual_inst)
 {
 	unsigned int	val;
-	unsigned int val2;
+	unsigned int 	val2;
 	int i;
 	char tmp[2];
 
@@ -165,22 +161,22 @@ int		write_dir_int(int n_param, t_file *file, t_tab *tab, int actual_inst)
 		{
 			if (tab->label_name[i])
 			{
-				//dprintf(1, "YESSSAAAAAAAAAAAI\n");
 				if (ft_strcmp(tab->label_name[i], tab->info_ins[actual_inst].param[n_param].direct_str) == 0)
     			{
-    				dprintf(1, "[INT]HEY FDP ICI REGARDES [%s]\n", tab->info_ins[actual_inst].param[n_param].direct_str);
-    				//dprintf(1, "YESSSAAAAAAAAAAAI\n");
-    				val = tab->n_label[i];
-    				//dprintf(1, "\t\t\ttab->info_ins[actual_inst].param[n_param].direct_str = %s et val = %d et act = %d et i = %d\n", tab->info_ins[actual_inst].param[n_param].direct_str, val, actual_inst, i);
-    				dprintf(1, "INFOS = val = %d - i = %d - actu_inst = %d\n", val, i, actual_inst);
-    				if (i <= actual_inst)
+    				val = tab->n_label[i + 1] - tab->n_label[i] + 1;
+    				printf("INT [%s] || i = [%d] |||| actual_inst = [%d] \n", tab->info_ins[actual_inst].param[n_param].direct_str, i, actual_inst);
+    				if (i < actual_inst)
     				{
     					val2 = tab->n_label[actual_inst] - tab->n_label[i];
-    					printf("((%d)) = VAL2 INT\n", val2);
-    					val = 4294967296 - val2;
-    					dprintf(1, "1 YESSSAAAAAAAAAAAI\n");
+    					val = -val2;
     				}
-    				dprintf(1, "VAL = %d\n", val);
+    				if (i == actual_inst && i == 1)
+    				{
+    					val2 = tab->n_label[tab->nb_instruction - 1] - tab->n_label[tab->nb_instruction - 2];
+    					val = -val2;
+    					printf("ICI GROS GAY\n");
+					}
+    				printf("INT VAL [%d]\n", val);
     				write_binary_int(val, file->fd);
     			}
     		}
@@ -218,43 +214,26 @@ int		write_short(int n_param, t_file *file, t_tab *tab, int actual_inst)
     	i = -1;
     	while (++i < tab->nb_instruction)
     	{
-    		//val = 0;
     		if (tab->label_name[i])
     		{
     			if (ft_strcmp(tab->label_name[i], tab->info_ins[actual_inst].param[n_param].direct_str) == 0)
     			{
-    				dprintf(1, " [SHORT]HEY FDP ICI REGARDES [%s]\n", tab->info_ins[actual_inst].param[n_param].direct_str);
-    				//if (i != 0)
     				val = (unsigned short)tab->n_label[i];
-    				//val = (unsigned short)tab->n_label[i + 1];
-    				dprintf(1, "INFOS = val = %d - i = %d - actu_inst = %d\n", val, i, actual_inst);
+    				printf("SHORT [%s] || i = [%d] |||| actual_inst = [%d] \n", tab->info_ins[actual_inst].param[n_param].direct_str, i, actual_inst);
     				if (i < actual_inst)
     				{
-    					//dprintf(1, "\ntab->tabyte[%d] = %d ET tab->tabyte[%d] = %d\n", tab->n_label[actual_inst], tab->tabyte[tab->n_label[actual_inst]], tab->n_label[i], tab->tabyte[tab->n_label[i]]);
     					val2 = tab->n_label[actual_inst] - tab->n_label[i] - 2;
-    					printf("[[[[%d]]]] VAL2 SHORT\n", val2);
 						val = -val2;
    					}
-    				dprintf(1, "VAL = %d\n", val);
+   					printf("SHORT VAL [%d]\n", val);
     				swap_2(&val);
     				write(file->fd, &val, IND_SIZE);
-    				dprintf(1, "INSTRUCTION i = %d\n", i);
     			}
     		}
     	}
-    	//printf("in if n_param in else = %d\n", n_param); //ENCORE COMPARAISON ENTRE LABEL POINTE ET LE BON LABEL; // SI (null) ALORS Num byte, last du tab -> nb_writen_bytes;
-//    	if (n_param == 0)
-//        	write(file->fd, &val, IND_SIZE); //trouver la size a retirer pour retrouver le parametre pointé // comptage index de
-//        	//byte pour l'ecriture avec un tableau d'index /!\ OU /!\ comptage du nb de byte avec les infos des inst+opc+param pour chaque label, comme ca on obtient la pos pointé en byte (ex num = 15 pour label live avec zork)
-//        if (n_param == 1)
-//    		write(file->fd, &val, IND_SIZE);
-//    		//write(file->fd, &val, IND_SIZE);
-//        if (n_param == 2)
-//    		write(file->fd, &val, IND_SIZE);
     }
     else
     {
-    	printf("n_param in else = %d\n", n_param);
     	if (n_param == 0)
     		write(file->fd, &val, IND_SIZE);
        	if (n_param == 1)
@@ -337,8 +316,6 @@ int		write_param(t_file *file, t_tab *tab, int actual_inst)
         printf("tab->info_ins[actual_inst].param[n_param].direct_str = %s\n", tab->info_ins[actual_inst].param[n_param].direct_str);
 	}
 	printf("[%d] acb = %d\n", tab->info_ins[actual_inst].id_inst, file->op[tab->info_ins[actual_inst].id_inst - 1].acb);
-	//printf("tab->info_ins[actual_inst].param[n_param].direct_str = %s\n", tab->info_ins[actual_inst].param[n_param].direct_str);
-	//printf("tab->info_ins[actual_inst].regitre = %d\n", tab->info_ins[actual_inst].param[n_param].registre);
 	if (file->op[tab->info_ins[actual_inst].id_inst - 1].acb)
 		write(file->fd, &(file->op_c), file->op[tab->info_ins[actual_inst].id_inst - 1].acb);
 	return (SUCCESS);
