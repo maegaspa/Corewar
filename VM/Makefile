@@ -14,9 +14,9 @@ FILES = src/main\
 		src/utils\
 		src/play_game\
 		src/operande\
+		src/debug\
 		src/parser\
 		src/ft_process1\
-		src//op\
 		src/operations/live_fct\
 		src/operations/ld_fct\
 		src/operations/st_fct\
