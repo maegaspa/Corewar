@@ -115,14 +115,14 @@ int		get_label_pos(t_tab *tab, t_file *file)
 	tab->tabyte[j] = -5;
 	tab->n_label[k] = j - 1;
 	i = -1;
-//	while (tab->tabyte[++i] != -5)
-//		printf("tabyte[%d] = %d\n", i, tab->tabyte[i]);
-//	i = -1;
-//	while (++i < tab->nb_instruction)
-//	{
-//		printf("n_label[%d] = %d\n", i, tab->n_label[i]);
-//		printf("label_name[%d] = %s\n", i, tab->label_name[i]); //INDEX : LABEL_NAME -> CORRESPOND AU BYTE N = N_label[- 1]
-//	}
+	while (tab->tabyte[++i] != -5)
+		printf("tabyte[%d] = %d\n", i, tab->tabyte[i]);
+	i = -1;
+	while (++i < tab->nb_instruction)
+	{
+		printf("n_label[%d] = %d\n", i, tab->n_label[i]);
+		printf("label_name[%d] = %s\n", i, tab->label_name[i]); //INDEX : LABEL_NAME -> CORRESPOND AU BYTE N = N_label[- 1]
+	}
 	return (SUCCESS);
 }
 
@@ -164,18 +164,28 @@ int		write_dir_int(int n_param, t_file *file, t_tab *tab, int actual_inst)
 				if (ft_strcmp(tab->label_name[i], tab->info_ins[actual_inst].param[n_param].direct_str) == 0)
     			{
     				val = tab->n_label[i + 1] - tab->n_label[i] + 1;
-    				printf("INT [%s] || i = [%d] |||| actual_inst = [%d] \n", tab->info_ins[actual_inst].param[n_param].direct_str, i, actual_inst);
+    				//val = tab->n_label[i];
+    				printf("INT [%s] || i = [%d] |||| actual_inst = [%d] et val = %d \n", tab->info_ins[actual_inst].param[n_param].direct_str, i, actual_inst, val);
     				if (i < actual_inst)
     				{
     					val2 = tab->n_label[actual_inst] - tab->n_label[i];
+    					if (i == actual_inst - 1)
+
+    					if (i == 1)
+    						val2 = tab->n_label[actual_inst] - tab->n_label[i + 1] + 1;
     					val = -val2;
     				}
+    				if (i == actual_inst)
+                    	val = 0;
     				if (i == actual_inst && i == 1)
     				{
-    					val2 = tab->n_label[tab->nb_instruction - 1] - tab->n_label[tab->nb_instruction - 2];
+    					//val2 = tab->n_label[tab->nb_instruction - 1] - tab->n_label[tab->nb_instruction - 2];
+    					val2 = tab->n_label[i + 1];
     					val = -val2;
     					printf("ICI GROS GAY\n");
 					}
+					if (i > actual_inst)
+						val = tab->n_label[i];
     				printf("INT VAL [%d]\n", val);
     				write_binary_int(val, file->fd);
     			}
@@ -219,12 +229,21 @@ int		write_short(int n_param, t_file *file, t_tab *tab, int actual_inst)
     			if (ft_strcmp(tab->label_name[i], tab->info_ins[actual_inst].param[n_param].direct_str) == 0)
     			{
     				val = (unsigned short)tab->n_label[i];
-    				printf("SHORT [%s] || i = [%d] |||| actual_inst = [%d] \n", tab->info_ins[actual_inst].param[n_param].direct_str, i, actual_inst);
+    				printf("SHORT [%s] || i = [%d] |||| actual_inst = [%d] val = %d \n", tab->info_ins[actual_inst].param[n_param].direct_str, i, actual_inst, val);
     				if (i < actual_inst)
     				{
     					val2 = tab->n_label[actual_inst] - tab->n_label[i] - 2;
+    					if (i == 1 && i == actual_inst - 1)
+                        	val2 = tab->n_label[i + 1];
 						val = -val2;
    					}
+   					if (i == actual_inst)
+   						val = 0;
+   					if (i == actual_inst && i == 1)
+					{
+						val2 = tab->n_label[i + 1] - 3;
+                    	val = -val2;
+					}
    					printf("SHORT VAL [%d]\n", val);
     				swap_2(&val);
     				write(file->fd, &val, IND_SIZE);
