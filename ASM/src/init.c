@@ -29,6 +29,8 @@ int 	init_param(t_tab *tab)
 
 void 	init_struct_file(t_file *file, t_header *head)
 {
+	file->tmp[0] = LABEL_CHAR;
+    file->tmp[1] = '\0';
 	file->name = 0;
 	file->comment = 0;
 	file->count = -1;
@@ -37,7 +39,7 @@ void 	init_struct_file(t_file *file, t_header *head)
 	head->magic = COREWAR_EXEC_MAGIC;
 	swap_4(&head->magic);
 	ft_bzero(&head->prog_name, PROG_NAME_LENGTH + 1);
-	head->prog_size = 0;
+	head->prog_size = file->max_byte;
 	swap_4(&head->prog_size);
 	ft_bzero(&head->comment, COMMENT_LENGTH + 1);
 }

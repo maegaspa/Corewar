@@ -36,13 +36,17 @@ typedef struct s_tab
 	int 				nb_instruction;
 	int		*n_label;
 	int		*tabyte;
+	int		*dir_pos;
+	int		*r_pos;
 	char	**label_name;
 }				t_tab;
 
 typedef struct s_file
 {
 	t_op 	op[17];
+	struct	s_tab *tab;
 	unsigned char	op_c;
+	char	tmp[2];
 	char 	*file_name;
 	char 	**file;
 	int 	name;
@@ -67,6 +71,8 @@ typedef struct s_file
 	int 	i;
 	int 	j;
 	int 	k;
+	int		max_byte;
+	int 	n_param;
 }				t_file;
 
 #define SUCCESS 1
