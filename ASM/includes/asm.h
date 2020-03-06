@@ -91,6 +91,11 @@ typedef struct s_file
 #define ERROR_COMMENT -12
 #define FAILURE -13
 
+/* PARSING FUNCTIONS
+**
+**
+*/
+
 char	**get_file(char *filename);
 void	*ft_realloc(void *old, size_t old_size, size_t new_size);
 char	*strndup(const char *s, size_t n);
@@ -119,11 +124,35 @@ int 	lexer_param(t_file *file, t_tab *tab, char *str);
 int 	ft_check_type(int d_type, int type);
 int 	define_param(t_tab *tab, t_file *file);
 int 	check_label(t_tab *tab, char *str);
-int		create_cor(t_header *head, t_file *file, t_tab *tab);
-int 	convertion(t_header *head, t_file *file, t_tab *tab);
 void	swap_4(unsigned int *nb);
 void	swap_2(unsigned short int *nb);
 char	*gettohexa(int n);
-t_op		get_op_by_name(t_file *file, char *name);
+t_op	get_op_by_name(t_file *file, char *name);
+
+/* WRITE FUNCTIONS
+**
+**
+*/
+
+char	*add_cor(char *str);
+int		create_cor(t_header *head, t_file *file, t_tab *tab);
+int 	convertion(t_header *head, t_file *file, t_tab *tab);
+int		which_direct(t_tab *tab, int actual_inst);
+int		get_label_init(t_tab *tab);
+int		get_label_pos(t_tab *tab, t_file *file);
+void	convert_int(unsigned char **str, int nb);
+void    write_binary_int(int nb, int fd);
+int		get_dir_pos(t_tab *tab, t_file *file);
+int		write_dir_int(int n_param, t_file *file, t_tab *tab, int actual_inst);
+int		write_short(int n_param, t_file *file, t_tab *tab, int actual_inst);
+int		write_reg_dir_ind(t_file *file, t_tab *tab, int actual_inst);
+void	stock_reg_dir(t_tab *tab, t_file *file, int n_param, int actual_inst);
+int		write_param(t_file *file, t_tab *tab, int actual_inst);
+void	param_fill(t_tab *tab, t_file *file);
+void	param_fill_dir(t_tab *tab, t_file *file);
+void	write_dir_int_lab(int n_param, t_file *file, t_tab *tab, int actual_inst);
+void	write_dir_short_lab(int n_param, t_file *file, t_tab *tab, int actual_inst);
+
+
 
 #endif
