@@ -152,6 +152,7 @@ void	param_fill(t_tab *tab, t_file *file);
 void	param_fill_dir(t_tab *tab, t_file *file);
 void	write_dir_int_lab(int n_param, t_file *file, t_tab *tab, int actual_inst);
 void	write_dir_short_lab(int n_param, t_file *file, t_tab *tab, int actual_inst);
+int		write_header(t_header *head, int fd, t_file *file);
 
 
 

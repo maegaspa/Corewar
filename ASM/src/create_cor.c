@@ -12,6 +12,17 @@
 
 #include "../includes/asm.h"
 
+int		write_header(t_header *head, int fd, t_file *file) //GESTION ERREUR EN +
+{
+	write_binary_int(head->magic, fd);
+	write(fd, head->prog_name, PROG_NAME_LENGTH);
+	write_binary_int(0, fd);
+	write_binary_int(file->max_byte + 1, fd);
+	write(fd, head->comment, COMMENT_LENGTH);
+	write_binary_int(0, fd);
+	return (SUCCESS);
+}
+
 char	*add_cor(char *str)
 {
 	char	*new_name;
@@ -40,7 +51,7 @@ int		create_cor(t_header *head, t_file *file, t_tab *tab)
     get_dir_pos(tab, file);
 	if ((file->fd = open(file->file_name, O_CREAT | O_WRONLY | O_TRUNC, 0600)) < 0)
 		return (FAILURE);
-	if (write(file->fd, &(*head), sizeof(t_header)) != sizeof(t_header))
+	if (write_header(head, file->fd, file) != 1)
 		return (ERROR_WRITE);
 	while (++i < tab->nb_instruction)
 	{

@@ -100,7 +100,7 @@ int		write_reg_dir_ind(t_file *file, t_tab *tab, int actual_inst)
 	int n_param;
 
 	n_param = -1;
-	while(++n_param < tab->info_ins[actual_inst].nb_parameter)
+	while (++n_param < tab->info_ins[actual_inst].nb_parameter)
 	{
     	if (tab->info_ins[actual_inst].param[n_param].type_param == REG_CODE)
 		{
