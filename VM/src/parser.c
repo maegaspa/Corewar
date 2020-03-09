@@ -13,6 +13,17 @@
 #include "../includes/corewar.h"
 #include <stdio.h>
 
+void	print_file_parsing(t_parse_file *file)
+{
+	int i = -1;
+	
+	printf("nb_player : |%d|\n", file->nb_player);
+	while (++i < file->nb_player)
+	{
+		printf("player |%s| : rank %d\n", file->file_name[i], file->rank_player[i]);
+	}
+}
+
 int 	init_usage(t_parse_file *file)
 {
 	file->i = 0;
@@ -80,7 +91,6 @@ int 	check_argument(t_parse_file *file, int ac, char **av)
 		return (file->error);
 	while (++file->i < ac)
 	{
-		printf("%s\n", av[file->i]);
 		if ((file->error = flag_is_dump(file, ac, av)) < 0)
 			return (file->error);
 		else if (file->i + 1 < ac && (!ft_strcmp("-n", av[file->i]) && file->nb_player <= MAX_PLAYERS))
@@ -98,24 +108,5 @@ int 	check_argument(t_parse_file *file, int ac, char **av)
 		else
 			return (ERROR_USAGE);
 	}
-	/*file->i = -1;
-	while (++file->i < file->nb_player)
-	{
-
-	}*/
-	file->i = -1;
-	while (++file->i < file->nb_player)
-		printf("[%s]->[%d] ", file->file_name[file->i], file->rank_player[file->i]);
 	return (SUCCESS);
-}
-
-void	print_file_parsing(t_parse_file *file)
-{
-	int i = -1;
-	
-	printf("nb_player : |%d|\n", file->nb_player);
-	while (++i < file->nb_player)
-	{
-		printf("player |%s| : rank %d\n", file->file_name[i], file->rank_player[i]);
-	}
 }

@@ -25,11 +25,17 @@
 # include <errno.h>
 # include <unistd.h>
 
-# define ERROR_MALLOC 0
-# define ERROR_NB_PLAYER -1
-# define ERROR_USAGE -10
+# define ERROR_MALLOC -1
+# define ERROR_NB_PLAYER -2
+# define ERROR_USAGE -3
+# define ERROR_MAGIC -4
+# define ERROR_CHAMP_SIZE -5
+# define ERROR_OPEN -6
+# define ERROR_READ -7
+
 # define SUCCESS 1
 # define FAILURE 0
+
 # define T_DIR_TWO 2
 # define T_DIR_FOUR 4
 
@@ -54,8 +60,7 @@ typedef struct			s_player
 	int					fd;
 	int					num;
 	char				*file_name;
-	char				*comment;
-	unsigned int		prog_size;
+	struct				s_header header;
 }						t_player;
 
 typedef struct			s_chariot
@@ -96,7 +101,7 @@ int					read_and_place_players(t_parse_file *file, t_war *war, t_header *head);
 ** utils.c
 */
 unsigned int		u_int_reverse_octet(unsigned int x);
-void				print_arena(t_war *war);
+int					print_arena(t_war *war, t_parse_file *file);
 void				ft_init_war(t_parse_file file, t_war *war);
 void				init_tab(t_opp *opp_tab);
 
@@ -150,5 +155,10 @@ int				print_in_arena(t_war *war, t_chariot *prc, int src, int dst);
 */
 void		ft_print_chariot(t_chariot *chariot, int reg);
 void		ft_print_war(t_war *war);
+
+/*
+** error.c
+*/
+void 		print_error(int error);
 
 #endif
