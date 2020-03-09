@@ -53,7 +53,7 @@ int		get_label_pos(t_tab *tab, t_file *file)
 	file->i = -1;
 	file->j = 0;
 	file->k = 1;
-	if (!(get_label_init(tab)))
+	if ((file->error = get_label_init(tab)) < 1)
 		return (file->error);
 	while (++file->i < tab->nb_instruction)
 	{

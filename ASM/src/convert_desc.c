@@ -61,7 +61,7 @@ void	write_dir_short_lab(int n_param, t_file *file, t_tab *tab, int actual_inst)
 	i = -1;
     while (++i < tab->nb_instruction)
     {
-    	if (tab->label_name[i])
+    	if (tab->label_name[i] && ft_strlen(tab->label_name[i]) > 0)
     	{
     		if (ft_strcmp(tab->label_name[i], tab->info_ins[actual_inst].param[n_param].direct_str) == 0)
     		{

@@ -35,7 +35,7 @@ typedef struct s_tab
 	struct s_instruction *info_ins;
 	int 				nb_instruction;
 	int		*n_label;
-	int		*tabyte;
+	int		tabyte[CHAMP_MAX_SIZE];
 	int		*dir_pos;
 	int		*r_pos;
 	char	**label_name;
@@ -89,7 +89,8 @@ typedef struct s_file
 #define ERROR_USAGE -10
 #define ERROR_WRITE -11
 #define ERROR_COMMENT -12
-#define FAILURE -13
+#define ERROR_OPEN -13
+#define FAILURE -14
 
 /* PARSING FUNCTIONS
 **

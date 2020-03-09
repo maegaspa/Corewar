@@ -35,17 +35,17 @@ int		get_label_init(t_tab *tab)
 	int		i;
 
 	i = -1;
-	if (!(tab->tabyte = (int *)malloc(sizeof(int) * CHAMP_MAX_SIZE)))
-    	return (ERROR_MALLOC);
+	ft_bzero(tab->tabyte, CHAMP_MAX_SIZE);
  	if (!(tab->n_label = (int *)malloc(sizeof(int) * tab->nb_instruction)))
- 		return (ERROR_MALLOC);
+		return (ERROR_MALLOC);
     if (!(tab->label_name = (char **)malloc(sizeof(char*) * tab->nb_instruction)))
-    	return (ERROR_MALLOC);
+		return (ERROR_MALLOC);
     i = -1;
     while(++i < tab->nb_instruction)
     {
     	if (!(tab->label_name[i] = (char *)malloc(sizeof(char) * 6)))
     		return (ERROR_MALLOC);
+    	ft_bzero(tab->label_name[i], 6);
    		tab->n_label[i] = 0;
    	}
    	return (SUCCESS);

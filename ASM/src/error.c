@@ -86,8 +86,8 @@ void 	free_error(t_tab *tab, t_file *file)
 		i = -1;
 		while (++i < tab->nb_instruction)
 		{
-			if (tab->info_ins[i].label)
-				ft_strdel(&tab->info_ins[i].label);
+			if (tab->label_name[i])
+				ft_strdel(&tab->label_name[i]);
 			if (tab->info_ins[i].instruction)
 				ft_strdel(&tab->info_ins[i].instruction);
 			j = -1;
@@ -116,4 +116,12 @@ void 	free_error(t_tab *tab, t_file *file)
 	}
 	if (tab->info_ins)
 		free(tab->info_ins);
+	if (tab->label_name)
+		free(tab->label_name);
+	if (tab->n_label)
+		free(tab->n_label);
+	if (tab->dir_pos)
+		free(tab->dir_pos);
+	if (tab->r_pos)
+		free(tab->r_pos);
 }

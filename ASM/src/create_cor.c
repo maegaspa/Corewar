@@ -47,10 +47,12 @@ int		create_cor(t_header *head, t_file *file, t_tab *tab)
 
 	i = -1;
 	file->file_name = add_cor(file->file_name);
-	get_label_pos(tab, file);
-    get_dir_pos(tab, file);
+	if ((file->error = get_label_pos(tab, file) < 1))
+		return (file->error);
+	if ((file->error = get_dir_pos(tab, file) < 1))
+		return (file->error);
 	if ((file->fd = open(file->file_name, O_CREAT | O_WRONLY | O_TRUNC, 0600)) < 0)
-		return (FAILURE);
+		return (ERROR_OPEN);
 	if (write_header(head, file->fd, file) != 1)
 		return (ERROR_WRITE);
 	while (++i < tab->nb_instruction)
@@ -59,7 +61,7 @@ int		create_cor(t_header *head, t_file *file, t_tab *tab)
 		file->op_c = 0;
 		if ((file->error = write_param(file, tab, i)) < 1)
 			return (file->error);
-		if ((file ->error = write_reg_dir_ind(file, tab, i) < 1))
+		if ((file->error = write_reg_dir_ind(file, tab, i) < 1))
 		    return (file->error);
 	}
 	return (SUCCESS);

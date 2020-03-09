@@ -18,7 +18,10 @@ FILES = src/error\
 		src/op\
 		src/utils\
 		src/param\
-		src/convert_desc
+		src/convert_desc\
+		src/create_cor\
+		src/get_bytes\
+		src/write_utils\
 
 #----------------------------------COLOR---------------------------------------#
 
