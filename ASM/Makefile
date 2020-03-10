@@ -2,7 +2,7 @@
 
 NAME = asm
 CC = gcc
-DEBUG = -fsanitize=address
+DEBUG = -g -fsanitize=address
 FLAGS = -Wall -Wextra -Werror -g
 INC = include/asm.h
 HEADER = include
@@ -18,10 +18,7 @@ FILES = src/error\
 		src/op\
 		src/utils\
 		src/param\
-		src/convert_desc\
-		src/create_cor\
-		src/get_bytes\
-		src/write_utils\
+		src/convert_desc
 
 #----------------------------------COLOR---------------------------------------#
 

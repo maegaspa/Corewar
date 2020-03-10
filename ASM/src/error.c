@@ -4,7 +4,7 @@
 void	print_line_error(t_file *file)
 {
 	ft_putstr_fd("Line ", 2);
-	ft_putnbr_fd(file->ligne_error + 1, 2);
+	ft_putnbr_fd(file->ligne_error, 2);
 	ft_putstr_fd(": \"", 2);
 	ft_putstr_fd(file->file[file->ligne_error], 2);
 	ft_putstr_fd("\"", 2);
@@ -60,11 +60,6 @@ void 	print_error(t_file *file)
 	}
 	if (file->error == ERROR_WRITE)
 		ft_putstr_fd("ERROR: Can't write file.cor\n", 2);
-	if (file->error == ERROR_COMMENT)
-	{
-		ft_putstr_fd("ERROR: Comment bad format : #your comment\n", 2);
-		print_line_error(file);
-	}
 }
 
 void 	free_error(t_tab *tab, t_file *file)
@@ -86,8 +81,8 @@ void 	free_error(t_tab *tab, t_file *file)
 		i = -1;
 		while (++i < tab->nb_instruction)
 		{
-			if (tab->label_name[i])
-				ft_strdel(&tab->label_name[i]);
+			if (tab->info_ins[i].label)
+				ft_strdel(&tab->info_ins[i].label);
 			if (tab->info_ins[i].instruction)
 				ft_strdel(&tab->info_ins[i].instruction);
 			j = -1;
@@ -116,12 +111,4 @@ void 	free_error(t_tab *tab, t_file *file)
 	}
 	if (tab->info_ins)
 		free(tab->info_ins);
-	if (tab->label_name)
-		free(tab->label_name);
-	if (tab->n_label)
-		free(tab->n_label);
-	if (tab->dir_pos)
-		free(tab->dir_pos);
-	if (tab->r_pos)
-		free(tab->r_pos);
 }

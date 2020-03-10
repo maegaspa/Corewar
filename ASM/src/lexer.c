@@ -91,25 +91,21 @@ int 		true_syntaxe_info(t_header *head, char *str, int select, int chose)
 	if (str[select] == '\"')
 	{
 		tmp = select;
-		select++;
-		while (str[select] != '\"' && str[select])
+		while (str[++select])
 		{
 			if (count > 1 && str[select] != ' ' && str[select] != '\t')
 				return (ERROR_INFO);
-			select++;
+			if (str[select] == '\"')
+			{
+				count++;
+				if (count > 1)
+					return (ERROR_CHAR);
+			}
+			if (count == 0)
+				i++;
 		}
-		if (str[select] != '\"')
+		if (count == 0)
 			return (ERROR_CHAR);
-		select++;
-		while (str[select])
-		{
-			while (str[select] == ' ' || str[select] == '\t')
-				select++;
-			if (str[select] != COMMENT_CHAR)
-				return (ERROR_COMMENT);
-			else
-				break ;
-		}
 		i = -1;
 		while (str[++tmp] != '\"')
 		{

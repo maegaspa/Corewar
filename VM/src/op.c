@@ -1,17 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   op.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmichel <hmichel@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/18 17:21:56 by seanseau          #+#    #+#             */
-/*   Updated: 2020/03/10 15:50:41 by seanseau         ###   ########lyon.fr   */
+/*   Created: 2013/10/04 11:43:01 by zaz               #+#    #+#             */
+/*   Updated: 2020/03/09 14:28:46 by seanseau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/corewar.h"
-#include <stdio.h>
+#include "../includes/asm.h"
 
 t_op		g_op_tab[16] =
 {
@@ -39,37 +38,22 @@ t_op		g_op_tab[16] =
 	{"aff", 1, {T_REG}, 16, 2, "aff", 1, 0},
 };
 
-int 	main(int ac, char **av)
+void		set_op_tab(t_file *file)
 {
-	t_parse_file	file;
-	t_war			war;
-	t_header		head;
-	int				error;
+	int	i;
 
-	error = 1;
-	if (ac > 1 && (file.error = check_argument(&file, ac, av)) < 0)
-	{
-		printf("ERROR\n");
-		return (file.error);
-	}
+	i = -1;
+	while (++i < 17)
+		file->op[i] = op_tab[i];
+}
 
-	war.visu = 0;
+t_op		get_op_by_name(t_file *file, char *name)
+{
+	int i;
 
-
-	//	print_file_parsing(&file);
-	if (read_and_place_players(&file, &war, &head) == -1)
-		return (-1);//free et close a la place
-	ft_init_war(file, &war);
-	if (war.visu == 1)
-	{
-		if (ft_game_visu(&war) == 0)//A FAIRE: retour erreur
-			return (0);
-	}
-	else
-	if (ft_game(&war) == 0)//A FAIRE: retour erreur
-		return (0);//end game (free/close)
-	//free_zob
-	//printf("ERROR\n");
-
-	return (0);
+	i = -1;
+	while (++i < 17)
+		if (!ft_strcmp(file->op[i].name, name))
+			return (file->op[i]);
+	return ((t_op){"", -1, "", -1, -1, "", -1, -1});
 }
