@@ -6,7 +6,7 @@
 /*   By: hmichel <hmichel@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 17:21:32 by seanseau          #+#    #+#             */
-/*   Updated: 2020/03/10 15:52:35 by seanseau         ###   ########lyon.fr   */
+/*   Updated: 2020/03/10 16:16:12 by seanseau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int		ft_game(t_war *war)
 	ft_print_war(war);
 	while (war->cycles < war->to_die)
 	{
-		while (chariot->next)
+		while (chariot)
 		{
 			ft_exec_opp(chariot, war);//, opp_tab);
 			chariot = chariot->next;
@@ -54,7 +54,7 @@ int		ft_game_visu(t_war *war)
 
 	while (war->cycles < war->to_die)
 	{
-		while (chariot->next)
+		while (chariot)
 		{
 			if (war->visual.pause == -1)
 				ft_exec_opp(chariot, war);//, opp_tab);

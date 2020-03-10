@@ -6,7 +6,7 @@
 /*   By: hmichel <hmichel@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 21:49:44 by hmichel           #+#    #+#             */
-/*   Updated: 2020/03/10 15:50:58 by seanseau         ###   ########lyon.fr   */
+/*   Updated: 2020/03/10 16:14:44 by seanseau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,28 +84,26 @@ void		ft_exec_opp(t_chariot *chariot, t_war *war/*, t_opp *opp_tab*/)
 	int		jump;
 
 	jump = 0;
-	if (war->visual.pause == -1)
+	if (chariot->wait > 0)
 	{
-		if (chariot->wait > 0)
-		{
-			chariot->wait--;
-		}
-		if (chariot->wait == 0 && chariot->ope > 0)
-		{
-			printf("EXEC_OPP\n");
-			if ((jump = ft_tcheck_ocp(chariot, war)))
-			{
-				//jump = ft_jump(chariot, war);
-				//opp_tab[chariot->ope - 1](war, chariot);
-				chariot->pc += jump;
-			}
-			chariot->ope = -1;
-		}
-		if (ft_get_op(war, chariot) == 1) //&& chariot->ope >= 1) //on tcheck si on lit une nouvelle operande, si oui on init "wait"
-			chariot->wait = war->op_cycle[chariot->ope - 1];
+		chariot->wait--;
 	}
-	ft_print_chariot(chariot, 0); //reg == 1 pour afficher les registres
-	ft_printf("ope chariot [%d]: %d\n", chariot->index, chariot->ope);
+	if (chariot->wait == 0 && chariot->ope > 0)
+	{
+		//printf("EXEC_OPP\n");
+	if ((jump = ft_tcheck_ocp(chariot, war)))
+	{
+		//jump = ft_jump(chariot, war);
+		//opp_tab[chariot->ope - 1](war, chariot);
+		chariot->pc += jump;
+	}
+	chariot->ope = -1;
+	}
+	if (ft_get_op(war, chariot) == 1) //&& chariot->ope >= 1) //on tcheck si on lit une nouvelle operande, si oui on init "wait"
+		chariot->wait = war->op_cycle[chariot->ope - 1];
+//	}
+//	ft_print_chariot(chariot, 0); //reg == 1 pour afficher les registres
+//	ft_printf("ope chariot [%d]: %d\n", chariot->index, chariot->ope);
 //	return (SUCCESS);
 	//ft_printf("ope chariot [%d]: %d\n", chariot->index, chariot->ope);
 }

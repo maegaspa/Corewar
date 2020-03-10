@@ -6,7 +6,7 @@
 /*   By: hmichel <hmichel@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 17:21:56 by seanseau          #+#    #+#             */
-/*   Updated: 2020/03/10 15:50:41 by seanseau         ###   ########lyon.fr   */
+/*   Updated: 2020/03/10 16:11:41 by seanseau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int 	main(int ac, char **av)
 		return (file.error);
 	}
 
-	war.visu = 0;
+	war.visu = 1;
 
 
 	//	print_file_parsing(&file);
