@@ -6,7 +6,7 @@
 /*   By: seanseau <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 14:53:06 by seanseau          #+#    #+#             */
-/*   Updated: 2020/03/10 16:17:31 by seanseau         ###   ########lyon.fr   */
+/*   Updated: 2020/03/10 17:42:25 by seanseau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,20 +21,22 @@ void	print_cursor(t_war *war)
 
 	war->visual.process_nb = 0;
 	chariot = war->begin;
-
-
 	while (chariot)
 	{
 		if (chariot->ope != -1 && chariot->wait != 0)
 		{
 			if (chariot->prev_cursor != -1)
+			{
+				wattron(war->visual.arena_win, COLOR_PAIR(chariot->prev_color));
 				mvwprintw(war->visual.arena_win, (chariot->prev_cursor / 64) + 1, ((chariot->prev_cursor % 64) * 3) + 2, "%02x", (unsigned char)war->arena[chariot->prev_cursor]);
-
+				wattroff(war->visual.arena_win, COLOR_PAIR(chariot->prev_color));
+			}
 			wattron(war->visual.arena_win, COLOR_PAIR(war->nb_player - chariot->index) | A_STANDOUT);
 			pos = chariot->start_pos + chariot->pc;
 			mvwprintw(war->visual.arena_win, (pos / 64) + 1, ((pos % 64) * 3) + 2, "%02x", (unsigned char)war->arena[pos]);
 			wattroff(war->visual.arena_win, COLOR_PAIR(war->nb_player - chariot->index) | A_STANDOUT);
 			chariot->prev_cursor = pos;
+			chariot->prev_color = (mvwinch(war->visual.arena_win, (pos / 64) + 1, ((pos % 64) * 3) + 2) & A_COLOR) / 256;
 		}
 		war->visual.process_nb++;
 		chariot = chariot->next;

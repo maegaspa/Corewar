@@ -6,7 +6,7 @@
 /*   By: hmichel <hmichel@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/28 12:17:46 by hmichel           #+#    #+#             */
-/*   Updated: 2020/03/09 19:58:00 by seanseau         ###   ########lyon.fr   */
+/*   Updated: 2020/03/10 17:28:58 by seanseau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ typedef struct			s_chariot
 
 	int					prev_cursor;
 	int					player;//pour visu
+	int					prev_color;
 
 	struct s_chariot	*next;
 }						t_chariot;

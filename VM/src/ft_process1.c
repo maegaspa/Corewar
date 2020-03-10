@@ -6,7 +6,7 @@
 /*   By: hmichel <hmichel@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 18:46:10 by hmichel           #+#    #+#             */
-/*   Updated: 2020/03/09 18:04:37 by seanseau         ###   ########lyon.fr   */
+/*   Updated: 2020/03/10 17:43:19 by seanseau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ t_chariot		*ft_creat_chariot(int index, int pc, int start_pos, int player)
 	new->start_pos = start_pos;
 	new->ope = -1; // <=> ope non conforme
 	new->prev_cursor = -1;
+	new->prev_color = player;
 	while (++i < REG_NUMBER)
 		new->registres[i] = 0;
 	new->next = NULL;
