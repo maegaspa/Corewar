@@ -12,6 +12,22 @@
 
 #include "../includes/asm.h"
 
+void	param_fill_dir2(t_tab *tab, t_file *file)
+{
+	tab->tabyte[file->j] = -4;
+    tab->tabyte[file->j + 1] = -4;
+    tab->tabyte[file->j + 2] = -4;
+    tab->tabyte[file->j + 3] = -4;
+    if (ft_strstr(tab->info_ins[file->i].parameter[file->n_param], file->tmp))
+    {
+    	tab->tabyte[file->j] = 5;
+        tab->tabyte[file->j + 1] = 5;
+        tab->tabyte[file->j + 2] = 5;
+        tab->tabyte[file->j + 3] = 5;
+    }
+    file->j += 4;
+}
+
 int		write_header(t_header *head, int fd, t_file *file) //GESTION ERREUR EN +
 {
 	write_binary_int(head->magic, fd);
@@ -73,3 +89,5 @@ int 	convertion(t_header *head, t_file *file, t_tab *tab)
 		return (file->error);
 	return (SUCCESS);
 }
+
+

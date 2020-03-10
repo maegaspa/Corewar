@@ -102,7 +102,7 @@ int		write_reg_dir_ind(t_file *file, t_tab *tab, int actual_inst)
 	n_param = -1;
 	while (++n_param < tab->info_ins[actual_inst].nb_parameter)
 	{
-    	if (tab->info_ins[actual_inst].param[n_param].type_param == REG_CODE)
+    	if (tab->info_ins[actual_inst].param[n_param].type_param == T_REG)
 		{
 			if (n_param == 0)
 				write(file->fd, &(tab->info_ins[actual_inst].param[n_param].registre), REG_SIZE);
@@ -111,14 +111,14 @@ int		write_reg_dir_ind(t_file *file, t_tab *tab, int actual_inst)
            	if (n_param == 2)
             	write(file->fd, &(tab->info_ins[actual_inst].param[n_param].registre), REG_SIZE);
     	}
-    	if (tab->info_ins[actual_inst].param[n_param].type_param == DIR_CODE)
+    	if (tab->info_ins[actual_inst].param[n_param].type_param == T_DIR)
     	{
 			if (which_direct(tab, actual_inst) == 1)
 				write_short(n_param, file, tab, actual_inst);
 			else
 				write_dir_int(n_param, file, tab, actual_inst);
     	}
-    	if (tab->info_ins[actual_inst].param[n_param].type_param == IND_CODE)
+    	if (tab->info_ins[actual_inst].param[n_param].type_param == T_IND)
 			write_short(n_param, file, tab, actual_inst);
 	}
 	return (SUCCESS);
