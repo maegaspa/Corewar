@@ -39,6 +39,7 @@ typedef struct s_tab
 	int		*dir_pos;
 	int		*r_pos;
 	char	**label_name;
+	int 	no_prob;
 }				t_tab;
 
 typedef struct s_file

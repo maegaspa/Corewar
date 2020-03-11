@@ -126,6 +126,7 @@ int 	lexer(t_tab *tab, t_file *file)
 		return (file->error);
 	if ((file->error = define_param(tab, file)) < 1)
 		return (file->error);
+	tab->no_prob = 1;
 	return (SUCCESS);
 }
 
@@ -136,6 +137,7 @@ int 	main(int ac, char **av)
 	t_tab tab;
 
 	set_op_tab(&file);
+	tab.no_prob = 0;
 	if (ac != 2)
 	{
 		ft_putstr_fd("Usage: ./asm <file.s>\n", 2);
@@ -160,7 +162,6 @@ int 	main(int ac, char **av)
 		return (file.error);
 	}
 	ft_printf("File is create\n");
-	//print_error(&file);
 	free_error(&tab, &file);
 	return (SUCCESS);
 }
