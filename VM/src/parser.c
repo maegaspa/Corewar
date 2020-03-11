@@ -30,6 +30,7 @@ int 	init_usage(t_parse_file *file)
 	file->dump = -1;
 	file->long_dump = -1;
 	file->n = 0;
+	file->visu = 0;
 	file->nb_player = 0;
 	file->rk_player = 1;
 	if (!(file->file_name = malloc(sizeof(char*) * MAX_PLAYERS + 1)))
@@ -105,6 +106,8 @@ int 	check_argument(t_parse_file *file, int ac, char **av)
 			file->rk_player++;
 			file->nb_player++;
 		}
+		else if ((!ft_strcmp("-visu", av[file->i]) || !ft_strcmp("-v", av[file->i])) && file->visu == 0)
+			file->visu = 1;
 		else
 			return (ERROR_USAGE);
 	}

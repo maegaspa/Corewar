@@ -44,6 +44,7 @@ typedef struct 			s_parse_file
 	int					error;
 	int					dump;
 	int					long_dump;
+	int 				visu;
 	int					n;
 	int					*rank_player;
 	int					nb_player;
