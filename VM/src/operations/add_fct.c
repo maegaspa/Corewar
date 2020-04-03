@@ -14,6 +14,6 @@
 
 int			add_fct(t_war *war, t_chariot *chariot)
 {
-	ft_printf("ADD_FCT : index_chariot : %d\tto_die : %d\n", chariot->index, war->to_die);
+	printf("ADD_FCT : index_chariot : %d\tto_die : %d\n", chariot->index, war->to_die);
 	return (0);
 }

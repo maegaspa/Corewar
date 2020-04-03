@@ -1,19 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   or_fct.c                                           :+:      :+:    :+:   */
+/*   visual_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seanseau <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/24 16:10:38 by seanseau          #+#    #+#             */
-/*   Updated: 2020/02/26 19:37:48 by seanseau         ###   ########lyon.fr   */
+/*   Created: 2020/03/07 12:42:44 by seanseau          #+#    #+#             */
+/*   Updated: 2020/03/09 19:20:34 by seanseau         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/corewar.h"
+#include "../includes/corewar.h"
 
-int			or_fct(t_war *war, t_chariot *chariot)
+void			get_valid_name(t_war *war)
 {
-	printf("OR_FCT : index_chariot : %d\tto_die : %d\n", chariot->index, war->to_die);
-	return (0);
+	int i;
+	int pos;
+	int j;
+
+	i = -1;
+	while (++i < war->nb_player)
+	{
+		j = -1;
+		while (++j < (int)ft_strlen(war->player[i].file_name))
+			if (war->player[i].file_name[j] == '/')
+				pos = j + 1;
+		war->player[i].real_name = ft_strdup(pos + war->player[i].file_name);
+	}
 }

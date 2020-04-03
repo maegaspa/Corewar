@@ -12,6 +12,7 @@
 
 #include "../includes/corewar.h"
 
+
 int			ft_get_op(t_war *war, t_chariot *chariot)
 {
 	int		pos;
@@ -19,7 +20,7 @@ int			ft_get_op(t_war *war, t_chariot *chariot)
 	if (chariot->ope != -1)
 		return (0);
 	pos = chariot->start_pos + chariot->pc;
-	if (war->arena[pos] > 16 || war->arena[pos] == 0)
+	if (war->arena[pos] > 16 || war->arena[pos] <= 0)
 	{
 		chariot->pc++;
 		return (0);
@@ -32,7 +33,7 @@ int			ft_get_op(t_war *war, t_chariot *chariot)
 int			is_conform(char ocp, int param, int ope)
 {
 	//printf("ocp recu %d\n", (int)ocp);
-	ft_printf("\n");
+	//	ft_printf("\n");
 	if (ocp == 0)
 		return (FAILURE);
 	if (ocp == 1 && (0x01 & g_op_tab[ope].params_type[param])) // <=> (g_op_tab[ope].params_type[param] % 2) == 1
@@ -79,17 +80,16 @@ int			ft_tcheck_ocp(t_chariot *chariot, t_war *war)//return jump
 	return (jump);
 }
 
-int			ft_exec_opp(t_chariot *chariot, t_war *war, t_opp *opp_tab)
+void		ft_exec_opp(t_chariot *chariot, t_war *war, t_opp *opp_tab)
 {
 	int		jump;
 
+	jump = 0;
 	if (chariot->wait > 0)
-	{
 		chariot->wait--;
-		return (SUCCESS);
-	}
 	if (chariot->wait == 0 && chariot->ope > 0)
 	{
+		//printf("EXEC_OPP\n");
 		if ((jump = ft_tcheck_ocp(chariot, war)))
 		{
 			//jump = ft_jump(chariot, war);
@@ -97,12 +97,13 @@ int			ft_exec_opp(t_chariot *chariot, t_war *war, t_opp *opp_tab)
 			chariot->pc += jump;
 		}
 		chariot->ope = -1;
-		return (SUCCESS);
 	}
 	if (ft_get_op(war, chariot) == 1) //&& chariot->ope >= 1) //on tcheck si on lit une nouvelle operande, si oui on init "wait"
 		chariot->wait = war->op_cycle[chariot->ope - 1];
+//	}
 	ft_print_chariot(chariot, 0); //reg == 1 pour afficher les registres
-	//ft_printf("ope chariot [%d]: %d\n", chariot->index, chariot->ope);
-	return (SUCCESS);
+//	ft_printf("ope chariot [%d]: %d\n", chariot->index, chariot->ope);
+//	return (SUCCESS);
 	//ft_printf("ope chariot [%d]: %d\n", chariot->index, chariot->ope);
 }
+

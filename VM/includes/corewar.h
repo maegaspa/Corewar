@@ -24,6 +24,8 @@
 # include <string.h>
 # include <errno.h>
 # include <unistd.h>
+# include <curses.h>
+# include <ncurses.h>
 
 # define ERROR_MALLOC -1
 # define ERROR_NB_PLAYER -2
@@ -61,6 +63,9 @@ typedef struct			s_player
 	int					fd;
 	int					num;
 	char				*file_name;
+	char				*real_name;
+    char				*comment;
+    unsigned int		prog_size;
 	struct				s_header header;
 }						t_player;
 
@@ -74,11 +79,29 @@ typedef struct			s_chariot
 	int					ope;
 	int					registres[REG_NUMBER]; //char?
 	int					index;
+
+	int					prev_cursor;
+    int					player;//pour visu
+    int					prev_color;
+
 	struct s_chariot	*next;
 }						t_chariot;
 
+typedef struct			visual//visu
+{
+	WINDOW				*arena_win;
+	WINDOW				*infos_win;
+	WINDOW				*keys_win;
+	char				**arena_list;
+	int					arena_cursor;
+	int					pause;
+	int					sleeptime;
+	int					process_nb;
+}						t_visual;
+
 typedef struct			war
 {
+	int					visu;
 	struct				s_player *player;
 	int					nb_player;
 	int					op_cycle[16];
@@ -86,7 +109,11 @@ typedef struct			war
 	int					to_die;
 	int					cycles;
 	int					dump;
+	int					*rtype;
+	char				ocp;
+	char				*ocxp;
 	t_chariot			**begin;
+	t_visual			visual;//visu lol
 }						t_war;
 
 typedef int			(*t_opp)(t_war *war, t_chariot *proc);
@@ -105,11 +132,19 @@ unsigned int		u_int_reverse_octet(unsigned int x);
 int					print_arena(t_war *war, t_parse_file *file);
 void				ft_init_war(t_parse_file file, t_war *war);
 void				init_tab(t_opp *opp_tab);
-
+int					ft_atoi_base(const char *str, int base);
+char				*ft_itoa_base(int value, int base);
+int		            get_2_val(t_war *war, t_chariot *chariot, int i);
+int		            get_4_val(t_war *war, t_chariot *chariot, int i);
 /*
 ** play_game.c
 */
 int					ft_game(t_war *war);
+int					ft_game_visu(t_war *war);
+int 				ft_check_type(int d_type, int type);
+int					choose_ope(t_war *war, t_chariot *chariot);
+void				get_param(t_chariot *chariot, t_war *war, char *str);
+int					get_bin_ocp(t_chariot *chariot, t_war *war);
 
 /*
 ** ft_process1.c
@@ -124,12 +159,14 @@ int					check_argument(t_parse_file *file, int ac, char **av);
 /*
 ** operande.c
 */
+
 int					ft_get_op(t_war *war, t_chariot *chariot);
-int					ft_exec_opp(t_chariot *chariot, t_war *war, t_opp *opp_tab);
+void					ft_exec_opp(t_chariot *chariot, t_war *war, t_opp *opp_tab);
 
 /*
 ** test_function_tab
 */
+
 int				live_fct(t_war *war, t_chariot *proc);
 int				ld_fct(t_war *war, t_chariot *prc);
 int				st_fct(t_war *war, t_chariot *prc);
@@ -161,5 +198,14 @@ void		ft_print_war(t_war *war);
 ** error.c
 */
 void 		print_error(int error);
+
+/*
+** tous les visu.c
+*/
+int			visu_body(t_war *war);
+int			update_visu(t_war *war);
+void		color_arena(t_war *war, int p, WINDOW *arena_win, char *arena);
+void		get_keys(t_war *war);
+void		get_valid_name(t_war *war);
 
 #endif

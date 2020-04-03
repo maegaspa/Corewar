@@ -13,6 +13,80 @@
 #include "../includes/corewar.h"
 #include <stdio.h>
 
+int			ft_pow(int nb, int pow)
+{
+	if (pow == 0)
+		return (1);
+	else
+		return (nb * ft_pow(nb, pow - 1));
+}
+
+char		*ft_itoa_base(int value, int base)
+{
+	int		i;
+	char	*nbr;
+	int		neg;
+
+	i = 1;
+	neg = 0;
+	if (value < 0)
+	{
+		if (base == 10)
+			neg = 1;
+		value *= -1;
+	}
+	while (ft_pow(base, i) - 1 < value)
+		i++;
+	if (!(nbr = (char *)malloc(sizeof(nbr) * i)))
+		return (NULL);
+	nbr[i + neg] = '\0';
+	while (i-- > 0)
+	{
+		nbr[i + neg] = (value % base) + (value % base > 9 ? 'a' - 10 : '0');
+		value = value / base;
+	}
+	if (neg)
+		nbr[0] = '-';
+	return (nbr);
+}
+
+int		nbr_inbase(char c, int base)
+{
+	if (base <= 10)
+		return (c >= '0' && c <= '9');
+	return ((c >= '0' && c <= '9') || (c >= 'A' && c <= ('A' + base - 10)) || \
+	(c >= 'a' && c <= ('a' + base - 10)));
+}
+
+int		ft_atoi_base(const char *str, int base)
+{
+	int		i;
+	int		nbr;
+	int		sign;
+
+	if (!str[0] || (base < 2 || base > 16))
+		return (0);
+	nbr = 0;
+	sign = 1;
+	while (str[i] == '\t' || str[i] == '\v' || str[i] == '\n' || \
+		str[i] == ' ' || str[i] == '\r' || str[i] == '\f')
+		i += 1;
+	if (str[i] == '-' || str[i] == '+')
+		if (str[i++] == '-')
+			sign *= -1;
+	while (str[i] && nbr_inbase(str[i], base))
+	{
+		if (str[i] >= 'A' && 'F' >= str[i])
+			nbr = (nbr * base) + (str[i] - 'A' + 10);
+		else if (str[i] >= 'a' && 'f' >= str[i])
+			nbr = (nbr * base) + (str[i] - 'a' + 10);
+		else
+			nbr = (nbr * base) + (str[i] - '0');
+		i += 1;
+	}
+	return (nbr * sign);
+}
+
 unsigned int	u_int_reverse_octet(unsigned int x)
 {
 	unsigned int rev;
@@ -39,24 +113,24 @@ int 			print_arena(t_war *war, t_parse_file *file)
 
 	i = -1;
 	count_bytes = 0;
-	dump = 64;
+	dump = 32;
 	bytes = 0;
-	if (file->long_dump != -1)
-		dump = 64;
-	else if (file->dump != -1)
-		dump = 32;
-	else
-		return (FAILURE);
-	ft_printf("\n");
+//	if (file->long_dump != -1)
+//		dump = 64;
+//	else if (file->dump != -1)
+//		dump = 32;
+//	else
+//		return (FAILURE);
+	printf("\n");
 	while (++i < MEM_SIZE)
 	{
 		if (count_bytes == 0)
-			ft_printf("%#06x : ", bytes);
-		ft_printf("%02x ", (unsigned char)war->arena[i]);
+			printf("%#06x : ", bytes);
+		printf("%02x ", (unsigned char)war->arena[i]);
 		count_bytes++;
 		if (count_bytes == dump)
 		{
-			ft_printf("\n");
+			printf("\n");
 			count_bytes = 0;
 			bytes += dump;
 		}
@@ -104,6 +178,7 @@ void	init_tab(t_opp *opp_tab)
 	opp_tab[14] = &lfork_fct;
 	opp_tab[15] = &aff_fct;
 }
+
 void			ft_init_war(t_parse_file file, t_war *war)
 {
 	war->cycles = 0;
