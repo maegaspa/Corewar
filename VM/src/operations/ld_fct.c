@@ -6,7 +6,7 @@
 /*   By: seanseau <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 16:10:23 by seanseau          #+#    #+#             */
-/*   Updated: 2020/02/26 19:38:45 by seanseau         ###   ########lyon.fr   */
+/*   Updated: 2020/04/03 19:57:55 by maegaspa         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int		get_4_val(t_war *war, t_chariot *chariot, int i)
 {
-	unsigned char	valx[4];
+	unsigned char	valx[5];
     char			*str;
     char			*str2;
     char			*str3;
@@ -22,9 +22,6 @@ int		get_4_val(t_war *war, t_chariot *chariot, int i)
     char			*strr;
     int				rval;
 
-    if (!(strr = (char *)malloc(sizeof(int) * ft_strlen(str) +
-    	ft_strlen(str2) + ft_strlen(str3) + ft_strlen(str4) + 1)))
-    	return (ERROR_MALLOC);
     valx[0] = (unsigned char)war->arena[chariot->start_pos + chariot->pc + i];
     valx[1] = (unsigned char)war->arena[chariot->start_pos + chariot->pc + i + 1];
     valx[2] = (unsigned char)war->arena[chariot->start_pos + chariot->pc + i + 2];
@@ -52,12 +49,16 @@ int		get_4_val(t_war *war, t_chariot *chariot, int i)
         str4[0] = '0';
         str4[2] = '\0';
     }
+	 if (!(strr = (char *)malloc(sizeof(int) * ft_strlen(str) +
+		ft_strlen(str2) + ft_strlen(str3) + ft_strlen(str4) + 1)))
+    	return (ERROR_MALLOC);
    	ft_strcpy(strr, str);
    	ft_strcat(strr, str2);
    	ft_strcat(strr, str3);
    	ft_strcat(strr, str4);
    	printf("strr = %s\n", strr);
    	rval = ft_atoi_base(strr, 16);
+	printf("rval = %d\n", rval);
    	ft_strdel(&strr);
    	return (rval);
 }
@@ -69,6 +70,7 @@ int			ld_fct(t_war *war, t_chariot *chariot)
 	int param2;
 
 	i = 2;
+	param2 = 0;
 	get_bin_ocp(chariot, war);
 	if (war->rtype[0] == T_DIR)
 	{

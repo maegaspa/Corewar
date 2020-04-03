@@ -6,7 +6,7 @@
 /*   By: hmichel <hmichel@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/28 12:17:46 by hmichel           #+#    #+#             */
-/*   Updated: 2020/02/28 18:27:09 by hmichel          ###   ########lyon.fr   */
+/*   Updated: 2020/04/03 18:55:17 by maegaspa         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,7 +129,7 @@ int					read_and_place_players(t_parse_file *file, t_war *war, t_header *head);
 ** utils.c
 */
 unsigned int		u_int_reverse_octet(unsigned int x);
-int					print_arena(t_war *war, t_parse_file *file);
+int					print_arena(t_war *war);
 void				ft_init_war(t_parse_file file, t_war *war);
 void				init_tab(t_opp *opp_tab);
 int					ft_atoi_base(const char *str, int base);
@@ -143,7 +143,7 @@ int					ft_game(t_war *war);
 int					ft_game_visu(t_war *war);
 int 				ft_check_type(int d_type, int type);
 int					choose_ope(t_war *war, t_chariot *chariot);
-void				get_param(t_chariot *chariot, t_war *war, char *str);
+void				get_param(t_war *war, char *str);
 int					get_bin_ocp(t_chariot *chariot, t_war *war);
 
 /*

@@ -6,7 +6,7 @@
 /*   By: seanseau <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 16:10:42 by seanseau          #+#    #+#             */
-/*   Updated: 2020/02/26 19:37:25 by seanseau         ###   ########lyon.fr   */
+/*   Updated: 2020/04/03 19:56:28 by maegaspa         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,12 @@
 
 int		get_2_val(t_war *war, t_chariot *chariot, int i)
 {
-	unsigned char	valx[2];
+	unsigned char	valx[3];
     char			*str;
     char			*str2;
     char			*str3;
     int				rval;
 
-    if (!(str3 = (char *)malloc(sizeof(int) * ft_strlen(str) + ft_strlen(str2) + 1)))
-    	return (ERROR_MALLOC);
     valx[0] = (unsigned char)war->arena[chariot->start_pos + chariot->pc + i];
     valx[1] = (unsigned char)war->arena[chariot->start_pos + chariot->pc + i + 1];
     valx[2] = '\0';
@@ -33,6 +31,8 @@ int		get_2_val(t_war *war, t_chariot *chariot, int i)
        	str2[0] = '0';
        	str2[2] = '\0';
     }
+	if (!(str3 = (char *)malloc(sizeof(int) * ft_strlen(str) + ft_strlen(str2) + 1)))
+    	return (ERROR_MALLOC);
    	ft_strcpy(str3, str);
    	ft_strcat(str3, str2);
    	rval = ft_atoi_base(str3, 16);

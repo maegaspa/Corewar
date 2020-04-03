@@ -6,7 +6,7 @@
 /*   By: hmichel <hmichel@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 17:21:42 by seanseau          #+#    #+#             */
-/*   Updated: 2020/02/26 23:24:48 by hmichel          ###   ########lyon.fr   */
+/*   Updated: 2020/04/03 18:54:29 by maegaspa         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ int		ft_atoi_base(const char *str, int base)
 	int		nbr;
 	int		sign;
 
+	i = 0;
 	if (!str[0] || (base < 2 || base > 16))
 		return (0);
 	nbr = 0;
@@ -104,7 +105,7 @@ unsigned int	u_int_reverse_octet(unsigned int x)
 	return (rev);
 }
 
-int 			print_arena(t_war *war, t_parse_file *file)
+int 			print_arena(t_war *war)
 {
 	int i;
 	int count_bytes;

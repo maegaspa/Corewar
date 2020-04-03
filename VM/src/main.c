@@ -6,7 +6,7 @@
 /*   By: hmichel <hmichel@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 17:21:56 by seanseau          #+#    #+#             */
-/*   Updated: 2020/02/28 12:27:08 by hmichel          ###   ########lyon.fr   */
+/*   Updated: 2020/04/03 19:18:14 by maegaspa         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int 	main(int ac, char **av)
 	else
 		if (ft_game(&war) == 0)//A FAIRE: retour erreur
 			return (0);
-	print_arena(&war, &file);
+	print_arena(&war);
 	//end game (free/close)
 	//free_zob
 	//printf("ERROR\n");

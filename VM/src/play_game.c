@@ -6,7 +6,7 @@
 /*   By: hmichel <hmichel@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 17:21:32 by seanseau          #+#    #+#             */
-/*   Updated: 2020/02/28 20:34:34 by hmichel          ###   ########lyon.fr   */
+/*   Updated: 2020/04/03 19:18:32 by maegaspa         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,10 +66,10 @@ int 	ft_check_type(int d_type, int type)
 //	return (SUCCESS);
 //}
 
-void	get_param(t_chariot *chariot, t_war *war, char *str)
+void	get_param(t_war *war, char *str)
 {
 	if (!(war->rtype = malloc(sizeof(int) * 3)))
-    		return ;
+		return ;
 	if (str[0] == '1' && str[1] == '0')
 		war->rtype[0] = T_DIR;
 	else if (str[0] == '0' && str[1] == '1')
@@ -77,23 +77,23 @@ void	get_param(t_chariot *chariot, t_war *war, char *str)
 	else if (str[0] == '1' && str[1] == '1')
 		war->rtype[0] = T_IND;
 	else
-    	war->rtype[0] = 0;
+		war->rtype[0] = 0;
 	if (str[2] == '1' && str[3] == '0')
-    	war->rtype[1] = T_DIR;
-    else if (str[2] == '0' && str[3] == '1')
-         war->rtype[1] = T_REG;
-    else if (str[2] == '1' && str[3] == '1')
-         war->rtype[1] = T_IND;
-    else
-         war->rtype[1] = 0;
-    if (str[4] == '1' && str[5] == '0')
-         war->rtype[2] = T_DIR;
-    else if (str[4] == '0' && str[5] == '1')
-         war->rtype[2] = T_REG;
-    else if (str[4] == '1' && str[5] == '1')
-          war->rtype[2] = T_IND;
-    else
-          war->rtype[2] = 0;
+		war->rtype[1] = T_DIR;
+	else if (str[2] == '0' && str[3] == '1')
+		war->rtype[1] = T_REG;
+	else if (str[2] == '1' && str[3] == '1')
+		war->rtype[1] = T_IND;
+	else
+		war->rtype[1] = 0;
+	if (str[4] == '1' && str[5] == '0')
+		war->rtype[2] = T_DIR;
+	else if (str[4] == '0' && str[5] == '1')
+		war->rtype[2] = T_REG;
+	else if (str[4] == '1' && str[5] == '1')
+		war->rtype[2] = T_IND;
+	else
+		war->rtype[2] = 0;
 }
 
 void	fill_bin(char *str, char *fill, int j)
@@ -108,52 +108,53 @@ void	fill_bin(char *str, char *fill, int j)
 int		get_bin_ocp(t_chariot *chariot, t_war *war)
 {
 	int 	i;
-	char	str[9];
+	char	str[10];
 	int 	j;
 
 	i = -1;
 	j = 0;
 	war->ocp = war->arena[chariot->start_pos + chariot->pc + 1];
-    war->ocxp = ft_itoa_base((unsigned char)war->ocp, 16);
-    while (war->ocxp[++i])
-    {
-    	if (war->ocxp[i] == '0')
-    		fill_bin(str, "0000", j);
-    	if (war->ocxp[i] == '1')
+	war->ocxp = ft_itoa_base((unsigned char)war->ocp, 16);
+	while (war->ocxp[++i])
+	{
+		if (war->ocxp[i] == '0')
+			fill_bin(str, "0000", j);
+		if (war->ocxp[i] == '1')
 			fill_bin(str, "0001", j);
-    	if (war->ocxp[i] == '2')
+		if (war->ocxp[i] == '2')
 			fill_bin(str, "0010", j);
-    	if (war->ocxp[i] == '3')
+		if (war->ocxp[i] == '3')
 			fill_bin(str, "0011", j);
-    	if (war->ocxp[i] == '4')
+		if (war->ocxp[i] == '4')
 			fill_bin(str, "0100", j);
-    	if (war->ocxp[i] == '5')
+		if (war->ocxp[i] == '5')
 			fill_bin(str, "0101", j);
-    	if (war->ocxp[i] == '6')
-    		fill_bin(str, "0110", j);
-    	if (war->ocxp[i] == '7')
+		if (war->ocxp[i] == '6')
+			fill_bin(str, "0110", j);
+		if (war->ocxp[i] == '7')
 			fill_bin(str, "0111", j);
-    	if (war->ocxp[i] == '8')
-    		fill_bin(str, "1000", j);
-    	if (war->ocxp[i] == '9')
+		if (war->ocxp[i] == '8')
+			fill_bin(str, "1000", j);
+		if (war->ocxp[i] == '9')
 			fill_bin(str, "1001", j);
-    	if (war->ocxp[i] == 'a' || war->ocxp[i] == 'A')
+		if (war->ocxp[i] == 'a' || war->ocxp[i] == 'A')
 			fill_bin(str, "1010", j);
-    	if (war->ocxp[i] == 'b' || war->ocxp[i] == 'B')
+		if (war->ocxp[i] == 'b' || war->ocxp[i] == 'B')
 			fill_bin(str, "1011", j);
-    	if (war->ocxp[i] == 'c' || war->ocxp[i] == 'C')
+		if (war->ocxp[i] == 'c' || war->ocxp[i] == 'C')
 			fill_bin(str, "1100", j);
-    	if (war->ocxp[i] == 'd' || war->ocxp[i] == 'D')
+		if (war->ocxp[i] == 'd' || war->ocxp[i] == 'D')
 			fill_bin(str, "1101", j);
-    	if (war->ocxp[i] == 'e' || war->ocxp[i] == 'E')
+		if (war->ocxp[i] == 'e' || war->ocxp[i] == 'E')
 			fill_bin(str, "1110", j);
-    	if (war->ocxp[i] == 'f' || war->ocxp[i] == 'F')
+		if (war->ocxp[i] == 'f' || war->ocxp[i] == 'F')
 			fill_bin(str, "1111", j);
 		j = 4;
-    }
-    str[9] = '\0';
-    printf("str = %s\n", str);
-    get_param(chariot, war, str);
+	}
+	str[9] = '\0';
+	printf("str = %s\n", str);
+	get_param(war, str);
+	return (SUCCESS);
 }
 
 int		choose_ope(t_war *war, t_chariot *chariot)
@@ -208,7 +209,7 @@ int		ft_game(t_war *war)
 	if ((error = ft_start_chariot(war, &chariot)) <= 0)
 		return (error);
 	war->begin = &chariot;
-//	printf("GAME START\n");
+	//	printf("GAME START\n");
 	chariot->pc = 0;
 	while (war->cycles < war->to_die)
 	{
@@ -217,10 +218,10 @@ int		ft_game(t_war *war)
 			//chariot->pc = 0;
 			ft_exec_opp(chariot, war, opp_tab);
 			dprintf(1, "ptdr44 et ope = %d\n", chariot->ope);
-			 printf("ici pc = [%d] \n", chariot->pc);
+			printf("ici pc = [%d] \n", chariot->pc);
 			if ((error = choose_ope(war, chariot)) <= 0)
-            	return (error);
-//            chariot->pc += war->jump;
+				return (error);
+			//            chariot->pc += war->jump;
 			printf("chariot->index = %d\n", chariot->index);
 			chariot = chariot->next;
 		}
@@ -228,8 +229,8 @@ int		ft_game(t_war *war)
 		war->cycles++;
 		//printf("cycles++\n");
 		//ft_print_war(war);
-//		if (war->cycles > 70)
-//			break;
+		//		if (war->cycles > 70)
+		//			break;
 	}
 	return (SUCCESS);
 }
@@ -257,8 +258,8 @@ int		ft_game_visu(t_war *war)
 		}
 		chariot = *(war->begin);
 
-			if (update_visu(war) != -1)
-				war->cycles++;
+		if (update_visu(war) != -1)
+			war->cycles++;
 	}
 	return (SUCCESS);
 }

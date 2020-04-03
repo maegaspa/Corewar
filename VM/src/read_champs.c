@@ -6,7 +6,7 @@
 /*   By: hmichel <hmichel@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 17:21:47 by seanseau          #+#    #+#             */
-/*   Updated: 2020/02/26 18:37:42 by seanseau         ###   ########lyon.fr   */
+/*   Updated: 2020/04/03 18:56:20 by maegaspa         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,6 @@ int			read_and_place_players(t_parse_file *file, t_war *war, t_header *head)
 		if ((file->error = get_new_player(war, file, head, act_player)) < 1)
 			return (file->error);//recupere les infos player + le place dans l'arena
 	print_info_players(war, file);//print vitef des differents players
-	print_arena(war, file);
+	print_arena(war);
 	return (SUCCESS);
 }

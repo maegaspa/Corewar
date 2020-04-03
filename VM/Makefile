@@ -3,7 +3,7 @@
 NAME = corewar
 CC = gcc
 DEBUG = -g -fsanitize=address
-FLAGS = -Wall -Wextra -Werror -g
+FLAGS = -Wall -Wextra -Werror -g -lncurses
 INC = include/corewar.h
 HEADER = include
 
@@ -34,6 +34,10 @@ FILES = src/main\
 		src/operations/lldi_fct\
 		src/operations/lfork_fct\
 		src/operations/aff_fct\
+		src/visual_body\
+		src/visual_keys\
+		src/visual_update\
+		src/visual_utils\
 
 #----------------------------------COLOR---------------------------------------#
 
