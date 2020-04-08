@@ -14,6 +14,20 @@
 
 int			st_fct(t_war *war, t_chariot *chariot)
 {
+	int i;
+	int param;
+
+	i = 3;
 	printf("ST_FCT : index_chariot : %d\tto_die : %d\n", chariot->index, war->to_die);
+	get_bin_ocp(chariot, war);
+	if (chariot->registres[0] == 0)
+		chariot->carry = 1;
+	if (war->rtype[1] == T_IND)
+	{
+		param = get_2_val(war, chariot, i);
+		war->arena[chariot->start_pos + chariot->pc + (param % IDX_MOD)] = chariot->registres[0];
+	}
+	else
+		chariot->registres[1] = chariot->registres[0];
 	return (0);
 }
