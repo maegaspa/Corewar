@@ -112,7 +112,7 @@ typedef struct			war
 	int					*rtype;
 	char				ocp;
 	char				*ocxp;
-	t_chariot			**begin;
+	t_chariot			*begin;
 	t_visual			visual;//visu lol
 }						t_war;
 

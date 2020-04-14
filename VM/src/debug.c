@@ -34,8 +34,8 @@ void		ft_print_war(t_war *war)
 {
 	printf("\n#------war-------#\n");
 	printf("nb_player = %d\nto_die = %d\ncycles = %d\ndump = %d\n ", war->nb_player, war->to_die, war->cycles, war->dump);
-	if ((*(war->begin)))
-		printf("begin : %p <=> chariot %d\n", (*(war->begin)), (*(war->begin))->index);
+	if ((war->begin))
+		printf("begin : %p <=> chariot %d\n", (war->begin), (war->begin)->index);
 	else
 		printf("begin sur NULL\n");
 }

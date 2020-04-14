@@ -48,16 +48,16 @@ int			sti_fct(t_war *war, t_chariot *chariot)
 	int				cell;
 
 	i = 3;
-	printf("nb param pour sti chariot [%d]\n", g_op_tab[chariot->ope - 1].nb_params);
+//	printf("nb param pour sti chariot [%d]\n", g_op_tab[chariot->ope - 1].nb_params);
 	get_bin_ocp(chariot, war);
 	if (war->rtype[1] == T_DIR && war->rtype[2] == T_DIR)
 	{
 		param2 = get_2_val(war, chariot, i);
 		param3 = get_2_val(war, chariot, i + 2);
-		printf("param2 = %d et param3 = %d\n", param2, param3);
+//		printf("param2 = %d et param3 = %d\n", param2, param3);
 		cell = ((param2 + param3) % IDX_MOD);
-		printf("cell = %d\n", cell);
-		printf("r0 = %d et r1 = %d\n", chariot->registres[0], chariot->registres[1]);
+//		printf("cell = %d\n", cell);
+//		printf("r0 = %d et r1 = %d\n", chariot->registres[0], chariot->registres[1]);
 		if (war->arena[chariot->start_pos + chariot->pc + cell] == T_DIR_FOUR)
 			war->arena[chariot->start_pos + chariot->pc + cell + 3] = war->nb_player;
 		if (war->arena[chariot->start_pos + chariot->pc + cell] == T_DIR_TWO
@@ -67,6 +67,6 @@ int			sti_fct(t_war *war, t_chariot *chariot)
             war->arena[chariot->start_pos + chariot->pc + cell] = war->nb_player;
 //		printf("ici l'arene = %x et nb_player = %d\n", (unsigned char)war->arena[chariot->start_pos + chariot->pc + cell], war->nb_player);
 	}
-	printf("STI_FCT : index_chariot : %d\tto_die : %d\n", chariot->index, war->to_die);
+	printf("STI_FCT : index_chariot : %d\tto_die : %d et pc = [%d]\n", chariot->index, war->to_die, chariot->pc);
 	return (0);
 }

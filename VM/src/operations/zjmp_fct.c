@@ -24,7 +24,7 @@ int			zjmp_fct(t_war *war, t_chariot *chariot)
 	i = 1;
 	next_pos = 0;
 	int k = -1;
-	printf("ZJMP_FCT : index_chariot : %d\tto_die : %d\n", chariot->index, war->to_die);
+	printf("ZJMP_FCT : index_chariot : %d\tto_die : %d et pc = [%d]\n", chariot->index, war->to_die, chariot->pc);
 	if (chariot->carry == 1)
 	{
 		param = get_2_val(war, chariot, i);

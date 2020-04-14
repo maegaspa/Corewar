@@ -19,7 +19,7 @@ void	print_cursor(t_war *war)
 
 	war->visual.process_nb = 0;
 	//chariot = war->begin;
-	chariot = *(war->begin);
+	chariot = war->begin;
 	while (chariot)
 	{
 		if (chariot->ope != -1 && chariot->wait != 0)

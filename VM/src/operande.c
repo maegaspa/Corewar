@@ -63,6 +63,8 @@ int			ft_tcheck_ocp(t_chariot *chariot, t_war *war)//return jump
 	int			i;
 	int			jump;
 
+//	if (chariot->ope == 1)
+//		return (4);
 	if (g_op_tab[chariot->ope - 1].acb == 0)//ope n'a pas d'ocp
 		return (2);
 	i = -1;
@@ -85,6 +87,7 @@ void		ft_exec_opp(t_chariot *chariot, t_war *war, t_opp *opp_tab)
 	int		jump;
 
 	jump = 0;
+//	printf("chariot wait = %d\n chariot->ope = %d", chariot->wait, chariot->ope);
 	if (chariot->wait > 0)
 		chariot->wait--;
 	if (chariot->wait == 0 && chariot->ope > 0)
@@ -95,13 +98,14 @@ void		ft_exec_opp(t_chariot *chariot, t_war *war, t_opp *opp_tab)
 			//jump = ft_jump(chariot, war);
 			opp_tab[chariot->ope - 1](war, chariot);
 			chariot->pc += jump;
+//			printf("HEY FRR ICI chariot->pc = %d\n", chariot->pc);
 		}
 		chariot->ope = -1;
 	}
 	if (ft_get_op(war, chariot) == 1) //&& chariot->ope >= 1) //on tcheck si on lit une nouvelle operande, si oui on init "wait"
 		chariot->wait = war->op_cycle[chariot->ope - 1];
 //	}
-	ft_print_chariot(chariot, 0); //reg == 1 pour afficher les registres
+	//ft_print_chariot(chariot, 0); //reg == 1 pour afficher les registres
 //	ft_printf("ope chariot [%d]: %d\n", chariot->index, chariot->ope);
 //	return (SUCCESS);
 	//ft_printf("ope chariot [%d]: %d\n", chariot->index, chariot->ope);

@@ -15,5 +15,6 @@
 int			lldi_fct(t_war *war, t_chariot *chariot)
 {
 	printf("LLDI_FCT : index_chariot : %d\tto_die : %d\n", chariot->index, war->to_die);
+
 	return (0);
 }

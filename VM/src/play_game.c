@@ -68,6 +68,7 @@ int 	ft_check_type(int d_type, int type)
 
 void	get_param(t_war *war, char *str)
 {
+//	int i = -1;
 	if (!(war->rtype = malloc(sizeof(int) * 3)))
 		return ;
 	if (str[0] == '1' && str[1] == '0')
@@ -94,6 +95,8 @@ void	get_param(t_war *war, char *str)
 		war->rtype[2] = T_IND;
 	else
 		war->rtype[2] = 0;
+//	while (++i < 3)
+//		printf("war->rtype[%d] = %d\n", i, war->rtype[i]);
 }
 
 void	fill_bin(char *str, char *fill, int j)
@@ -152,7 +155,7 @@ int		get_bin_ocp(t_chariot *chariot, t_war *war)
 		j = 4;
 	}
 	str[9] = '\0';
-	printf("str = %s\n", str);
+//	printf("str = %s\n", str);
 	get_param(war, str);
 	return (SUCCESS);
 }
@@ -203,34 +206,37 @@ int		ft_game(t_war *war)
 {
 	t_chariot		*chariot;
 	int				error;
+	int 			pi;
 	t_opp			opp_tab[16];
 
 	init_tab(opp_tab);
 	if ((error = ft_start_chariot(war, &chariot)) <= 0)
 		return (error);
-	war->begin = &chariot;
-	//	printf("GAME START\n");
+	war->begin = chariot;
+	printf("GAME START\n");
 	chariot->pc = 0;
+	ft_print_war(war);
 	while (war->cycles < war->to_die)
 	{
 		while (chariot)
 		{
-			//chariot->pc = 0;
+			pi = chariot->pc;
+//			printf("chariot wait = %d\n chariot->ope = %d", chariot->wait, chariot->ope);
 			ft_exec_opp(chariot, war, opp_tab);
-			dprintf(1, "ptdr44 et ope = %d\n", chariot->ope);
-			printf("ici pc = [%d] \n", chariot->pc);
-			if ((error = choose_ope(war, chariot)) <= 0)
-				return (error);
-			//            chariot->pc += war->jump;
-			printf("chariot->index = %d\n", chariot->index);
+//			dprintf(1, "ptdr44 et ope = %d\n", chariot->ope);
+//			printf("ici pc = [%d] \n", chariot->pc);
+			if (chariot->pc > pi)
+				if ((error = choose_ope(war, chariot)) <= 0)
+					return (error);
+//			printf("chariot->index = %d\n", chariot->index);
 			chariot = chariot->next;
 		}
-		chariot = *(war->begin);
+		chariot = war->begin;
 		war->cycles++;
 		//printf("cycles++\n");
-		//ft_print_war(war);
-		//		if (war->cycles > 70)
-		//			break;
+//		ft_print_war(war);
+//		if (war->cycles > 70)
+//			break;
 	}
 	return (SUCCESS);
 }
@@ -246,8 +252,7 @@ int		ft_game_visu(t_war *war)
 		visu_body(war);
 	if ((error = ft_start_chariot(war, &chariot)) <= 0)
 		return (error);
-	war->begin = &chariot;
-
+	war->begin = chariot;
 	while (war->cycles < war->to_die)
 	{
 		while (chariot)
@@ -256,8 +261,7 @@ int		ft_game_visu(t_war *war)
 				ft_exec_opp(chariot, war, opp_tab);
 			chariot = chariot->next;
 		}
-		chariot = *(war->begin);
-
+		chariot = war->begin;
 		if (update_visu(war) != -1)
 			war->cycles++;
 	}

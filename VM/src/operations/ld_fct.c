@@ -56,9 +56,9 @@ int		get_4_val(t_war *war, t_chariot *chariot, int i)
    	ft_strcat(strr, str2);
    	ft_strcat(strr, str3);
    	ft_strcat(strr, str4);
-   	printf("strr = %s\n", strr);
+//   	printf("strr = %s\n", strr);
    	rval = ft_atoi_base(strr, 16);
-	printf("rval = %d\n", rval);
+//	printf("rval = %d\n", rval);
    	ft_strdel(&strr);
    	return (rval);
 }
@@ -75,7 +75,7 @@ int			ld_fct(t_war *war, t_chariot *chariot)
 	if (war->rtype[0] == T_DIR)
 	{
 		param1 = get_4_val(war, chariot, i);
-		printf("param1 = %d\n", param1);
+//		printf("param1 = %d\n", param1);
 		war->arena[chariot->start_pos + chariot->pc + i + 4] = param1;
 	}
 	if (war->rtype[0] == T_IND)
@@ -90,6 +90,6 @@ int			ld_fct(t_war *war, t_chariot *chariot)
 	}
 	if (param1 == 0)
     	chariot->carry = 1;
-	printf("LD_FCT : index_chariot : %d\tto_die : %d\n", chariot->index, war->to_die);
+	printf("LD_FCT : index_chariot : %d\tto_die : %d et pc = [%d]\n", chariot->index, war->to_die, chariot->pc);
 	return (0);
 }
