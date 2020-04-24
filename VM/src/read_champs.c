@@ -95,6 +95,6 @@ int			read_and_place_players(t_parse_file *file, t_war *war, t_header *head)
 		if ((file->error = get_new_player(war, file, head, act_player)) < 1)
 			return (file->error);//recupere les infos player + le place dans l'arena
 	print_info_players(war, file);//print vitef des differents players
-	print_arena(war);
+	//print_arena(war);
 	return (SUCCESS);
 }

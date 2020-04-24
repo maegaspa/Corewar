@@ -105,7 +105,7 @@ unsigned int	u_int_reverse_octet(unsigned int x)
 	return (rev);
 }
 
-int 			print_arena(t_war *war)
+int 			print_arena(t_war *war, t_parse_file *file)
 {
 	int i;
 	int count_bytes;
@@ -114,14 +114,14 @@ int 			print_arena(t_war *war)
 
 	i = -1;
 	count_bytes = 0;
-	dump = 32;
+	dump = 64;
 	bytes = 0;
-//	if (file->long_dump != -1)
-//		dump = 64;
-//	else if (file->dump != -1)
-//		dump = 32;
-//	else
-//		return (FAILURE);
+	if (file->long_dump != -1)
+		dump = 64;
+	else if (file->dump != -1)
+		dump = 32;
+	else
+		return (FAILURE);
 	printf("\n");
 	while (++i < MEM_SIZE)
 	{

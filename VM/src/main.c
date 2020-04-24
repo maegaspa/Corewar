@@ -59,15 +59,9 @@ int 	main(int ac, char **av)
 		return (file.error);
 	}
 	ft_init_war(file, &war);
-	if (war.visu == 1)
-    {
-    	if (ft_game_visu(&war) == 0)//A FAIRE: retour erreur
-    		return (0);
-    }
-	else
-		if (ft_game(&war) == 0)//A FAIRE: retour erreur
-			return (0);
-	print_arena(&war);
+	if (ft_game(&war, &file) == 0)//A FAIRE: retour erreur
+		return (0);
+	//print_arena(&war, &file);
 	//end game (free/close)
 	//free_zob
 	//printf("ERROR\n");
