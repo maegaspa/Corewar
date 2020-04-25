@@ -202,7 +202,7 @@ int		choose_ope(t_war *war, t_chariot *chariot)
 	return (SUCCESS);
 }
 
-int		ft_game(t_war *war)
+int		ft_game(t_war *war, t_parse_file *file)
 {
 	t_chariot		*chariot;
 	int				error;
@@ -218,16 +218,18 @@ int		ft_game(t_war *war)
 	ft_print_war(war);
 	while (war->cycles < war->to_die)
 	{
+		if (file->dump == war->cycles|| file->long_dump == war->cycles)
+        	print_arena(war, file);
 		while (chariot)
 		{
 			pi = chariot->pc;
 //			printf("chariot wait = %d\n chariot->ope = %d", chariot->wait, chariot->ope);
 			ft_exec_opp(chariot, war, opp_tab);
 //			dprintf(1, "ptdr44 et ope = %d\n", chariot->ope);
-//			printf("ici pc = [%d] \n", chariot->pc);
-			if (chariot->pc > pi)
-				if ((error = choose_ope(war, chariot)) <= 0)
-					return (error);
+			//printf("pi = [%d]ici pc = [%d] et index  = %d \n", pi, chariot->pc, chariot->index);
+		/*if (chariot->pc > pi)
+			if ((error = choose_ope(war, chariot)) <= 0)
+					return (error);*/
 //			printf("chariot->index = %d\n", chariot->index);
 			chariot = chariot->next;
 		}
@@ -241,29 +243,29 @@ int		ft_game(t_war *war)
 	return (SUCCESS);
 }
 
-int		ft_game_visu(t_war *war)
-{
-	t_chariot		*chariot;
-	int				error;
-	t_opp			opp_tab[16];
-
-	init_tab(opp_tab);
-	if (war->visu == 1)
-		visu_body(war);
-	if ((error = ft_start_chariot(war, &chariot)) <= 0)
-		return (error);
-	war->begin = chariot;
-	while (war->cycles < war->to_die)
-	{
-		while (chariot)
-		{
-			if (war->visual.pause == -1)
-				ft_exec_opp(chariot, war, opp_tab);
-			chariot = chariot->next;
-		}
-		chariot = war->begin;
-		if (update_visu(war) != -1)
-			war->cycles++;
-	}
-	return (SUCCESS);
-}
+//int		ft_game_visu(t_war *war)
+//{
+//	t_chariot		*chariot;
+//	int				error;
+//	t_opp			opp_tab[16];
+//
+//	init_tab(opp_tab);
+//	if (war->visu == 1)
+//		visu_body(war);
+//	if ((error = ft_start_chariot(war, &chariot)) <= 0)
+//		return (error);
+//	war->begin = chariot;
+//	while (war->cycles < war->to_die)
+//	{
+//		while (chariot)
+//		{
+//			if (war->visual.pause == -1)
+//				ft_exec_opp(chariot, war, opp_tab);
+//			chariot = chariot->next;
+//		}
+//		chariot = war->begin;
+//		if (update_visu(war) != -1)
+//			war->cycles++;
+//	}
+//	return (SUCCESS);
+//}

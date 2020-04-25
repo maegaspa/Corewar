@@ -129,7 +129,7 @@ int					read_and_place_players(t_parse_file *file, t_war *war, t_header *head);
 ** utils.c
 */
 unsigned int		u_int_reverse_octet(unsigned int x);
-int					print_arena(t_war *war);
+int					print_arena(t_war *war, t_parse_file *file);
 void				ft_init_war(t_parse_file file, t_war *war);
 void				init_tab(t_opp *opp_tab);
 int					ft_atoi_base(const char *str, int base);
@@ -139,7 +139,7 @@ int		            get_4_val(t_war *war, t_chariot *chariot, int i);
 /*
 ** play_game.c
 */
-int					ft_game(t_war *war);
+int					ft_game(t_war *war, t_parse_file *file);
 int					ft_game_visu(t_war *war);
 int 				ft_check_type(int d_type, int type);
 int					choose_ope(t_war *war, t_chariot *chariot);

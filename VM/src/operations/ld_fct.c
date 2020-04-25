@@ -75,7 +75,7 @@ int			ld_fct(t_war *war, t_chariot *chariot)
 	if (war->rtype[0] == T_DIR)
 	{
 		param1 = get_4_val(war, chariot, i);
-//		printf("param1 = %d\n", param1);
+		printf("param1 = %d\n", param1);
 		war->arena[chariot->start_pos + chariot->pc + i + 4] = param1;
 	}
 	if (war->rtype[0] == T_IND)
