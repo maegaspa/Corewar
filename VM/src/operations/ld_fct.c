@@ -94,6 +94,8 @@ int			ld_fct(t_war *war, t_chariot *chariot)
 	}
 	if (param1 == 0)
     	chariot->carry = 1;
+    else
+        chariot->carry = 0;
 	printf("LD_FCT : index_chariot : %d\tto_die : %d et pc = [%d]\n", chariot->index, war->to_die, chariot->pc);
 	return (0);
 }
