@@ -68,6 +68,7 @@ int			ld_fct(t_war *war, t_chariot *chariot)
 	int i;
 	int param1;
 	int param2;
+	int r;
 
 	i = 2;
 	param2 = 0;
@@ -75,8 +76,9 @@ int			ld_fct(t_war *war, t_chariot *chariot)
 	if (war->rtype[0] == T_DIR)
 	{
 		param1 = get_4_val(war, chariot, i);
-		printf("param1 = %d\n", param1);
-		war->arena[chariot->start_pos + chariot->pc + i + 4] = param1;
+		r = war->arena[chariot->start_pos + chariot->pc + i + 4];
+		printf("param1 = %d et param2 = %d\n", param1, r);
+		chariot->registres[r - 1] = param1;
 	}
 	if (war->rtype[0] == T_IND)
 	{
@@ -86,7 +88,9 @@ int			ld_fct(t_war *war, t_chariot *chariot)
 		param2 += war->arena[(chariot->start_pos + chariot->pc + i + param1 + 1) % MEM_SIZE] << 16;
 		param2 += war->arena[(chariot->start_pos + chariot->pc + i + param1 + 2) % MEM_SIZE] << 8;
 		param2 += war->arena[(chariot->start_pos + chariot->pc + i + param1 + 3) % MEM_SIZE];
-		war->arena[chariot->start_pos + chariot->pc + i + 2] = param2;
+		r = war->arena[chariot->start_pos + chariot->pc + i + 2];
+		printf("param1 = %d et param2 = %d et r = %d\n", param1, param2, r);
+		chariot->registres[r - 1] = param1;
 	}
 	if (param1 == 0)
     	chariot->carry = 1;
