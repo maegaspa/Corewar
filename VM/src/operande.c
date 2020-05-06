@@ -32,8 +32,11 @@ int			ft_get_op(t_war *war, t_chariot *chariot)
 
 int			is_conform(char ocp, int param, int ope)
 {
-	//printf("ocp recu %d\n", (int)ocp);
 	//	ft_printf("\n");
+	if (ocp < 0)
+		ocp = -ocp;
+//	if (ope == 1)
+//    	printf("ocp recu %d\n", (int)ocp);
 	if (ocp == 0)
 		return (FAILURE);
 	if (ocp == 1 && (0x01 & g_op_tab[ope].params_type[param])) // <=> (g_op_tab[ope].params_type[param] % 2) == 1
@@ -65,12 +68,11 @@ int			ft_tcheck_ocp(t_chariot *chariot, t_war *war)//return jump
 
 	if (chariot->ope == 1)
 		return (5);
-	if (g_op_tab[chariot->ope - 1].acb == 0)//ope n'a pas d'ocp
+	if (g_op_tab[chariot->ope - 1].acb == 0) //ope n'a pas d'ocp
 		return (3);
 	i = -1;
-	jump = 2;//ope et ocp de 1 octet
+	jump = 2; //ope et ocp de 1 octet
 	ocp = war->arena[chariot->start_pos + chariot->pc + 1];
-	//printf("ocp = %d\n", ocp);
 	if (!(jump += is_conform((ocp >> 6), 0, chariot->ope - 1)))
 		return (FAILURE);
 	if (g_op_tab[chariot->ope - 1].nb_params >= 2)
@@ -79,6 +81,8 @@ int			ft_tcheck_ocp(t_chariot *chariot, t_war *war)//return jump
 	if (g_op_tab[chariot->ope - 1].nb_params == 3)
 		if (!(jump += is_conform(((ocp & 0x0C) >> 2), 2, chariot->ope - 1)))
 			return (FAILURE);
+//	if (chariot->ope == 2)
+//		printf("ocp = %d et jump = %d, et puis g_op_tab[%d].nb_params = %d\n", ocp, jump, chariot->ope - 1, g_op_tab[chariot->ope - 1].nb_params);
 	return (jump);
 }
 
@@ -98,9 +102,9 @@ void		ft_exec_opp(t_chariot *chariot, t_war *war, t_opp *opp_tab)
 			//jump = ft_jump(chariot, war);
 			opp_tab[chariot->ope - 1](war, chariot);
 			chariot->pc += jump;
+//			printf("Jump = [%d] et PC = [%d]\n", jump, chariot->pc);
 //			printf("HEY FRR ICI chariot->pc = %d\n", chariot->pc);
 		}
-//		printf("Jump = [%d] et PC = [%d]\n", jump, chariot->pc);
 		chariot->ope = -1;
 	}
 	if (ft_get_op(war, chariot) == 1) //&& chariot->ope >= 1) //on tcheck si on lit une nouvelle operande, si oui on init "wait"
