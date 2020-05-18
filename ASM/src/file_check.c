@@ -42,6 +42,7 @@ int		init_file(t_file *file, t_header *head, char *file_name)
 	}
 	if (file->name != 1 || file->comment != 1)
 		return (ERROR_INFO);
+	printf("[%s][%s]\n", head->prog_name, head->comment);
 	return (SUCCESS);
 }
 
