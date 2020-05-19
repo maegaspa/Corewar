@@ -76,8 +76,9 @@ int			ld_fct(t_war *war, t_chariot *chariot)
 	if (war->rtype[0] == T_DIR)
 	{
 		param1 = get_4_val(war, chariot, i);
-    if (war->verbose[2] == 1)
-        printf("P %4d | ld %d r%d\n", (chariot->index + 1), param1, (unsigned char)war->arena[chariot->start_pos + chariot->pc + 6]);
+        if (war->verbose[2] == 1)
+            printf("P %4d | ld %d r%d\n", (chariot->index + 1), param1, (unsigned char)war->arena[chariot->start_pos + chariot->pc + 6]);
+        print_verbose_16(war, chariot, 7);
 		r = war->arena[chariot->start_pos + chariot->pc + i + 4];
 		//printf("param1 = %d et param2 = %d\n", param1, r);
 		chariot->registres[r - 1] = param1;
@@ -85,9 +86,10 @@ int			ld_fct(t_war *war, t_chariot *chariot)
 	if (war->rtype[0] == T_IND)
 	{
 		param1 = get_2_val(war, chariot, i);
-    if (war->verbose[2] == 1)
-        printf("P %4d | ld %d r%d\n", (chariot->index + 1), param1, (unsigned char)war->arena[chariot->start_pos + chariot->pc + 6]);
-		param1 = (param1 % IDX_MOD);
+        if (war->verbose[2] == 1)
+            printf("P %4d | ld %d r%d\n", (chariot->index + 1), param1, (unsigned char)war->arena[chariot->start_pos + chariot->pc + 4]);
+		print_verbose_16(war, chariot, 5);
+        param1 = (param1 % IDX_MOD);
 		param2 += war->arena[(chariot->start_pos + chariot->pc + i + param1) % MEM_SIZE] << 24;
 		param2 += war->arena[(chariot->start_pos + chariot->pc + i + param1 + 1) % MEM_SIZE] << 16;
 		param2 += war->arena[(chariot->start_pos + chariot->pc + i + param1 + 2) % MEM_SIZE] << 8;

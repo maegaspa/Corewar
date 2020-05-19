@@ -62,7 +62,7 @@ int			is_conform(char ocp, int param, int ope)
 
 int			ft_tcheck_ocp(t_chariot *chariot, t_war *war)//return jump
 {
-	char		ocp;
+	unsigned char		ocp;
 	int			i;
 	int			jump;
 

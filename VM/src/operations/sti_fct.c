@@ -48,26 +48,33 @@ int			sti_fct(t_war *war, t_chariot *chariot)
 	int				cell;
 
 	i = 3;
-  if (war->verbose[2] == 1)
-        printf("P %4d | sti r%d %d %d\n", (chariot->pc + 1), (unsigned char)war->arena[chariot->start_pos + chariot->pc + 2], get_2_val(war, chariot, 3), get_2_val(war, chariot, 5));
 //	printf("nb param pour sti chariot [%d]\n", g_op_tab[chariot->ope - 1].nb_params);
 	get_bin_ocp(chariot, war);
 	if (war->rtype[1] == 2 && war->rtype[2] == T_DIR)
 	{
-		param2 = get_2_val(war, chariot, i);
+    param2 = get_2_val(war, chariot, i);
 		param3 = get_2_val(war, chariot, i + 2);
+    if (war->verbose[2] == 1)
+        printf("P %4d | sti r%d %d %d\n", (chariot->pc + 1), (unsigned char)war->arena[chariot->start_pos + chariot->pc + 2], param2, param3);
+    print_verbose_16(war, chariot, 8);
 		cell = ((param2 + param3) % IDX_MOD);
 	}
 	if (war->rtype[1] == 2 && war->rtype[2] == T_REG)
     {
     	param2 = get_2_val(war, chariot, i);
     	param3 = war->arena[chariot->start_pos + chariot->pc + i + 2];
-    	cell = ((param2 + param3) % IDX_MOD);
+      if (war->verbose[2] == 1)
+        printf("P %4d | sti r%d %d %d\n", (chariot->pc + 1), (unsigned char)war->arena[chariot->start_pos + chariot->pc + 2], param2, param3);
+    	print_verbose_16(war, chariot, 7);
+      cell = ((param2 + param3) % IDX_MOD);
     }
 	if (war->rtype[1] == T_REG && war->rtype[2] == T_REG)
     {
     	param2 = war->arena[chariot->start_pos + chariot->pc + i];
         param3 = war->arena[chariot->start_pos + chariot->pc + i + 1];
+        if (war->verbose[2] == 1)
+        printf("P %4d | sti r%d %d %d\n", (chariot->pc + 1), (unsigned char)war->arena[chariot->start_pos + chariot->pc + 2], param2, param3);
+        print_verbose_16(war, chariot, 6);
         cell = ((param2 + param3) % IDX_MOD);
     }
 //		printf("cell = %d\n", cell);

@@ -22,6 +22,7 @@ int			live_fct(t_war *war, t_chariot *chariot)
 	nb_player = get_4_val(war, chariot, 1);	
 	if (war->verbose[2] == 1)
 		printf("P %4d | live %d\n", (chariot->index + 1), nb_player);
+	print_verbose_16(war, chariot, 5);
 	while (ch)
 	{
 		if (nb_player == ch->player)

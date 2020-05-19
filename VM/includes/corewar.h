@@ -141,6 +141,7 @@ int					ft_atoi_base(const char *str, int base);
 char				*ft_itoa_base(int value, int base);
 int		            get_2_val(t_war *war, t_chariot *chariot, int i);
 int		            get_4_val(t_war *war, t_chariot *chariot, int i);
+void        		print_verbose_16(t_war *war, t_chariot *chariot, int size);
 /*
 ** play_game.c
 */

@@ -26,6 +26,9 @@ int			sub_fct(t_war *war, t_chariot *chariot)
 		reg1 = (unsigned char)war->arena[chariot->start_pos + chariot->pc + 2];
 		reg2 = (unsigned char)war->arena[chariot->start_pos + chariot->pc + 4];
 		reg3 = (unsigned char)war->arena[chariot->start_pos + chariot->pc + 6];
+		if (war->verbose[2] == 1)
+        	printf("P %4d | sub r%d r%d r%d\n", (chariot->index + 1), reg1, reg2, reg3);
+        print_verbose_16(war, chariot, 5);
 		result = chariot->registres[reg1 - 1] - chariot->registres[reg2 - 1];
 		if (result == 0)
 			chariot->carry = 1;

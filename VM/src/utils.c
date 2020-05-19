@@ -194,3 +194,23 @@ void			ft_init_war(t_parse_file file, t_war *war)
 	/*if (chariot->pc > pi)
 			if ((error = choose_ope(war, chariot)) <= 0)
 					return (error);*/
+
+void        print_verbose_16(t_war *war, t_chariot *chariot, int size)
+{
+    int i;
+
+    if (war->verbose[0] = 16)
+    {
+
+        i = 0;
+        printf("ADV %d (%p -> %p) ", size, &(chariot->pc), &(chariot->pc) + 7);
+        while (i < size)
+        {
+            printf("%02x", (unsigned char)war->arena[chariot->start_pos + chariot->pc + i]);
+            i++;
+            if (i != size)
+                printf(" ");
+        }
+        printf("\n");
+    }
+}
