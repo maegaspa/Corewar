@@ -199,7 +199,7 @@ void        print_verbose_16(t_war *war, t_chariot *chariot, int size)
 {
     int i;
 
-    if (war->verbose[0] = 16)
+    if (war->verbose[0] == 1)
     {
 
         i = 0;
