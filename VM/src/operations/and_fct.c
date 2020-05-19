@@ -70,6 +70,10 @@ int			and_fct(t_war *war, t_chariot *chariot)
 		printf(" r%d\n", r);
 	print_verbose_16(war, chariot, i + 1);
 	chariot->registres[r - 1] = param1 & param2;
+	if (param1 & param2 == 0)
+		chariot->carry = 1;
+	else
+		chariot->carry = 0;
 	//printf("AND_FCT : index_chariot : %d\tto_die : %d et pc = [%d]\n", chariot->index, war->to_die, chariot->pc);
 	return (0);
 }
