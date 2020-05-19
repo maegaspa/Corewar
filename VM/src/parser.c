@@ -33,6 +33,8 @@ int 	init_usage(t_parse_file *file)
 	file->visu = 0;
 	file->nb_player = 0;
 	file->rk_player = 1;
+	file->cycles = -1;
+	file->sv = -1;
 	if (!(file->file_name = malloc(sizeof(char*) * MAX_PLAYERS + 1)))
 		return (ERROR_MALLOC);
 	if (!(file->rank_player = malloc(sizeof(int) * MAX_PLAYERS)))
@@ -86,6 +88,55 @@ int 	flag_is_n(t_parse_file *file, int ac, char **av)
 	return (SUCCESS);
 }
 
+int 	flag_is_verbose(t_parse_file *file, int ac, char **av)
+{
+	int 	mod;
+	int 	i;
+	int 	j;
+
+	file->sv = ft_atoi(av[file->i + 1]);
+	ft_bzero(&file->verbose, 5);
+	i = 0;
+	if ((file->sv < 32) && (file->i + 1 < ac && (file->sv > 0 || (file->sv == 0 && !ft_strcmp("0", av[file->i + 1])))))
+	{
+		mod = 16;
+		while (file->sv != 0)
+		{
+			if (file->sv >= mod && mod <= 31)
+			{
+				j = 0;
+				file->sv = file->sv - mod;
+				file->verbose[i] = 1;
+				i++;
+			}
+			else if (mod >= 0)
+			{
+				mod /= 2;
+				j++;
+			}
+			if (j > 1)
+				i++;
+		}
+		file->i++;
+		file->sv = 1;
+		return (SUCCESS);
+	}
+	else
+		return (ERROR_USAGE);
+}
+
+int 	flag_is_cycles(t_parse_file *file, int ac, char **av)
+{
+	file->cycles = ft_atoi(av[file->i + 1]);
+	if ((file->i + 1 < ac && (file->cycles > 0 || (file->cycles == 0 && !ft_strcmp("0", av[file->i + 1])))))
+	{
+		file->i++;
+		return (SUCCESS);
+	}
+	else
+		return (ERROR_USAGE);
+}
+
 int 	check_argument(t_parse_file *file, int ac, char **av)
 {
 	if ((file->error = init_usage(file)) < 0)
@@ -94,6 +145,16 @@ int 	check_argument(t_parse_file *file, int ac, char **av)
 	{
 		if ((file->error = flag_is_dump(file, ac, av)) < 0)
 			return (file->error);
+		else if (file->i + 1 < ac && (!ft_strcmp("-v", av[file->i])))
+		{
+			if (((file->error = flag_is_verbose(file, ac, av)) < 0))
+				return (file->error);
+		}
+		else if (file->i + 1 < ac && (!ft_strcmp("-c", av[file->i])))
+		{
+			if (((file->error = flag_is_cycles(file, ac, av)) < 0))
+				return (file->error);
+		}
 		else if (file->i + 1 < ac && (!ft_strcmp("-n", av[file->i]) && file->nb_player <= MAX_PLAYERS))
 		{
 			if ((file->error = flag_is_n(file, ac, av)) < 0)
@@ -106,9 +167,9 @@ int 	check_argument(t_parse_file *file, int ac, char **av)
 			file->rk_player++;
 			file->nb_player++;
 		}
-		else if ((!ft_strcmp("-visu", av[file->i]) || !ft_strcmp("-v", av[file->i])) && file->visu == 0)
+		else if ((!ft_strcmp("-visu", av[file->i]) && file->visu == 0))
 			file->visu = 1;
-		else
+		else if (file->error < 0)
 			return (ERROR_USAGE);
 	}
 	return (SUCCESS);

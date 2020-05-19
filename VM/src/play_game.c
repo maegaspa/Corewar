@@ -210,6 +210,7 @@ int		ft_game(t_war *war, t_parse_file *file)
 	t_opp			opp_tab[16];
 
 	init_tab(opp_tab);
+	war->verbose = file->verbose;
 	if ((error = ft_start_chariot(war, &chariot)) <= 0)
 		return (error);
 	war->begin = chariot;
@@ -218,6 +219,8 @@ int		ft_game(t_war *war, t_parse_file *file)
 	ft_print_war(war);
 	while (war->cycles < war->to_die)
 	{
+		if (war->verbose[3] == 1)
+			printf("It is now cycle [%d]\n", war->cycles);
 		if (file->dump == war->cycles|| file->long_dump == war->cycles)
         	print_arena(war, file);
 		while (chariot)
@@ -230,6 +233,7 @@ int		ft_game(t_war *war, t_parse_file *file)
 		/*if (chariot->pc > pi)
 			if ((error = choose_ope(war, chariot)) <= 0)
 					return (error);*/
+
 //			printf("chariot->index = %d\n", chariot->index);
 			chariot = chariot->next;
 		}

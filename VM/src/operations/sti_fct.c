@@ -48,6 +48,8 @@ int			sti_fct(t_war *war, t_chariot *chariot)
 	int				cell;
 
 	i = 3;
+  if (war->verbose[2] == 1)
+        printf("P %4d | sti r%d %d %d\n", (chariot->pc + 1), (unsigned char)war->arena[chariot->start_pos + chariot->pc + 2], get_2_val(war, chariot, 3), get_2_val(war, chariot, 5));
 //	printf("nb param pour sti chariot [%d]\n", g_op_tab[chariot->ope - 1].nb_params);
 	get_bin_ocp(chariot, war);
 	if (war->rtype[1] == 2 && war->rtype[2] == T_DIR)
@@ -78,6 +80,6 @@ int			sti_fct(t_war *war, t_chariot *chariot)
     if (war->arena[chariot->start_pos + chariot->pc + cell] == T_REG)
        war->arena[chariot->start_pos + chariot->pc + cell] = war->nb_player;
 //		printf("ici l'arene = %x et nb_player = %d\n", (unsigned char)war->arena[chariot->start_pos + chariot->pc + cell], war->nb_player);
-	printf("STI_FCT : index_chariot : %d\tto_die : %d et pc = [%d]\n", chariot->index, war->to_die, chariot->pc);
+	//printf("STI_FCT : index_chariot : %d\tto_die : %d et pc = [%d]\n", chariot->index, war->to_die, chariot->pc);
 	return (0);
 }
