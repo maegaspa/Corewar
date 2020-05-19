@@ -218,6 +218,7 @@ int		ft_game(t_war *war, t_parse_file *file)
 	ft_print_war(war);
 	while (war->cycles < war->to_die)
 	{
+		//printf("war->cycles = %d\n", war->cycles);
 		if (file->dump == war->cycles|| file->long_dump == war->cycles)
         	print_arena(war, file);
 		while (chariot)

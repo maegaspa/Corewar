@@ -14,6 +14,6 @@
 
 int			and_fct(t_war *war, t_chariot *chariot)
 {
-	printf("AND_FCT : index_chariot : %d\tto_die : %d et pc = [%d]\n", chariot->index, war->to_die, chariot->pc);
+	printf("AND_FCT : index_chariot : %d\tto_die : %d et pc = [%d]\n", chariot->index, war->to_die, (chariot->start_pos + chariot->pc));
 	return (0);
 }

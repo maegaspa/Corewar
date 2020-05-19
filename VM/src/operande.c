@@ -107,7 +107,7 @@ void		ft_exec_opp(t_chariot *chariot, t_war *war, t_opp *opp_tab)
 		}
 		chariot->ope = -1;
 	}
-	if (ft_get_op(war, chariot) == 1) //&& chariot->ope >= 1) //on tcheck si on lit une nouvelle operande, si oui on init "wait"
+	if (ft_get_op(war, chariot) == 1)// && chariot->ope >= 1) //on tcheck si on lit une nouvelle operande, si oui on init "wait"
 		chariot->wait = war->op_cycle[chariot->ope - 1];
 //	}
 	//ft_print_chariot(chariot, 0); //reg == 1 pour afficher les registres

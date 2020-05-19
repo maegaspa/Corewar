@@ -21,7 +21,7 @@ int			ldi_fct(t_war *war, t_chariot *chariot)
 	int r;
 
 	i = 2;
-	printf("LDI_FCT : index_chariot : %d\tto_die : %d et pc = [%d]\n", chariot->index, war->to_die, chariot->pc);
+	printf("LDI_FCT : index_chariot : %d\tto_die : %d et pc = [%d]\n", chariot->index, war->to_die, (chariot->start_pos + chariot->pc));
 	get_bin_ocp(chariot, war);
 	if (war->rtype[0] == T_IND)
 	{

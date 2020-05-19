@@ -18,7 +18,7 @@ int			st_fct(t_war *war, t_chariot *chariot)
 	int param;
 
 	i = 3;
-	printf("ST_FCT : index_chariot : %d\tto_die : %d et pc = [%d]\n", chariot->index, war->to_die, chariot->pc);
+	printf("ST_FCT : index_chariot : %d\tto_die : %d et pc = [%d]\n", chariot->index, war->to_die, (chariot->start_pos + chariot->pc));
 	get_bin_ocp(chariot, war);
 	if (chariot->registres[0] == 0)
 		chariot->carry = 1;

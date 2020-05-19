@@ -14,7 +14,7 @@
 
 int			live_fct(t_war *war, t_chariot *chariot)
 {
-	printf("LIVE_FCT : index_chariot : %d\tto_die : %d et pc = [%d]\n", chariot->index, war->to_die, chariot->pc);
+	printf("LIVE_FCT : index_chariot : %d\tto_die : %d et pc = [%d]\n", chariot->index, war->to_die, (chariot->start_pos + chariot->pc));
 	chariot->live++;
 
 	return (0);
