@@ -69,7 +69,7 @@ int			xor_fct(t_war *war, t_chariot *chariot)
 		printf(" r%d\n", r);
 	print_verbose_16(war, chariot, i + 1);
 	chariot->registres[r - 1] = param1 ^ param2;
-	if (param1 & param2 == 0)
+	if (param1 ^ param2 == 0)
 		chariot->carry = 1;
 	else
 		chariot->carry = 0;
