@@ -22,7 +22,7 @@ int			aff_fct(t_war *war, t_chariot *chariot)
 	get_bin_ocp(chariot, war);
 	print_verbose_16(war, chariot, 3);
 	reg = (unsigned char)war->arena[chariot->start_pos + chariot->pc +2];
-	if (war->rtype[0] == T_REG && (reg > 0 && reg < 17))
+	if (war->rtype[0] == REG_CODE && (reg > 0 && reg < 17))
 	{
 		value = chariot->registres[reg - 1];
 		if ((char)value == 0)

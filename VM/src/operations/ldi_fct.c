@@ -30,9 +30,9 @@ int			ldi_fct(t_war *war, t_chariot *chariot)
 	{
 		param1 = get_2_val(war, chariot, i);
         param2 = read_arena(war, param1);
-       	if (war->rtype[1] == T_REG)
+       	if (war->rtype[1] == REG_CODE)
        		r = war->arena[chariot->start_pos + chariot->pc + i + 3];
-       	if (war->rtype[1] == T_DIR)
+       	if (war->rtype[1] == DIR_CODE)
        		r = war->arena[chariot->start_pos + chariot->pc + i + 4];
 	}
 	if (war->rtype[0] == REG_CODE)
