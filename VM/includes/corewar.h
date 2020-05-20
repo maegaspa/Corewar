@@ -48,6 +48,9 @@ typedef struct 			s_parse_file
 	int					long_dump;
 	int 				visu;
 	int					n;
+	int 				sv;
+	int 				cycles;
+	int 				verbose[6];
 	int					*rank_player;
 	int					nb_player;
 	int					rk_player;
@@ -110,8 +113,10 @@ typedef struct			war
 	int					cycles;
 	int					dump;
 	int					*rtype;
+	int 				lastlive;
 	char				ocp;
 	char				*ocxp;
+	int 				*verbose;
 	t_chariot			*begin;
 	t_visual			visual;//visu lol
 }						t_war;
@@ -136,6 +141,9 @@ int					ft_atoi_base(const char *str, int base);
 char				*ft_itoa_base(int value, int base);
 int		            get_2_val(t_war *war, t_chariot *chariot, int i);
 int		            get_4_val(t_war *war, t_chariot *chariot, int i);
+void        		print_verbose_16(t_war *war, t_chariot *chariot, int size);
+int					read_arena(t_war *war, int cell);
+void				write_on_arena(t_war *war, int value, int start, int size);
 /*
 ** play_game.c
 */
@@ -150,6 +158,7 @@ int					get_bin_ocp(t_chariot *chariot, t_war *war);
 ** ft_process1.c
 */
 int					ft_start_chariot(t_war *war, t_chariot **begin);
+t_chariot			*ft_creat_chariot(int index, int pc, int start_pos, int player);
 
 /*
 ** parser.c

@@ -72,27 +72,27 @@ void	get_param(t_war *war, char *str)
 	if (!(war->rtype = malloc(sizeof(int) * 3)))
 		return ;
 	if (str[0] == '1' && str[1] == '0')
-		war->rtype[0] = T_DIR;
+		war->rtype[0] = DIR_CODE;
 	else if (str[0] == '0' && str[1] == '1')
-		war->rtype[0] = T_REG;
+		war->rtype[0] = REG_CODE;
 	else if (str[0] == '1' && str[1] == '1')
-		war->rtype[0] = T_IND;
+		war->rtype[0] = IND_CODE;
 	else
 		war->rtype[0] = 0;
 	if (str[2] == '1' && str[3] == '0')
-		war->rtype[1] = T_DIR;
+		war->rtype[1] = DIR_CODE;
 	else if (str[2] == '0' && str[3] == '1')
-		war->rtype[1] = T_REG;
+		war->rtype[1] = REG_CODE;
 	else if (str[2] == '1' && str[3] == '1')
-		war->rtype[1] = T_IND;
+		war->rtype[1] = IND_CODE;
 	else
 		war->rtype[1] = 0;
 	if (str[4] == '1' && str[5] == '0')
-		war->rtype[2] = T_DIR;
+		war->rtype[2] = DIR_CODE;
 	else if (str[4] == '0' && str[5] == '1')
-		war->rtype[2] = T_REG;
+		war->rtype[2] = REG_CODE;
 	else if (str[4] == '1' && str[5] == '1')
-		war->rtype[2] = T_IND;
+		war->rtype[2] = IND_CODE;
 	else
 		war->rtype[2] = 0;
 //	while (++i < 3)
@@ -210,6 +210,7 @@ int		ft_game(t_war *war, t_parse_file *file)
 	t_opp			opp_tab[16];
 
 	init_tab(opp_tab);
+	war->verbose = file->verbose;
 	if ((error = ft_start_chariot(war, &chariot)) <= 0)
 		return (error);
 	war->begin = chariot;
@@ -218,7 +219,8 @@ int		ft_game(t_war *war, t_parse_file *file)
 	ft_print_war(war);
 	while (war->cycles < war->to_die)
 	{
-		//printf("war->cycles = %d\n", war->cycles);
+		if (war->verbose[3] == 1)
+			printf("It is now cycle [%d]\n", war->cycles);
 		if (file->dump == war->cycles|| file->long_dump == war->cycles)
         	print_arena(war, file);
 		while (chariot)
@@ -231,6 +233,7 @@ int		ft_game(t_war *war, t_parse_file *file)
 		/*if (chariot->pc > pi)
 			if ((error = choose_ope(war, chariot)) <= 0)
 					return (error);*/
+
 //			printf("chariot->index = %d\n", chariot->index);
 			chariot = chariot->next;
 		}

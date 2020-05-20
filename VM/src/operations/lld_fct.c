@@ -22,28 +22,32 @@ int			lld_fct(t_war *war, t_chariot *chariot)
     i = 2;
     param2 = 0;
     get_bin_ocp(chariot, war);
-    if (war->rtype[0] == T_DIR)
+//    int k = -1;
+//    	while (++k < 3)
+//    		printf("[lld] war->rtype[%d] = %d\n", k, war->rtype[k]);
+    if (war->rtype[0] == DIR_CODE)
     {
     	param1 = get_4_val(war, chariot, i);
+        if (war->verbose[2] == 1)
+            printf("P %4d | lld %d r%d\n", (chariot->index + 1), param1, (unsigned char)war->arena[chariot->start_pos + chariot->pc + 6]);
+        print_verbose_16(war, chariot, 7);
     	r = war->arena[chariot->start_pos + chariot->pc + i + 4];
-    	printf("param1 = %d et param2 = %d\n", param1, r);
     	chariot->registres[r - 1] = param1;
     }
-    if (war->rtype[0] == T_IND)
+    if (war->rtype[0] == IND_CODE)
     {
     	param1 = get_2_val(war, chariot, i);
-    	param2 += war->arena[(chariot->start_pos + chariot->pc + i + param1) % MEM_SIZE] << 24;
-    	param2 += war->arena[(chariot->start_pos + chariot->pc + i + param1 + 1) % MEM_SIZE] << 16;
-    	param2 += war->arena[(chariot->start_pos + chariot->pc + i + param1 + 2) % MEM_SIZE] << 8;
-    	param2 += war->arena[(chariot->start_pos + chariot->pc + i + param1 + 3) % MEM_SIZE];
+        if (war->verbose[2] == 1)
+            printf("P %4d | lld %d r%d\n", (chariot->index + 1), param1, (unsigned char)war->arena[chariot->start_pos + chariot->pc + 4]);
+        print_verbose_16(war, chariot, 5);
+    	param2 = read_arena(war, param1);
     	r = war->arena[chariot->start_pos + chariot->pc + i + 2];
-    	printf("param1 = %d et param2 = %d et r = %d\n", param1, param2, r);
-    	chariot->registres[r - 1] = param1;
+    	chariot->registres[r - 1] = param2;
     }
     if (param1 == 0)
        	chariot->carry = 1;
     else
     	chariot->carry = 0;
-    printf("LLD_FCT : index_chariot : %d\tto_die : %d et pc = [%d]\n", chariot->index, war->to_die, (chariot->start_pos + chariot->pc));
+//    printf("LLD_FCT : index_chariot : %d\tto_die : %d et pc = [%d]\n", chariot->index, war->to_die, chariot->start_pos + chariot->pc);
 	return (0);
 }

@@ -54,7 +54,7 @@ int			is_conform(char ocp, int param, int ope)
 	if (ocp == 3 && (0x04 & g_op_tab[ope].params_type[param])) // <=> (g_op_tab[ope].params_type[param] % 8) >= 4
 	{
 		//printf("param %d is an index\n", param);
-		return (T_IND);
+		return (2);
 	}
 	//printf("error ocp\n");
 	return (FAILURE);
@@ -62,7 +62,7 @@ int			is_conform(char ocp, int param, int ope)
 
 int			ft_tcheck_ocp(t_chariot *chariot, t_war *war)//return jump
 {
-	char		ocp;
+	unsigned char		ocp;
 	int			i;
 	int			jump;
 
@@ -107,7 +107,7 @@ void		ft_exec_opp(t_chariot *chariot, t_war *war, t_opp *opp_tab)
 		}
 		chariot->ope = -1;
 	}
-	if (ft_get_op(war, chariot) == 1)// && chariot->ope >= 1) //on tcheck si on lit une nouvelle operande, si oui on init "wait"
+	if (ft_get_op(war, chariot) == 1) //&& chariot->ope >= 1) //on tcheck si on lit une nouvelle operande, si oui on init "wait"
 		chariot->wait = war->op_cycle[chariot->ope - 1];
 //	}
 	//ft_print_chariot(chariot, 0); //reg == 1 pour afficher les registres

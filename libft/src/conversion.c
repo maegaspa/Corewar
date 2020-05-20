@@ -58,6 +58,19 @@ int		chose_other_digit(t_flags flags, va_list va, int nb, t_args args)
 	return (nb);
 }
 
+int		chose_flag_f(t_flags flags, va_list va, int nb, t_args args)
+{
+	if (flags.flag == 'f')
+	{
+		if (flags.large == 1)
+			args.f = va_arg(va, long double);
+		else
+			args.f = va_arg(va, double);
+		nb += check_p_w_float(args.f, flags);
+	}
+	return (nb);
+}
+
 int		chose_flag(t_flags flags, va_list va, int nb)
 {
 	t_args		args;
@@ -77,6 +90,8 @@ int		chose_flag(t_flags flags, va_list va, int nb)
 	if (flags.flag == 'x' || flags.flag == 'X'
 			|| flags.flag == 'o' || flags.flag == 'p')
 		nb = chose_other_digit(flags, va, nb, args);
+	if (flags.flag == 'f')
+		nb = chose_flag_f(flags, va, nb, args);
 	if (flags.flag == '%')
 		nb += check_p_w_percent(flags);
 	return (nb);

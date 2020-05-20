@@ -183,8 +183,74 @@ void	init_tab(t_opp *opp_tab)
 void			ft_init_war(t_parse_file file, t_war *war)
 {
 	war->cycles = 0;
-	war->to_die = CYCLE_TO_DIE; //1536
+	if (file.cycles > -1)
+		war->to_die = file.cycles;
+	else
+		war->to_die = CYCLE_TO_DIE; //1536
 	war->nb_player = file.nb_player;
 	war->dump = file.dump;
 	ft_init_op_cycle(war); // a vpor si bien init dans parser
+}
+	/*if (chariot->pc > pi)
+			if ((error = choose_ope(war, chariot)) <= 0)
+					return (error);*/
+
+void        print_verbose_16(t_war *war, t_chariot *chariot, int size)
+{
+    int i;
+
+    if (war->verbose[0] == 1)
+    {
+        i = 0;
+        printf("ADV %d (%p -> %p) ", size, &(chariot->pc), &(chariot->pc) + 7);
+        while (i < size)
+        {
+            printf("%02x", (unsigned char)war->arena[chariot->start_pos + chariot->pc + i]);
+            i++;
+            if (i != size)
+                printf(" ");
+        }
+        printf("\n");
+    }
+}
+
+int					read_arena(t_war *war, int cell)
+{
+	int	n;
+
+	n = 0;
+	cell = (cell % MEM_SIZE);
+	if (cell < 0)
+		cell += MEM_SIZE;
+	n += war->arena[(cell % MEM_SIZE)] << 24;
+	n += war->arena[((cell + 1) % MEM_SIZE)] << 16;
+	n += war->arena[((cell + 2) % MEM_SIZE)] << 8;
+	n += war->arena[((cell + 3) % MEM_SIZE)];
+	return (n);
+}
+
+void		write_on_arena(t_war *war, int value, int start, int size)
+{
+	int				rest;
+	int				swap_size;
+	unsigned int	val;
+
+	val = value;
+	rest = 1;
+	start = start % MEM_SIZE;
+	swap_size = size;
+	if (start < 0)
+		start += MEM_SIZE;
+	while (--swap_size > 0)
+		rest *= 256;
+	while (size)
+	{
+		//printf("AVANT war->arena[%d] = %02x\n", start, war->arena[start]);
+		war->arena[start] = (val / rest);
+		//printf("APRES war->arena[%d] = %02x\n", start, war->arena[start]);
+		val = (unsigned int)val % rest;
+		rest /= 256;
+		size--;
+		start = (start + 1) % MEM_SIZE;
+	}
 }
