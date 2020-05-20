@@ -5,7 +5,6 @@ int 	lexer_param(t_file *file, t_tab *tab, char *str)
 {
 	int 	i;
 
-	printf("%s\n", str);
 	i = 0;
 	if (str[0] == 'r')
 	{
@@ -95,21 +94,18 @@ int 	define_param(t_tab *tab, t_file *file)
 		//file->ligne_error = file->j add + real file
 		file->i = -1;
 		//printf("---[%d]\n", tab->info_ins[file->j].nb_parameter);
-
+		file->ligne_error = tab->info_ins[file->j].line_error;
 		while (++file->i < tab->info_ins[file->j].nb_parameter)
 		{
 			if ((file->type = lexer_param(file, tab, tab->info_ins[file->j].parameter[file->i])) < 1)
 			{
-				file->error = file->type; 
+				file->error = file->type;
 				return (file->error);
 			}
-			printf("ret = [%d]", file->type);
 			if ((file->error = ft_check_type(file->op[tab->info_ins[file->j].id_inst - 1].params_type[file->i], file->type)) < 1)
 				return (file->error);
 			tab->info_ins[file->j].param[file->i].type_param = file->type;
-			printf("=[%d]\n", file->op[tab->info_ins[file->j].id_inst - 1].params_type[file->i]);
 		}
-		printf("\n");
 	}
 	return (SUCCESS);
 }
