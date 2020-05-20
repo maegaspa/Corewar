@@ -210,7 +210,9 @@ int		ft_game(t_war *war, t_parse_file *file)
 	t_opp			opp_tab[16];
 
 	init_tab(opp_tab);
+	war->aff = file->a;
 	war->verbose = file->verbose;
+	war->status = 0;
 	if ((error = ft_start_chariot(war, &chariot)) <= 0)
 		return (error);
 	war->begin = chariot;

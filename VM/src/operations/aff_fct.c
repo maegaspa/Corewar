@@ -32,7 +32,7 @@ int			aff_fct(t_war *war, t_chariot *chariot)
 			else
 				chariot->carry = 0;
 		}
-		else
+		else if (war->aff == 1)
 			printf("%c\n", (char)(value));
 	}
 	return (0);

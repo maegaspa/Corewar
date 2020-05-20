@@ -56,6 +56,7 @@ typedef struct 			s_parse_file
 	int					rk_player;
 	char				**file_name;
 	int					arena_segment;
+	int					a;
 	int					i;
 	int					j;
 }						t_parse_file;
@@ -114,6 +115,8 @@ typedef struct			war
 	int					dump;
 	int					*rtype;
 	int 				lastlive;
+	int				aff;
+	int				status;
 	char				ocp;
 	char				*ocxp;
 	int 				*verbose;

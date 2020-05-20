@@ -27,7 +27,7 @@ int			or_fct(t_war *war, t_chariot *chariot)
 		param1 = chariot->registres[(unsigned char)war->arena[chariot->start_pos + chariot->pc + 2]];
 		i = 3;
 	}
-	if (war->rtype[0] == IND_CODE)//IND
+	else if (war->rtype[0] == IND_CODE)//IND
 	{
 		param1 = get_2_val(war, chariot, 2);
 		if (war->verbose[2] == 1)
@@ -35,14 +35,13 @@ int			or_fct(t_war *war, t_chariot *chariot)
 		param1 %= IDX_MOD;
 		i = 4;
 	}
-	if (war->rtype[0] == DIR_CODE)//DIR
+	else if (war->rtype[0] == DIR_CODE)//DIR
 	{
 		param1 = get_4_val(war, chariot, 2);
 		if (war->verbose[2] == 1)
 			printf("P %4d | or %d ", (chariot->index + 1), param1);
 		i = 6;
 	}
-
 	if (war->rtype[1] == REG_CODE)
 	{
 		if (war->verbose[2] == 1)
@@ -50,7 +49,7 @@ int			or_fct(t_war *war, t_chariot *chariot)
 		param2 = chariot->registres[(unsigned char)war->arena[chariot->start_pos + chariot->pc + i]];
 		i++;
 	}
-	if (war->rtype[1] == IND_CODE)
+	else if (war->rtype[1] == IND_CODE)
 	{
 		param2 = get_2_val(war, chariot, i);
 		if (war->verbose[2] == 1)
@@ -58,7 +57,7 @@ int			or_fct(t_war *war, t_chariot *chariot)
 		param2 %= IDX_MOD;
 		i += 2;
 	}
-	if (war->rtype[1] == REG_CODE)
+	else if (war->rtype[1] == REG_CODE)
 	{
 		param2 = get_4_val(war, chariot, i);
 		if (war->verbose[2] == 1)

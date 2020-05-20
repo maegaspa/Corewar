@@ -55,7 +55,7 @@ int		nbr_inbase(char c, int base)
 	if (base <= 10)
 		return (c >= '0' && c <= '9');
 	return ((c >= '0' && c <= '9') || (c >= 'A' && c <= ('A' + base - 10)) || \
-	(c >= 'a' && c <= ('a' + base - 10)));
+			(c >= 'a' && c <= ('a' + base - 10)));
 }
 
 int		ft_atoi_base(const char *str, int base)
@@ -70,7 +70,7 @@ int		ft_atoi_base(const char *str, int base)
 	nbr = 0;
 	sign = 1;
 	while (str[i] == '\t' || str[i] == '\v' || str[i] == '\n' || \
-		str[i] == ' ' || str[i] == '\r' || str[i] == '\f')
+			str[i] == ' ' || str[i] == '\r' || str[i] == '\f')
 		i += 1;
 	if (str[i] == '-' || str[i] == '+')
 		if (str[i++] == '-')
@@ -126,18 +126,18 @@ int 			print_arena(t_war *war, t_parse_file *file)
 	while (++i < MEM_SIZE)
 	{
 		if (count_bytes == 0)
- 			printf("%#06x : ", bytes);
- 		printf("%02x ", (unsigned char)war->arena[i]);
- 		count_bytes++;
- 		if (count_bytes == dump)
- 		{
- 			printf("\n");
- 			count_bytes = 0;
- 			bytes += dump;
- 		}
- 	}
- 	return (SUCCESS);
- }
+			printf("%#06x : ", bytes);
+		printf("%02x ", (unsigned char)war->arena[i]);
+		count_bytes++;
+		if (count_bytes == dump)
+		{
+			printf("\n");
+			count_bytes = 0;
+			bytes += dump;
+		}
+	}
+	return (SUCCESS);
+}
 
 void			ft_init_op_cycle(t_war *war)
 {
@@ -191,27 +191,30 @@ void			ft_init_war(t_parse_file file, t_war *war)
 	war->dump = file.dump;
 	ft_init_op_cycle(war); // a vpor si bien init dans parser
 }
-	/*if (chariot->pc > pi)
-			if ((error = choose_ope(war, chariot)) <= 0)
-					return (error);*/
+
+/*if (chariot->pc > pi)
+  if ((error = choose_ope(war, chariot)) <= 0)
+  return (error);*/
 
 void        print_verbose_16(t_war *war, t_chariot *chariot, int size)
 {
-    int i;
+	int i;
 
-    if (war->verbose[0] == 1)
-    {
-        i = 0;
-        printf("ADV %d (%p -> %p) ", size, &(chariot->pc), &(chariot->pc) + 7);
-        while (i < size)
-        {
-            printf("%02x", (unsigned char)war->arena[chariot->start_pos + chariot->pc + i]);
-            i++;
-            if (i != size)
-                printf(" ");
-        }
-        printf("\n");
-    }
+	if (war->verbose[0] == 1)
+	{
+
+		i = 0;
+		printf("ADV %d (0x%04x -> %#06x) ", size, war->status, war->status + size);
+		war->status += size;
+		while (i < size)
+		{
+			printf("%02x", (unsigned char)war->arena[chariot->start_pos + chariot->pc + i]);
+			i++;
+			if (i != size)
+				printf(" ");
+		}
+		printf("\n");
+	}
 }
 
 int					read_arena(t_war *war, int cell)
