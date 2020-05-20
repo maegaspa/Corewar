@@ -203,7 +203,8 @@ void        print_verbose_16(t_war *war, t_chariot *chariot, int size)
     {
 
         i = 0;
-        printf("ADV %d (%p -> %p) ", size, &(chariot->pc), &(chariot->pc) + 7);
+        printf("ADV %d (0x%04x -> %#06x) ", size, war->status, war->status + size);
+        war->status += size;
         while (i < size)
         {
             printf("%02x", (unsigned char)war->arena[chariot->start_pos + chariot->pc + i]);

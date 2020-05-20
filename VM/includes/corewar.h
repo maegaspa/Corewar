@@ -116,6 +116,7 @@ typedef struct			war
 	int					*rtype;
 	int 				lastlive;
 	int 				aff;
+	int 				status;
 	char				ocp;
 	char				*ocxp;
 	int 				*verbose;
