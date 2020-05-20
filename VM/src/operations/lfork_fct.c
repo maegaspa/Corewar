@@ -14,6 +14,19 @@
 
 int			lfork_fct(t_war *war, t_chariot *chariot)
 {
-	printf("LFORK_FCT : index_chariot : %d\tto_die : %d\n", chariot->index, war->to_die);
+	t_chariot *tmp_char;
+	int 	param;
+
+	param = get_2_val(war, chariot, 1);
+	if (war->verbose[2] == 1)
+        printf("P %4d | lfork %d\n", (chariot->index + 1), param);
+    print_verbose_16(war, chariot, 3);
+	tmp_char = chariot;
+	//printf("FORK_FCT : index_chariot : %d\tto_die : %d\n", chariot->index, war->to_die);
+	if (!(tmp_char->next = ft_creat_chariot(tmp_char->index + 1, (chariot->pc + param), war->player[chariot->player].pos_arena, chariot->player)))
+		(ERROR_MALLOC);
+	tmp_char = tmp_char->next;
+	chariot = tmp_char;
+	//printf("LFORK_FCT : index_chariot : %d\tto_die : %d\n", chariot->index, war->to_die);
 	return (0);
 }
