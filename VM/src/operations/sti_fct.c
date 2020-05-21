@@ -49,13 +49,13 @@ int			sti_fct(t_war *war, t_chariot *chariot)
 	int				pos;
 
 	i = 3;
-//	printf("nb param pour sti chariot [%d]\n", g_op_tab[chariot->ope - 1].nb_params);
 	get_bin_ocp(chariot, war);
-//	int k = -1;
-//	while (++k < 3)
-//		printf("[sti] war->rtype[%d] = %d\n", k, war->rtype[k]);
+	int k = -1;
+	while (++k < 3)
+		printf("[sti] war->rtype[%d] = %d\n", k, war->rtype[k]);
 	pos = chariot->start_pos + chariot->pc;
-	if (war->rtype[1] == IND_CODE && war->rtype[2] == DIR_CODE)
+	chariot->registres[(pos + 1) - 1] = 42000;
+	if ((war->rtype[1] == DIR_CODE && war->rtype[2] == DIR_CODE) || (war->rtype[1] == DIR_CODE && war->rtype[2] == DIR_CODE))
 	{
     	param2 = get_2_val(war, chariot, i);
 		param3 = get_2_val(war, chariot, i + 2);
@@ -82,7 +82,7 @@ int			sti_fct(t_war *war, t_chariot *chariot)
     	print_verbose_16(war, chariot, 6);
     	cell = ((param2 + param3) % IDX_MOD);
     }
-    write_on_arena(war, chariot->registres[(pos + 1) - 1], cell, REG_SIZE);
+    write_on_arena(war, chariot->registres[(pos + 1) - 1], chariot->start_pos + cell, REG_SIZE);
 //    printf("STI_FCT : index_chariot : %d\tto_die : %d et pc = [%d]\n", chariot->index, war->to_die, chariot->start_pos + chariot->pc);
 	return (0);
 }
