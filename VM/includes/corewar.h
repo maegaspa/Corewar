@@ -6,7 +6,7 @@
 /*   By: hmichel <hmichel@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/28 12:17:46 by hmichel           #+#    #+#             */
-/*   Updated: 2020/04/03 18:55:17 by maegaspa         ###   ########lyon.fr   */
+/*   Updated: 2020/05/21 21:16:21 by hmichel          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,9 @@ typedef struct			war
 	char				ocp;
 	char				*ocxp;
 	int 				*verbose;
+	int					actual_cycles;//new
+	int					cycle_to_die;//new
+	int					check_cycles_to_die;//new
 	t_chariot			*begin;
 	t_visual			visual;//visu lol
 }						t_war;
@@ -220,4 +223,8 @@ void		color_arena(t_war *war, int p, WINDOW *arena_win, char *arena);
 void		get_keys(t_war *war);
 void		get_valid_name(t_war *war);
 
+/*
+** verif_endgame.c
+*/
+int		verif_endgame(t_war *war, t_chariot *chariot);
 #endif

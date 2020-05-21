@@ -6,7 +6,7 @@
 /*   By: hmichel <hmichel@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 17:21:32 by seanseau          #+#    #+#             */
-/*   Updated: 2020/04/03 19:18:32 by maegaspa         ###   ########lyon.fr   */
+/*   Updated: 2020/05/21 21:22:17 by hmichel          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -219,17 +219,19 @@ int		ft_game(t_war *war, t_parse_file *file)
 	printf("GAME START\n");
 	chariot->pc = 0;
 	ft_print_war(war);
-	while (war->cycles < war->to_die)
+	while (verif_endgame(war, chariot))
 	{
-		if (war->verbose[3] == 1)
-			printf("It is now cycle [%d]\n", war->cycles);
-		if (file->dump == war->cycles|| file->long_dump == war->cycles)
-        	print_arena(war, file);
-		while (chariot)
+		while (war->cycles < war->to_die)
 		{
-			pi = chariot->pc;
+			if (war->verbose[3] == 1)
+				printf("It is now cycle [%d]\n", war->cycles);
+			if (file->dump == war->cycles|| file->long_dump == war->cycles)
+    	    	print_arena(war, file);
+			while (chariot)
+			{
+				pi = chariot->pc;
 //			printf("chariot wait = %d\n chariot->ope = %d", chariot->wait, chariot->ope);
-			ft_exec_opp(chariot, war, opp_tab);
+				ft_exec_opp(chariot, war, opp_tab);
 //			dprintf(1, "ptdr44 et ope = %d\n", chariot->ope);
 			//printf("pi = [%d]ici pc = [%d] et index  = %d \n", pi, chariot->pc, chariot->index);
 		/*if (chariot->pc > pi)
@@ -237,14 +239,16 @@ int		ft_game(t_war *war, t_parse_file *file)
 					return (error);*/
 
 //			printf("chariot->index = %d\n", chariot->index);
-			chariot = chariot->next;
-		}
-		chariot = war->begin;
-		war->cycles++;
+				chariot = chariot->next;
+			}
+			chariot = war->begin;
+			war->actual_cycles++;
+			war->cycles++;
 		//printf("cycles++\n");
 //		ft_print_war(war);
 //		if (war->cycles > 70)
 //			break;
+		}
 	}
 	return (SUCCESS);
 }
