@@ -12,7 +12,7 @@ int 	lexer_param(t_file *file, t_tab *tab, char *str)
 		{
 			if ((ft_strlen(str) == 3 && ft_atoi_2(str) >= 10) || (ft_strlen(str) == 2 && ft_atoi_2(str) < 10))
 			{
-				tab->info_ins[file->j].param[file->i].registre = ft_atoi_2(str);
+				tab->info_ins[file->j].param[file->i].reg = ft_atoi_2(str);
 				return (T_REG);
 			}
 			else
@@ -91,9 +91,7 @@ int 	define_param(t_tab *tab, t_file *file)
 	file->j = -1;
 	while (++file->j < tab->nb_instruction)
 	{
-		//file->ligne_error = file->j add + real file
 		file->i = -1;
-		//printf("---[%d]\n", tab->info_ins[file->j].nb_parameter);
 		file->ligne_error = tab->info_ins[file->j].line_error;
 		while (++file->i < tab->info_ins[file->j].nb_parameter)
 		{
