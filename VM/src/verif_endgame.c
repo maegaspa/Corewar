@@ -15,7 +15,16 @@
 //nouvelles variables: actual_cycles dans war,
 void	free_chariot(t_chariot *chariot)
 {
-	chariot = chariot;
+	//int		i_moove;
+	t_chariot *temp;
+
+	temp = chariot;
+	//i_moove = chariot->index;
+	while (temp->next != NULL)
+	{
+		(temp->next)->index -= 1;
+		temp = temp->next;
+	}
 	//on verra pour leaks
 }
 
@@ -28,7 +37,8 @@ void	delete_chariot(t_chariot *current, t_war *war)
 	delete = current;
 	if (current != NULL && current->index == 0)
 	{
-		war->begin = (war->begin)->next;
+		if (war->begin != NULL)
+			war->begin = (war->begin)->next;
 		current = current->next;
 		free_chariot(delete);
 	}
@@ -36,6 +46,7 @@ void	delete_chariot(t_chariot *current, t_war *war)
 	{
 		while (previous != NULL && previous->next != current)
 			previous = previous->next;
+		
 		current = current->next;
 		previous->next = current;
 		free_chariot(delete);
@@ -49,36 +60,57 @@ int		v_alive_chariot(t_chariot *chariot, t_war *war)
 	cpt_lives = 0;
 	while (chariot)
 	{
+		printf("chariot++\n");
 		if (chariot->live)
-		{
 			cpt_lives += chariot->live;
-			chariot = chariot->next;
-		}
 		else
 			delete_chariot(chariot, war);
+		chariot = chariot->next;
 	}
 	chariot = war->begin;
+	printf("%d lives sur les chariots\n", cpt_lives);
 	return (cpt_lives);
+}
+
+void	reset_lives_chariot(t_war *war)
+{
+	t_chariot *temp;
+
+	temp = war->begin;
+	while (temp)
+	{
+		temp->live = 0;
+		temp = temp->next;
+	}
 }
 
 int		verif_endgame(t_war *war, t_chariot *chariot)
 {
+	printf("DEBUT verif_endgame\n");
 	if (war->actual_cycles == -1) //debut de partie 
+	{
+		war->actual_cycles = 0;
 		return (SUCCESS);
+	}
 	if (v_alive_chariot(chariot, war) >= NBR_LIVE || war->check_cycles_to_die == MAX_CHECKS)
 	{
+		printf("Cycle_to_die - cycle_delta, cycle_to_die = %d\n", war->cycle_to_die);
 		war->cycle_to_die -= CYCLE_DELTA;
 		if (war->cycle_to_die < 0)
 			war->cycle_to_die = 0;
 		war->check_cycles_to_die = 0;
 	}
 	else
+	{
 		war->check_cycles_to_die++;
+		printf("war->check_cycles_to_die++\n");
+	}
 	if (war->begin == NULL)
 	{
 		printf("On a un vaiqueur\n");//on observe last live pour le vainqueur
 		return (FAILURE);
 	}
 	war->actual_cycles = 0;
+	// reset_lives_chariot(war); // a desactivé a cause du décalge des OP (sinon la partie est trop curte car chariot die)
 	return (SUCCESS);
 }

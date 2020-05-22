@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   live_fct.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seanseau <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: hmichel <hmichel@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 16:10:31 by seanseau          #+#    #+#             */
-/*   Updated: 2020/02/26 19:38:17 by seanseau         ###   ########lyon.fr   */
+/*   Updated: 2020/05/22 16:44:34 by hmichel          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int			live_fct(t_war *war, t_chariot *chariot)
 	int nb_player;
 	t_chariot *ch;
 
+	chariot->live += 1;
 	ch = war->begin;
 	//printf("LIVE_FCT : index_chariot : %d\tto_die : %d et pc = [%d]\n", chariot->index, war->to_die, chariot->pc);
 	nb_player = get_4_val(war, chariot, 1);	

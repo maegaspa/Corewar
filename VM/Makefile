@@ -18,6 +18,7 @@ FILES = src/main\
 		src/parser\
 		src/ft_process1\
 		src/error\
+		src/verif_endgame\
 		src/operations/live_fct\
 		src/operations/ld_fct\
 		src/operations/st_fct\

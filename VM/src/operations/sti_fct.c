@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sti_fct.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seanseau <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: hmichel <hmichel@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 16:10:42 by seanseau          #+#    #+#             */
-/*   Updated: 2020/04/03 19:56:28 by maegaspa         ###   ########lyon.fr   */
+/*   Updated: 2020/05/22 16:06:28 by hmichel          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,9 @@ int			sti_fct(t_war *war, t_chariot *chariot)
 
 	i = 3;
 	get_bin_ocp(chariot, war);
-	int k = -1;
+	/*int k = -1;
 	while (++k < 3)
-		printf("[sti] war->rtype[%d] = %d\n", k, war->rtype[k]);
+		printf("[sti] war->rtype[%d] = %d\n", k, war->rtype[k]);*/
 	pos = chariot->start_pos + chariot->pc;
 	chariot->registres[(pos + 1) - 1] = 42000;
 	if ((war->rtype[1] == DIR_CODE && war->rtype[2] == DIR_CODE) || (war->rtype[1] == DIR_CODE && war->rtype[2] == DIR_CODE))

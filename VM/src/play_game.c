@@ -6,7 +6,7 @@
 /*   By: hmichel <hmichel@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 17:21:32 by seanseau          #+#    #+#             */
-/*   Updated: 2020/05/21 21:22:17 by hmichel          ###   ########lyon.fr   */
+/*   Updated: 2020/05/22 16:16:14 by hmichel          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -221,7 +221,7 @@ int		ft_game(t_war *war, t_parse_file *file)
 	ft_print_war(war);
 	while (verif_endgame(war, chariot))
 	{
-		while (war->cycles < war->to_die)
+		while (war->actual_cycles < war->to_die)
 		{
 			if (war->verbose[3] == 1)
 				printf("It is now cycle [%d]\n", war->cycles);
@@ -246,8 +246,6 @@ int		ft_game(t_war *war, t_parse_file *file)
 			war->cycles++;
 		//printf("cycles++\n");
 //		ft_print_war(war);
-//		if (war->cycles > 70)
-//			break;
 		}
 	}
 	return (SUCCESS);
