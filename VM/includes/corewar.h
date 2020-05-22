@@ -115,6 +115,7 @@ typedef struct			war
 	int					dump;
 	int					*rtype;
 	int 				lastlive;
+	int 				tmp;
 	int				aff;
 	int				status;
 	char				ocp;

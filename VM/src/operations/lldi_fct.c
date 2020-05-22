@@ -32,14 +32,24 @@ int			lldi_fct(t_war *war, t_chariot *chariot)
         if (war->rtype[1] == REG_CODE)
         {
         	r = war->arena[chariot->start_pos + chariot->pc + i + 3];
+            war->tmp = war->arena[chariot->start_pos + chariot->pc + i + 2];
             if (war->verbose[2] == 1)
-                printf("P %4d | lldi %d %s r%d\n", (chariot->index + 1), param1, "a trouver", r);
+            {
+                ft_printf("P %4d | lldi %d %d r%d\n", (chariot->index + 1), param1, war->tmp, r);
+                ft_printf("       | -> load to  %d + %d = %d (with pc and mod %d)\n", param1, war->tmp, param1 + war->tmp, (chariot->pc + ((param1 + war->tmp) % IDX_MOD)));
+            }
+            print_verbose_16(war, chariot, 6);
         }
         if (war->rtype[1] == DIR_CODE)
         {
            	r = war->arena[chariot->start_pos + chariot->pc + i + 4];
+            war->tmp = get_2_val(war, chariot, i + 2);
             if (war->verbose[2] == 1)
-                printf("P %4d | lldi %d %s r%d\n", (chariot->index + 1), param1, "a trouver", r);
+            {
+                ft_printf("P %4d | lldi %d %d r%d\n", (chariot->index + 1), param1, war->tmp, r);
+                ft_printf("       | -> load to  %d + %d = %d (with pc and mod %d)\n", param1, war->tmp, param1 + war->tmp, (chariot->pc + ((param1 + war->tmp) % IDX_MOD)));
+            }
+            print_verbose_16(war, chariot, 7);
         }
     }
     if (war->rtype[0] == REG_CODE)
@@ -50,7 +60,10 @@ int			lldi_fct(t_war *war, t_chariot *chariot)
     		param2 = war->arena[chariot->start_pos + chariot->pc + i + 1];
     		r = war->arena[chariot->start_pos + chariot->pc + i + 2];
             if (war->verbose[2] == 1)
-                printf("P %4d | lldi %d %d r%d\n", (chariot->index + 1), param1, param2, r);
+            {
+                ft_printf("P %4d | lldi %d %d r%d\n", (chariot->index + 1), param1, param2, r);
+                ft_printf("       | -> load to  %d + %d = %d (with pc and mod %d)\n", param1, param2, param1 + param2, (chariot->pc + ((param1 + param2) % IDX_MOD)));
+            }
             print_verbose_16(war, chariot, 5);
     	}
     	if (war->rtype[1] == DIR_CODE)
@@ -58,7 +71,10 @@ int			lldi_fct(t_war *war, t_chariot *chariot)
     		param2 = get_2_val(war, chariot, i + 1);
     		r = war->arena[chariot->start_pos + chariot->pc + i + 3];
             if (war->verbose[2] == 1)
-                printf("P %4d | lldi %d %d r%d\n", (chariot->index + 1), param1, param2, r);
+            {
+                ft_printf("P %4d | lldi %d %d r%d\n", (chariot->index + 1), param1, param2, r);
+                ft_printf("       | -> load to  %d + %d = %d (with pc and mod %d)\n", param1, param2, param1 + param2, (chariot->pc + ((param1 + param2) % IDX_MOD)));
+            }
             print_verbose_16(war, chariot, 6);
     	}
     }
@@ -70,7 +86,10 @@ int			lldi_fct(t_war *war, t_chariot *chariot)
     		param2 = get_2_val(war, chariot, i + 2);
             r = war->arena[chariot->start_pos + chariot->pc + i + 4];
             if (war->verbose[2] == 1)
-                printf("P %4d | lldi %d %d r%d\n", (chariot->index + 1), param1, param2, r);
+            {
+                ft_printf("P %4d | lldi %d %d r%d\n", (chariot->index + 1), param1, param2, r);
+                ft_printf("       | -> load to  %d + %d = %d (with pc and mod %d)\n", param1, param2, param1 + param2, (chariot->pc + ((param1 + param2) % IDX_MOD)));
+            }
             print_verbose_16(war, chariot, 7);
     	}
     	if (war->rtype[1] == REG_CODE)
@@ -78,7 +97,10 @@ int			lldi_fct(t_war *war, t_chariot *chariot)
     		param2 = war->arena[chariot->start_pos + chariot->pc + i + 2];
             r = war->arena[chariot->start_pos + chariot->pc + i + 3];
             if (war->verbose[2] == 1)
-                printf("P %4d | lldi %d %d r%d\n", (chariot->index + 1), param1, param2, r);
+            {
+                ft_printf("P %4d | lldi %d %d r%d\n", (chariot->index + 1), param1, param2, r);
+                ft_printf("       | -> load to  %d + %d = %d (with pc and mod %d)\n", param1, param2, param1 + param2, (chariot->pc + ((param1 + param2) % IDX_MOD)));
+            }
             print_verbose_16(war, chariot, 6);
     	}
     }

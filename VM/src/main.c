@@ -44,9 +44,7 @@ int 	main(int ac, char **av)
 	t_parse_file	file;
 	t_war			war;
 	t_header		head;
-	int				error;
 
-	error = 1;
 	if (ac > 1 && (file.error = check_argument(&file, ac, av)) < 0)
 	{
 		print_error(file.error);

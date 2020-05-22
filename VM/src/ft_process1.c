@@ -49,7 +49,7 @@ int			ft_start_chariot(t_war *war, t_chariot **begin)
 	while (--i >= 0)
 	{
 		if (!(temp->next = ft_creat_chariot(temp->index + 1, 0, war->player[i].pos_arena, i + 1)))
-			(ERROR_MALLOC);
+			return (ERROR_MALLOC);
 		temp = temp->next;
 	}
 	return (SUCCESS);

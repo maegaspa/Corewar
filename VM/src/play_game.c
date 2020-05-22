@@ -206,7 +206,6 @@ int		ft_game(t_war *war, t_parse_file *file)
 {
 	t_chariot		*chariot;
 	int				error;
-	int 			pi;
 	t_opp			opp_tab[16];
 
 	init_tab(opp_tab);
@@ -229,7 +228,6 @@ int		ft_game(t_war *war, t_parse_file *file)
     	    	print_arena(war, file);
 			while (chariot)
 			{
-				pi = chariot->pc;
 //			printf("chariot wait = %d\n chariot->ope = %d", chariot->wait, chariot->ope);
 				ft_exec_opp(chariot, war, opp_tab);
 //			dprintf(1, "ptdr44 et ope = %d\n", chariot->ope);

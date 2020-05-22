@@ -42,10 +42,10 @@ FILES = src/check_caract\
 		src/utils3\
 		src/utils4\
 		src/utils_octa_hexa\
-		src/check_float\
-		src/check_float_param\
-		src/check_float_param2\
 		src/ft_intcpy\
+		#src/check_float\#
+		#src/check_float_param\#
+		#src/check_float_param2\#
 
 #----------------------------------COLOR---------------------------------------#
 

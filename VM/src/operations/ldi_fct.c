@@ -31,11 +31,29 @@ int			ldi_fct(t_war *war, t_chariot *chariot)
 		param1 = get_2_val(war, chariot, i);
         param2 = read_arena(war, param1);
        	if (war->rtype[1] == REG_CODE)
+       	{
+       		war->tmp = (unsigned char)war->arena[chariot->start_pos + chariot->pc + 2];
        		r = war->arena[chariot->start_pos + chariot->pc + i + 3];
-       	if (war->rtype[1] == DIR_CODE)
+       		if (war->verbose[2] == 1)
+			{
+				ft_printf("P %4d | ldi %d %d r%d\n", (chariot->index + 1), param1, war->tmp, r);
+				ft_printf("       | -> load to  %d + %d = %d (with pc and mod %d)\n", param1, war->tmp, param1 + war->tmp, chariot->pc + (((param1 + war->tmp) % IDX_MOD)));
+			}
+			print_verbose_16(war, chariot, 6);
+       	}
+       	else if (war->rtype[1] == DIR_CODE)
+       	{
+       		war->tmp = get_2_val(war, chariot, i + 2);
        		r = war->arena[chariot->start_pos + chariot->pc + i + 4];
+       		if (war->verbose[2] == 1)
+       		{
+				ft_printf("P %4d | ldi %d %d r%d\n", (chariot->index + 1), param1, war->tmp, r);
+				ft_printf("       | -> load to  %d + %d = %d (with pc and mod %d)\n", param1, war->tmp, param1 + war->tmp, chariot->pc + (((param1 + war->tmp) % IDX_MOD)));
+			}
+			print_verbose_16(war, chariot, 7);
+       	}
 	}
-	if (war->rtype[0] == REG_CODE)
+	else if (war->rtype[0] == REG_CODE)
 	{
 		param1 = war->arena[chariot->start_pos + chariot->pc + i];
 		if (war->rtype[1] == REG_CODE)
@@ -43,20 +61,26 @@ int			ldi_fct(t_war *war, t_chariot *chariot)
 			param2 = war->arena[chariot->start_pos + chariot->pc + i + 1];
 			r = war->arena[chariot->start_pos + chariot->pc + i + 2];
 			if (war->verbose[2] == 1)
-				printf("P %4d | ldi %d %d r%d\n", (chariot->index + 1), param1, param2, r);
+			{
+				ft_printf("P %4d | ldi %d %d r%d\n", (chariot->index + 1), param1, param2, r);
+				ft_printf("       | -> load to  %d + %d = %d (with pc and mod %d)\n", param1, param2, param1 + param2, chariot->pc + (((param1 + param2) % IDX_MOD)));
+			}
 			print_verbose_16(war, chariot, 5);
 		}
-		if (war->rtype[1] == DIR_CODE)
+		else if (war->rtype[1] == DIR_CODE)
 		{
 			param2 = get_2_val(war, chariot, i + 1);
 			r = war->arena[chariot->start_pos + chariot->pc + i + 3];
 			if (war->verbose[2] == 1)
-				printf("P %4d | ldi %d %d r%d\n", (chariot->index + 1), param1, param2, r);
+			{
+				ft_printf("P %4d | ldi %d %d r%d\n", (chariot->index + 1), param1, param2, r);
+				ft_printf("       | -> load to  %d + %d = %d (with pc and mod %d)\n", param1, param2, param1 + param2, chariot->pc + (((param1 + param2) % IDX_MOD)));
+			}
 			print_verbose_16(war, chariot, 6);
 
 		}
 	}
-	if (war->rtype[0] == DIR_CODE)
+	else if (war->rtype[0] == DIR_CODE)
 	{
 		param1 = get_2_val(war, chariot, i);
 		if (war->rtype[1] == DIR_CODE)
@@ -64,15 +88,21 @@ int			ldi_fct(t_war *war, t_chariot *chariot)
 			param2 = get_2_val(war, chariot, i + 2);
 			r = war->arena[chariot->start_pos + chariot->pc + i + 4];
 			if (war->verbose[2] == 1)
-				printf("P %4d | ldi %d %d r%d\n", (chariot->index + 1), param1, param2, r);
+			{
+				ft_printf("P %4d | ldi %d %d r%d\n", (chariot->index + 1), param1, param2, r);
+				ft_printf("       | -> load to  %d + %d = %d (with pc and mod %d)\n", param1, param2, param1 + param2, chariot->pc + (((param1 + param2) % IDX_MOD)));
+			}
 			print_verbose_16(war, chariot, 7);
 		}
-		if (war->rtype[1] == REG_CODE)
+		else if (war->rtype[1] == REG_CODE)
 		{
 			param2 = war->arena[chariot->start_pos + chariot->pc + i + 2];
 			r = war->arena[chariot->start_pos + chariot->pc + i + 3];
 			if (war->verbose[2] == 1)
-				printf("P %4d | ldi %d %d r%d\n", (chariot->index + 1), (unsigned char)war->arena[chariot->start_pos + chariot->pc + 2], param2, r);
+			{
+				ft_printf("P %4d | ldi %d %d r%d\n", (chariot->index + 1), param1, param2, r);
+				ft_printf("       | -> load to  %d + %d = %d (with pc and mod %d)\n", param1, param2, param1 + param2, chariot->pc + (((param1 + param2) % IDX_MOD)));
+			}
 			print_verbose_16(war, chariot, 6);
 		}
 	}

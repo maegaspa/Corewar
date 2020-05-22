@@ -205,10 +205,8 @@ void        print_verbose_16(t_war *war, t_chariot *chariot, int size)
 
 	if (war->verbose[0] == 1)
 	{
-
 		i = 0;
 		printf("ADV %d (0x%04x -> %#06x) ", size, war->status, war->status + size);
-		war->status += size;
 		while (i < size)
 		{
 			printf("%02x", (unsigned char)war->arena[chariot->start_pos + chariot->pc + i]);
@@ -218,6 +216,7 @@ void        print_verbose_16(t_war *war, t_chariot *chariot, int size)
 		}
 		printf("\n");
 	}
+	war->status += size;
 }
 
 int					read_arena(t_war *war, int cell)

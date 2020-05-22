@@ -23,7 +23,7 @@ int			xor_fct(t_war *war, t_chariot *chariot)
 	if (war->rtype[0] == REG_CODE)//REG
 	{
 		if (war->verbose[2] == 1)
-			printf("P %4d | xor %d ", (chariot->index + 1), (unsigned char)war->arena[chariot->start_pos + chariot->pc + 2]);
+			ft_printf("P %4d | xor %d ", (chariot->index + 1), (unsigned char)war->arena[chariot->start_pos + chariot->pc + 2]);
 		param1 = chariot->registres[(unsigned char)war->arena[chariot->start_pos + chariot->pc + 2]];
 		i = 3;
 	}
@@ -31,7 +31,7 @@ int			xor_fct(t_war *war, t_chariot *chariot)
 	{
 		param1 = get_2_val(war, chariot, 2);
 		if (war->verbose[2] == 1)
-			printf("P %4d | xor %d ", (chariot->index + 1), param1);
+			ft_printf("P %4d | xor %d ", (chariot->index + 1), param1);
 		param1 %= IDX_MOD;
 		i = 4;
 	}
@@ -39,13 +39,13 @@ int			xor_fct(t_war *war, t_chariot *chariot)
 	{
 		param1 = get_4_val(war, chariot, 2);
 		if (war->verbose[2] == 1)
-			printf("P %4d | xor %d ", (chariot->index + 1), param1);
+			ft_printf("P %4d | xor %d ", (chariot->index + 1), param1);
 		i = 6;
 	}
 	if (war->rtype[1] == REG_CODE)
 	{
 		if (war->verbose[2] == 1)
-			printf("%d", (unsigned char)war->arena[chariot->start_pos + chariot->pc + i]);
+			ft_printf("%d", (unsigned char)war->arena[chariot->start_pos + chariot->pc + i]);
 		param2 = chariot->registres[(unsigned char)war->arena[chariot->start_pos + chariot->pc + i]];
 		i++;
 	}
@@ -53,7 +53,7 @@ int			xor_fct(t_war *war, t_chariot *chariot)
 	{
 		param2 = get_2_val(war, chariot, i);
 		if (war->verbose[2] == 1)
-			printf("%d", param2);
+			ft_printf("%d", param2);
 		param2 %= IDX_MOD;
 		i += 2;
 	}
@@ -61,15 +61,15 @@ int			xor_fct(t_war *war, t_chariot *chariot)
 	{
 		param2 = get_4_val(war, chariot, i);
 		if (war->verbose[2] == 1)
-			printf("%d", param2);
+			ft_printf("%d", param2);
 		i += 4;
 	}
 	r = (unsigned char)war->arena[chariot->start_pos + chariot->pc + i];
 	if (war->verbose[2] == 1)
-		printf(" r%d\n", r);
+		ft_printf(" r%d\n", r);
 	print_verbose_16(war, chariot, i + 1);
 	chariot->registres[r - 1] = param1 ^ param2;
-	if (param1 ^ param2 == 0)
+	if (param1 ^ (param2 == 0))
 		chariot->carry = 1;
 	else
 		chariot->carry = 0;

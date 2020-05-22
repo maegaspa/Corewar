@@ -63,14 +63,12 @@ int			is_conform(char ocp, int param, int ope)
 int			ft_tcheck_ocp(t_chariot *chariot, t_war *war)//return jump
 {
 	unsigned char		ocp;
-	int			i;
 	int			jump;
 
 	if (chariot->ope == 1)
 		return (5);
 	if (g_op_tab[chariot->ope - 1].acb == 0) //ope n'a pas d'ocp
 		return (3);
-	i = -1;
 	jump = 2; //ope et ocp de 1 octet
 	ocp = war->arena[chariot->start_pos + chariot->pc + 1];
 	if (!(jump += is_conform((ocp >> 6), 0, chariot->ope - 1)))

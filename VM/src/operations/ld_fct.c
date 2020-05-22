@@ -80,7 +80,7 @@ int			ld_fct(t_war *war, t_chariot *chariot)
 	{
 		param1 = get_4_val(war, chariot, i);
         if (war->verbose[2] == 1)
-            printf("P %4d | ld %d r%d\n", (chariot->index + 1), param1, (unsigned char)war->arena[chariot->start_pos + chariot->pc + 6]);
+            ft_printf("P %4d | ld %d r%d\n", (chariot->index + 1), param1, (unsigned char)war->arena[chariot->start_pos + chariot->pc + 6]);
         print_verbose_16(war, chariot, 7);
 		r = war->arena[chariot->start_pos + chariot->pc + i + 4];
 		chariot->registres[r - 1] = param1;
@@ -89,7 +89,7 @@ int			ld_fct(t_war *war, t_chariot *chariot)
 	{
 		param1 = get_2_val(war, chariot, i);
         if (war->verbose[2] == 1)
-            printf("P %4d | ld %d r%d\n", (chariot->index + 1), param1, (unsigned char)war->arena[chariot->start_pos + chariot->pc + 4]);
+            ft_printf("P %4d | ld %d r%d\n", (chariot->index + 1), param1, (unsigned char)war->arena[chariot->start_pos + chariot->pc + 4]);
 		print_verbose_16(war, chariot, 5);
 		param2 = read_arena(war, param1);
 		r = war->arena[chariot->start_pos + chariot->pc + i + 2];

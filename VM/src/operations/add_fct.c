@@ -20,7 +20,7 @@ int			add_fct(t_war *war, t_chariot *chariot)
 	int result;
 
 	if (war->verbose[2] == 1)
-        printf("P %4d | add r%d r%d r%d\n", (chariot->index + 1), (unsigned char)war->arena[chariot->start_pos + chariot->pc + 2], (unsigned char)war->arena[chariot->start_pos + chariot->pc + 3], (unsigned char)war->arena[chariot->start_pos + chariot->pc + 4]);
+        ft_printf("P %4d | add r%d r%d r%d\n", (chariot->index + 1), (unsigned char)war->arena[chariot->start_pos + chariot->pc + 2], (unsigned char)war->arena[chariot->start_pos + chariot->pc + 3], (unsigned char)war->arena[chariot->start_pos + chariot->pc + 4]);
 	get_bin_ocp(chariot, war);
 	print_verbose_16(war, chariot, 5);
 	if (war->rtype[0] == REG_CODE && war->rtype[1] == REG_CODE && war->rtype[2] == REG_CODE)
