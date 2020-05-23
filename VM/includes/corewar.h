@@ -105,6 +105,7 @@ typedef struct			visual//visu
 */
 typedef struct			war
 {
+	int					back_pc;
 	int					visu;
 	struct				s_player *player;
 	int					nb_player;

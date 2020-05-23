@@ -235,7 +235,6 @@ int		ft_game(t_war *war, t_parse_file *file)
 		/*if (chariot->pc > pi)
 			if ((error = choose_ope(war, chariot)) <= 0)
 					return (error);*/
-
 //			printf("chariot->index = %d\n", chariot->index);
 				chariot = chariot->next;
 			}
