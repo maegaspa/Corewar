@@ -18,13 +18,14 @@ int			or_fct(t_war *war, t_chariot *chariot)
 	int param1;
 	int param2;
 	int r;
-
+	
+	i = 0;
 	get_bin_ocp(chariot, war);
 	if (war->rtype[0] == REG_CODE)//REG
 	{
 		if (war->verbose[2] == 1)
 			ft_printf("P %4d | or %d ", (chariot->index + 1), (unsigned char)war->arena[chariot->start_pos + chariot->pc + 2]);
-		param1 = chariot->registres[(unsigned char)war->arena[chariot->start_pos + chariot->pc + 2]];
+		param1 = chariot->registres[(unsigned char)war->arena[chariot->start_pos + chariot->pc + 2] - 1];
 		i = 3;
 	}
 	else if (war->rtype[0] == IND_CODE)//IND
@@ -46,7 +47,7 @@ int			or_fct(t_war *war, t_chariot *chariot)
 	{
 		if (war->verbose[2] == 1)
 			ft_printf("%d", (unsigned char)war->arena[chariot->start_pos + chariot->pc + i]);
-		param2 = chariot->registres[(unsigned char)war->arena[chariot->start_pos + chariot->pc + i]];
+		param2 = chariot->registres[(unsigned char)war->arena[chariot->start_pos + chariot->pc + i] - 1];
 		i++;
 	}
 	else if (war->rtype[1] == IND_CODE)

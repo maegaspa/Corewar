@@ -87,17 +87,15 @@ void	reset_lives_chariot(t_war *war)
 int		verif_endgame(t_war *war, t_chariot *chariot)
 {
 	printf("DEBUT verif_endgame\n");
-	if (war->actual_cycles == -1) //debut de partie 
-	{
-		war->actual_cycles = 0;
+	if (war->actual_cycles == 0) //debut de partie 
 		return (SUCCESS);
-	}
 	if (v_alive_chariot(chariot, war) >= NBR_LIVE || war->check_cycles_to_die == MAX_CHECKS)
 	{
-		printf("Cycle_to_die - cycle_delta, cycle_to_die = %d\n", war->cycle_to_die);
-		war->cycle_to_die -= CYCLE_DELTA;
-		if (war->cycle_to_die < 0)
-			war->cycle_to_die = 0;
+		war->to_die -= CYCLE_DELTA;
+		printf("To_die - cycle_delta = %d\n", war->to_die);
+
+		if (war->to_die < 0)
+			war->to_die = 0;
 		war->check_cycles_to_die = 0;
 	}
 	else
@@ -105,12 +103,12 @@ int		verif_endgame(t_war *war, t_chariot *chariot)
 		war->check_cycles_to_die++;
 		printf("war->check_cycles_to_die++\n");
 	}
-	if (war->begin == NULL)
+	if (war->to_die == 0)
 	{
 		printf("On a un vaiqueur\n");//on observe last live pour le vainqueur
 		return (FAILURE);
 	}
 	war->actual_cycles = 0;
-	// reset_lives_chariot(war); // a desactivé a cause du décalge des OP (sinon la partie est trop curte car chariot die)
+	reset_lives_chariot(war); 
 	return (SUCCESS);
 }

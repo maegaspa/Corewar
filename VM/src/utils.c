@@ -183,14 +183,13 @@ void	init_tab(t_opp *opp_tab)
 void			ft_init_war(t_parse_file file, t_war *war)
 {
 	war->cycles = 0;
+	war->nb_player = file.nb_player;
+	war->dump = file.dump;
 	if (file.cycles > -1)
 		war->to_die = file.cycles;
 	else
 		war->to_die = CYCLE_TO_DIE; //1536
-	war->nb_player = file.nb_player;
-	war->dump = file.dump;
-	war->cycle_to_die = CYCLE_TO_DIE; //new
-	war->actual_cycles = -1; //new
+	war->actual_cycles = 0; //new
 	war->check_cycles_to_die = 0; //new
 	ft_init_op_cycle(war); // a vpor si bien init dans parser
 }
