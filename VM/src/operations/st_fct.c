@@ -33,12 +33,17 @@ int			st_fct(t_war *war, t_chariot *chariot)
 		if (war->verbose[2] == 1)
         	ft_printf("P %4d | st r%d %d\n", (chariot->index + 1), (unsigned char)war->arena[pos + 2], param);
         print_verbose_16(war, chariot, 6);
-		war->arena[pos + (param % IDX_MOD)] = chariot->registres[war->arena[(pos + 1)] - 1];
+        printf("(pos + (param modulo IDX_MOD) = %d\n", (pos + (param % IDX_MOD)));
+        //printf("chariot->registres[(unsigned char)war->arena[pos + 2] - 1] = %d\n", chariot->registres[(unsigned char)war->arena[pos + 2] - 1]);
+		//war->arena[pos + (param % IDX_MOD)] = chariot->registres[war->arena[(pos + 1)] - 1];
+		write_on_arena(war, chariot->registres[(unsigned char)war->arena[pos + 2] - 1], (pos + (param % IDX_MOD)), 4);
 	}
 	else
+	{
 		if (war->verbose[2] == 1)
         	ft_printf("P %4d | st r%d %d\n", (chariot->index + 1), (unsigned char)war->arena[pos + 2], (unsigned char)war->arena[pos + 3]);
         print_verbose_16(war, chariot, 5);
-		chariot->registres[war->arena[(pos + 2)] - 1] = chariot->registres[war->arena[(pos + 1)] - 1];
+		chariot->registres[war->arena[(pos + 3)] - 1] = chariot->registres[war->arena[(pos + 2)] - 1];
+	}
 	return (0);
 }
