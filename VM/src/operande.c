@@ -20,6 +20,10 @@ int			ft_get_op(t_war *war, t_chariot *chariot)
 	if (chariot->ope != -1)
 		return (0);
 	pos = chariot->start_pos + chariot->pc;
+	if (pos > MEM_SIZE)
+		pos %= MEM_SIZE;
+	if (chariot->pc > MEM_SIZE)
+		chariot->pc %= MEM_SIZE;
 	if (war->arena[pos] > 16 || war->arena[pos] <= 0)
 	{
 		chariot->pc++;
@@ -95,16 +99,18 @@ void		ft_exec_opp(t_chariot *chariot, t_war *war, t_opp *opp_tab)
 	//printf("chariot wait = %d\n chariot->ope = %d \n ET PC [%d]\n", chariot->wait, chariot->ope, chariot->start_pos + chariot->pc);
 	if ((chariot->wait == 0) && chariot->ope > 0)
 	{
-		//printf("EXEC_OPP\n");
 		if ((jump = ft_tcheck_ocp(chariot, war)))
 		{
 			//jump = ft_jump(chariot, war);
-			printf("\t\t\tACTUAL pos = %d\n", (chariot->start_pos + chariot->pc));
+			//printf("\t\t\tACTUAL pos = %d\n", (chariot->start_pos + chariot->pc));
 			opp_tab[chariot->ope - 1](war, chariot);
 			if (war->back_pc == 0)
 				chariot->pc += jump;
+//			pos = chariot->pc + chariot->start_pos;
+//			if (pos > MEM_SIZE)
+//				printf("AH OH QUE OUI AHQUEUEOUEI AH OUI\n");
 			war->back_pc = 0;
-			printf("\t\t\tNEXT pos = %d\n", (chariot->start_pos + chariot->pc));
+			//printf("\t\t\tNEXT pos = %d\n", (chariot->start_pos + chariot->pc));
 //			else
 //				printf("chariot->pc = %d\n", chariot->pc);
 //			if (chariot->ope == 1)

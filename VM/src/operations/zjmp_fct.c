@@ -35,7 +35,7 @@ int			zjmp_fct(t_war *war, t_chariot *chariot)
 		chariot->pc = ((chariot->pc + param) % MEM_SIZE);
 		if (chariot->pc < 0)
 			chariot->pc += MEM_SIZE;
-		printf("ZJMP chariot pc = %d\n", chariot->pc);
+		//printf("ZJMP chariot pc = %d\n", chariot->pc);
 	}
 	else
 		war->back_pc = 0;

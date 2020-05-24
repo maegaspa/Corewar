@@ -16,6 +16,7 @@ int			live_fct(t_war *war, t_chariot *chariot)
 {
 	int nb_player;
 	t_chariot *ch;
+	int i;
 
 	chariot->live += 1;
 	ch = war->begin;
@@ -36,5 +37,18 @@ int			live_fct(t_war *war, t_chariot *chariot)
 		}
 		ch = ch->next;
 	}
+//	i = -1;
+//	while (++i < war->nb_player)
+//	{
+//		if (war->player[i].num == nb_player)
+//		{
+//			if (war->verbose[4] == 1)
+//            	ft_printf("Player %d (%s) is said to be alive\n", nb_player, war->player[nb_player].header.prog_name);
+//			ch->live++;
+//			war->lastlive = i;
+//			break ;
+//		}
+//	}
+
 	return (0);
 }

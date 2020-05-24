@@ -54,7 +54,7 @@ int			sti_fct(t_war *war, t_chariot *chariot)
 	while (++k < 3)
 		printf("[sti] war->rtype[%d] = %d\n", k, war->rtype[k]);*/
 	pos = chariot->start_pos + chariot->pc;
-	chariot->registres[(pos + 1) - 1] = 42000;
+	//hariot->registres[(pos + 1) - 1] = 42000;
 	if ((war->rtype[1] == DIR_CODE && war->rtype[2] == DIR_CODE) || (war->rtype[1] == DIR_CODE && war->rtype[2] == DIR_CODE))
 	{
     	param2 = get_2_val(war, chariot, i);

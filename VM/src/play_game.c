@@ -236,6 +236,7 @@ int		ft_game(t_war *war, t_parse_file *file)
 			if ((error = choose_ope(war, chariot)) <= 0)
 					return (error);*/
 //			printf("chariot->index = %d\n", chariot->index);
+				//printf("PC A CHAQUE CYCLE = %d\n", chariot->pc);
 				chariot = chariot->next;
 			}
 			chariot = war->begin;
