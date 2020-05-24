@@ -63,6 +63,7 @@ typedef struct 			s_parse_file
 
 typedef struct			s_player
 {
+	int					live;
 	int					pos_arena;
 	int					fd;
 	int					num;

@@ -21,9 +21,10 @@ int			ft_get_op(t_war *war, t_chariot *chariot)
 		return (0);
 	pos = chariot->start_pos + chariot->pc;
 	if (pos > MEM_SIZE)
-		pos %= MEM_SIZE;
-	if (chariot->pc > MEM_SIZE)
-		chariot->pc %= MEM_SIZE;
+	{
+		printf("chariot [%d] / pc : %d pos : %d / pos > MEM_SIZE -> pc mod MEM_SIZE = %d\n", chariot->index, chariot->pc, pos, chariot->pc % (MEM_SIZE/2));
+		chariot->pc %= (MEM_SIZE/2);
+	}
 	if (war->arena[pos] > 16 || war->arena[pos] <= 0)
 	{
 		chariot->pc++;

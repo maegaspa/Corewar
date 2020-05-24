@@ -45,6 +45,7 @@ int				get_new_player(t_war *war, t_parse_file *file, t_header *header,
 		return (ERROR_OPEN);
 	war->player[nb].pos_arena = file->arena_segment * nb;
 	war->player[nb].num = nb;
+	war->player[nb].live = 0;
 	if (!(read(war->player[nb].fd, &buff, MEM_SIZE)))
 		return (ERROR_READ);
 	ft_memcpy(header, buff, sizeof(*header));

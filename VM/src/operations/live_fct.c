@@ -14,41 +14,27 @@
 
 int			live_fct(t_war *war, t_chariot *chariot)
 {
-	int nb_player;
-	t_chariot *ch;
+	int id_player;
 	int i;
 
-	chariot->live += 1;
-	ch = war->begin;
 	//printf("LIVE_FCT : index_chariot : %d\tto_die : %d et pc = [%d]\n", chariot->index, war->to_die, chariot->pc);
-	nb_player = get_4_val(war, chariot, 1);	
+	chariot->live ++;
+	id_player = get_4_val(war, chariot, 1);	
 	if (war->verbose[2] == 1)
-		ft_printf("P %4d | live %d\n", (chariot->index + 1), nb_player);
+		ft_printf("P %4d | live %d\n", (chariot->index + 1), id_player);
 	print_verbose_16(war, chariot, 5);
-	while (ch)
+	i = -1;
+	while (++i < war->nb_player)
 	{
-		if (nb_player == ch->player)
+		if (((war->player[i].num + 1) * -1) == id_player)
 		{
 			if (war->verbose[4] == 1)
-				ft_printf("Player %d (%s) is said to be alive\n", nb_player, war->player[nb_player].header.prog_name);
-			ch->live++;
-			war->lastlive = nb_player;
-			return (0);
+            	ft_printf("Player %d (%s) is said to be alive\n", id_player * -1, war->player[i].header.prog_name);
+			war->player[i].live++;
+			war->lastlive = i;
+			break ;
 		}
-		ch = ch->next;
 	}
-//	i = -1;
-//	while (++i < war->nb_player)
-//	{
-//		if (war->player[i].num == nb_player)
-//		{
-//			if (war->verbose[4] == 1)
-//            	ft_printf("Player %d (%s) is said to be alive\n", nb_player, war->player[nb_player].header.prog_name);
-//			ch->live++;
-//			war->lastlive = i;
-//			break ;
-//		}
-//	}
 
 	return (0);
 }
