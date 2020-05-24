@@ -54,6 +54,7 @@ int			sti_fct(t_war *war, t_chariot *chariot)
 	while (++k < 3)
 		printf("[sti] war->rtype[%d] = %d\n", k, war->rtype[k]);*/
 	pos = chariot->start_pos + chariot->pc;
+	printf("chariot->registres[0] = %d\n", chariot->registres[0]);
 	//hariot->registres[(pos + 1) - 1] = 42000;
 	if ((war->rtype[1] == DIR_CODE && war->rtype[2] == DIR_CODE) || (war->rtype[1] == DIR_CODE && war->rtype[2] == DIR_CODE))
 	{
@@ -72,11 +73,11 @@ int			sti_fct(t_war *war, t_chariot *chariot)
     	param2 = get_2_val(war, chariot, i);
     	param3 = war->arena[pos + i + 2];
       cell = ((param2 + param3) % IDX_MOD);
-    	if (war->verbose[2] == 1)
-      {
+   		if (war->verbose[2] == 1)
+     	{
     		ft_printf("P %4d | sti r%d %d %d\n", (chariot->pc + 1), (unsigned char)war->arena[pos + 2], param2, param3);
-        ft_printf("       | -> store to  %d + %d = %d (with pc and mod %d)\n", param2, param3, param2 + param3, (chariot->pc + cell));
-      }
+       		ft_printf("       | -> store to  %d + %d = %d (with pc and mod %d)\n", param2, param3, param2 + param3, (chariot->pc + cell));
+     	}
     	print_verbose_16(war, chariot, 7);
     }
 	else if (war->rtype[1] == REG_CODE && war->rtype[2] == REG_CODE)
@@ -91,7 +92,7 @@ int			sti_fct(t_war *war, t_chariot *chariot)
       }
     	print_verbose_16(war, chariot, 6);
     }
-    write_on_arena(war, chariot->registres[(pos + 1) - 1], chariot->start_pos + cell, REG_SIZE);
+    write_on_arena(war, chariot->registres[(unsigned char)war->arena[pos - 1]], chariot->start_pos + cell, REG_SIZE);
 //    printf("STI_FCT : index_chariot : %d\tto_die : %d et pc = [%d]\n", chariot->index, war->to_die, chariot->start_pos + chariot->pc);
 	return (0);
 }

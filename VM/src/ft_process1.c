@@ -17,7 +17,7 @@ t_chariot		*ft_creat_chariot(int index, int pc, int start_pos, int player)
 	t_chariot	*new;
 	int			i;
 
-	i = -1;
+	i = 0;
 	if (!(new = (t_chariot*)malloc(sizeof(t_chariot))))
 		return (NULL);
 	new->pc = pc;
@@ -29,6 +29,7 @@ t_chariot		*ft_creat_chariot(int index, int pc, int start_pos, int player)
 	new->start_pos = start_pos;
 	new->prev_color = player;
 	new->ope = -1; // <=> ope non conforme
+	new->registres[i] = player * -1;
 	while (++i < REG_NUMBER)
 		new->registres[i] = 0;
 	new->next = NULL;
