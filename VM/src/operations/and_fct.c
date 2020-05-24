@@ -24,7 +24,7 @@ int			and_fct(t_war *war, t_chariot *chariot)
 	if (war->rtype[0] == REG_CODE)//REG
 	{
 		if (war->verbose[2] == 1)
-			ft_printf("P %4d | and %d ", (chariot->index + 1), (unsigned char)war->arena[chariot->start_pos + chariot->pc + 2]);
+			ft_printf("P %4d | and %d ", (chariot->index + 1), chariot->registres[(unsigned char)war->arena[chariot->start_pos + chariot->pc + 2] - 1]);
 		param1 = chariot->registres[(unsigned char)war->arena[chariot->start_pos + chariot->pc + 2] - 1];
 		i = 3;
 	}

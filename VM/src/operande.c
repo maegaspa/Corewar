@@ -20,10 +20,10 @@ int			ft_get_op(t_war *war, t_chariot *chariot)
 	if (chariot->ope != -1)
 		return (0);
 	pos = chariot->start_pos + chariot->pc;
-	if (pos > MEM_SIZE)
+	if (pos >= MEM_SIZE - 1)
 	{
-		printf("chariot [%d] / pc : %d pos : %d / pos > MEM_SIZE -> pc mod MEM_SIZE = %d\n", chariot->index, chariot->pc, pos, chariot->pc % (MEM_SIZE/2));
-		chariot->pc %= (MEM_SIZE/2);
+		chariot->pc = -1;
+		chariot->start_pos = 0;
 	}
 	if (war->arena[pos] > 16 || war->arena[pos] <= 0)
 	{
@@ -92,12 +92,13 @@ int			ft_tcheck_ocp(t_chariot *chariot, t_war *war)//return jump
 void		ft_exec_opp(t_chariot *chariot, t_war *war, t_opp *opp_tab)
 {
 	int		jump;
+	int pos;
 
 	jump = 0;
 	//printf("chariot wait = %d\n chariot->ope = %d", chariot->wait, chariot->ope);
 	if (chariot->wait > 0)
 		chariot->wait--;
-	//printf("chariot wait = %d\n chariot->ope = %d \n ET PC [%d]\n", chariot->wait, chariot->ope, chariot->start_pos + chariot->pc);
+	//printf("chariot wait = %d\t chariot->ope = %d \t ET PC (avec start pos)[%d]\n", chariot->wait, chariot->ope, chariot->start_pos + chariot->pc);
 	if ((chariot->wait == 0) && chariot->ope > 0)
 	{
 		if ((jump = ft_tcheck_ocp(chariot, war)))
@@ -107,8 +108,9 @@ void		ft_exec_opp(t_chariot *chariot, t_war *war, t_opp *opp_tab)
 			opp_tab[chariot->ope - 1](war, chariot);
 			if (war->back_pc == 0)
 				chariot->pc += jump;
+//			printf("APRES JMUP DANS EXEC : PC = [%d] ET START = [%d]\n", chariot->pc, chariot->start_pos);
 //			pos = chariot->pc + chariot->start_pos;
-//			if (pos > MEM_SIZE)
+//			printf("apres le %% JMUP DANS EXEC : PC = [%d] ET START = [%d]\n", chariot->pc, chariot->start_pos);
 //				printf("AH OH QUE OUI AHQUEUEOUEI AH OUI\n");
 			war->back_pc = 0;
 			//printf("\t\t\tNEXT pos = %d\n", (chariot->start_pos + chariot->pc));
@@ -119,6 +121,8 @@ void		ft_exec_opp(t_chariot *chariot, t_war *war, t_opp *opp_tab)
 		}
 		chariot->ope = -1;
 	}
+//	if (chariot->start_pos + chariot->pc > MEM_SIZE)
+//		chariot->pc
 	if (ft_get_op(war, chariot) == 1) //&& chariot->ope >= 1) //on tcheck si on lit une nouvelle operande, si oui on init "wait"
 		chariot->wait = war->op_cycle[chariot->ope - 1];
 //	}

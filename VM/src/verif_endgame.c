@@ -89,7 +89,7 @@ int		verif_endgame(t_war *war, t_chariot *chariot)
 	printf("DEBUT verif_endgame\n");
 	if (war->actual_cycles == 0) //debut de partie 
 		return (SUCCESS);
-	if (v_alive_chariot(chariot, war) >= NBR_LIVE || war->check_cycles_to_die == MAX_CHECKS)
+	if (v_alive_chariot(chariot, war) >= NBR_LIVE || war->check_cycles_to_die == (MAX_CHECKS - 1))
 	{
 		war->to_die -= CYCLE_DELTA;
 		printf("To_die - cycle_delta = %d\n", war->to_die);
