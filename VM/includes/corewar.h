@@ -117,9 +117,9 @@ typedef struct			war
 	int					*rtype;
 	int 				lastlive;
 	int 				tmp;
-	int				aff;
+	int					aff;
 	int 				is_live;
-	int				status;
+	int					status[4];
 	char				ocp;
 	char				*ocxp;
 	int 				*verbose;
@@ -153,6 +153,7 @@ int		            get_4_val(t_war *war, t_chariot *chariot, int i);
 void        		print_verbose_16(t_war *war, t_chariot *chariot, int size);
 int					read_arena(t_war *war, int cell);
 void				write_on_arena(t_war *war, int value, int start, int size);
+void 				section_status(t_war *war);
 /*
 ** play_game.c
 */

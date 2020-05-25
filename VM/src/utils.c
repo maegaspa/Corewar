@@ -194,9 +194,23 @@ void			ft_init_war(t_parse_file file, t_war *war)
 	ft_init_op_cycle(war); // a vpor si bien init dans parser
 }
 
-/*if (chariot->pc > pi)
-  if ((error = choose_ope(war, chariot)) <= 0)
-  return (error);*/
+void 		section_status(t_war *war)
+{
+	war->status[0] = 0;
+	if (war->nb_player == 2)
+		war->status[1] = MEM_SIZE / 2;
+	else if (war->nb_player == 2)
+	{
+		war->status[1] = MEM_SIZE / 3;
+		war->status[2] = (MEM_SIZE / 3) * 2;
+	}
+	else if (war->nb_player == 2)
+	{
+		war->status[1] = MEM_SIZE / 4;
+		war->status[2] = MEM_SIZE / 2;
+		war->status[3] = (MEM_SIZE / 4) * 3;
+	}
+}
 
 void        print_verbose_16(t_war *war, t_chariot *chariot, int size)
 {
@@ -205,7 +219,7 @@ void        print_verbose_16(t_war *war, t_chariot *chariot, int size)
 	if (war->verbose[0] == 1)
 	{
 		i = 0;
-		printf("ADV %d (0x%04x -> %#06x) ", size, war->status, war->status + size);
+		printf("ADV %d (0x%04x -> %#06x) ", size, war->status[chariot->player], war->status[chariot->player] + size);
 		while (i < size)
 		{
 			printf("%02x", (unsigned char)war->arena[chariot->start_pos + chariot->pc + i]);
@@ -216,7 +230,7 @@ void        print_verbose_16(t_war *war, t_chariot *chariot, int size)
 		printf("\n");
 	}
 	if (war->is_live == 0)
-		war->status += size;
+		war->status[chariot->player] += size;
 	war->is_live = 0;
 }
 
