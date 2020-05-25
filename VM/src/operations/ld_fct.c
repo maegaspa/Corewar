@@ -87,7 +87,7 @@ int			ld_fct(t_war *war, t_chariot *chariot)
 	}
 	if (war->rtype[0] == IND_CODE)
 	{
-		param1 = get_2_val(war, chariot, i);
+		param1 = (short)get_2_val(war, chariot, i);
         if (war->verbose[2] == 1)
             ft_printf("P %4d | ld %d r%d\n", (chariot->index + 1), param1, (unsigned char)war->arena[chariot->start_pos + chariot->pc + 4]);
 		print_verbose_16(war, chariot, 5);

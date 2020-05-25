@@ -24,8 +24,8 @@ int			sub_fct(t_war *war, t_chariot *chariot)
 	if (war->rtype[0] == REG_CODE && war->rtype[1] == REG_CODE && war->rtype[2] == REG_CODE)
 	{
 		reg1 = (unsigned char)war->arena[chariot->start_pos + chariot->pc + 2];
-		reg2 = (unsigned char)war->arena[chariot->start_pos + chariot->pc + 4];
-		reg3 = (unsigned char)war->arena[chariot->start_pos + chariot->pc + 6];
+		reg2 = (unsigned char)war->arena[chariot->start_pos + chariot->pc + 3];
+		reg3 = (unsigned char)war->arena[chariot->start_pos + chariot->pc + 4];
 		if (war->verbose[2] == 1)
         	ft_printf("P %4d | sub r%d r%d r%d\n", (chariot->index + 1), reg1, reg2, reg3);
         print_verbose_16(war, chariot, 5);

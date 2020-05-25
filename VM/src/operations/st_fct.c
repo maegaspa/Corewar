@@ -31,7 +31,7 @@ int			st_fct(t_war *war, t_chariot *chariot)
 	{
 		param = get_2_val(war, chariot, i);
 		if (war->verbose[2] == 1)
-        	ft_printf("P %4d | st r%d %d\n", (chariot->index + 1), (unsigned char)war->arena[pos + 2], param);
+        	ft_printf("P %4d | st r%d %d\n", (chariot->index + 1), (unsigned char)war->arena[pos + 2], (short)param);
         print_verbose_16(war, chariot, 5);
         printf("(pos + (param modulo IDX_MOD) = %d\n", (pos + (param % IDX_MOD)));
         //printf("chariot->registres[(unsigned char)war->arena[pos + 2] - 1] = %d\n", chariot->registres[(unsigned char)war->arena[pos + 2] - 1]);
