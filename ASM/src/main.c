@@ -166,7 +166,7 @@ int 	main(int ac, char **av)
 		free_error(&tab, &file);
 		return (file.error);
 	}
-	//ft_printf("File is create\n");
+	ft_printf("File [.cor] has been created\n");
 	free_error(&tab, &file);
 	return (SUCCESS);
 }

@@ -12,25 +12,6 @@
 
 #include "../includes/asm.h"
 
-char		*ft_strrev(char *str)
-{
-	int		i;
-	int		j;
-	char	rev;
-
-	i = 0;
-	j = ft_strlen(str) - 1;
-	while (i < j)
-	{
-		rev = str[i];
-		str[i] = str[j];
-		str[j] = rev;
-		j--;
-		i++;
-	}
-	return (str);
-}
-
 char		*gettohexa(int n)
 {
 	int temp;
