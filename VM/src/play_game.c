@@ -12,63 +12,8 @@
 
 #include "../includes/corewar.h"
 
-int 	ft_check_type(int d_type, int type)
-{
-	if (d_type == T_REG)
-		if (type == T_REG)
-			return (SUCCESS);
-	if (d_type == T_IND)
-		if (type == T_IND)
-			return (SUCCESS);
-	if (d_type == T_DIR)
-		if (type == T_DIR)
-			return (SUCCESS);
-	if (d_type == (T_REG + T_DIR))
-		if (type == T_REG || type == T_DIR)
-			return (SUCCESS);
-	if (d_type == (T_IND + T_DIR))
-		if (type == T_IND || type == T_DIR)
-			return (SUCCESS);
-	if (d_type == (T_IND + T_REG))
-		if (type == T_IND || type == T_REG)
-			return (SUCCESS);
-	if (d_type == (T_REG + T_DIR + T_IND))
-		if (type == T_REG || type == T_DIR || type == T_IND)
-			return (SUCCESS);
-	return (FAILURE);
-}
-
-//int		get_param(t_chariot *chariot, t_war *war)
-//{
-//	int i;
-//	int error;
-//
-//	error = 0;
-//	i = -1;
-//	if (!(war->rtype = malloc(sizeof(int) * 3)))
-//		return (ERROR_MALLOC);
-//	while (++i < 3)
-//		war->rtype[i] = 0;
-//	i = -1;
-//	while (++i < g_op_tab[chariot->ope - 1].nb_params)
-//	{
-//		printf("g_op_tab[chariot->ope - 1].params_type[%d] = %d\n", i, g_op_tab[chariot->ope - 1].params_type[i]);
-//		if ((error = ft_check_type(g_op_tab[chariot->ope - 1].params_type[i], T_REG)) > 0)
-//			war->rtype[i] = T_REG;
-//		if ((error = ft_check_type(g_op_tab[chariot->ope - 1].params_type[i], T_DIR)) > 0)
-//        	war->rtype[i] = T_DIR;
-//        if (war->rtype[i] != T_DIR && (error = ft_check_type(g_op_tab[chariot->ope - 1].params_type[i], T_IND)) > 0)
-//       		war->rtype[i] = T_IND;
-//        if ((error = ft_check_type(g_op_tab[chariot->ope - 1].params_type[i], T_LAB)) > 0)
-//       		war->rtype[i] = T_LAB;
-//		printf("rtype[%d] = %d\n", i, war->rtype[i]);
-//	}
-//	return (SUCCESS);
-//}
-
 void	get_param(t_war *war, char *str)
 {
-//	int i = -1;
 	if (!(war->rtype = malloc(sizeof(int) * 3)))
 		return ;
 	if (str[0] == '1' && str[1] == '0')
@@ -95,8 +40,6 @@ void	get_param(t_war *war, char *str)
 		war->rtype[2] = IND_CODE;
 	else
 		war->rtype[2] = 0;
-//	while (++i < 3)
-//		printf("war->rtype[%d] = %d\n", i, war->rtype[i]);
 }
 
 void	fill_bin(char *str, char *fill, int j)
@@ -155,50 +98,7 @@ int		get_bin_ocp(t_chariot *chariot, t_war *war)
 		j = 4;
 	}
 	str[9] = '\0';
-//	printf("str = %s\n", str);
 	get_param(war, str);
-	return (SUCCESS);
-}
-
-int		choose_ope(t_war *war, t_chariot *chariot)
-{
-	if (chariot->ope > 0)
-	{
-		if (chariot->ope == 1)
-			live_fct(war, chariot);
-		else if (chariot->ope == 2)
-			ld_fct(war, chariot);
-		else if (chariot->ope == 3)
-			st_fct(war, chariot);
-		else if (chariot->ope == 4)
-			add_fct(war, chariot);
-		else if (chariot->ope == 5)
-			sub_fct(war, chariot);
-		else if (chariot->ope == 6)
-			and_fct(war, chariot);
-		else if (chariot->ope == 7)
-			or_fct(war, chariot);
-		else if (chariot->ope == 8)
-			xor_fct(war, chariot);
-		else if (chariot->ope == 9)
-			zjmp_fct(war, chariot);
-		else if (chariot->ope == 10)
-			ldi_fct(war, chariot);
-		else if (chariot->ope == 11)
-			sti_fct(war, chariot);
-		else if (chariot->ope == 12)
-			fork_fct(war, chariot);
-		else if (chariot->ope == 13)
-			lld_fct(war, chariot);
-		else if (chariot->ope == 14)
-			lldi_fct(war, chariot);
-		else if (chariot->ope == 15)
-			lfork_fct(war, chariot);
-		else if (chariot->ope == 16)
-			aff_fct(war, chariot);
-		else
-			return (-1);
-	}
 	return (SUCCESS);
 }
 
