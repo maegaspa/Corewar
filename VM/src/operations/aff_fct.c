@@ -14,26 +14,18 @@
 
 int			aff_fct(t_war *war, t_chariot *chariot)
 {
-	unsigned char reg;
-	int value;
+	unsigned char value;
 
 	if (war->verbose[2] == 1)
-        ft_printf("P %4d | aff r%d\n", (chariot->index + 1), (unsigned char)war->arena[chariot->start_pos + chariot->pc + 2]);
-	get_bin_ocp(chariot, war);
+        printf("P %4d | aff r%d\n", (chariot->index + 1), (unsigned char)war->arena[chariot->start_pos + chariot->pc + 2]);
 	print_verbose_16(war, chariot, 3);
-	reg = (unsigned char)war->arena[chariot->start_pos + chariot->pc + 2];
-	if (war->rtype[0] == REG_CODE && (reg > 0 && reg < 17))
-	{
-		value = chariot->registres[reg - 1];
-		if ((char)value == 0)
-		{
-			if (chariot->carry == 0)
-				chariot->carry = 1;
-			else
-				chariot->carry = 0;
-		}
-		else if (war->aff == 1)
-			ft_printf("%c\n", (char)(value));
-	}
+	value = war->arena[chariot->start_pos + chariot->pc + 2];
+	chariot->registres[value - 1] = 112;
+	value = chariot->registres[value - 1];
+	value %= 256;
+	printf("war->aff = %d\n", war->aff);
+	//printf("%c\n", value);
+	if (war->aff == 1)
+		printf("%c\n", value);
 	return (0);
 }
