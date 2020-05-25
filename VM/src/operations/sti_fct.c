@@ -92,7 +92,7 @@ int			sti_fct(t_war *war, t_chariot *chariot)
       }
     	print_verbose_16(war, chariot, 6);
     }
-    write_on_arena(war, chariot->registres[(unsigned char)war->arena[pos - 1]], chariot->start_pos + cell, REG_SIZE);
+    write_on_arena(war, chariot->registres[(unsigned char)war->arena[pos - 1]], pos + cell, REG_SIZE);
 //    printf("STI_FCT : index_chariot : %d\tto_die : %d et pc = [%d]\n", chariot->index, war->to_die, chariot->start_pos + chariot->pc);
 	return (0);
 }
