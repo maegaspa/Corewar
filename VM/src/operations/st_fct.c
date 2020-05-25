@@ -20,11 +20,7 @@ int			st_fct(t_war *war, t_chariot *chariot)
 
 	i = 3;
 	pos = chariot->start_pos + chariot->pc;
-//	printf("ST_FCT : index_chariot : %d\tto_die : %d et pc = [%d]\n", chariot->index, war->to_die, chariot->start_pos + chariot->pc);
 	get_bin_ocp(chariot, war);
-//	int k = -1;
-//    while (++k < 3)
-//    	printf("[st] war->rtype[%d] = %d\n", k, war->rtype[k]);
 	if (chariot->registres[0] == 0)
 		chariot->carry = 1;
 	if (war->rtype[1] == IND_CODE)
@@ -33,9 +29,6 @@ int			st_fct(t_war *war, t_chariot *chariot)
 		if (war->verbose[2] == 1)
         	ft_printf("P %4d | st r%d %d\n", (chariot->index + 1), (unsigned char)war->arena[pos + 2], (short)param);
         print_verbose_16(war, chariot, 5);
-        printf("(pos + (param modulo IDX_MOD) = %d\n", (pos + (param % IDX_MOD)));
-        //printf("chariot->registres[(unsigned char)war->arena[pos + 2] - 1] = %d\n", chariot->registres[(unsigned char)war->arena[pos + 2] - 1]);
-		//war->arena[pos + (param % IDX_MOD)] = chariot->registres[war->arena[(pos + 1)] - 1];
 		write_on_arena(war, chariot->registres[(unsigned char)war->arena[pos + 2] - 1], (pos + (param % IDX_MOD)), 4);
 	}
 	else

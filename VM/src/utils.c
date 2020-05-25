@@ -182,7 +182,7 @@ void	init_tab(t_opp *opp_tab)
 
 void			ft_init_war(t_parse_file file, t_war *war)
 {
-	war->cycles = 0;
+	war->cycles = 1;
 	war->nb_player = file.nb_player;
 	war->dump = file.dump;
 	if (file.cycles > -1)
@@ -202,20 +202,16 @@ void        print_verbose_16(t_war *war, t_chariot *chariot, int size)
 	{
 		i = 0;
 		war->status[chariot->player - 1] = chariot->pc + chariot->start_pos;
-		printf("ADV %d (0x%04x -> %#06x) ", size, war->status[chariot->player - 1], war->status[chariot->player - 1] + size);
+		ft_printf("ADV %d (0x%04x -> %#06x) ", size, war->status[chariot->player - 1], war->status[chariot->player - 1] + size);
 		while (i < size)
 		{
-			printf("%02x", (unsigned char)war->arena[chariot->start_pos + chariot->pc + i]);
+			ft_printf("%02x", (unsigned char)war->arena[chariot->start_pos + chariot->pc + i]);
 			i++;
 			if (i != size)
 				printf(" ");
 		}
-		printf("\n");
+		ft_printf("\n");
 	}
-//	printf("chariot->player = %d\n", chariot->player);
-//	if (war->is_live == 0)
-//		war->status[chariot->player - 1] += size;
-//	war->is_live = 0;
 }
 
 int					read_arena(t_war *war, int cell)

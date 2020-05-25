@@ -34,6 +34,8 @@
 # define ERROR_CHAMP_SIZE -5
 # define ERROR_OPEN -6
 # define ERROR_READ -7
+# define ERROR_NAME -8
+# define ERROR_COMMENT -9
 
 # define SUCCESS 1
 # define FAILURE 0

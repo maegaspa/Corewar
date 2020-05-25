@@ -19,4 +19,8 @@ void 	print_error(int error)
 		ft_putstr_fd("ERROR: Can't open file\n", 2);
 	if (error == ERROR_READ)
 		ft_putstr_fd("ERROR: Can't read file\n", 2);
+	if (error == ERROR_NAME)
+    	ft_putstr_fd("ERROR: Wrong name\n", 2);
+    if (error == ERROR_COMMENT)
+        ft_putstr_fd("ERROR: Wrong comment\n", 2);
 }

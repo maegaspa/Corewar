@@ -21,6 +21,10 @@ int				get_player_data(t_header *header, t_war *war, int player_nb)
 	header->prog_size = u_int_reverse_octet(header->prog_size);
 	if (header->prog_size > CHAMP_MAX_SIZE)
 		return (ERROR_CHAMP_SIZE);
+//	if (ft_strlen(header->prog_name) != PROG_NAME_LENGTH)
+//		return (ERROR_NAME);
+//	if (ft_strlen(header->comment) != COMMENT_LENGTH)
+//		return (ERROR_COMMENT);
 	war->player[player_nb].header = *header;
 	return (SUCCESS);
 }

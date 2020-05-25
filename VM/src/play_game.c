@@ -215,39 +215,28 @@ int		ft_game(t_war *war, t_parse_file *file)
 	if ((error = ft_start_chariot(war, &chariot)) <= 0)
 		return (error);
 	war->begin = chariot;
-	printf("GAME START\n");
 	chariot->pc = 0;
 	ft_print_war(war);
 	while (verif_endgame(war, chariot))
 	{
 		if (file->cycles > -1 && war->cycles >= file->cycles)
 			return (SUCCESS);
-		printf("GAY = %d\n", war->to_die);
 		while (war->actual_cycles < war->to_die)
 		{
-			if (war->verbose[3] == 1)
-				printf("It is now cycle [%d]\n", war->cycles);
-			if (file->dump == war->cycles|| file->long_dump == war->cycles)
-    	    	print_arena(war, file);
 			while (chariot)
 			{
-//			printf("chariot wait = %d\n chariot->ope = %d", chariot->wait, chariot->ope);
 				ft_exec_opp(chariot, war, opp_tab);
-//			dprintf(1, "ptdr44 et ope = %d\n", chariot->ope);
-			//printf("pi = [%d]ici pc = [%d] et index  = %d \n", pi, chariot->pc, chariot->index);
-		/*if (chariot->pc > pi)
-			if ((error = choose_ope(war, chariot)) <= 0)
-					return (error);*/
-//			printf("chariot->index = %d\n", chariot->index);
-				//printf("PC A CHAQUE CYCLE = %d\n", chariot->pc);
 				chariot = chariot->next;
 			}
 			chariot = war->begin;
 			war->actual_cycles++;
-			war->cycles++;
-		//printf("cycles++\n");
-//		ft_print_war(war);
+			if (war->verbose[3] == 1)
+            	ft_printf("It is now cycle [%d]\n", war->cycles);
+            if (file->dump == war->cycles|| file->long_dump == war->cycles)
+            	print_arena(war, file);
+            war->cycles++;
 		}
+
 	}
 	return (SUCCESS);
 }
