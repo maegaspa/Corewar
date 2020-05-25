@@ -118,6 +118,7 @@ typedef struct			war
 	int 				lastlive;
 	int 				tmp;
 	int				aff;
+	int 				is_live;
 	int				status;
 	char				ocp;
 	char				*ocxp;

@@ -18,7 +18,7 @@ int			aff_fct(t_war *war, t_chariot *chariot)
 	int value;
 
 	if (war->verbose[2] == 1)
-        ft_printf("P %4d | aff r%d\n", (chariot->pc + 1), (unsigned char)war->arena[chariot->start_pos + chariot->pc + 2]);
+        ft_printf("P %4d | aff r%d\n", (chariot->index + 1), (unsigned char)war->arena[chariot->start_pos + chariot->pc + 2]);
 	get_bin_ocp(chariot, war);
 	print_verbose_16(war, chariot, 3);
 	reg = (unsigned char)war->arena[chariot->start_pos + chariot->pc + 2];

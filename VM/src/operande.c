@@ -92,7 +92,6 @@ int			ft_tcheck_ocp(t_chariot *chariot, t_war *war)//return jump
 void		ft_exec_opp(t_chariot *chariot, t_war *war, t_opp *opp_tab)
 {
 	int		jump;
-	int pos;
 
 	jump = 0;
 	//printf("chariot wait = %d\n chariot->ope = %d", chariot->wait, chariot->ope);

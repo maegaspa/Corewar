@@ -212,6 +212,7 @@ int		ft_game(t_war *war, t_parse_file *file)
 	war->aff = file->a;
 	war->verbose = file->verbose;
 	war->status = 0;
+	war->is_live = 0;
 	if ((error = ft_start_chariot(war, &chariot)) <= 0)
 		return (error);
 	war->begin = chariot;
@@ -220,6 +221,9 @@ int		ft_game(t_war *war, t_parse_file *file)
 	ft_print_war(war);
 	while (verif_endgame(war, chariot))
 	{
+		if (file->cycles > -1 && war->cycles >= file->cycles)
+			return (SUCCESS);
+		printf("GAY = %d\n", war->to_die);
 		while (war->actual_cycles < war->to_die)
 		{
 			if (war->verbose[3] == 1)

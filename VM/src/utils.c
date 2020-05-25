@@ -215,7 +215,9 @@ void        print_verbose_16(t_war *war, t_chariot *chariot, int size)
 		}
 		printf("\n");
 	}
-	war->status += size;
+	if (war->is_live == 0)
+		war->status += size;
+	war->is_live = 0;
 }
 
 int					read_arena(t_war *war, int cell)
