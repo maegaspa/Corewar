@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ld_fct.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seanseau <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: hmichel <hmichel@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 16:10:23 by seanseau          #+#    #+#             */
-/*   Updated: 2020/04/03 19:57:55 by maegaspa         ###   ########lyon.fr   */
+/*   Updated: 2020/05/27 01:05:20 by hmichel          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int			ld_fct(t_war *war, t_chariot *chariot)
         if (war->verbose[2] == 1)
             printf("P %4d | ld %d r%d\n", (chariot->index + 1), param1, (unsigned char)war->arena[chariot->start_pos + chariot->pc + 6]);
         print_verbose_16(war, chariot, 7);
-		r = war->arena[chariot->start_pos + chariot->pc + i + 6];
+		r = war->arena[chariot->start_pos + chariot->pc + i + 4];
 		chariot->registres[r - 1] = param1;
 	}
 	if (war->rtype[0] == IND_CODE)
