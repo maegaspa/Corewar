@@ -179,6 +179,8 @@ int 	check_argument(t_parse_file *file, int ac, char **av)
 			file->visu = 1;
 		else if (file->error < 0)
 			return (ERROR_USAGE);
+		else
+			return (ERROR_USAGE);
 	}
 	return (SUCCESS);
 }
