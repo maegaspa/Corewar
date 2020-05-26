@@ -16,16 +16,13 @@ int			aff_fct(t_war *war, t_chariot *chariot)
 {
 	unsigned char value;
 
-	if (war->verbose[2] == 1)
-        printf("P %4d | aff r%d\n", (chariot->index + 1), (unsigned char)war->arena[chariot->start_pos + chariot->pc + 2]);
-	print_verbose_16(war, chariot, 3);
+//	if (war->verbose[2] == 1)
+//        printf("P %4d | aff r%d\n", (chariot->index + 1), (unsigned char)war->arena[chariot->start_pos + chariot->pc + 2]);
 	value = war->arena[chariot->start_pos + chariot->pc + 2];
-	chariot->registres[value - 1] = 112;
 	value = chariot->registres[value - 1];
 	value %= 256;
-	//printf("war->aff = %d\n", war->aff);
-	//printf("%c\n", value);
 	if (war->aff == 1)
-		printf("%c\n", value);
+		printf("Aff: %c\n", value);
+	print_verbose_16(war, chariot, 3);
 	return (0);
 }

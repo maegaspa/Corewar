@@ -152,7 +152,6 @@ int 	check_argument(t_parse_file *file, int ac, char **av)
         		file->a = 1;
             else
             	return (ERROR_USAGE);
-            file->i++;
         }
 		else if (file->i + 1 < ac && (!ft_strcmp("-v", av[file->i])))
 		{
