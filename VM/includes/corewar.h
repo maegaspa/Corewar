@@ -126,6 +126,7 @@ typedef struct			s_war
 	char				ocp;
 	char				*ocxp;
 	int 				*verbose;
+	int 				empty_verbose[6];
 	int					actual_cycles;//new
 	int					cycle_to_die;//new
 	int					check_cycles_to_die;//new
