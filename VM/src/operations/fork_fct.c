@@ -20,11 +20,12 @@ static	t_chariot *ft_fork_chariot(t_chariot *chariot, int param, t_war *war)
 	i = -1;
 	if (!(new = (t_chariot*)malloc(sizeof(t_chariot))))
 		return (NULL);
+	//printf("nb_chariot = %d\n", war->nb_chariot);
 	new->pc = chariot->pc + (param % IDX_MOD);
 	new->live = chariot->live; //a check, sujet dit de garder le meme last_live, on a fait differament
 	new->carry = chariot->carry;
 	new->wait = 0;
-	new->index = war->nb_chariot;
+	new->index = war->nb_chariot - 1;
 	new->player = chariot->player;
 	new->start_pos = chariot->start_pos;
 	new->prev_color = chariot->player;
@@ -48,6 +49,9 @@ int			fork_fct(t_war *war, t_chariot *chariot)
 	if (!(tmp_char = ft_fork_chariot(chariot, para_dir, war)))
 		return (ERROR_MALLOC);
 	war->begin = tmp_char;
+	if (ft_get_op(war, war->begin) == 1)
+    	(war->begin)->wait = war->op_cycle[(war->begin)->ope - 1];
+	//	ft_exec_opp(war->begin, war, opp_tab);
 	// tmp_char = chariot;
 	//printf("FORK_FCT : index_chariot : %d\tto_die : %d\n", chariot->index, war->to_die);
 	// if (!(tmp_char->next = ft_creat_chariot(tmp_char->index + 1, (chariot->pc + (param % IDX_MOD)), war->player[chariot->player].pos_arena, chariot->player)))

@@ -20,11 +20,11 @@ void	free_chariot(t_chariot *chariot)
 
 	temp = chariot;
 	//i_moove = chariot->index;
-	while (temp->next != NULL)
-	{
-		(temp->next)->index -= 1;
-		temp = temp->next;
-	}
+//	while (temp->next != NULL)
+//	{
+//		(temp->next)->index -= 1;
+//		temp = temp->next;
+//	}
 	//on verra pour leaks
 }
 
