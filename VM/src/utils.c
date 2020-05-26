@@ -213,7 +213,6 @@ void        print_verbose_16(t_war *war, t_chariot *chariot, int size)
 		}
 		printf("\n");
 	}
-	printf("ZOB = %d %d\n", chariot->start_pos, chariot->pc);
 }
 
 int					read_arena(t_war *war, int cell)
@@ -247,9 +246,7 @@ void		write_on_arena(t_war *war, int value, int start, int size)
 		rest *= 256;
 	while (size)
 	{
-		//printf("AVANT war->arena[%d] = %02x\n", start, war->arena[start]);
 		war->arena[start] = (val / rest);
-		//printf("APRES war->arena[%d] = %02x\n", start, war->arena[start]);
 		val = (unsigned int)val % rest;
 		rest /= 256;
 		size--;

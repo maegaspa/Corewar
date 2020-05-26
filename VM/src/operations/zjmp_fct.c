@@ -18,7 +18,7 @@ int			zjmp_fct(t_war *war, t_chariot *chariot)
 	int i;
 
 	i = 1;
-	param = get_2_val(war, chariot, i));
+	param = get_2_val(war, chariot, i);
     param = param % IDX_MOD;
 	if (chariot->carry == 1)
 	{

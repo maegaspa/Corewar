@@ -31,11 +31,11 @@
 void	delete_chariot(t_chariot *current, t_war *war)
 {
 	t_chariot *previous;
-	//t_chariot *delete;
+	t_chariot *delete;
 
 	previous = war->begin;
-	//delete = current;
-	if (current != NULL && current->index == 0)
+	delete = current;
+	if (current != NULL && current->index == (war->begin)->index)
 	{
 		if (war->begin != NULL)
 			war->begin = (war->begin)->next;
@@ -50,6 +50,18 @@ void	delete_chariot(t_chariot *current, t_war *war)
 		current = current->next;
 		previous->next = current;
 		//free_chariot(delete);
+	}
+}
+
+void	reset_lives_chariot(t_war *war)
+{
+	t_chariot *temp;
+
+	temp = war->begin;
+	while (temp)
+	{
+		temp->live = 0;
+		temp = temp->next;
 	}
 }
 
@@ -68,20 +80,10 @@ int		v_alive_chariot(t_chariot *chariot, t_war *war)
 		chariot = chariot->next;
 	}
 	chariot = war->begin;
-	printf("%d lives sur les chariots\n", cpt_lives);
+	//printf("%d lives sur les chariots\n", cpt_lives);
+	if (cpt_lives >= NBR_LIVE)
+    	reset_lives_chariot(war);
 	return (cpt_lives);
-}
-
-void	reset_lives_chariot(t_war *war)
-{
-	t_chariot *temp;
-
-	temp = war->begin;
-	while (temp)
-	{
-		temp->live = 0;
-		temp = temp->next;
-	}
 }
 
 int		verif_endgame(t_war *war, t_chariot *chariot)
@@ -89,7 +91,7 @@ int		verif_endgame(t_war *war, t_chariot *chariot)
 	printf("DEBUT verif_endgame\n");
 	if (war->actual_cycles == 0) //debut de partie 
 		return (SUCCESS);
-	if (v_alive_chariot(chariot, war) >= NBR_LIVE || war->check_cycles_to_die == (MAX_CHECKS - 1))
+	if (v_alive_chariot(chariot, war) >= NBR_LIVE || war->check_cycles_to_die == MAX_CHECKS)
 	{
 		war->to_die -= CYCLE_DELTA;
 		printf("To_die - cycle_delta = %d\n", war->to_die);
@@ -107,10 +109,10 @@ int		verif_endgame(t_war *war, t_chariot *chariot)
 	if (war->begin == NULL || war->to_die == 0)
 	{
 		if (war->verbose[3] == 1)
-			printf("It is now cycle [%d]\nOn a un vainqueur\n", war->cycles);//on observe last live pour le vainqueur
+			printf("It is now cycle [%d]\nContestant %d, \"%s\", has won ! \n", war->cycles, war->lastlive, war->player[war->lastlive - 1].header.prog_name);//on observe last live pour le vainqueur
 		return (FAILURE);
 	}
 	war->actual_cycles = 0;
-	reset_lives_chariot(war); 
+	//reset_lives_chariot(war);
 	return (SUCCESS);
 }
