@@ -213,6 +213,7 @@ void        print_verbose_16(t_war *war, t_chariot *chariot, int size)
 		}
 		printf("\n");
 	}
+	printf("ZOB = %d %d\n", chariot->start_pos, chariot->pc);
 }
 
 int					read_arena(t_war *war, int cell)

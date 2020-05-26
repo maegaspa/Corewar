@@ -31,7 +31,7 @@ int			xor_fct(t_war *war, t_chariot *chariot)
 	{
 		param1 = get_2_val(war, chariot, 2);
 		if (war->verbose[2] == 1)
-			printf("P %4d | xor %d ", (chariot->index + 1), param1);
+			printf("P %4d | xor %hd ", (chariot->index + 1), param1);
 		param1 %= IDX_MOD;
 		i = 4;
 	}
@@ -53,7 +53,7 @@ int			xor_fct(t_war *war, t_chariot *chariot)
 	{
 		param2 = get_2_val(war, chariot, i);
 		if (war->verbose[2] == 1)
-			printf("%d", param2);
+			printf("%hd", param2);
 		param2 %= IDX_MOD;
 		i += 2;
 	}

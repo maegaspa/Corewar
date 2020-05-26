@@ -12,55 +12,20 @@
 
 #include "../../includes/corewar.h"
 
-int		get_4_val(t_war *war, t_chariot *chariot, int i)
+int   get_4_val(t_war *war, t_chariot *chariot, int i)
 {
-	unsigned char	valx[5];
-    char			*str;
-    char			*str2;
-    char			*str3;
-    char			*str4;
-    char			*strr;
-    int				rval;
+  unsigned int  res;
+  int       tmp;
 
-    valx[0] = (unsigned char)war->arena[chariot->start_pos + chariot->pc + i];
-    valx[1] = (unsigned char)war->arena[chariot->start_pos + chariot->pc + i + 1];
-    valx[2] = (unsigned char)war->arena[chariot->start_pos + chariot->pc + i + 2];
-    valx[3] = (unsigned char)war->arena[chariot->start_pos + chariot->pc + i + 3];
-    valx[4] = '\0';
-   	str = ft_itoa_base(valx[0], 16);
-   	str2 = ft_itoa_base(valx[1], 16);
-   	str3 = ft_itoa_base(valx[2], 16);
-   	str4 = ft_itoa_base(valx[3], 16);
-   	if (valx[1] < 10)
-   	{
-   		str2[1] = str2[0];
-   		str2[0] = '0';
-   		str2[2] = '\0';
-   	}
-   	if (valx[2] < 10)
-    {
-   		str3[1] = str3[0];
-      	str3[0] = '0';
-      	str3[2] = '\0';
-    }
-    if (valx[3] < 10)
-    {
-        str4[1] = str4[0];
-        str4[0] = '0';
-        str4[2] = '\0';
-    }
-	 if (!(strr = (char *)malloc(sizeof(int) * ft_strlen(str) +
-		ft_strlen(str2) + ft_strlen(str3) + ft_strlen(str4) + 1)))
-    	return (ERROR_MALLOC);
-   	ft_strcpy(strr, str);
-   	ft_strcat(strr, str2);
-   	ft_strcat(strr, str3);
-   	ft_strcat(strr, str4);
-//   	printf("strr = %s\n", strr);
-   	rval = ft_atoi_base(strr, 16);
-//	printf("rval = %d\n", rval);
-   	ft_strdel(&strr);
-   	return (rval);
+  res = 0;
+  tmp = i;
+  while (i < tmp + 4)
+  {
+    res = res << 8;
+    res = res + (unsigned char)war->arena[chariot->start_pos + chariot->pc + i];
+    i++;
+  }
+  return (res);
 }
 
 int			ld_fct(t_war *war, t_chariot *chariot)
@@ -73,26 +38,23 @@ int			ld_fct(t_war *war, t_chariot *chariot)
 	i = 2;
 	param2 = 0;
 	get_bin_ocp(chariot, war);
-//	int k = -1;
-//    while (++k < 3)
-//    	printf("[ld] war->rtype[%d] = %d\n", k, war->rtype[k]);
 	if (war->rtype[0] == DIR_CODE)
 	{
 		param1 = get_4_val(war, chariot, i);
         if (war->verbose[2] == 1)
             printf("P %4d | ld %d r%d\n", (chariot->index + 1), param1, (unsigned char)war->arena[chariot->start_pos + chariot->pc + 6]);
         print_verbose_16(war, chariot, 7);
-		r = war->arena[chariot->start_pos + chariot->pc + i + 4];
+		r = war->arena[chariot->start_pos + chariot->pc + i + 6];
 		chariot->registres[r - 1] = param1;
 	}
 	if (war->rtype[0] == IND_CODE)
 	{
 		param1 = (short)get_2_val(war, chariot, i);
         if (war->verbose[2] == 1)
-            printf("P %4d | ld %d r%d\n", (chariot->index + 1), param1, (unsigned char)war->arena[chariot->start_pos + chariot->pc + 4]);
+            printf("P %4d | ld %hd r%d\n", (chariot->index + 1), param1, (unsigned char)war->arena[chariot->start_pos + chariot->pc + 4]);
 		print_verbose_16(war, chariot, 5);
 		param2 = read_arena(war, param1);
-		r = war->arena[chariot->start_pos + chariot->pc + i + 2];
+		r = war->arena[chariot->start_pos + chariot->pc + i + 4];
 		chariot->registres[r - 1] = param2;
 	}
 	if (param1 == 0)

@@ -116,6 +116,7 @@ int		ft_game(t_war *war, t_parse_file *file)
 		return (error);
 	war->begin = chariot;
 	chariot->pc = 0;
+	war->back_pc = 0;
 	ft_print_war(war);
 	while (verif_endgame(war, chariot))
 	{

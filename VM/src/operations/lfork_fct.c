@@ -42,7 +42,7 @@ int			lfork_fct(t_war *war, t_chariot *chariot)
 
 	para_dir = get_2_val(war, chariot, 1);
 	if (war->verbose[2] == 1)
-        printf("P %4d | lfork %d (%d)\n", (chariot->index + 1), para_dir, (chariot->pc + para_dir));
+        printf("P %4d | lfork %hd (%d)\n", (chariot->index + 1), para_dir, (chariot->pc + para_dir));
     print_verbose_16(war, chariot, 3);
 	war->nb_chariot++;
 	if (!(tmp_char = ft_fork_chariot(chariot, para_dir, war)))

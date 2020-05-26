@@ -12,32 +12,20 @@
 
 #include "../../includes/corewar.h"
 
-int		get_2_val(t_war *war, t_chariot *chariot, int i)
+short		get_2_val(t_war *war, t_chariot *chariot, int i)
 {
-	unsigned char	valx[3];
-	char			*str;
-	char			*str2;
-	char			*str3;
-	int				rval;
+	unsigned short	res;
+	int 			tmp;
 
-	valx[0] = (unsigned char)war->arena[chariot->start_pos + chariot->pc + i];
-	valx[1] = (unsigned char)war->arena[chariot->start_pos + chariot->pc + i + 1];
-	valx[2] = '\0';
-	str = ft_itoa_base(valx[0], 16);
-	str2 = ft_itoa_base(valx[1], 16);
-	if (valx[1] < 10)
+	res = 0;
+	tmp = i;
+	while (i < tmp + 2)
 	{
-		str2[1] = str2[0];
-		str2[0] = '0';
-		str2[2] = '\0';
+		res = res << 8;
+		res = res + (unsigned char)war->arena[chariot->start_pos + chariot->pc + i];
+		i++;
 	}
-	if (!(str3 = (char *)malloc(sizeof(int) * ft_strlen(str) + ft_strlen(str2) + 1)))
-		return (ERROR_MALLOC);
-	ft_strcpy(str3, str);
-	ft_strcat(str3, str2);
-	rval = ft_atoi_base(str3, 16);
-	ft_strdel(&str3);
-	return (rval);
+	return (res);
 }
 
 int			sti_fct(t_war *war, t_chariot *chariot)
@@ -58,7 +46,7 @@ int			sti_fct(t_war *war, t_chariot *chariot)
 		cell = ((param2 + param3) % IDX_MOD);
 		if (war->verbose[2] == 1)
 		{
-			printf("P %4d | sti r%d %d %d\n", (chariot->index + 1), (unsigned char)war->arena[pos + 2], param2, param3);
+			printf("P %4d | sti r%d %hd %hd\n", (chariot->index + 1), (unsigned char)war->arena[pos + 2], param2, param3);
 			printf("       | -> store to  %d + %d = %d (with pc and mod %d)\n", param2, param3, param2 + param3, (chariot->pc + cell));
 		}
 		print_verbose_16(war, chariot, 7);

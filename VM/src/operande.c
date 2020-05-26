@@ -19,7 +19,10 @@ int			ft_get_op(t_war *war, t_chariot *chariot)
 
 	if (chariot->ope != -1)
 		return (0);
+	if (chariot->start_pos)
+		chariot->start_pos = war->player[chariot->player].pos_arena;
 	pos = chariot->start_pos + chariot->pc;
+	//printf("%d==%d || %d==%d\n", pos, MEM_SIZE, chariot->start_pos, chariot->pc);
 	if (pos >= MEM_SIZE - 1)
 	{
 		chariot->pc = -1;

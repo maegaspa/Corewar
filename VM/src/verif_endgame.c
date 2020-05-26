@@ -13,7 +13,7 @@
 #include "../includes/corewar.h"
 
 //nouvelles variables: actual_cycles dans war,
-void	free_chariot(t_chariot *chariot)
+/*void	free_chariot(t_chariot *chariot)
 {
 	//int		i_moove;
 	t_chariot *temp;
@@ -26,21 +26,21 @@ void	free_chariot(t_chariot *chariot)
 //		temp = temp->next;
 //	}
 	//on verra pour leaks
-}
+}*/
 
 void	delete_chariot(t_chariot *current, t_war *war)
 {
 	t_chariot *previous;
-	t_chariot *delete;
+	//t_chariot *delete;
 
 	previous = war->begin;
-	delete = current;
+	//delete = current;
 	if (current != NULL && current->index == 0)
 	{
 		if (war->begin != NULL)
 			war->begin = (war->begin)->next;
 		current = current->next;
-		free_chariot(delete);
+		//free_chariot(delete);
 	}
 	else
 	{
@@ -49,7 +49,7 @@ void	delete_chariot(t_chariot *current, t_war *war)
 		
 		current = current->next;
 		previous->next = current;
-		free_chariot(delete);
+		//free_chariot(delete);
 	}
 }
 
