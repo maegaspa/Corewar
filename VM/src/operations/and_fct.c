@@ -24,7 +24,7 @@ int			and_fct(t_war *war, t_chariot *chariot)
 	if (war->rtype[0] == REG_CODE)//REG
 	{
 		if (war->verbose[2] == 1)
-			ft_printf("P %4d | and %d ", (chariot->index + 1), chariot->registres[(unsigned char)war->arena[chariot->start_pos + chariot->pc + 2] - 1]);
+			printf("P %4d | and %d ", (chariot->index + 1), chariot->registres[(unsigned char)war->arena[chariot->start_pos + chariot->pc + 2] - 1]);
 		param1 = chariot->registres[(unsigned char)war->arena[chariot->start_pos + chariot->pc + 2] - 1];
 		i = 3;
 	}
@@ -32,7 +32,7 @@ int			and_fct(t_war *war, t_chariot *chariot)
 	{
 		param1 = get_2_val(war, chariot, 2);
 		if (war->verbose[2] == 1)
-			ft_printf("P %4d | and %d ", (chariot->index + 1), param1);
+			printf("P %4d | and %d ", (chariot->index + 1), param1);
 		param1 %= IDX_MOD;
 		i = 4;
 	}
@@ -40,13 +40,13 @@ int			and_fct(t_war *war, t_chariot *chariot)
 	{
 		param1 = get_4_val(war, chariot, 2);
 		if (war->verbose[2] == 1)
-			ft_printf("P %4d | and %d ", (chariot->index + 1), param1);
+			printf("P %4d | and %d ", (chariot->index + 1), param1);
 		i = 6;
 	}
 	if (war->rtype[1] == REG_CODE)
 	{
 		if (war->verbose[2] == 1)
-			ft_printf("%d", (unsigned char)war->arena[chariot->start_pos + chariot->pc + i]);
+			printf("%d", (unsigned char)war->arena[chariot->start_pos + chariot->pc + i]);
 		param2 = chariot->registres[(unsigned char)war->arena[chariot->start_pos + chariot->pc + i] - 1];
 		i++;
 	}
@@ -54,7 +54,7 @@ int			and_fct(t_war *war, t_chariot *chariot)
 	{
 		param2 = get_2_val(war, chariot, i);
 		if (war->verbose[2] == 1)
-			ft_printf("%d", param2);
+			printf("%d", param2);
 		param2 %= IDX_MOD;
 		i += 2;
 	}
@@ -62,12 +62,12 @@ int			and_fct(t_war *war, t_chariot *chariot)
 	{
 		param2 = get_4_val(war, chariot, i);
 		if (war->verbose[2] == 1)
-			ft_printf("%d", param2);
+			printf("%d", param2);
 		i += 4;
 	}
 	r = (unsigned char)war->arena[chariot->start_pos + chariot->pc + i];
 	if (war->verbose[2] == 1)
-		ft_printf(" r%d\n", r);
+		printf(" r%d\n", r);
 	print_verbose_16(war, chariot, i + 1);
 	chariot->registres[r - 1] = param1 & param2;
 	if ((param1 & param2) == 0)

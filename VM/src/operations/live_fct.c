@@ -24,14 +24,14 @@ int			live_fct(t_war *war, t_chariot *chariot)
 	nb_player = get_4_val(war, chariot, 1);
 	//printf("pc [%d], nb_player = [%d]\n", pos, nb_player);
 	if (war->verbose[2] == 1)
-		ft_printf("P %4d | live %d\n", (chariot->index + 1), nb_player);
+		printf("P %4d | live %d\n", (chariot->index + 1), nb_player);
 	i = -1;
 	while (++i < war->nb_player)
 	{
 		if (nb_player == ((war->player[i].num + 1) * -1))
 		{
 			if (war->verbose[4] == 1)
-				ft_printf("Player %d (%s) is said to be alive\n", (nb_player * -1), war->player[(nb_player * -1) - 1].header.prog_name);
+				printf("Player %d (%s) is said to be alive\n", (nb_player * -1), war->player[(nb_player * -1) - 1].header.prog_name);
 			war->lastlive = nb_player * -1;
 //			if (nb_player < 0)
 			war->is_live = 1;

@@ -131,9 +131,9 @@ int		ft_game(t_war *war, t_parse_file *file)
 			chariot = war->begin;
 			war->actual_cycles++;
 			if (war->verbose[3] == 1)
-            	ft_printf("It is now cycle [%d]\n", war->cycles);
+            	printf("It is now cycle [%d]\n", war->cycles);
             if (file->dump == war->cycles|| file->long_dump == war->cycles)
-            	print_arena(war, file);
+                print_arena(war, file);
             war->cycles++;
 		}
 	}

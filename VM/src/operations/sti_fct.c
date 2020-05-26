@@ -51,15 +51,15 @@ int			sti_fct(t_war *war, t_chariot *chariot)
 	i = 3;
 	get_bin_ocp(chariot, war);
 	pos = chariot->start_pos + chariot->pc;
-	if ((war->rtype[1] == DIR_CODE && war->rtype[2] == DIR_CODE) || (war->rtype[1] == DIR_CODE && war->rtype[2] == DIR_CODE))
+	if (war->rtype[1] == DIR_CODE && war->rtype[2] == DIR_CODE)
 	{
 		param2 = get_2_val(war, chariot, i);
 		param3 = get_2_val(war, chariot, i + 2);
 		cell = ((param2 + param3) % IDX_MOD);
 		if (war->verbose[2] == 1)
 		{
-			ft_printf("P %4d | sti r%d %d %d\n", (chariot->index + 1), (unsigned char)war->arena[pos + 2], param2, param3);
-			ft_printf("       | -> store to  %d + %d = %d (with pc and mod %d)\n", param2, param3, param2 + param3, (chariot->pc + cell));
+			printf("P %4d | sti r%d %d %d\n", (chariot->index + 1), (unsigned char)war->arena[pos + 2], param2, param3);
+			printf("       | -> store to  %d + %d = %d (with pc and mod %d)\n", param2, param3, param2 + param3, (chariot->pc + cell));
 		}
 		print_verbose_16(war, chariot, 7);
 	}
@@ -70,8 +70,8 @@ int			sti_fct(t_war *war, t_chariot *chariot)
 		cell = ((param2 + param3) % IDX_MOD);
 		if (war->verbose[2] == 1)
 		{
-			ft_printf("P %4d | sti r%d %d %d\n", (chariot->index + 1), (unsigned char)war->arena[pos + 2], param2, param3);
-			ft_printf("       | -> store to  %d + %d = %d (with pc and mod %d)\n", param2, param3, param2 + param3, (chariot->pc + cell));
+			printf("P %4d | sti r%d %d %d\n", (chariot->index + 1), (unsigned char)war->arena[pos + 2], param2, param3);
+			printf("       | -> store to  %d + %d = %d (with pc and mod %d)\n", param2, param3, param2 + param3, (chariot->pc + cell));
 		}
 		print_verbose_16(war, chariot, 7);
 	}
@@ -82,12 +82,12 @@ int			sti_fct(t_war *war, t_chariot *chariot)
 		cell = ((param2 + param3) % IDX_MOD);
 		if (war->verbose[2] == 1)
 		{
-			ft_printf("P %4d | sti r%d %d %d\n", (chariot->index + 1), (unsigned char)war->arena[pos + 2], param2, param3);
-			ft_printf("       | -> store to  %d + %d = %d (with pc and mod %d)\n", param2, param3, param2 + param3, (chariot->pc + cell));
+			printf("P %4d | sti r%d %d %d\n", (chariot->index + 1), (unsigned char)war->arena[pos + 2], param2, param3);
+			printf("       | -> store to  %d + %d = %d (with pc and mod %d)\n", param2, param3, param2 + param3, (chariot->pc + cell));
 		}
 		print_verbose_16(war, chariot, 6);
 	}
-	write_on_arena(war, chariot->registres[(unsigned char)war->arena[pos - 1]], pos + cell, REG_SIZE);
+	write_on_arena(war, chariot->registres[(unsigned char)war->arena[pos + 2] - 1], pos + cell, REG_SIZE);
 	//    printf("STI_FCT : index_chariot : %d\tto_die : %d et pc = [%d]\n", chariot->index, war->to_die, chariot->start_pos + chariot->pc);
 	return (0);
 }

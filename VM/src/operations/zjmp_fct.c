@@ -26,7 +26,7 @@ int			zjmp_fct(t_war *war, t_chariot *chariot)
 //		param = ((short)get_2_val(war, chariot, i));
 //		param = param % IDX_MOD;
         if (war->verbose[2] == 1)
-        	ft_printf("P %4d | zjmp %d OK\n", (chariot->index + 1), param);
+        	printf("P %4d | zjmp %d OK\n", (chariot->index + 1), param);
         //print_verbose_16(war, chariot, 3);
 		chariot->pc = ((chariot->pc + param) % MEM_SIZE);
 		if (chariot->pc < 0)
@@ -36,7 +36,7 @@ int			zjmp_fct(t_war *war, t_chariot *chariot)
 	{
 		war->back_pc = 0;
 		if (war->verbose[2] == 1)
-			ft_printf("P %4d | zjmp %d FAILED\n", (chariot->index + 1), param);
+			printf("P %4d | zjmp %d FAILED\n", (chariot->index + 1), param);
 		print_verbose_16(war, chariot, 3);
  	}
  	return (SUCCESS);
