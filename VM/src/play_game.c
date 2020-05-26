@@ -110,7 +110,6 @@ int		ft_game(t_war *war, t_parse_file *file)
 
 	init_tab(opp_tab);
 	war->aff = file->a;
-	printf("file->a = %d\n", file->a);
 	war->verbose = file->verbose;
 	war->is_live = 0;
 	if ((error = ft_start_chariot(war, &chariot)) <= 0)

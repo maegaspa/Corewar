@@ -35,6 +35,7 @@ int 	init_usage(t_parse_file *file)
 	file->rk_player = 1;
 	file->cycles = -1;
 	file->sv = -1;
+	file->a = -1;
 	if (!(file->file_name = malloc(sizeof(char*) * MAX_PLAYERS + 1)))
 		return (ERROR_MALLOC);
 	if (!(file->rank_player = malloc(sizeof(int) * MAX_PLAYERS)))
@@ -145,6 +146,14 @@ int 	check_argument(t_parse_file *file, int ac, char **av)
 	{
 		if ((file->error = flag_is_dump(file, ac, av)) < 0)
 			return (file->error);
+		else if ((!ft_strcmp("-a", av[file->i])))
+        {
+        	if (file->a == -1)
+        		file->a = 1;
+            else
+            	return (ERROR_USAGE);
+            file->i++;
+        }
 		else if (file->i + 1 < ac && (!ft_strcmp("-v", av[file->i])))
 		{
 			if (((file->error = flag_is_verbose(file, ac, av)) < 0))
