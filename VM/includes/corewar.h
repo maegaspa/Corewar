@@ -125,8 +125,7 @@ typedef struct			s_war
 	int					status[4];
 	char				ocp;
 	char				*ocxp;
-	int 				*verbose;
-	int 				empty_verbose[6];
+	int 				verbose[6];
 	int					actual_cycles;//new
 	int					cycle_to_die;//new
 	int					check_cycles_to_die;//new

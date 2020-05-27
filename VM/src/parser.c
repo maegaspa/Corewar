@@ -140,6 +140,8 @@ int 	flag_is_cycles(t_parse_file *file, int ac, char **av)
 
 int 	check_argument(t_parse_file *file, int ac, char **av)
 {
+	if (ac == 1)
+		return (ERROR_USAGE);
 	if ((file->error = init_usage(file)) < 0)
 		return (file->error);
 	while (++file->i < ac)

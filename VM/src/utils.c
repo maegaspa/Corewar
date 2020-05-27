@@ -187,10 +187,7 @@ void			ft_init_war(t_parse_file file, t_war *war)
 	war->nb_chariot = war->nb_player;
 	war->dump = file.dump;
 	war->lastlive = 1;
-	if (file.cycles > -1)
-		war->to_die = file.cycles;
-	else
-		war->to_die = CYCLE_TO_DIE; //1536
+	war->to_die = CYCLE_TO_DIE; //1536
 	war->actual_cycles = 0; //new
 	war->check_cycles_to_die = 0; //new
 	ft_init_op_cycle(war); // a vpor si bien init dans parser
