@@ -141,6 +141,7 @@ int		ft_game(t_war *war, t_parse_file *file)
 
 	init_tab(opp_tab);
 	war->aff = file->a;
+	ft_bzero(war->empty_verbose, 5);
 	war->verbose = file->verbose;
 	war->is_live = 0;
 	if ((error = ft_start_chariot(war, &chariot)) <= 0)
@@ -151,10 +152,10 @@ int		ft_game(t_war *war, t_parse_file *file)
 	ft_print_war(war);
 	while (verif_endgame(war, chariot))
 	{
-		if (file->cycles > -1 && war->cycles >= file->cycles)
-			return (SUCCESS);
 		while (war->actual_cycles < war->to_die)
 		{
+			if (war->cycles == file->cycles + 1)
+				war->verbose = war->empty_verbose;
 			while (chariot)
 			{
 				ft_exec_opp(chariot, war, opp_tab);
@@ -164,7 +165,7 @@ int		ft_game(t_war *war, t_parse_file *file)
 			war->actual_cycles++;
 			if (war->verbose[3] == 1)
             	printf("It is now cycle [%d]\n", war->cycles);
-            if (file->dump == war->cycles|| file->long_dump == war->cycles)
+            if (file->dump == war->cycles || file->long_dump == war->cycles)
                 print_arena(war, file);
             war->cycles++;
 		}
