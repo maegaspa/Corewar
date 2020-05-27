@@ -32,8 +32,8 @@ int			ldi_fct(t_war *war, t_chariot *chariot)
         param2 = read_arena(war, param1);
        	if (war->rtype[1] == REG_CODE)
        	{
-       		war->tmp = (unsigned char)war->arena[chariot->start_pos + chariot->pc + 2];
-       		r = war->arena[chariot->start_pos + chariot->pc + i + 3];
+       		war->tmp = (unsigned char)war->arena[calc_addr(chariot->addr + i + 2)];
+       		r = war->arena[calc_addr(chariot->addr + i + 3)];
        		if (war->verbose[2] == 1)
 			{
 				printf("P %4d | ldi %hd %d r%d\n", (chariot->index + 1), param1, war->tmp, r);
@@ -44,7 +44,7 @@ int			ldi_fct(t_war *war, t_chariot *chariot)
        	else if (war->rtype[1] == DIR_CODE)
        	{
        		war->tmp = get_2_val(war, chariot, i + 2);
-       		r = war->arena[chariot->start_pos + chariot->pc + i + 4];
+       		r = war->arena[calc_addr(chariot->addr + i + 4)];
        		if (war->verbose[2] == 1)
        		{
 				printf("P %4d | ldi %hd %hd r%d\n", (chariot->index + 1), param1, war->tmp, r);
@@ -55,11 +55,11 @@ int			ldi_fct(t_war *war, t_chariot *chariot)
 	}
 	else if (war->rtype[0] == REG_CODE)
 	{
-		param1 = war->arena[chariot->start_pos + chariot->pc + i];
+		param1 = war->arena[calc_addr(chariot->addr + i)];
 		if (war->rtype[1] == REG_CODE)
 		{
-			param2 = war->arena[chariot->start_pos + chariot->pc + i + 1];
-			r = war->arena[chariot->start_pos + chariot->pc + i + 2];
+			param2 = war->arena[calc_addr(chariot->addr + i + 1)];
+			r = war->arena[calc_addr(chariot->addr + i + 2)];
 			if (war->verbose[2] == 1)
 			{
 				printf("P %4d | ldi %d %d r%d\n", (chariot->index + 1), chariot->registres[param1 - 1], chariot->registres[param2 - 1], r);
@@ -70,7 +70,7 @@ int			ldi_fct(t_war *war, t_chariot *chariot)
 		else if (war->rtype[1] == DIR_CODE)
 		{
 			param2 = get_2_val(war, chariot, i + 1);
-			r = war->arena[chariot->start_pos + chariot->pc + i + 3];
+			r = war->arena[calc_addr(chariot->addr + i + 3)];
 			if (war->verbose[2] == 1)
 			{
 				printf("P %4d | ldi %d %hd r%d\n", (chariot->index + 1), param1, param2, r);
@@ -86,7 +86,7 @@ int			ldi_fct(t_war *war, t_chariot *chariot)
 		if (war->rtype[1] == DIR_CODE)
 		{
 			param2 = get_2_val(war, chariot, i + 2);
-			r = war->arena[chariot->start_pos + chariot->pc + i + 4];
+			r = war->arena[calc_addr(chariot->addr + i + 4)];
 			if (war->verbose[2] == 1)
 			{
 				printf("P %4d | ldi %hd %d r%hd\n", (chariot->index + 1), param1, param2, r);
@@ -96,8 +96,8 @@ int			ldi_fct(t_war *war, t_chariot *chariot)
 		}
 		else if (war->rtype[1] == REG_CODE)
 		{
-			param2 = war->arena[chariot->start_pos + chariot->pc + i + 2];
-			r = war->arena[chariot->start_pos + chariot->pc + i + 3];
+			param2 = war->arena[calc_addr(chariot->addr + i + 2)];
+			r = war->arena[calc_addr(chariot->addr + i + 3)];
 			if (war->verbose[2] == 1)
 			{
 				printf("P %4d | ldi %hd %d r%d\n", (chariot->index + 1), param1, param2, r);

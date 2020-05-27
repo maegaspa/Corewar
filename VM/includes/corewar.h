@@ -85,6 +85,7 @@ typedef struct			s_chariot
 	int					ope;
 	int					registres[REG_NUMBER]; //char?
 	int					index;
+	int 				addr;
 
 	int					prev_cursor;
     int					player;//pour visu
@@ -183,7 +184,8 @@ int					check_argument(t_parse_file *file, int ac, char **av);
 */
 
 int					ft_get_op(t_war *war, t_chariot *chariot);
-void					ft_exec_opp(t_chariot *chariot, t_war *war, t_opp *opp_tab);
+void				ft_exec_opp(t_chariot *chariot, t_war *war, t_opp *opp_tab);
+int 				calc_addr(int addr);
 
 /*
 ** test_function_tab

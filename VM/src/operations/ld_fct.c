@@ -22,7 +22,7 @@ int   get_4_val(t_war *war, t_chariot *chariot, int i)
   while (i < tmp + 4)
   {
     res = res << 8;
-    res = res + (unsigned char)war->arena[chariot->start_pos + chariot->pc + i];
+    res = res + (unsigned char)war->arena[calc_addr(chariot->addr + i)];
     i++;
   }
   return (res);
@@ -42,19 +42,19 @@ int			ld_fct(t_war *war, t_chariot *chariot)
 	{
 		param1 = get_4_val(war, chariot, i);
         if (war->verbose[2] == 1)
-            printf("P %4d | ld %d r%d\n", (chariot->index + 1), param1, (unsigned char)war->arena[chariot->start_pos + chariot->pc + 6]);
+            printf("P %4d | ld %d r%d\n", (chariot->index + 1), param1, (unsigned char)war->arena[calc_addr(chariot->addr + 6)]);
         print_verbose_16(war, chariot, 7);
-		r = war->arena[chariot->start_pos + chariot->pc + i + 4];
+		r = war->arena[calc_addr(chariot->addr + i + 4)];
 		chariot->registres[(unsigned char)r - 1] = param1;
 	}
 	if (war->rtype[0] == IND_CODE)
 	{
 		param1 = get_2_val(war, chariot, i);
         if (war->verbose[2] == 1)
-            printf("P %4d | ld %hd r%d\n", (chariot->index + 1), param1, (unsigned char)war->arena[chariot->start_pos + chariot->pc + 4]);
+            printf("P %4d | ld %hd r%d\n", (chariot->index + 1), param1, (unsigned char)war->arena[calc_addr(chariot->addr + 4)]);
 		print_verbose_16(war, chariot, 5);
 		param2 = read_arena(war, param1);
-		r = war->arena[chariot->start_pos + chariot->pc + i + 2];
+		r = war->arena[calc_addr(chariot->addr + i + 2)];
 		chariot->registres[(unsigned char)r - 1] = param2;
 	}
 	if (param1 == 0)

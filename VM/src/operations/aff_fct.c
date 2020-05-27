@@ -18,7 +18,7 @@ int			aff_fct(t_war *war, t_chariot *chariot)
 
 //	if (war->verbose[2] == 1)
 //        printf("P %4d | aff r%d\n", (chariot->index + 1), (unsigned char)war->arena[chariot->start_pos + chariot->pc + 2]);
-	value = war->arena[chariot->start_pos + chariot->pc + 2];
+	value = war->arena[calc_addr(chariot->addr + 2)];
 	value = chariot->registres[value - 1];
 	value %= 256;
 	if (war->aff == 1)

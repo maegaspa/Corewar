@@ -19,20 +19,7 @@ int			ft_get_op(t_war *war, t_chariot *chariot)
 
 	if (chariot->ope != -1)
 		return (0);
-//	if (!chariot->start_pos)
-//		chariot->start_pos = war->player[chariot->player].pos_arena;
-	pos = chariot->start_pos + chariot->pc;
-//	if (pos > MEM_SIZE)
-//    	pos %= MEM_SIZE;
-//	if (war->cycles > 23300)
-//    	printf("indexchar = %d | %d==%d || %d==%d et %x %x %x %x %x %x %x %x %x %x %x\n", chariot->index, pos, MEM_SIZE, chariot->start_pos, chariot->pc, (unsigned char)war->arena[1760], (unsigned char)war->arena[1761], (unsigned char)war->arena[1762], (unsigned char)war->arena[1763], (unsigned char)war->arena[1764], (unsigned char)war->arena[1765], (unsigned char)war->arena[1766], (unsigned char)war->arena[1767], (unsigned char)war->arena[1768], (unsigned char)war->arena[1769], (unsigned char)war->arena[1770]);
-//	if (war->cycles > 23300)
-//    	printf("war->arena[%d] = %x\n", pos, (unsigned char)war->arena[pos]);
-	if (pos >= MEM_SIZE - 1)
-	{
-		chariot->pc = -1;
-		chariot->start_pos = 0;
-	}
+	pos = calc_addr(chariot->start_pos + chariot->pc);
 	if (war->arena[pos] > 16 || war->arena[pos] <= 0)
 	{
 		chariot->pc++;
@@ -93,6 +80,7 @@ void		ft_exec_opp(t_chariot *chariot, t_war *war, t_opp *opp_tab)
 	{
 		if ((jump = ft_tcheck_ocp(chariot, war)))
 		{
+			chariot->addr = calc_addr(chariot->start_pos + chariot->pc);
 			opp_tab[chariot->ope - 1](war, chariot);
 			if (war->back_pc == 0)
 				chariot->pc += jump;
@@ -104,3 +92,10 @@ void		ft_exec_opp(t_chariot *chariot, t_war *war, t_opp *opp_tab)
 		chariot->wait = war->op_cycle[chariot->ope - 1];
 }
 
+int 	calc_addr(int addr)
+{
+	addr %= MEM_SIZE;
+	if (addr < 0)
+		addr += MEM_SIZE;
+	return (addr);
+}

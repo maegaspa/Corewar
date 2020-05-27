@@ -23,8 +23,8 @@ int			xor_fct(t_war *war, t_chariot *chariot)
 	if (war->rtype[0] == REG_CODE)//REG
 	{
 		if (war->verbose[2] == 1)
-			printf("P %4d | xor %d ", (chariot->index + 1), (unsigned char)war->arena[chariot->start_pos + chariot->pc + 2]);
-		param1 = chariot->registres[(unsigned char)war->arena[chariot->start_pos + chariot->pc + 2] - 1];
+			printf("P %4d | xor %d ", (chariot->index + 1), (unsigned char)war->arena[calc_addr(chariot->addr + 2)]);
+		param1 = chariot->registres[(unsigned char)war->arena[calc_addr(chariot->addr + 2)] - 1];
 		i = 3;
 	}
 	else if (war->rtype[0] == IND_CODE)//IND
@@ -45,8 +45,8 @@ int			xor_fct(t_war *war, t_chariot *chariot)
 	if (war->rtype[1] == REG_CODE)
 	{
 		if (war->verbose[2] == 1)
-			printf("%d", (unsigned char)war->arena[chariot->start_pos + chariot->pc + i]);
-		param2 = chariot->registres[(unsigned char)war->arena[chariot->start_pos + chariot->pc + i] - 1];
+			printf("%d", (unsigned char)war->arena[calc_addr(chariot->addr + i)]);
+		param2 = chariot->registres[(unsigned char)war->arena[calc_addr(chariot->addr + i)] - 1];
 		i++;
 	}
 	else if (war->rtype[1] == IND_CODE)
@@ -64,7 +64,7 @@ int			xor_fct(t_war *war, t_chariot *chariot)
 			printf("%d", param2);
 		i += 4;
 	}
-	r = (unsigned char)war->arena[chariot->start_pos + chariot->pc + i];
+	r = (unsigned char)war->arena[calc_addr(chariot->addr + i)];
 	if (war->verbose[2] == 1)
 		printf(" r%d\n", r);
 	print_verbose_16(war, chariot, i + 1);

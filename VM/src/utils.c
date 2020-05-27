@@ -200,11 +200,11 @@ void        print_verbose_16(t_war *war, t_chariot *chariot, int size)
 	if (war->verbose[0] == 1)
 	{
 		i = 0;
-		war->status[chariot->player - 1] = chariot->pc + chariot->start_pos;
+		war->status[chariot->player - 1] = calc_addr(chariot->pc + chariot->start_pos);
 		printf("ADV %d (0x%04x -> %#06x) ", size, war->status[chariot->player - 1], war->status[chariot->player - 1] + size);
 		while (i < size)
 		{
-			printf("%02x", (unsigned char)war->arena[chariot->start_pos + chariot->pc + i]);
+			printf("%02x", (unsigned char)war->arena[calc_addr(chariot->start_pos + chariot->pc + i)]);
 			i++;
 			if (i != size)
 				printf(" ");
