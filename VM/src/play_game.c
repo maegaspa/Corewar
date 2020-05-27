@@ -6,7 +6,7 @@
 /*   By: hmichel <hmichel@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 17:21:32 by seanseau          #+#    #+#             */
-/*   Updated: 2020/05/22 16:16:14 by hmichel          ###   ########lyon.fr   */
+/*   Updated: 2020/05/27 22:00:01 by hmichel          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,14 @@ int			is_conform2(char ocp, int param, int ope)
 
 int		get_bin_ocp(t_chariot *chariot, t_war *war)
 {
-	unsigned char ocp;
+	unsigned char	ocp;
+	int				i;
 
+	i = -1;
 	if (!(war->rtype = malloc(sizeof(int) * 3)))
     		return (ERROR_MALLOC);
+	while (++i < 3)
+		war->rtype[i] = -1;
 	ocp = war->arena[chariot->start_pos + chariot->pc + 1];
     if (!(war->rtype[0] = is_conform2((ocp >> 6), 0, chariot->ope - 1)))
     	return (FAILURE);
