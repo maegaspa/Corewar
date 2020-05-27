@@ -88,14 +88,14 @@ int		v_alive_chariot(t_chariot *chariot, t_war *war)
 
 int		verif_endgame(t_war *war, t_chariot *chariot)
 {
-	printf("DEBUT verif_endgame\n");
+	//printf("DEBUT verif_endgame\n");
 	if (war->actual_cycles == 0) //debut de partie 
 		return (SUCCESS);
 	if (v_alive_chariot(chariot, war) >= NBR_LIVE || war->check_cycles_to_die == MAX_CHECKS)
 	{
 		war->to_die -= CYCLE_DELTA;
 		printf("To_die - cycle_delta = %d\n", war->to_die);
-
+//		reset_lives_chariot(war);
 		if (war->to_die < 0)
 			war->to_die = 0;
 		war->check_cycles_to_die = 0;
@@ -106,10 +106,11 @@ int		verif_endgame(t_war *war, t_chariot *chariot)
 		printf("war->check_cycles_to_die++\n");
 	}
 	//if (war->to_die == 0)
-	if (war->begin == NULL || war->to_die == 0)
+	if (/*war->begin == NULL ||*/ war->to_die == 0)
 	{
 		if (war->verbose[3] == 1)
-			printf("It is now cycle [%d]\nContestant %d, \"%s\", has won !\n", war->cycles, war->lastlive, war->player[war->lastlive - 1].header.prog_name);//on observe last live pour le vainqueur
+			printf("It is now cycle [%d]\n", war->cycles);//on observe last live pour le vainqueur
+		printf("Contestant %d, \"%s\", has won !\n", war->lastlive, war->player[war->lastlive - 1].header.prog_name);
 		return (FAILURE);
 	}
 	war->actual_cycles = 0;

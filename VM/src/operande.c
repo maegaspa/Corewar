@@ -58,6 +58,8 @@ int			ft_tcheck_ocp(t_chariot *chariot, t_war *war)//return jump
 		return (3);
 	jump = 2;
 	ocp = war->arena[chariot->start_pos + chariot->pc + 1];
+	if (ocp <= 0)
+		return (FAILURE);
 	if (!(jump += is_conform((ocp >> 6), 0, chariot->ope - 1)))
 		return (FAILURE);
 	if (g_op_tab[chariot->ope - 1].nb_params >= 2)

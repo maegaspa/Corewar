@@ -40,21 +40,33 @@ int			ld_fct(t_war *war, t_chariot *chariot)
 	get_bin_ocp(chariot, war);
 	if (war->rtype[0] == DIR_CODE)
 	{
-		param1 = get_4_val(war, chariot, i);
-        if (war->verbose[2] == 1)
-            printf("P %4d | ld %d r%d\n", (chariot->index + 1), param1, (unsigned char)war->arena[calc_addr(chariot->addr + 6)]);
-        print_verbose_16(war, chariot, 7);
 		r = war->arena[calc_addr(chariot->addr + i + 4)];
+		param1 = get_4_val(war, chariot, i);
+        if (war->verbose[2] == 1 && r > 0 && r <= 16)
+            printf("P %4d | ld %d r%d\n", (chariot->index + 1), param1, (unsigned char)war->arena[calc_addr(chariot->addr + 6)]);
+		if (r > 16 || r <= 0)
+		{
+			print_verbose_16(war, chariot, 7);
+        	return(FAILURE);
+		}
+		else
+			 print_verbose_16(war, chariot, 7);
 		chariot->registres[(unsigned char)r - 1] = param1;
 	}
 	if (war->rtype[0] == IND_CODE)
 	{
-		param1 = get_2_val(war, chariot, i);
-        if (war->verbose[2] == 1)
-            printf("P %4d | ld %hd r%d\n", (chariot->index + 1), param1, (unsigned char)war->arena[calc_addr(chariot->addr + 4)]);
-		print_verbose_16(war, chariot, 5);
-		param2 = read_arena(war, param1);
 		r = war->arena[calc_addr(chariot->addr + i + 2)];
+		param1 = get_2_val(war, chariot, i);
+        if (war->verbose[2] == 1 && r > 0 && r <= 16)
+            printf("P %4d | ld %hd r%d\n", (chariot->index + 1), param1, (unsigned char)war->arena[calc_addr(chariot->addr + 4)]);
+		if (r > 16 || r <= 0)
+		{
+			print_verbose_16(war, chariot, 5);
+			return (FAILURE);
+		}
+		else
+			print_verbose_16(war, chariot, 5);
+		param2 = read_arena(war, param1);
 		chariot->registres[(unsigned char)r - 1] = param2;
 	}
 	if (param1 == 0)
