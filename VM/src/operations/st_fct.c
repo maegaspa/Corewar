@@ -19,10 +19,12 @@ int			st_fct(t_war *war, t_chariot *chariot)
 	int pos;
 
 	i = 3;
+//	if (war->cycles > 23300)
+//    	printf("dans st chariot->start_pos = %d\n", chariot->start_pos);
 	pos = chariot->start_pos + chariot->pc;
 	get_bin_ocp(chariot, war);
-	if (chariot->registres[0] == 0)
-		chariot->carry = 1;
+//	if (chariot->registres[0] == 0)
+//		chariot->carry = 1;
 	if (war->rtype[1] == IND_CODE)
 	{
 		param = get_2_val(war, chariot, i);
@@ -35,8 +37,8 @@ int			st_fct(t_war *war, t_chariot *chariot)
 	{
 		if (war->verbose[2] == 1)
         	printf("P %4d | st r%d %d\n", (chariot->index + 1), (unsigned char)war->arena[pos + 2], (unsigned char)war->arena[pos + 3]);
-        print_verbose_16(war, chariot, 5);
-		chariot->registres[war->arena[(pos + 3)] - 1] = chariot->registres[war->arena[(pos + 2)] - 1];
+        print_verbose_16(war, chariot, 4);
+		chariot->registres[(unsigned char)war->arena[(pos + 3)] - 1] = chariot->registres[(unsigned char)war->arena[(pos + 2)] - 1];
 	}
 	return (0);
 }

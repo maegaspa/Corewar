@@ -12,7 +12,7 @@
 
 #include "../../includes/corewar.h"
 
-static	t_chariot *ft_fork_chariot(t_chariot *chariot, int param, t_war *war)
+static	t_chariot *ft_lfork_chariot(t_chariot *chariot, int param, t_war *war)
 {
 	t_chariot	*new;
 	int			i;
@@ -45,7 +45,7 @@ int			lfork_fct(t_war *war, t_chariot *chariot)
         printf("P %4d | lfork %hd (%d)\n", (chariot->index + 1), para_dir, (chariot->pc + para_dir));
     print_verbose_16(war, chariot, 3);
 	war->nb_chariot++;
-	if (!(tmp_char = ft_fork_chariot(chariot, para_dir, war)))
+	if (!(tmp_char = ft_lfork_chariot(chariot, para_dir, war)))
 		return (ERROR_MALLOC);
 	war->begin = tmp_char;
 	if (ft_get_op(war, war->begin) == 1)

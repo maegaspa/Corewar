@@ -186,6 +186,7 @@ void			ft_init_war(t_parse_file file, t_war *war)
 	war->nb_player = file.nb_player;
 	war->nb_chariot = war->nb_player;
 	war->dump = file.dump;
+	war->lastlive = 1;
 	if (file.cycles > -1)
 		war->to_die = file.cycles;
 	else

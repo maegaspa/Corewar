@@ -35,7 +35,7 @@ int			live_fct(t_war *war, t_chariot *chariot)
 				printf("Player %d (%s) is said to be alive\n", (nb_player * -1), war->player[(nb_player * -1) - 1].header.prog_name);
 			war->lastlive = nb_player * -1;
 //			if (nb_player < 0)
-			war->is_live = 1;
+			//war->is_live = 1;
 			print_verbose_16(war, chariot, 5);
 			return (0);
 		}

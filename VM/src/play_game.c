@@ -12,95 +12,126 @@
 
 #include "../includes/corewar.h"
 
-void	get_param(t_war *war, char *str)
+int			is_conform2(char ocp, int param, int ope)
 {
-	if (!(war->rtype = malloc(sizeof(int) * 3)))
-		return ;
-	if (str[0] == '1' && str[1] == '0')
-		war->rtype[0] = DIR_CODE;
-	else if (str[0] == '0' && str[1] == '1')
-		war->rtype[0] = REG_CODE;
-	else if (str[0] == '1' && str[1] == '1')
-		war->rtype[0] = IND_CODE;
-	else
-		war->rtype[0] = 0;
-	if (str[2] == '1' && str[3] == '0')
-		war->rtype[1] = DIR_CODE;
-	else if (str[2] == '0' && str[3] == '1')
-		war->rtype[1] = REG_CODE;
-	else if (str[2] == '1' && str[3] == '1')
-		war->rtype[1] = IND_CODE;
-	else
-		war->rtype[1] = 0;
-	if (str[4] == '1' && str[5] == '0')
-		war->rtype[2] = DIR_CODE;
-	else if (str[4] == '0' && str[5] == '1')
-		war->rtype[2] = REG_CODE;
-	else if (str[4] == '1' && str[5] == '1')
-		war->rtype[2] = IND_CODE;
-	else
-		war->rtype[2] = 0;
-}
-
-void	fill_bin(char *str, char *fill, int j)
-{
-	int i;
-
-	i = -1;
-	while (fill[++i])
-		str[j++] = fill[i];
+//	if (ocp == 0)
+//		return (0);
+	if (ocp == 1 && (0x01 & g_op_tab[ope].params_type[param]))
+		return (REG_CODE);
+	if (ocp == 2 && (0x02 & g_op_tab[ope].params_type[param]))
+		return (DIR_CODE);
+	if (ocp == 3 && (0x04 & g_op_tab[ope].params_type[param]))
+		return (IND_CODE);
+	return (0);
 }
 
 int		get_bin_ocp(t_chariot *chariot, t_war *war)
 {
-	int 	i;
-	char	str[10];
-	int 	j;
+	unsigned char ocp;
 
-	i = -1;
-	j = 0;
-	war->ocp = war->arena[chariot->start_pos + chariot->pc + 1];
-	war->ocxp = ft_itoa_base((unsigned char)war->ocp, 16);
-	while (war->ocxp[++i])
-	{
-		if (war->ocxp[i] == '0')
-			fill_bin(str, "0000", j);
-		if (war->ocxp[i] == '1')
-			fill_bin(str, "0001", j);
-		if (war->ocxp[i] == '2')
-			fill_bin(str, "0010", j);
-		if (war->ocxp[i] == '3')
-			fill_bin(str, "0011", j);
-		if (war->ocxp[i] == '4')
-			fill_bin(str, "0100", j);
-		if (war->ocxp[i] == '5')
-			fill_bin(str, "0101", j);
-		if (war->ocxp[i] == '6')
-			fill_bin(str, "0110", j);
-		if (war->ocxp[i] == '7')
-			fill_bin(str, "0111", j);
-		if (war->ocxp[i] == '8')
-			fill_bin(str, "1000", j);
-		if (war->ocxp[i] == '9')
-			fill_bin(str, "1001", j);
-		if (war->ocxp[i] == 'a' || war->ocxp[i] == 'A')
-			fill_bin(str, "1010", j);
-		if (war->ocxp[i] == 'b' || war->ocxp[i] == 'B')
-			fill_bin(str, "1011", j);
-		if (war->ocxp[i] == 'c' || war->ocxp[i] == 'C')
-			fill_bin(str, "1100", j);
-		if (war->ocxp[i] == 'd' || war->ocxp[i] == 'D')
-			fill_bin(str, "1101", j);
-		if (war->ocxp[i] == 'e' || war->ocxp[i] == 'E')
-			fill_bin(str, "1110", j);
-		if (war->ocxp[i] == 'f' || war->ocxp[i] == 'F')
-			fill_bin(str, "1111", j);
-		j = 4;
-	}
-	str[9] = '\0';
-	get_param(war, str);
-	return (SUCCESS);
+	if (!(war->rtype = malloc(sizeof(int) * 3)))
+    		return (ERROR_MALLOC);
+	ocp = war->arena[chariot->start_pos + chariot->pc + 1];
+    if (!(war->rtype[0] = is_conform2((ocp >> 6), 0, chariot->ope - 1)))
+    	return (FAILURE);
+    if (g_op_tab[chariot->ope - 1].nb_params >= 2)
+    	if (!(war->rtype[1] = is_conform2(((ocp & 0x30) >> 4), 1, chariot->ope - 1)))
+    		return (FAILURE);
+    if (g_op_tab[chariot->ope - 1].nb_params == 3)
+    	if (!(war->rtype[2] = is_conform2(((ocp & 0x0C) >> 2), 2, chariot->ope - 1)))
+    		return (FAILURE);
+    return (SUCCESS);
 }
+
+//void	get_param(t_war *war, char *str)
+//{
+//	if (!(war->rtype = malloc(sizeof(int) * 3)))
+//		return ;
+//	if (str[0] == '1' && str[1] == '0')
+//		war->rtype[0] = DIR_CODE;
+//	else if (str[0] == '0' && str[1] == '1')
+//		war->rtype[0] = REG_CODE;
+//	else if (str[0] == '1' && str[1] == '1')
+//		war->rtype[0] = IND_CODE;
+//	else
+//		war->rtype[0] = 0;
+//	if (str[2] == '1' && str[3] == '0')
+//		war->rtype[1] = DIR_CODE;
+//	else if (str[2] == '0' && str[3] == '1')
+//		war->rtype[1] = REG_CODE;
+//	else if (str[2] == '1' && str[3] == '1')
+//		war->rtype[1] = IND_CODE;
+//	else
+//		war->rtype[1] = 0;
+//	if (str[4] == '1' && str[5] == '0')
+//		war->rtype[2] = DIR_CODE;
+//	else if (str[4] == '0' && str[5] == '1')
+//		war->rtype[2] = REG_CODE;
+//	else if (str[4] == '1' && str[5] == '1')
+//		war->rtype[2] = IND_CODE;
+//	else
+//		war->rtype[2] = 0;
+//}
+//
+//void	fill_bin(char *str, char *fill, int j)
+//{
+//	int i;
+//
+//	i = -1;
+//	while (fill[++i])
+//		str[j++] = fill[i];
+//}
+//
+//int		get_bin_ocp(t_chariot *chariot, t_war *war)
+//{
+//	int 	i;
+//	char	str[10];
+//	int 	j;
+//
+//	i = -1;
+//	j = 0;
+//	war->ocp = war->arena[chariot->start_pos + chariot->pc + 1];
+//	war->ocxp = ft_itoa_base((unsigned char)war->ocp, 16);
+//	while (war->ocxp[++i])
+//	{
+//		if (war->ocxp[i] == '0')
+//			fill_bin(str, "0000", j);
+//		if (war->ocxp[i] == '1')
+//			fill_bin(str, "0001", j);
+//		if (war->ocxp[i] == '2')
+//			fill_bin(str, "0010", j);
+//		if (war->ocxp[i] == '3')
+//			fill_bin(str, "0011", j);
+//		if (war->ocxp[i] == '4')
+//			fill_bin(str, "0100", j);
+//		if (war->ocxp[i] == '5')
+//			fill_bin(str, "0101", j);
+//		if (war->ocxp[i] == '6')
+//			fill_bin(str, "0110", j);
+//		if (war->ocxp[i] == '7')
+//			fill_bin(str, "0111", j);
+//		if (war->ocxp[i] == '8')
+//			fill_bin(str, "1000", j);
+//		if (war->ocxp[i] == '9')
+//			fill_bin(str, "1001", j);
+//		if (war->ocxp[i] == 'a' || war->ocxp[i] == 'A')
+//			fill_bin(str, "1010", j);
+//		if (war->ocxp[i] == 'b' || war->ocxp[i] == 'B')
+//			fill_bin(str, "1011", j);
+//		if (war->ocxp[i] == 'c' || war->ocxp[i] == 'C')
+//			fill_bin(str, "1100", j);
+//		if (war->ocxp[i] == 'd' || war->ocxp[i] == 'D')
+//			fill_bin(str, "1101", j);
+//		if (war->ocxp[i] == 'e' || war->ocxp[i] == 'E')
+//			fill_bin(str, "1110", j);
+//		if (war->ocxp[i] == 'f' || war->ocxp[i] == 'F')
+//			fill_bin(str, "1111", j);
+//		j = 4;
+//	}
+//	str[9] = '\0';
+//	get_param(war, str);
+//	return (SUCCESS);
+//}
 
 int		ft_game(t_war *war, t_parse_file *file)
 {

@@ -109,7 +109,7 @@ int		verif_endgame(t_war *war, t_chariot *chariot)
 	if (war->begin == NULL || war->to_die == 0)
 	{
 		if (war->verbose[3] == 1)
-			printf("It is now cycle [%d]\nContestant %d, \"%s\", has won ! \n", war->cycles, war->lastlive, war->player[war->lastlive - 1].header.prog_name);//on observe last live pour le vainqueur
+			printf("It is now cycle [%d]\nContestant %d, \"%s\", has won !\n", war->cycles, war->lastlive, war->player[war->lastlive - 1].header.prog_name);//on observe last live pour le vainqueur
 		return (FAILURE);
 	}
 	war->actual_cycles = 0;

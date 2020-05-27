@@ -62,8 +62,8 @@ int			ldi_fct(t_war *war, t_chariot *chariot)
 			r = war->arena[chariot->start_pos + chariot->pc + i + 2];
 			if (war->verbose[2] == 1)
 			{
-				printf("P %4d | ldi %d %d r%d\n", (chariot->index + 1), param1, param2, r);
-				printf("       | -> load to  %d + %d = %d (with pc and mod %d)\n", param1, param2, param1 + param2, chariot->pc + (((param1 + param2) % IDX_MOD)));
+				printf("P %4d | ldi %d %d r%d\n", (chariot->index + 1), chariot->registres[param1 - 1], chariot->registres[param2 - 1], r);
+				printf("       | -> load to  %d + %d = %d (with pc and mod %d)\n", chariot->registres[param1 - 1], chariot->registres[param2 - 1], chariot->registres[param1 - 1] + chariot->registres[param2 - 1], chariot->pc + (((chariot->registres[param1 - 1] + chariot->registres[param2 - 1]) % IDX_MOD)));
 			}
 			print_verbose_16(war, chariot, 5);
 		}
@@ -109,6 +109,6 @@ int			ldi_fct(t_war *war, t_chariot *chariot)
 	p3 = read_arena(war, (param1 + param2) % IDX_MOD + chariot->start_pos + chariot->pc);
 //	p3 = ((param1 + param2) % IDX_MOD);
 //	p3 = ((chariot->start_pos - i + p3) % MEM_SIZE);
-	chariot->registres[r - 1] = p3;
+	chariot->registres[(unsigned char)r - 1] = p3;
 	return (0);
 }

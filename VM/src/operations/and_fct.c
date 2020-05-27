@@ -65,11 +65,11 @@ int			and_fct(t_war *war, t_chariot *chariot)
 			printf("%d", param2);
 		i += 4;
 	}
-	r = (unsigned char)war->arena[chariot->start_pos + chariot->pc + i];
+	r = war->arena[chariot->start_pos + chariot->pc + i];
 	if (war->verbose[2] == 1)
 		printf(" r%d\n", r);
 	print_verbose_16(war, chariot, i + 1);
-	chariot->registres[r - 1] = param1 & param2;
+	chariot->registres[(unsigned char)r - 1] = param1 & param2;
 	if ((param1 & param2) == 0)
 		chariot->carry = 1;
 	else
