@@ -6,7 +6,7 @@
 /*   By: hmichel <hmichel@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 17:21:42 by seanseau          #+#    #+#             */
-/*   Updated: 2020/05/27 21:54:09 by hmichel          ###   ########lyon.fr   */
+/*   Updated: 2020/05/28 03:59:06 by hmichel          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,12 +182,15 @@ void	init_tab(t_opp *opp_tab)
 
 void			ft_init_war(t_parse_file file, t_war *war)
 {
-	war->cycles = 1;
+	war->cycles = 0;
 	war->nb_player = file.nb_player;
 	war->nb_chariot = war->nb_player;
 	war->dump = file.dump;
-	war->lastlive = 1;
-	war->to_die = CYCLE_TO_DIE; //1536
+	war->lastlive = -1;
+	war->nb_lives = 0; //new
+	war->next_check = CYCLE_TO_DIE;
+	war->check_cycles_to_die = 0;
+	war->cycle_to_die = CYCLE_TO_DIE;
 	war->actual_cycles = 0; //new
 	war->check_cycles_to_die = 0; //new
 	ft_init_op_cycle(war); // a vpor si bien init dans parser

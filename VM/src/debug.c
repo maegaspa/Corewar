@@ -6,7 +6,7 @@
 /*   By: hmichel <hmichel@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/28 14:33:51 by hmichel           #+#    #+#             */
-/*   Updated: 2020/02/28 15:58:51 by hmichel          ###   ########lyon.fr   */
+/*   Updated: 2020/05/28 03:23:47 by hmichel          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void		ft_print_chariot(t_chariot *chariot, int reg) //reg == 1 <=> print 16 REG
 void		ft_print_war(t_war *war)
 {
 	printf("\n#------war-------#\n");
-	printf("nb_player = %d\nto_die = %d\ncycles = %d\ndump = %d\n ", war->nb_player, war->to_die, war->cycles, war->dump);
+	printf("nb_player = %d\nto_die = %d\ncycles = %d\ndump = %d\n ", war->nb_player, war->cycle_to_die, war->cycles, war->dump);
 	if ((war->begin))
 		printf("begin : %p <=> chariot %d\n", (war->begin), (war->begin)->index);
 	else

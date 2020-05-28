@@ -6,7 +6,7 @@
 /*   By: hmichel <hmichel@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 21:49:44 by hmichel           #+#    #+#             */
-/*   Updated: 2020/05/27 01:05:04 by hmichel          ###   ########lyon.fr   */
+/*   Updated: 2020/05/28 03:00:44 by hmichel          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,10 @@ int			ft_tcheck_ocp(t_chariot *chariot, t_war *war)//return jump
 	int					jump;
 
 	if (chariot->ope == 1)
+	{
+		chariot->live++;
 		return (5);
+	}
 	if (g_op_tab[chariot->ope - 1].acb == 0)
 		return (3);
 	jump = 2;

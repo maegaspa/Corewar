@@ -6,7 +6,7 @@
 /*   By: hmichel <hmichel@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/28 12:17:46 by hmichel           #+#    #+#             */
-/*   Updated: 2020/05/27 21:54:42 by hmichel          ###   ########lyon.fr   */
+/*   Updated: 2020/05/28 03:26:42 by hmichel          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,6 @@ typedef struct			s_war
 	int					nb_player;
 	int					op_cycle[16];
 	char				arena[MEM_SIZE];
-	int					to_die;
 	int					cycles;
 	int					dump;
 	int					*rtype;
@@ -130,6 +129,8 @@ typedef struct			s_war
 	int					actual_cycles;//new
 	int					cycle_to_die;//new
 	int					check_cycles_to_die;//new
+	int					nb_lives; //new
+	int					next_check; //new
 	t_chariot			*begin;
 //	t_visual			visual;//visu lol
 }						t_war;
@@ -236,4 +237,8 @@ void		get_valid_name(t_war *war);
 ** verif_endgame.c
 */
 int		verif_endgame(t_war *war, t_chariot *chariot);
+int		check_cycle(t_war *war, t_chariot *chariot);
+int		v_alive_chariot(t_chariot *chariot, t_war *war);
+void	reset_lives_chariot(t_war *war);
+
 #endif

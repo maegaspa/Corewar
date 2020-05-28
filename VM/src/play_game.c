@@ -6,7 +6,7 @@
 /*   By: hmichel <hmichel@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 17:21:32 by seanseau          #+#    #+#             */
-/*   Updated: 2020/05/27 22:00:01 by hmichel          ###   ########lyon.fr   */
+/*   Updated: 2020/05/28 03:19:50 by hmichel          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,36 +59,30 @@ int		ft_game(t_war *war, t_parse_file *file)
 	i = -1;
 	while (++i < 6)
 		war->verbose[i] = file->verbose[i];
-	war->is_live = 0;
 	if ((error = ft_start_chariot(war, &chariot)) <= 0)
 		return (error);
 	war->begin = chariot;
 	chariot->pc = 0;
 	war->back_pc = 0;
 	ft_print_war(war);
-	while (verif_endgame(war, chariot))
+	while (check_cycle(war, chariot))
 	{
-		while (war->actual_cycles < war->to_die)
+		if (war->cycles == file->cycles + 1)
 		{
-			if (war->cycles == file->cycles + 1)
-			{
-				i = -1;
-				while (++i < 6)
-					war->verbose[i] = 0;
-			}
-			while (chariot)
-			{
-				ft_exec_opp(chariot, war, opp_tab);
-				chariot = chariot->next;
-			}
-			chariot = war->begin;
-			war->actual_cycles++;
-			if (war->verbose[3] == 1)
-            	printf("It is now cycle [%d]\n", war->cycles);
-            if (file->dump == war->cycles || file->long_dump == war->cycles)
-                print_arena(war, file);
-            war->cycles++;
+			i = -1;
+			while (++i < 6)
+				war->verbose[i] = 0;
 		}
+		while (chariot)
+		{
+			ft_exec_opp(chariot, war, opp_tab);
+			chariot = chariot->next;
+		}
+		chariot = war->begin;
+		if (war->verbose[3] == 1)
+           	printf("It is now cycle [%d]\n", war->cycles);
+        if (file->dump == war->cycles || file->long_dump == war->cycles)
+			print_arena(war, file);
 	}
 	return (SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: hmichel <hmichel@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 16:10:31 by seanseau          #+#    #+#             */
-/*   Updated: 2020/05/22 16:44:34 by hmichel          ###   ########lyon.fr   */
+/*   Updated: 2020/05/28 03:59:10 by hmichel          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ int			live_fct(t_war *war, t_chariot *chariot)
 	int i;
 
 	//ch = war->begin;
-	chariot->live++;
 	war->lastlive = 0;
+	war->nb_lives++;
 	//printf("LIVE_FCT : index_chariot : %d\tto_die : %d et pc = [%d]\n", chariot->index, war->to_die, chariot->pc);
 	nb_player = get_4_val(war, chariot, 1);
 //	if(war->cycles > 27000)

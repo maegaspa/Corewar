@@ -12,7 +12,6 @@
 
 #include "../includes/corewar.h"
 
-//nouvelles variables: actual_cycles dans war,
 /*void	free_chariot(t_chariot *chariot)
 {
 	//int		i_moove;
@@ -64,7 +63,7 @@ void	reset_lives_chariot(t_war *war)
 		temp = temp->next;
 	}
 }
-
+/*
 int		v_alive_chariot(t_chariot *chariot, t_war *war)
 {
 	int cpt_lives;
@@ -84,8 +83,22 @@ int		v_alive_chariot(t_chariot *chariot, t_war *war)
 	if (cpt_lives >= NBR_LIVE)
     	reset_lives_chariot(war);
 	return (cpt_lives);
-}
+}*/
 
+int		v_alive_chariot(t_chariot *chariot, t_war *war)
+{
+	while (chariot)
+	{
+		//printf("chariot++\n");
+		if (chariot->live == 0)
+			delete_chariot(chariot, war);
+		chariot = chariot->next;
+	}
+	chariot = war->begin;
+	//printf("%d lives sur les chariots\n", cpt_lives);
+	return (SUCCESS);
+}
+/*
 int		verif_endgame(t_war *war, t_chariot *chariot)
 {
 	//printf("DEBUT verif_endgame\n");
@@ -117,4 +130,4 @@ int		verif_endgame(t_war *war, t_chariot *chariot)
 	war->actual_cycles = 0;
 	//reset_lives_chariot(war);
 	return (SUCCESS);
-}
+}*/
