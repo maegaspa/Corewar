@@ -30,7 +30,7 @@ int			lldi_fct(t_war *war, t_chariot *chariot)
         {
         	r = war->arena[calc_addr(chariot->addr + i + 3)];
             war->tmp = war->arena[calc_addr(chariot->addr + i + 2)];
-            if (war->verbose[2] == 1)
+            if (war->verbose[2] == 1 && r > 0 && r <= 16)
             {
                 printf("P %4d | lldi %hd %d r%d\n", (chariot->index + 1), param1, war->tmp, r);
                 printf("       | -> load to  %hd + %d = %d (with pc and mod %d)\n", param1, war->tmp, param1 + war->tmp, (chariot->pc + ((param1 + war->tmp) % IDX_MOD)));
@@ -41,12 +41,18 @@ int			lldi_fct(t_war *war, t_chariot *chariot)
         {
            	r = war->arena[calc_addr(chariot->addr + i + 4)];
             war->tmp = get_2_val(war, chariot, i + 2);
-            if (war->verbose[2] == 1)
+            if (war->verbose[2] == 1 && r > 0 && r <= 16)
             {
                 printf("P %4d | lldi %d %hd r%d\n", (chariot->index + 1), param1, war->tmp, r);
                 printf("       | -> load to  %d + %hd = %d (with pc and mod %d)\n", param1, war->tmp, param1 + war->tmp, (chariot->pc + ((param1 + war->tmp) % IDX_MOD)));
             }
-            print_verbose_16(war, chariot, 7);
+            if (r > 16 || r <= 0)
+            {
+            	print_verbose_16(war, chariot, 7);
+            	return (FAILURE);
+            }
+            else
+            	print_verbose_16(war, chariot, 7);
         }
     }
     if (war->rtype[0] == REG_CODE)
@@ -56,23 +62,35 @@ int			lldi_fct(t_war *war, t_chariot *chariot)
     	{
     		param2 = war->arena[calc_addr(chariot->addr + i + 1)];
     		r = war->arena[calc_addr(chariot->addr + i + 2)];
-            if (war->verbose[2] == 1)
+            if (war->verbose[2] == 1 && r > 0 && r <= 16)
             {
                 printf("P %4d | lldi %d %d r%d\n", (chariot->index + 1), param1, param2, r);
                 printf("       | -> load to %d + %d = %d (with pc and mod %d)\n", param1, param2, param1 + param2, (chariot->pc + ((param1 + param2) % IDX_MOD)));
             }
-            print_verbose_16(war, chariot, 5);
+            if (r > 16 || r <= 0)
+            {
+            	print_verbose_16(war, chariot, 5);
+            	return (FAILURE);
+            }
+            else
+            	print_verbose_16(war, chariot, 5);
     	}
     	if (war->rtype[1] == DIR_CODE)
     	{
     		param2 = get_2_val(war, chariot, i + 1);
     		r = war->arena[calc_addr(chariot->addr + i + 3)];
-            if (war->verbose[2] == 1)
+            if (war->verbose[2] == 1 && r > 0 && r <= 16)
             {
                 printf("P %4d | lldi %d %hd r%d\n", (chariot->index + 1), param1, param2, r);
                 printf("       | -> load to %d + %hd = %d (with pc and mod %d)\n", param1, param2, param1 + param2, (chariot->pc + ((param1 + param2) % IDX_MOD)));
             }
-            print_verbose_16(war, chariot, 6);
+            if (r > 16 || r <= 0)
+           	{
+            	print_verbose_16(war, chariot, 6);
+            	return (FAILURE);
+            }
+            else
+            	print_verbose_16(war, chariot, 6);
     	}
     }
     if (war->rtype[0] == DIR_CODE)
@@ -82,23 +100,35 @@ int			lldi_fct(t_war *war, t_chariot *chariot)
     	{
     		param2 = get_2_val(war, chariot, i + 2);
             r = war->arena[calc_addr(chariot->addr + i + 4)];
-            if (war->verbose[2] == 1)
+            if (war->verbose[2] == 1 && r > 0 && r <= 16)
             {
                 printf("P %4d | lldi %hd %d r%hd\n", (chariot->index + 1), param1, param2, r);
                 printf("       | -> load to %hd + %hd = %d (with pc and mod %d)\n", param1, param2, param1 + param2, (chariot->pc + ((param1 + param2) % IDX_MOD)));
             }
-            print_verbose_16(war, chariot, 7);
+            if (r > 16 || r <= 0)
+            {
+            	print_verbose_16(war, chariot, 7);
+            	return (FAILURE);
+            }
+            else
+            	print_verbose_16(war, chariot, 7);
     	}
     	if (war->rtype[1] == REG_CODE)
     	{
     		param2 = war->arena[calc_addr(chariot->addr + i + 2)];
             r = war->arena[calc_addr(chariot->addr + i + 3)];
-            if (war->verbose[2] == 1)
+            if (war->verbose[2] == 1 && r > 0 && r <= 16)
             {
                 printf("P %4d | lldi %hd %d r%d\n", (chariot->index + 1), param1, param2, r);
                 printf("       | -> load to %hd + %d = %d (with pc and mod %d)\n", param1, param2, param1 + param2, (chariot->pc + ((param1 + param2) % IDX_MOD)));
             }
-            print_verbose_16(war, chariot, 6);
+            if (r > 16 || r <= 0)
+            {
+            	print_verbose_16(war, chariot, 6);
+            	return (FAILURE);
+            }
+            else
+            	print_verbose_16(war, chariot, 6);
     	}
     }
     p3 = ((param1 + param2) % IDX_MOD);
@@ -107,7 +137,8 @@ int			lldi_fct(t_war *war, t_chariot *chariot)
     	chariot->carry = 1;
     else
     	chariot->carry = 0;
-    chariot->registres[r - 1] = p3;
+    if (r > 0 && r <= 16)
+    	chariot->registres[r - 1] = p3;
 //    printf("LLDI_FCT : index_chariot : %d\tto_die : %d et pc = [%d]\n", chariot->index, war->to_die, chariot->start_pos + chariot->pc);
 	return (0);
 }

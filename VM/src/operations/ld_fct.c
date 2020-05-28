@@ -37,6 +37,7 @@ int			ld_fct(t_war *war, t_chariot *chariot)
 
 	i = 2;
 	param2 = 0;
+	param1 = 0;
 	get_bin_ocp(chariot, war);
 	if (war->rtype[0] == DIR_CODE)
 	{
@@ -53,7 +54,7 @@ int			ld_fct(t_war *war, t_chariot *chariot)
 			 print_verbose_16(war, chariot, 7);
 		chariot->registres[(unsigned char)r - 1] = param1;
 	}
-	if (war->rtype[0] == IND_CODE)
+	else if (war->rtype[0] == IND_CODE)
 	{
 		r = war->arena[calc_addr(chariot->addr + i + 2)];
 		param1 = get_2_val(war, chariot, i);

@@ -23,6 +23,8 @@ int			live_fct(t_war *war, t_chariot *chariot)
 	war->lastlive = 0;
 	//printf("LIVE_FCT : index_chariot : %d\tto_die : %d et pc = [%d]\n", chariot->index, war->to_die, chariot->pc);
 	nb_player = get_4_val(war, chariot, 1);
+//	if(war->cycles > 27000)
+//	 	printf("war->verbose[2] = %d\n", war->verbose[2]);
 	//printf("pc [%d], nb_player = [%d]\n", pos, nb_player);
 	if (war->verbose[2] == 1)
 		printf("P %4d | live %d\n", (chariot->index + 1), nb_player);

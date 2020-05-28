@@ -72,7 +72,7 @@ int		v_alive_chariot(t_chariot *chariot, t_war *war)
 	cpt_lives = 0;
 	while (chariot)
 	{
-		printf("chariot++\n");
+		//printf("chariot++\n");
 		if (chariot->live)
 			cpt_lives += chariot->live;
 		else
@@ -103,10 +103,11 @@ int		verif_endgame(t_war *war, t_chariot *chariot)
 	else
 	{
 		war->check_cycles_to_die++;
+		reset_lives_chariot(war);
 		printf("war->check_cycles_to_die++\n");
 	}
 	//if (war->to_die == 0)
-	if (/*war->begin == NULL ||*/ war->to_die == 0)
+	if (war->begin == NULL || war->to_die == 0)
 	{
 		if (war->verbose[3] == 1)
 			printf("It is now cycle [%d]\n", war->cycles);//on observe last live pour le vainqueur

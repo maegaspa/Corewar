@@ -26,6 +26,9 @@ void	print_file_parsing(t_parse_file *file)
 
 int 	init_usage(t_parse_file *file)
 {
+	int i;
+
+	i = -1;
 	file->i = 0;
 	file->dump = -1;
 	file->long_dump = -1;
@@ -36,6 +39,8 @@ int 	init_usage(t_parse_file *file)
 	file->cycles = -1;
 	file->sv = -1;
 	file->a = -1;
+	while (++i < 6)
+    	file->verbose[i] = 0;
 	if (!(file->file_name = malloc(sizeof(char*) * MAX_PLAYERS + 1)))
 		return (ERROR_MALLOC);
 	if (!(file->rank_player = malloc(sizeof(int) * MAX_PLAYERS)))
@@ -96,7 +101,8 @@ int 	flag_is_verbose(t_parse_file *file, int ac, char **av)
 	int 	j;
 
 	file->sv = ft_atoi(av[file->i + 1]);
-	ft_bzero(&file->verbose, 5);
+//	ft_bzero(&file->verbose, 5);
+	j = 1;
 	i = 0;
 	if ((file->sv < 32) && (file->i + 1 < ac && (file->sv > 0 || (file->sv == 0 && !ft_strcmp("0", av[file->i + 1])))))
 	{
