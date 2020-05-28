@@ -58,10 +58,10 @@ int 	main(int ac, char **av)
 	}
 	ft_init_war(file, &war);
 //	if (war.visu == 1)
-//    {
-//    	if (ft_game_visu(&war, &file) == 0)//A FAIRE: retour erreur
-//    		return (0);
-//    }
+  //  {
+    //	if (ft_game_visu(&war, &file) == 0)//A FAIRE: retour erreur
+    //		return (0);
+    //}
 //	else
 	if (ft_game(&war, &file) == 0)//A FAIRE: retour erreur
 		return (0);

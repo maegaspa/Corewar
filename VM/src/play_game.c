@@ -56,6 +56,8 @@ int		ft_game(t_war *war, t_parse_file *file)
 
 	init_tab(opp_tab);
 	war->aff = file->a;
+	if (war->visu == 1)
+		visu_body(war);
 	i = -1;
 	while (++i < 6)
 		war->verbose[i] = file->verbose[i];
@@ -64,7 +66,8 @@ int		ft_game(t_war *war, t_parse_file *file)
 	war->begin = chariot;
 	chariot->pc = 0;
 	war->back_pc = 0;
-	ft_print_war(war);
+	if (war->visu != 1)
+		ft_print_war(war);
 	while (check_cycle(war, chariot))
 	{
 		if (war->cycles == file->cycles + 1)

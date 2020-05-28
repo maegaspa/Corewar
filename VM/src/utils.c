@@ -183,6 +183,10 @@ void	init_tab(t_opp *opp_tab)
 void			ft_init_war(t_parse_file file, t_war *war)
 {
 	war->cycles = 0;
+
+	war->visu = file.visu;
+	war->visual.pause = -1;
+
 	war->nb_player = file.nb_player;
 	war->nb_chariot = war->nb_player;
 	war->dump = file.dump;

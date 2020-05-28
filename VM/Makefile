@@ -37,10 +37,10 @@ FILES = src/main\
 		src/operations/lldi_fct\
 		src/operations/lfork_fct\
 		src/operations/aff_fct\
-		#src/visual_body\#
-		#src/visual_keys\#
-		#src/visual_update\#
-		#src/visual_utils\#
+		src/visual_body\
+		src/visual_keys\
+		src/visual_update\
+		src/visual_utils\
 
 #----------------------------------COLOR---------------------------------------#
 
@@ -113,7 +113,7 @@ $(NAME): $(OBJ)
 	@printf $(RED)"|_/ \n"
 	@printf $(W)"          \_/__\_/                                            \_/__\_/ \n"
 	@make -C ../libft/
-	@$(CC) $(FLAGS) $(SRC) -L. ../libft/libftprintf.a -o $(NAME)
+	@$(CC) $(FLAGS) $(SRC) -L. ../libft/libftprintf.a -lncurses -o $(NAME)
 
 
 object/%.o: src/%.c

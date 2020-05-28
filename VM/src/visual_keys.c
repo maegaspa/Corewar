@@ -51,10 +51,10 @@ void	get_keys(t_war *war)
 
 
 	c = wgetch(war->visual.infos_win);
-	if (c == ' ')
-		war->visual.pause = -war->visual.pause;
+//	if (c == ' ')
+//		war->visual.pause = -war->visual.pause;
 	if (c == '-' || c == '+')
 		sleep_keys(war, c);
-	if (c == 'a' || c == 'd')
-		cycle_keys(war, c);
+//	if (c == 'a' || c == 'd')
+//		cycle_keys(war, c);
 }

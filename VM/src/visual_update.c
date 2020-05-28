@@ -26,16 +26,15 @@ void	print_cursor(t_war *war)
 		{
 			if (chariot->prev_cursor != -1)
 			{
-				wattron(war->visual.arena_win, COLOR_PAIR(chariot->prev_color));
+				wattron(war->visual.arena_win, COLOR_PAIR(6));
 				mvwprintw(war->visual.arena_win, (chariot->prev_cursor / 64) + 1, ((chariot->prev_cursor % 64) * 3) + 2, "%02x", (unsigned char)war->arena[chariot->prev_cursor]);
-				wattroff(war->visual.arena_win, COLOR_PAIR(chariot->prev_color));
+				wattroff(war->visual.arena_win, COLOR_PAIR(6));
 			}
-			wattron(war->visual.arena_win, COLOR_PAIR(war->nb_player - chariot->index) | A_STANDOUT);
+			wattron(war->visual.arena_win, COLOR_PAIR(chariot->player));
 			pos = chariot->start_pos + chariot->pc;
 			mvwprintw(war->visual.arena_win, (pos / 64) + 1, ((pos % 64) * 3) + 2, "%02x", (unsigned char)war->arena[pos]);
-			wattroff(war->visual.arena_win, COLOR_PAIR(war->nb_player - chariot->index) | A_STANDOUT);
+			wattroff(war->visual.arena_win, COLOR_PAIR(chariot->player));
 			chariot->prev_cursor = pos;
-			chariot->prev_color = (mvwinch(war->visual.arena_win, (pos / 64) + 1, ((pos % 64) * 3) + 2) & A_COLOR) / 256;
 		}
 		war->visual.process_nb++;
 		chariot = chariot->next;
@@ -47,7 +46,7 @@ void	infos_print(t_war *war)
 {
 	mvwprintw(war->visual.infos_win, 4, 40, "%d", war->cycles);
 	mvwprintw(war->visual.infos_win, 6, 40, "%d", war->visual.process_nb);
-	mvwprintw(war->visual.infos_win, 30, 40, "%d", war->to_die);
+//	mvwprintw(war->visual.infos_win, 30, 40, "%d", war->to_die);
 
 
 	//REVOIR LES CYCLES/SECONDES A LA FIN
@@ -75,17 +74,45 @@ void	arena_update(t_war *war)
 	}
 }
 
+void	refresh_arena(t_war *war)
+{
+	int i;
+	int line;
+	int col;
+
+	i = 0;
+	line = 1;
+	col = 2;
+	wattron(war->visual.arena_win, COLOR_PAIR(6));
+	while (i < MEM_SIZE)
+	{
+		mvwprintw(war->visual.arena_win, line, col, "%02x", (unsigned char)war->arena[i]);
+		col = col + 3;
+		if (col >= 194)
+		{
+			col = 2;
+			line++;
+		}
+		i++;
+	}
+	wattroff(war->visual.arena_win, COLOR_PAIR(6));
+}
+
 int		update_visu(t_war *war)
 {
-
+	if (war->visu != 1)
+		return(SUCCESS);
 	cbreak();
 	nodelay(war->visual.infos_win, 1);
 	get_keys(war);
-	arena_update(war);
+//	arena_update(war);
 	if (war->visual.pause == -1)
 	{
 		usleep(war->visual.sleeptime);
 		wrefresh(war->visual.infos_win);
+
+		refresh_arena(war);
+
 		print_cursor(war);
 
 		infos_print(war);
