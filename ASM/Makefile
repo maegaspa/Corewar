@@ -16,6 +16,8 @@ FILES = src/error\
 		src/init\
 		src/lexer\
 		src/main\
+		src/check_lex\
+		src/check_syn_file\
 		src/op\
 		src/utils\
 		src/utils2\

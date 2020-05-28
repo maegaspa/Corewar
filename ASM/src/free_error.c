@@ -67,8 +67,8 @@ void	free_error_3(t_tab *tab, int i)
 		}
 		if (tab->info_ins[i].instruction &&
 				(tab->info_ins[i].param[j].type_param != T_REG
-				 && tab->info_ins[i].param[j].type_param != T_IND
-				 && tab->info_ins[i].param[j].type_param != T_DIR))
+				&& tab->info_ins[i].param[j].type_param != T_IND
+				&& tab->info_ins[i].param[j].type_param != T_DIR))
 			break ;
 	}
 	while (++j < tab->info_ins[i].nb_parameter)
@@ -89,7 +89,7 @@ void	free_error_4(t_tab *tab)
 		free(tab->r_pos);
 }
 
-void				free_split(t_file *file)
+void	free_split(t_file *file)
 {
 	int	i;
 

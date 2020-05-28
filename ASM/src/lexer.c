@@ -11,135 +11,72 @@
 /* ************************************************************************** */
 
 #include "../includes/asm.h"
-#include <stdio.h>
 
-int 		is_instruction_name(char *str, t_file *file, t_tab *tab)
+int			syntaxe_dcote(char *str, int select)
 {
-	int 	i;
+	int		count;
 
-	i = -1;
-	while (++i < 16)
-	{
-		if (str && !ft_strcmp(file->op[i].name, str))
-		{
-			tab->info_ins[file->cnt_tab].id_inst = file->op[i].id;
-			return (SUCCESS);
-		}
-	}
-	return (FAILURE);
-}
-
-int 		is_label(char *str)
-{
-	int 	i;
-	int 	j;
-	unsigned int 	count;
-
-	i = -1;
 	count = 0;
-	while (str[++i])
+	select++;
+	while (str[select] != '\"' && str[select])
 	{
-		j = -1;
-		if (str[i] == LABEL_CHAR)
-		{
-			if (count != ft_strlen(str) - 1)
-				return (ERROR_LABEL);
-			return (SUCCESS);
-		}
-		while (LABEL_CHARS[++j])
-			if (str[i] == LABEL_CHARS[j])
-				count++;
+		if (count > 1 && str[select] != ' ' && str[select] != '\t')
+			return (ERROR_INFO);
+		select++;
 	}
-	return (FAILURE);
+	if (str[select] != '\"')
+		return (ERROR_CHAR);
+	select++;
+	while (str[select])
+	{
+		while (str[select] == ' ' || str[select] == '\t')
+			select++;
+		if (str[select] != COMMENT_CHAR)
+			return (ERROR_COMMENT);
+		else
+			break ;
+	}
+	return (SUCCESS);
 }
 
-int 		is_instruction(char *str)
+int			syntaxe_name_com(t_header *head, char *str, int tmp, int chose)
 {
-	int 	i;
-	int 	j;
+	int		i;
 
 	i = -1;
-	j = 0;
-	if (!ft_strlen(str))
-		return (FAILURE);
-	while (str[++i])
-		if (str[i] != ' ' && str[i] != '\t')
-			j++;
-	if (j)
-		return (SUCCESS);
-	return (FAILURE);
-}
-
-int 		is_name_or_comment(char *str, int chose)
-{
-	int 	i;
-
-	i = 0;
+	while (str[++tmp] != '\"')
+	{
+		if (chose == 1)
+			head->prog_name[++i] = str[tmp];
+		if (chose == 2)
+			head->comment[++i] = str[tmp];
+	}
 	if (chose == 1)
-	{
-		while (str[i] == ' ' || str[i] == '\t')
-			i++;
-		if (!(ft_strncmp(&str[i], NAME_CMD_STRING, ft_strlen(NAME_CMD_STRING))))
-			return (SUCCESS);
-	}
+		head->prog_name[++i] = '\0';
 	if (chose == 2)
-	{
-		while (str[i] == ' ' || str[i] == '\t')
-			i++;
-		if (!(ft_strncmp(&str[i], COMMENT_CMD_STRING, ft_strlen(COMMENT_CMD_STRING))))
-			return (SUCCESS);
-	}
-	return (0);
+		head->comment[++i] = '\0';
+	if (i >= PROG_NAME_LENGTH)
+		return (ERROR_MEMORY);
+	if (i >= COMMENT_LENGTH)
+		return (ERROR_MEMORY);
+	return (SUCCESS);
 }
 
-int 		true_syntaxe_info(t_header *head, char *str, int select, int chose)
+int			true_syntaxe_info(t_header *head, char *str, int select, int chose)
 {
-	int i;
-	int count;
-	int tmp;
+	int		tmp;
+	int		error;
 
-	i = 0;
-	count = 0;
+	error = 0;
 	while (str[select] == ' ' || str[select] == '\t')
 		select++;
 	if (str[select] == '\"')
 	{
 		tmp = select;
-		select++;
-		while (str[select] != '\"' && str[select])
-		{
-			if (count > 1 && str[select] != ' ' && str[select] != '\t')
-				return (ERROR_INFO);
-			select++;
-		}
-		if (str[select] != '\"')
-			return (ERROR_CHAR);
-		select++;
-		while (str[select])
-		{
-			while (str[select] == ' ' || str[select] == '\t')
-				select++;
-			if (str[select] != COMMENT_CHAR)
-				return (ERROR_COMMENT);
-			else
-				break ;
-		}
-		i = -1;
-		while (str[++tmp] != '\"')
-		{
-			if (chose == 1)
-				head->prog_name[++i] = str[tmp];
-			if (chose == 2)
-				head->comment[++i] = str[tmp];
-		}
-		if (chose == 1)
-			head->prog_name[++i] = '\0';
-		if (chose == 2)
-			head->comment[++i] = '\0';
-		if (i >= PROG_NAME_LENGTH)
-			return (ERROR_MEMORY);
-		if (i >= COMMENT_LENGTH)
-			return (ERROR_MEMORY);
+		if ((error = syntaxe_dcote(str, select)) != SUCCESS)
+			return (error);
+		if ((error = syntaxe_name_com(head, str, tmp, chose)) != SUCCESS)
+			return (error);
 	}
 	else
 		return (ERROR_CHAR);

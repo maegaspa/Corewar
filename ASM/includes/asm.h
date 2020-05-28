@@ -149,6 +149,7 @@ void	swap_2(unsigned short int *nb);
 char	*gettohexa(int n);
 int		check_errors(char *str, char *base);
 int		get_nb(char c, char *base);
+int		check_file_int(t_tab *tab, t_file *file, int i);
 t_op	get_op_by_name(t_file *file, char *name);
 
 /* WRITE FUNCTIONS

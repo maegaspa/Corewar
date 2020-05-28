@@ -12,7 +12,7 @@
 
 #include "../includes/asm.h"
 
-t_op    op_tab[16] =
+t_op	op_tab[16] =
 {
 	{"live", 1, {T_DIR}, 1, 10, "alive", 0, 0},
 	{"ld", 2, {T_DIR | T_IND, T_REG}, 2, 5, "load", 1, 0},
