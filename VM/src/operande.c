@@ -88,12 +88,12 @@ void		ft_exec_opp(t_chariot *chariot, t_war *war, t_opp *opp_tab)
 			chariot->addr = calc_addr(chariot->start_pos + chariot->pc);
 			opp_tab[chariot->ope - 1](war, chariot);
 
-			if (war->visual.pause == -1)
-			{
-				refresh_arena(war);
-				print_cursor(war);
-				wrefresh(war->visual.arena_win);
-			}
+//			if (war->visual.pause == -1)
+//			{
+//				refresh_arena(war);
+//				print_cursor(war);
+//				wrefresh(war->visual.arena_win);
+//			}
 
 			if (war->back_pc == 0)
 				chariot->pc = calc_addr(chariot->pc + jump);
