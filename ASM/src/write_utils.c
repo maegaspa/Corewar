@@ -1,14 +1,14 @@
-/*# **************************************************************************** #*/
-/*#                                                                              #*/
-/*#                                                         :::      ::::::::    #*/
-/*#    bite                                               :+:      :+:    :+:    #*/
-/*#                                                     +:+ +:+         +:+      #*/
-/*#    By: maegaspa <marvin@42.fr>                    +#+  +:+       +#+         #*/
-/*#                                                 +#+#+#+#+#+   +#+            #*/
-/*#    Created: 2020/03/06 21:57:36 by maegaspa          #+#    #+#              #*/
-/*#    Updated: 2020/03/06 21:58:16 by maegaspa         ###   ########lyon.fr    #*/
-/*#                                                                              #*/
-/*# **************************************************************************** #*/
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   write_utils.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: maegaspa <maegaspa@student.42lyon.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/05/22 17:09:32 by maegaspa          #+#    #+#             */
+/*   Updated: 2020/05/22 17:10:35 by maegaspa         ###   ########lyon.fr   */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../includes/asm.h"
 
@@ -20,7 +20,7 @@ void	convert_int(unsigned char **str, int nb)
 	(*str)[3] = nb & 0xFF;
 }
 
-void    write_binary_int(int nb, int fd)
+void	write_binary_int(int nb, int fd)
 {
 	unsigned char	*str;
 
@@ -36,30 +36,38 @@ int		get_label_init(t_tab *tab)
 
 	i = -1;
 	ft_bzero(tab->tabyte, CHAMP_MAX_SIZE);
- 	if (!(tab->n_label = (int *)malloc(sizeof(int) * tab->nb_instruction)))
+	if (!(tab->n_label = (int *)malloc(sizeof(int) * tab->nb_instruction)))
 		return (ERROR_MALLOC);
-    if (!(tab->label_name = (char **)malloc(sizeof(char*) * tab->nb_instruction)))
+	if (!(tab->label_name = (char **)malloc(sizeof(char*)
+		* tab->nb_instruction)))
 		return (ERROR_MALLOC);
-    i = -1;
-    while(++i < tab->nb_instruction)
-    {
-    	if (!(tab->label_name[i] = (char *)malloc(sizeof(char) * 6)))
-    		return (ERROR_MALLOC);
-    	ft_bzero(tab->label_name[i], 6);
-   		tab->n_label[i] = 0;
-   	}
-   	return (SUCCESS);
+	i = -1;
+	while (++i < tab->nb_instruction)
+	{
+		if (!(tab->label_name[i] = (char *)malloc(sizeof(char) * 6)))
+			return (ERROR_MALLOC);
+		ft_bzero(tab->label_name[i], 6);
+		tab->n_label[i] = 0;
+	}
+	return (SUCCESS);
 }
 
 int		which_direct(t_tab *tab, int actual_inst)
 {
-    if (tab->info_ins[actual_inst].id_inst == 9 || tab->info_ins[actual_inst].id_inst == 10 || tab->info_ins[actual_inst].id_inst == 11
-    	|| tab->info_ins[actual_inst].id_inst == 12 || tab->info_ins[actual_inst].id_inst == 15)
-    	return (1);
-   	if (tab->info_ins[actual_inst].id_inst == 1 || tab->info_ins[actual_inst].id_inst == 2 || tab->info_ins[actual_inst].id_inst == 6
-   		|| tab->info_ins[actual_inst].id_inst == 7 || tab->info_ins[actual_inst].id_inst == 8 || tab->info_ins[actual_inst].id_inst == 13) //CAS : DIRECT LABEL CHAR DEFINI SUR 4 OCTETS
-   		return (2);
-   	return (0);
+	if (tab->info_ins[actual_inst].id_inst == 9 ||
+		tab->info_ins[actual_inst].id_inst == 10
+			|| tab->info_ins[actual_inst].id_inst == 11
+			|| tab->info_ins[actual_inst].id_inst == 12 ||
+		tab->info_ins[actual_inst].id_inst == 15)
+		return (1);
+	if (tab->info_ins[actual_inst].id_inst == 1 ||
+		tab->info_ins[actual_inst].id_inst == 2
+		|| tab->info_ins[actual_inst].id_inst == 6
+			|| tab->info_ins[actual_inst].id_inst == 7 ||
+			tab->info_ins[actual_inst].id_inst == 8
+			|| tab->info_ins[actual_inst].id_inst == 13)
+		return (2);
+	return (0);
 }
 
 int		get_dir_pos(t_tab *tab, t_file *file)
@@ -74,7 +82,7 @@ int		get_dir_pos(t_tab *tab, t_file *file)
 	if (!(tab->dir_pos = (int*)malloc(sizeof(int) * tab->nb_instruction)))
 		return (ERROR_MALLOC);
 	if (!(tab->r_pos = (int*)malloc(sizeof(int) * tab->nb_instruction)))
-    	return (ERROR_MALLOC);
+		return (ERROR_MALLOC);
 	while (++i < file->max_byte)
 	{
 		if (tab->tabyte[i] > 0 && tab->tabyte[i] != 5)

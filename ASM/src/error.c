@@ -1,5 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   error.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: maegaspa <maegaspa@student.42lyon.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/05/22 17:08:18 by maegaspa          #+#    #+#             */
+/*   Updated: 2020/05/22 17:10:28 by maegaspa         ###   ########lyon.fr   */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/asm.h"
-#include <stdio.h>
 
 void	print_line_error(t_file *file)
 {
@@ -11,7 +22,7 @@ void	print_line_error(t_file *file)
 	ft_putstr_fd("\n", 2);
 }
 
-void 	print_error(t_file *file)
+void	print_error(t_file *file)
 {
 	if (file->error == ERROR_MALLOC)
 	{
@@ -28,6 +39,12 @@ void 	print_error(t_file *file)
 		ft_putstr_fd("ERROR: Unexpected char\n", 2);
 		print_line_error(file);
 	}
+	print_error2(file);
+	print_error3(file);
+}
+
+void	print_error2(t_file *file)
+{
 	if (file->error == ERROR_PARAM)
 	{
 		ft_putstr_fd("ERROR: Bad parameter\n", 2);
@@ -48,6 +65,10 @@ void 	print_error(t_file *file)
 		ft_putstr_fd("ERROR: Unexpected CMD string\n", 2);
 		print_line_error(file);
 	}
+}
+
+void	print_error3(t_file *file)
+{
 	if (file->error == ERROR_MEMORY)
 	{
 		ft_putstr_fd("ERROR: Lot of memory use\n", 2);
@@ -64,64 +85,5 @@ void 	print_error(t_file *file)
 	{
 		ft_putstr_fd("ERROR: Comment bad format : #your comment\n", 2);
 		print_line_error(file);
-	}
-}
-
-void 	free_error(t_tab *tab, t_file *file)
-{
-	int 	i;
-	int 	j;
-
-	i = -1;
-	if (file->file_name)
-		ft_strdel(&file->file_name);
-	if (file->file)
-	{
-		while (file->file[++i])
-			ft_strdel(&file->file[i]);
-		free(file->file);
-	}
-	if (tab->nb_instruction && tab->no_prob == 1)
-	{
-		i = -1;
-		while (++i < tab->nb_instruction)
-		{
-			if (tab->label_name[i])
-				ft_strdel(&tab->label_name[i]);
-			if (tab->info_ins[i].instruction)
-				ft_strdel(&tab->info_ins[i].instruction);
-			j = -1;
-			while (++j < tab->info_ins[i].nb_parameter)
-			{
-				if (tab->info_ins[i].param[j].direct_str != NULL)
-				{
-					ft_strdel(&tab->info_ins[i].param[j].direct_str);
-					break;
-				}
-				if (tab->info_ins[i].param[j].indirect_str != NULL)
-				{
-					ft_strdel(&tab->info_ins[i].param[j].indirect_str);
-					break;
-				}
-				if (tab->info_ins[i].instruction && (tab->info_ins[i].param[j].type_param != T_REG && tab->info_ins[i].param[j].type_param != T_IND && tab->info_ins[i].param[j].type_param != T_DIR))
-					break;
-			}
-			j = -1;
-			while (++j < tab->info_ins[i].nb_parameter)
-				ft_strdel(&tab->info_ins[i].parameter[j]);
-			free(tab->info_ins[i].parameter);
-			if (tab->info_ins[i].param)
-				free(tab->info_ins[i].param);
-		}
-		if (tab->info_ins)
-			free(tab->info_ins);
-		if (tab->label_name)
-			free(tab->label_name);
-		if (tab->n_label)
-			free(tab->n_label);
-		if (tab->dir_pos)
-			free(tab->dir_pos);
-		if (tab->r_pos)
-			free(tab->r_pos);
 	}
 }
