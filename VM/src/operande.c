@@ -71,20 +71,24 @@ int			ft_tcheck_ocp(t_chariot *chariot, t_war *war)//return jump
 	if (g_op_tab[chariot->ope - 1].nb_params == 3)
 		if (!(jump += is_conform(((ocp & 0x0C) >> 2), 2, chariot->ope - 1)))
 			return (FAILURE);
+	printf("1 = %d\n", jump);
 	return (jump);
 }
 
 void		ft_exec_opp(t_chariot *chariot, t_war *war, t_opp *opp_tab)
 {
 	int		jump;
+	int 	jump2;
 
 	jump = 0;
+	jump2 = 0;
 	if (chariot->wait > 0)
 		chariot->wait--;
 	if ((chariot->wait == 0) && chariot->ope > 0)
 	{
-		if ((jump = ft_tcheck_ocp(chariot, war)))
+		if ((jump = ft_tcheck_ocp(chariot, war)) == (jump2 = get_all_param(chariot, war, chariot->ope - 1)))
 		{
+			printf("GAY\n");
 			chariot->addr = calc_addr(chariot->start_pos + chariot->pc);
 			opp_tab[chariot->ope - 1](war, chariot);
 			if (war->back_pc == 0)
@@ -92,6 +96,10 @@ void		ft_exec_opp(t_chariot *chariot, t_war *war, t_opp *opp_tab)
 			war->back_pc = 0;
 		}
 		chariot->ope = -1;
+	}
+	else
+	{
+		print_verbose_16(war, chariot, jump2 + 1);
 	}
 	if (ft_get_op(war, chariot) == 1) //&& chariot->ope >= 1) //on tcheck si on lit une nouvelle operande, si oui on init "wait"
 		chariot->wait = war->op_cycle[chariot->ope - 1];

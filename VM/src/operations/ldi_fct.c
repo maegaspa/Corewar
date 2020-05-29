@@ -63,7 +63,7 @@ int			ldi_fct(t_war *war, t_chariot *chariot)
 			if (war->verbose[2] == 1)
 			{
 				printf("P %4d | ldi %d %d r%d\n", (chariot->index + 1), chariot->registres[param1 - 1], chariot->registres[param2 - 1], r);
-				printf("       | -> load to  %d + %d = %d (with pc and mod %d)\n", chariot->registres[param1 - 1], chariot->registres[param2 - 1], chariot->registres[param1 - 1] + chariot->registres[param2 - 1], calc_addr(chariot->addr + ((chariot->registres[param1 - 1] + chariot->registres[param2 - 1]) % IDX_MOD)));
+				printf("       | -> load to  %d + %d = %d (with pc and mod %d)\n", chariot->registres[param1 - 1], chariot->registres[param2 - 1], chariot->registres[param1 - 1] + chariot->registres[param2 - 1], ((chariot->registres[param1 - 1] + chariot->registres[param2 - 1]) % IDX_MOD));
 			}
 			print_verbose_16(war, chariot, 5);
 		}

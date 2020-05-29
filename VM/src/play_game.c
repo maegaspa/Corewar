@@ -12,6 +12,55 @@
 
 #include "../includes/corewar.h"
 
+int	get_all_param(t_chariot *chariot, t_war *war, int ope)
+{
+	int		i;
+	int 	tmpc;
+
+	i = -1;
+	tmpc = 0;
+	if (g_op_tab[chariot->ope].acb == 0)
+		tmpc += 1;
+	printf("%x\n", (unsigned char)war->arena[tmpc]);
+	printf("%d | %hd | %d\n", war->rtype[0], war->rtype[1], war->rtype[2]);
+	while (++i < g_op_tab[ope].nb_params)
+		war->param[i] = 0;
+	i = 0;
+	while (i < g_op_tab[ope].nb_params)
+	{
+		if (war->rtype[i] == DIR_CODE)
+		{
+			printf("4\n");
+			if (g_op_tab[ope].label_size == 0)
+			{
+				war->param[i] = get_4_val(war, chariot, tmpc);
+				tmpc += 4;
+			}
+			else
+			{
+				war->param[i] = get_2_val(war, chariot, tmpc);
+				tmpc += 2;
+			}
+		}
+		else if (war->rtype[i] == REG_CODE)
+		{
+			printf("5\n");
+			war->param[i] = (unsigned char)war->arena[calc_addr(chariot->start_pos + tmpc)];
+			tmpc += 1;
+		}
+		else if (war->rtype[i] == IND_CODE)
+		{
+			printf("6\n");
+			war->param[i] = get_2_val(war, chariot, tmpc);
+			tmpc += 2;
+		}
+		i++;
+	}
+	printf("%d | %hd | %d\n", war->param[0], war->param[1], war->param[2]);
+	printf("2 = %d\n", tmpc - 1);
+	return (tmpc - 1);
+}
+
 int			is_conform2(char ocp, int param, int ope)
 {
 //	if (ocp == 0)
@@ -31,8 +80,8 @@ int		get_bin_ocp(t_chariot *chariot, t_war *war)
 	int				i;
 
 	i = -1;
-	if (!(war->rtype = malloc(sizeof(int) * 3)))
-    	return (ERROR_MALLOC);
+	if (g_op_tab[chariot->ope].acb == 0)
+
     while (++i < 3)
 		war->rtype[i] = -1;
 	ocp = war->arena[calc_addr(chariot->start_pos + chariot->pc + 1)];
