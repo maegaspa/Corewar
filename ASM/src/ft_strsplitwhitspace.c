@@ -1,15 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strsplitwhitspace.c                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: maegaspa <maegaspa@student.42lyon.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/05/22 17:08:49 by maegaspa          #+#    #+#             */
+/*   Updated: 2020/05/22 17:10:31 by maegaspa         ###   ########lyon.fr   */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/asm.h"
-#include <stdio.h>
-
-void 			free_split(t_file *file)
-{
-	int i;
-
-	i = -1;
-	while (++i <= file->free_cnt)
-		free(file->split[i]);
-	free(file->split);
-}
 
 static unsigned int	count_word(const char *s)
 {
@@ -45,33 +46,37 @@ static unsigned int	count_word2(const char *s)
 	return (i);
 }
 
+void				ft_split_norm(t_file *file, char const *s)
+{
+	if (file->free_cnt == 1)
+		file->len1 = file->n;
+	if (file->free_cnt == 2)
+		file->len2 = file->n;
+	while (s[file->n] && s[file->n] != ' ' && s[file->n] != '\t')
+		file->n++;
+}
+
 char				**ft_strsplitwsp(char const *s, t_file *file)
 {
-	unsigned int	n;
 	unsigned int	i;
 	unsigned int	j;
 	char			**tab;
 
-	n = 0;
+	file->n = 0;
 	j = 0;
 	if (s == 0)
 		return (NULL);
 	if (!(tab = (char **)malloc(sizeof(char *) * (count_word(s) + 1))))
 		return (NULL);
-	while (s[n])
+	while (s[file->n])
 	{
-		while (s[n] == ' ' || s[n] == '\t')
-			n++;
-		i = n;
-		if (file->free_cnt == 1)
-			file->len1 = n;
-		if (file->free_cnt == 2)
-			file->len2 = n;
-		while (s[n] && s[n] != ' ' && s[n] != '\t')
-			n++;
-		if (n > i)
-			tab[j++] = strndup(s + i, n - i);
-		if (n > i)
+		while (s[file->n] == ' ' || s[file->n] == '\t')
+			file->n++;
+		i = file->n;
+		ft_split_norm(file, s);
+		if (file->n > i)
+			tab[j++] = strndup(s + i, file->n - i);
+		if (file->n > i)
 			file->free_cnt += 1;
 	}
 	tab[j] = NULL;

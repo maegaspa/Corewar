@@ -3,17 +3,64 @@
 /*                                                        :::      ::::::::   */
 /*   fork_fct.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seanseau <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: hmichel <hmichel@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 16:10:21 by seanseau          #+#    #+#             */
-/*   Updated: 2020/02/26 19:38:53 by seanseau         ###   ########lyon.fr   */
+/*   Updated: 2020/05/26 01:33:43 by hmichel          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/corewar.h"
 
+static	t_chariot *ft_fork_chariot(t_chariot *chariot, int param, t_war *war)
+{
+	t_chariot	*new;
+//	int			i;
+//
+//	i = -1;
+	if (!(new = (t_chariot*)malloc(sizeof(t_chariot))))
+		return (NULL);
+	//printf("nb_chariot = %d\n", war->nb_chariot);
+	new->pc = calc_addr(chariot->pc + (param % IDX_MOD));
+	new->live = chariot->live; //a check, sujet dit de garder le meme last_live, on a fait differament
+	new->carry = chariot->carry;
+	new->wait = 0;
+	new->index = war->nb_chariot - 1;
+	new->player = chariot->player;
+	new->start_pos = chariot->start_pos;
+	new->prev_color = chariot->player;
+	new->ope = -1; // <=> ope non conforme
+	//new->registres[0] = (chariot->start_pos + chariot->pc + PROC->params[0][1] % IDX_MOD) % MEM_SIZE;
+//	if (new->registres[0] < 0)
+//		new->registres[0] += MEM_SIZE;
+	new->registres[0] = new->player * -1;
+//	while (++i < REG_NUMBER)
+//		new->registres[i] = chariot->registres[i];
+	new->next = war->begin;
+	return (new);
+}
+
 int			fork_fct(t_war *war, t_chariot *chariot)
 {
-	ft_printf("FORK_FCT : index_chariot : %d\tto_die : %d\n", chariot->index, war->to_die);
+	t_chariot *tmp_char;
+	int 	para_dir;
+
+	para_dir = get_2_val(war, chariot, 1);
+	if (war->verbose[2] == 1)
+        printf("P %4d | fork %hd (%d)\n", (chariot->index + 1), para_dir, calc_addr(chariot->pc + (para_dir % IDX_MOD)));
+    print_verbose_16(war, chariot, 3);
+	war->nb_chariot++;
+	if (!(tmp_char = ft_fork_chariot(chariot, para_dir, war)))
+		return (ERROR_MALLOC);
+	war->begin = tmp_char;
+	if (ft_get_op(war, war->begin) == 1)
+    	(war->begin)->wait = war->op_cycle[(war->begin)->ope - 1];
+	//	ft_exec_opp(war->begin, war, opp_tab);
+	// tmp_char = chariot;
+	//printf("FORK_FCT : index_chariot : %d\tto_die : %d\n", chariot->index, war->to_die);
+	// if (!(tmp_char->next = ft_creat_chariot(tmp_char->index + 1, (chariot->pc + (param % IDX_MOD)), war->player[chariot->player].pos_arena, chariot->player)))
+		// return (ERROR_MALLOC);
+	// tmp_char = tmp_char->next;
+	// chariot = tmp_char;
 	return (0);
 }

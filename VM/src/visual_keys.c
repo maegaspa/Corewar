@@ -12,7 +12,7 @@
 
 #include "../includes/corewar.h"
 
-void	cycle_keys(t_war *war, int c)
+/*void	cycle_keys(t_war *war, int c)
 {
 	int	temp_cursor;
 
@@ -30,7 +30,7 @@ void	cycle_keys(t_war *war, int c)
 			color_arena(war, -1, war->visual.arena_win, war->visual.arena_list[temp_cursor]);
 		}
 	}
-}
+}*/
 
 void	sleep_keys(t_war *war, int c)
 {
@@ -52,9 +52,9 @@ void	get_keys(t_war *war)
 
 	c = wgetch(war->visual.infos_win);
 	if (c == ' ')
-		war->visual.pause = -war->visual.pause;
+		war->visual.pause = war->visual.pause * -1;
 	if (c == '-' || c == '+')
 		sleep_keys(war, c);
-	if (c == 'a' || c == 'd')
-		cycle_keys(war, c);
+//	if (c == 'a' || c == 'd')
+//		cycle_keys(war, c);
 }

@@ -1,20 +1,32 @@
-#include "../includes/asm.h"
-#include <stdio.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: maegaspa <maegaspa@student.42lyon.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/05/22 17:09:02 by maegaspa          #+#    #+#             */
+/*   Updated: 2020/05/22 17:10:32 by maegaspa         ###   ########lyon.fr   */
+/*                                                                            */
+/* ************************************************************************** */
 
-int 	init_param(t_tab *tab)
+#include "../includes/asm.h"
+
+int		init_param(t_tab *tab)
 {
-	int 	i;
-	int 	j;
+	int	i;
+	int	j;
 
 	i = -1;
 	while (++i < tab->nb_instruction)
 	{
-		if (!(tab->info_ins[i].param = malloc(sizeof(t_parameter) * tab->info_ins[i].nb_parameter)))
+		if (!(tab->info_ins[i].param =
+			malloc(sizeof(t_parameter) * tab->info_ins[i].nb_parameter)))
 			return (ERROR_MALLOC);
 		j = -1;
 		while (++j < tab->info_ins[i].nb_parameter)
 		{
-			tab->info_ins[i].param[j].registre = 0;
+			tab->info_ins[i].param[j].reg = 0;
 			tab->info_ins[i].param[j].direct_str = NULL;
 			tab->info_ins[i].param[j].is_direct = 0;
 			tab->info_ins[i].param[j].direct = 0;
@@ -27,22 +39,23 @@ int 	init_param(t_tab *tab)
 	return (SUCCESS);
 }
 
-void 	init_struct_file(t_file *file, t_header *head)
+void	init_struct_file(t_file *file, t_header *head)
 {
+	file->tmp[0] = LABEL_CHAR;
+	file->tmp[1] = '\0';
 	file->name = 0;
 	file->comment = 0;
 	file->count = -1;
 	file->error = 0;
-	//ft_bzero(&head, sizeof(t_header));
+	file->n = 0;
 	head->magic = COREWAR_EXEC_MAGIC;
-	swap_4(&head->magic);
 	ft_bzero(&head->prog_name, PROG_NAME_LENGTH + 1);
-	head->prog_size = 0;
-	swap_4(&head->prog_size);
+	head->prog_size = file->max_byte;
+	swap_4((unsigned int *)&file->max_byte);
 	ft_bzero(&head->comment, COMMENT_LENGTH + 1);
 }
 
-int 		init_instruction_tab(t_tab *tab, t_file *file)
+int		init_instruction_tab(t_tab *tab, t_file *file)
 {
 	int i;
 

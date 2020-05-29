@@ -85,10 +85,13 @@ void	keys_printer(WINDOW *keys_win)
 void	init_windows(t_war *war)
 {
 	start_color();
-	init_pair(1, COLOR_GREEN, COLOR_BLACK);
-	init_pair(2, COLOR_YELLOW, COLOR_BLACK);
-	init_pair(3, COLOR_RED, COLOR_BLACK);
-	init_pair(4, COLOR_BLUE, COLOR_BLACK);
+	init_pair(1, COLOR_WHITE, COLOR_GREEN);
+	init_pair(2, COLOR_WHITE, COLOR_YELLOW);
+	init_pair(3, COLOR_WHITE, COLOR_RED);
+	init_pair(4, COLOR_WHITE, COLOR_BLUE);
+	init_pair(5, COLOR_BLACK, COLOR_WHITE);
+	init_pair(6, COLOR_WHITE, COLOR_BLACK);
+
 	war->visual.process_nb = war->nb_player;
 	war->visual.arena_cursor = 0;
 	war->visual.arena_win = newwin(66, 196, 0, 0);

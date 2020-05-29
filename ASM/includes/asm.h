@@ -1,18 +1,27 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   asm.h                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: maegaspa <maegaspa@student.42lyon.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/05/22 17:11:04 by maegaspa          #+#    #+#             */
+/*   Updated: 2020/05/22 17:11:35 by maegaspa         ###   ########lyon.fr   */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef ASM_H
 # define ASM_H
 
 # include "../../libft/includes/ft_printf.h"
 # include "op.h"
-# include <sys/types.h>
-# include <sys/stat.h>
-# include <fcntl.h>
-# include <string.h>
-# include <errno.h>
-# include <unistd.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
 
 typedef struct s_parameter
 {
-	int 	registre;
+	int 	reg;
 	int 	is_direct;
 	int 	direct;
 	char 	*direct_str;
@@ -30,18 +39,27 @@ typedef struct s_instruction
 	int 	nb_parameter;
 	char 	*label;
 	struct s_parameter *param;
+	int 	line_error;
 }				t_instruction;
 
 typedef struct s_tab
 {
 	struct s_instruction *info_ins;
 	int 				nb_instruction;
+	int		*n_label;
+	int		tabyte[CHAMP_MAX_SIZE];
+	int		*dir_pos;
+	int		*r_pos;
+	char	**label_name;
+	int 	no_prob;
 }				t_tab;
 
 typedef struct s_file
 {
 	t_op 	op[17];
+	struct	s_tab *tab;
 	unsigned char	op_c;
+	char	tmp[2];
 	char 	*file_name;
 	char 	**file;
 	int 	name;
@@ -51,6 +69,7 @@ typedef struct s_file
 	int 	count;
 	int 	error;
 	int 	type;
+	int 	param_error;
 	int 	ligne_error;
 	int 	nb_instruction;
 	int 	free_cnt;
@@ -65,6 +84,9 @@ typedef struct s_file
 	int 	i;
 	int 	j;
 	int 	k;
+	unsigned int n;
+	int		max_byte;
+	int 	n_param;
 }				t_file;
 
 #define SUCCESS 1
@@ -80,7 +102,14 @@ typedef struct s_file
 #define ERROR_NOINST -9
 #define ERROR_USAGE -10
 #define ERROR_WRITE -11
-#define FAILURE -12
+#define ERROR_COMMENT -12
+#define ERROR_OPEN -13
+#define FAILURE -14
+
+/* PARSING FUNCTIONS
+**
+**
+*/
 
 char	**get_file(char *filename);
 void	*ft_realloc(void *old, size_t old_size, size_t new_size);
@@ -101,8 +130,13 @@ int 	is_label_or_instruction(t_tab *tab, t_file *file);
 int 	check_param(t_tab *tab, t_file *file);
 char	**ft_strsplit2(char const *s);
 void 	free_error(t_tab *tab, t_file *file);
+void	free_error_2(t_file *file, int i);
+void	free_error_3(t_tab *tab, int i);
+void	free_error_4(t_tab *tab);
 void	print_line_error(t_file *file);
 void 	print_error(t_file *file);
+void	print_error2(t_file *file);
+void	print_error3(t_file *file);
 int 	file_check(t_file *file, t_header *head, char *file_name);
 int		ft_atoi_base(char *str, char *base);
 int  	init_param(t_tab *tab);
@@ -110,11 +144,39 @@ int 	lexer_param(t_file *file, t_tab *tab, char *str);
 int 	ft_check_type(int d_type, int type);
 int 	define_param(t_tab *tab, t_file *file);
 int 	check_label(t_tab *tab, char *str);
-int		create_cor(t_header *head, t_file *file, t_tab *tab);
-int 	convertion(t_header *head, t_file *file, t_tab *tab);
 void	swap_4(unsigned int *nb);
 void	swap_2(unsigned short int *nb);
 char	*gettohexa(int n);
-t_op		get_op_by_name(t_file *file, char *name);
+int		check_errors(char *str, char *base);
+int		get_nb(char c, char *base);
+t_op	get_op_by_name(t_file *file, char *name);
+
+/* WRITE FUNCTIONS
+**
+**
+*/
+
+char	*add_cor(char *str);
+int		create_cor(t_header *head, t_file *file, t_tab *tab);
+int 	convertion(t_header *head, t_file *file, t_tab *tab);
+int		which_direct(t_tab *tab, int actual_inst);
+int		get_label_init(t_tab *tab);
+int		get_label_pos(t_tab *tab, t_file *file);
+void	convert_int(unsigned char **str, int nb);
+void    write_binary_int(int nb, int fd);
+int		get_dir_pos(t_tab *tab, t_file *file);
+int		write_dir_int(int n, t_file *file, t_tab *tab, int actual_inst);
+int		write_short(int n_param, t_file *file, t_tab *tab, int actual_inst);
+int		write_reg_dir_ind(t_file *file, t_tab *tab, int actual_inst);
+void	stock_reg_dir(t_tab *tab, t_file *file, int n_param, int actual_inst);
+int		write_param(t_file *file, t_tab *tab, int actual_inst);
+void	param_fill(t_tab *tab, t_file *file);
+void	param_fill_dir(t_tab *tab, t_file *file);
+void	param_fill_dir2(t_tab *tab, t_file *file);
+void	write_dir_int_lab(int n, t_file *file, t_tab *tab, int actual_inst);
+void	write_dir_short_lab(int n, t_file *file, t_tab *tab, int act_inst);
+int		write_header(t_header *head, int fd, t_file *file);
+
+
 
 #endif

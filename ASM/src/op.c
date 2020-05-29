@@ -43,7 +43,7 @@ void	set_op_tab(t_file *file)
 	int	i;
 
 	i = -1;
-	while (++i < 17)
+	while (++i < 16)
 		file->op[i] = op_tab[i];
 }
 

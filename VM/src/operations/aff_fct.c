@@ -14,6 +14,15 @@
 
 int			aff_fct(t_war *war, t_chariot *chariot)
 {
-	ft_printf("AFF_FCT : index_chariot : %d\tto_die : %d\n", chariot->index, war->to_die);
+	unsigned char value;
+
+//	if (war->verbose[2] == 1)
+//        printf("P %4d | aff r%d\n", (chariot->index + 1), (unsigned char)war->arena[chariot->start_pos + chariot->pc + 2]);
+	value = war->arena[calc_addr(chariot->addr + 2)];
+	value = chariot->registres[value - 1];
+	value %= 256;
+	if (war->aff == 1)
+		printf("Aff: %c\n", value);
+	print_verbose_16(war, chariot, 3);
 	return (0);
 }

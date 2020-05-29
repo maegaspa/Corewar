@@ -6,11 +6,11 @@
 /*   By: hmichel <hmichel@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:43:01 by zaz               #+#    #+#             */
-/*   Updated: 2020/03/09 14:28:46 by seanseau         ###   ########lyon.fr   */
+/*   Updated: 2020/02/27 00:56:02 by hmichel          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/asm.h"
+#include "../../ASM/includes/asm.h"
 
 t_op		g_op_tab[16] =
 {
@@ -38,22 +38,22 @@ t_op		g_op_tab[16] =
 	{"aff", 1, {T_REG}, 16, 2, "aff", 1, 0},
 };
 
-void		set_op_tab(t_file *file)
-{
-	int	i;
-
-	i = -1;
-	while (++i < 17)
-		file->op[i] = op_tab[i];
-}
-
-t_op		get_op_by_name(t_file *file, char *name)
-{
-	int i;
-
-	i = -1;
-	while (++i < 17)
-		if (!ft_strcmp(file->op[i].name, name))
-			return (file->op[i]);
-	return ((t_op){"", -1, "", -1, -1, "", -1, -1});
-}
+//void		set_op_tab(t_file *file)
+//{
+//	int	i;
+//
+//	i = -1;
+//	while (++i < 17)
+//		file->op[i] = op_tab[i];
+//}
+//
+//t_op		get_op_by_name(t_file *file, char *name)
+//{
+//	int i;
+//
+//	i = -1;
+//	while (++i < 17)
+//		if (!ft_strcmp(file->op[i].name, name))
+//			return (file->op[i]);
+//	return ((t_op){"", -1, "", -1, -1, "", -1, -1});
+//}

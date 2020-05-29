@@ -6,7 +6,7 @@
 /*   By: hmichel <hmichel@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 18:46:10 by hmichel           #+#    #+#             */
-/*   Updated: 2020/03/10 17:43:19 by seanseau         ###   ########lyon.fr   */
+/*   Updated: 2020/02/26 22:00:10 by hmichel          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 t_chariot		*ft_creat_chariot(int index, int pc, int start_pos, int player)
 {
 	t_chariot	*new;
-	int			i;
-
-	i = -1;
+//	int			i;
+//
+//	i = 1;
 	if (!(new = (t_chariot*)malloc(sizeof(t_chariot))))
 		return (NULL);
 	new->pc = pc;
@@ -27,11 +27,12 @@ t_chariot		*ft_creat_chariot(int index, int pc, int start_pos, int player)
 	new->index = index;
 	new->player = player;
 	new->start_pos = start_pos;
-	new->ope = -1; // <=> ope non conforme
-	new->prev_cursor = -1;
 	new->prev_color = player;
-	while (++i < REG_NUMBER)
-		new->registres[i] = 0;
+	new->ope = -1; // <=> ope non conforme
+	new->registres[0] = player * -1;
+	//new->registres[1] = player * -1;
+//	while (++i < REG_NUMBER) // pas obligatoire  ?
+//		new->registres[i] = 0;
 	new->next = NULL;
 	return (new);
 }
@@ -50,7 +51,7 @@ int			ft_start_chariot(t_war *war, t_chariot **begin)
 	while (--i >= 0)
 	{
 		if (!(temp->next = ft_creat_chariot(temp->index + 1, 0, war->player[i].pos_arena, i + 1)))
-			(ERROR_MALLOC);
+			return (ERROR_MALLOC);
 		temp = temp->next;
 	}
 	return (SUCCESS);

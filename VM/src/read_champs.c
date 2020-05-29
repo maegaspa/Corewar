@@ -6,7 +6,7 @@
 /*   By: hmichel <hmichel@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 17:21:47 by seanseau          #+#    #+#             */
-/*   Updated: 2020/03/09 15:04:18 by seanseau         ###   ########lyon.fr   */
+/*   Updated: 2020/04/03 18:56:20 by maegaspa         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,64 +15,74 @@
 
 int				get_player_data(t_header *header, t_war *war, int player_nb)
 {
-	if (!(war->player[player_nb].comment = ft_strdup(header->comment)))
-		return (0);
 	header->magic = u_int_reverse_octet(header->magic);//inverse les octets 4 et 1
 	if (header->magic != COREWAR_EXEC_MAGIC)
-	{
-		printf("Wrong Magic\n");
-		return (0);
-	}
+		return (ERROR_MAGIC);
 	header->prog_size = u_int_reverse_octet(header->prog_size);
 	if (header->prog_size > CHAMP_MAX_SIZE)
-	{
-		printf("Wrong prog_size (too big)\n");
-		return (0);
-	}
-	war->player[player_nb].prog_size = header->prog_size;
-	return (1);
+		return (ERROR_CHAMP_SIZE);
+//	if (ft_strlen(header->prog_name) != PROG_NAME_LENGTH)
+//		return (ERROR_NAME);
+//	if (ft_strlen(header->comment) != COMMENT_LENGTH)
+//		return (ERROR_COMMENT);
+	war->player[player_nb].header = *header;
+	return (SUCCESS);
 }
 
-void			add_player_to_arena(t_war *war, int player_nb, char *file_buff)
+int 			add_player_to_arena(t_war *war, int player_nb, char *file_buff, t_header *header)
 {
-	ft_memcpy(&war->arena[war->player[player_nb].pos_arena], &file_buff[16 +
-		PROG_NAME_LENGTH + COMMENT_LENGTH], war->player[player_nb].prog_size);
+	ft_memcpy(&war->arena[war->player[player_nb].pos_arena], &file_buff[sizeof(*header)], war->player[player_nb].header.prog_size);
+	//check la si la size est la meme que prog_size
+	return (SUCCESS);
 }
 
 int				get_new_player(t_war *war, t_parse_file *file, t_header *header,
 		int nb)
 {
-	char buff[CHAMP_MAX_SIZE + PROG_NAME_LENGTH + COMMENT_LENGTH + 20];
+	char buff[MEM_SIZE + 1];
 
-	errno = 0;
+	//buff[MEM_SIZE] = '\0';
+	ft_bzero(&buff, MEM_SIZE);
 	if (!(war->player[nb].file_name = ft_strdup(file->file_name[nb])))
-		return (0);
+		return (ERROR_MALLOC);
 	if ((war->player[nb].fd = open(war->player[nb].file_name, O_RDONLY)) < 0)
-	{
-		printf("|%s|\n", strerror(errno));
-		return (0);
-	}
+		return (ERROR_OPEN);
 	war->player[nb].pos_arena = file->arena_segment * nb;
 	war->player[nb].num = nb;
-	if (!(read(war->player[nb].fd, &buff, CHAMP_MAX_SIZE + PROG_NAME_LENGTH +
-					COMMENT_LENGTH + 20)))
-		return (0);
+	if (!(read(war->player[nb].fd, &buff, MEM_SIZE)))
+		return (ERROR_READ);
 	ft_memcpy(header, buff, sizeof(*header));
-	if (!(get_player_data(header, war, nb)))
-		return (0);
-	add_player_to_arena(war, nb, buff);
+	if ((file->error = get_player_data(header, war, nb)) < 1)
+		return (file->error);
+	if ((file->error = add_player_to_arena(war, nb, buff, header) < 1))
+		return (file->error);
 	if (close(war->player[nb].fd) < 0)
-		return (0);
-	return (1);
+		return (ERROR_OPEN);
+	return (SUCCESS);
 }
 
 void		print_info_players(t_war *war, t_parse_file *file)
 {
-	int i = 0;
-	while (i < file->nb_player)
+	int i;
+	int j;
+	int max;
+
+	j = -1;
+	max = -1;
+	while (++j < file->nb_player)
 	{
-		printf("\nname 0 : |%s|\nComment :\t |%s|\nnum %d\npos_arena %d\nprog_size : %d\n\n", war->player[i].file_name, war->player[i].comment, war->player[i].num, war->player[i].pos_arena, war->player[i].prog_size);
-		i++;
+		i = -1;
+		while (++i < file->nb_player)
+			if (max < file->rank_player[i])
+				max =  file->rank_player[i];
+	}
+	i = -1;
+	while (++i <= max + 1)
+	{
+		j = -1;
+		while (++j < file->nb_player)
+			if (i == file->rank_player[j] - 1)
+				printf("- Player [%d] : weighing %d, \"%s\", \"%s\"\n", file->rank_player[j], war->player[j].header.prog_size, war->player[j].header.prog_name, war->player[j].header.comment);
 	}
 }
 
@@ -86,9 +96,9 @@ int			read_and_place_players(t_parse_file *file, t_war *war, t_header *head)
 	file->arena_segment = MEM_SIZE / file->nb_player;//valeur du segment de l'arena entre chaque player
 	ft_bzero(war->arena, MEM_SIZE);
 	while (++act_player < file->nb_player)
-		get_new_player(war, file, head, act_player);//recupere les infos player + le place dans l'arena
-//	print_arena(war);//print vitef de l'arena -> ca marche
-//	print_info_players(war, file);//print vitef des differents players
-
-	return (1);
+		if ((file->error = get_new_player(war, file, head, act_player)) < 1)
+			return (file->error);//recupere les infos player + le place dans l'arena
+	print_info_players(war, file);//print vitef des differents players
+//	print_arena(war);
+	return (SUCCESS);
 }

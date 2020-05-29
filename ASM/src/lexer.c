@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   lexer.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: maegaspa <maegaspa@student.42lyon.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/05/22 17:09:06 by maegaspa          #+#    #+#             */
+/*   Updated: 2020/05/22 17:10:32 by maegaspa         ###   ########lyon.fr   */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/asm.h"
 #include <stdio.h>
 
@@ -6,12 +18,14 @@ int 		is_instruction_name(char *str, t_file *file, t_tab *tab)
 	int 	i;
 
 	i = -1;
-	while (++i < 17)
-		if (!ft_strcmp(file->op[i].name, str))
+	while (++i < 16)
+	{
+		if (str && !ft_strcmp(file->op[i].name, str))
 		{
 			tab->info_ins[file->cnt_tab].id_inst = file->op[i].id;
 			return (SUCCESS);
 		}
+	}
 	return (FAILURE);
 }
 
@@ -91,21 +105,25 @@ int 		true_syntaxe_info(t_header *head, char *str, int select, int chose)
 	if (str[select] == '\"')
 	{
 		tmp = select;
-		while (str[++select])
+		select++;
+		while (str[select] != '\"' && str[select])
 		{
 			if (count > 1 && str[select] != ' ' && str[select] != '\t')
 				return (ERROR_INFO);
-			if (str[select] == '\"')
-			{
-				count++;
-				if (count > 1)
-					return (ERROR_CHAR);
-			}
-			if (count == 0)
-				i++;
+			select++;
 		}
-		if (count == 0)
+		if (str[select] != '\"')
 			return (ERROR_CHAR);
+		select++;
+		while (str[select])
+		{
+			while (str[select] == ' ' || str[select] == '\t')
+				select++;
+			if (str[select] != COMMENT_CHAR)
+				return (ERROR_COMMENT);
+			else
+				break ;
+		}
 		i = -1;
 		while (str[++tmp] != '\"')
 		{

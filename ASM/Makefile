@@ -2,14 +2,15 @@
 
 NAME = asm
 CC = gcc
-DEBUG = -g -fsanitize=address
-FLAGS = -Wall -Wextra -Werror -g
+DEBUG = -fsanitize=address
+FLAGS = -Wall -Wextra -g
 INC = include/asm.h
 HEADER = include
 
 #------------------------------------FILE--------------------------------------#
 
 FILES = src/error\
+		src/free_error\
 		src/file_check\
 		src/ft_strsplitwhitspace\
 		src/init\
@@ -17,8 +18,13 @@ FILES = src/error\
 		src/main\
 		src/op\
 		src/utils\
+		src/utils2\
+		src/utils3\
 		src/param\
-		src/convert_desc
+		src/convert_desc\
+		src/create_cor\
+		src/get_bytes\
+		src/write_utils\
 
 #----------------------------------COLOR---------------------------------------#
 
@@ -94,7 +100,7 @@ $(NAME): $(OBJ)
 	@$(CC) $(FLAGS) $(SRC) -L. ../libft/libftprintf.a -o $(NAME)
 
 
-object/%.o: src/%.c
+object/%.o: src/%.c $(HEADER)
 	@$(CC) $(FLAGS) -I $(HEADER) -o $@ -c $<
 
 clean:
