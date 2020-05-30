@@ -22,7 +22,7 @@ short		get_2_val(t_war *war, t_chariot *chariot, int i)
 	while (i < tmp + 2)
 	{
 		res = res << 8;
-		res = res + (unsigned char)war->arena[calc_addr(chariot->addr + i)];
+		res = res + (unsigned char)war->arena[calc_addr(chariot->pc + chariot->start_pos + i)];
 		i++;
 	}
 	return (res);

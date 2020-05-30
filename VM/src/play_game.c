@@ -18,47 +18,56 @@ int	get_all_param(t_chariot *chariot, t_war *war, int ope)
 	int 	tmpc;
 
 	i = -1;
-	tmpc = 0;
-	if (g_op_tab[chariot->ope].acb == 0)
+	tmpc = 1;
+	if (g_op_tab[chariot->ope].acb != 0)
 		tmpc += 1;
-	printf("%x\n", (unsigned char)war->arena[tmpc]);
-	printf("%d | %hd | %d\n", war->rtype[0], war->rtype[1], war->rtype[2]);
+//	printf("arena : %x\n", (unsigned char)war->arena[tmpc]);
+	printf("war->rtype = 0 [%d] | 1 [%d] | 2 [%d]\n", war->rtype[0], war->rtype[1], war->rtype[2]);
 	while (++i < g_op_tab[ope].nb_params)
 		war->param[i] = 0;
+	if (chariot->ope == 1)
+    {
+    	war->param[0] = get_4_val(war, chariot, 1);
+    	return (5);
+    }
 	i = 0;
 	while (i < g_op_tab[ope].nb_params)
 	{
 		if (war->rtype[i] == DIR_CODE)
 		{
-			printf("4\n");
+//			printf("ON PASSE DANS DIR\n");
 			if (g_op_tab[ope].label_size == 0)
 			{
 				war->param[i] = get_4_val(war, chariot, tmpc);
 				tmpc += 4;
+//				printf("DANS DIR4\n", get_4_val(war, chariot, tmpc));
 			}
 			else
 			{
 				war->param[i] = get_2_val(war, chariot, tmpc);
 				tmpc += 2;
+//				printf("DANS DIR2\n");
 			}
 		}
 		else if (war->rtype[i] == REG_CODE)
 		{
-			printf("5\n");
-			war->param[i] = (unsigned char)war->arena[calc_addr(chariot->start_pos + tmpc)];
+//			printf("ON PASSE DANS REG\n");
+			war->param[i] = (unsigned char)war->arena[calc_addr(chariot->start_pos + chariot->pc + tmpc)];
 			tmpc += 1;
+//			printf("DANS REG\n");
 		}
 		else if (war->rtype[i] == IND_CODE)
 		{
-			printf("6\n");
+//			printf("ON PASSE DANS IND\n");
 			war->param[i] = get_2_val(war, chariot, tmpc);
 			tmpc += 2;
+//			printf("DANS IND = %d\n", get_2_val(war, chariot, tmpc) );
 		}
 		i++;
 	}
-	printf("%d | %hd | %d\n", war->param[0], war->param[1], war->param[2]);
-	printf("2 = %d\n", tmpc - 1);
-	return (tmpc - 1);
+	printf("new war->param[0] =  %d | param[1] = %d | param[2] = %d\n", war->param[0], war->param[1], war->param[2]);
+//	printf("2tmpc = %d\n", tmpc);
+	return (tmpc);
 }
 
 int			is_conform2(char ocp, int param, int ope)
@@ -80,8 +89,6 @@ int		get_bin_ocp(t_chariot *chariot, t_war *war)
 	int				i;
 
 	i = -1;
-	if (g_op_tab[chariot->ope].acb == 0)
-
     while (++i < 3)
 		war->rtype[i] = -1;
 	ocp = war->arena[calc_addr(chariot->start_pos + chariot->pc + 1)];
@@ -112,10 +119,7 @@ int		ft_game(t_war *war, t_parse_file *file)
 	if ((error = ft_start_chariot(war, &chariot)) <= 0)
 		return (error);
 	war->begin = chariot;
-	chariot->pc = 0;
-	war->back_pc = 0;
 	//ft_print_war(war);
-	war->check_cycles_to_die = 0;
 	war->cycle_last_check = 0;//war->cycles;
 	while (check_cycle(war, chariot) == SUCCESS)
 	{

@@ -21,6 +21,7 @@ FILES = src/main\
 		src/verif_endgame\
 		src/check_cycle\
 		src/op\
+		src/verbose\
 		src/operations/live_fct\
 		src/operations/ld_fct\
 		src/operations/st_fct\

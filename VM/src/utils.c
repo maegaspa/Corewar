@@ -182,17 +182,19 @@ void	init_tab(t_opp *opp_tab)
 
 void			ft_init_war(t_parse_file file, t_war *war)
 {
+	war->i_ocp = 0;
 	war->cycles = 0;
+	war->back_pc = 0;
 	war->nb_player = file.nb_player;
 	//printf("nbplayer = %d\n", file.nb_player);
 	war->nb_chariot = war->nb_player;
 	war->dump = file.dump;
-	war->lastlive = -1;
+	war->lastlive = file.nb_player;
 	war->nb_lives = 0; //new
 	war->next_check = CYCLE_TO_DIE;
 	war->cycle_to_die = CYCLE_TO_DIE;
 	war->actual_cycles = 0; //new
-	war->check_cycles_to_die = 0; //new
+	war->check_cycles_to_die = 1; //new
 	ft_init_op_cycle(war); // a vpor si bien init dans parser
 }
 
@@ -225,9 +227,13 @@ int					read_arena(t_war *war, int cell)
 	if (cell < 0)
 		cell += MEM_SIZE;
 	n += war->arena[(cell % MEM_SIZE)] << 24;
+	printf("n 1 = %d\n", n);
 	n += war->arena[((cell + 1) % MEM_SIZE)] << 16;
+	printf("n 2 = %d\n", n);
 	n += war->arena[((cell + 2) % MEM_SIZE)] << 8;
+	printf("n 3 = %d\n", n);
 	n += war->arena[((cell + 3) % MEM_SIZE)];
+	printf("n 4 = %d\n", n);
 	return (n);
 }
 

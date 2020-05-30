@@ -20,7 +20,7 @@ int			and_fct(t_war *war, t_chariot *chariot)
 	int r;
 
 	i = 0;
-	get_bin_ocp(chariot, war);
+	//get_bin_ocp(chariot, war);
 	if (war->rtype[0] == REG_CODE)//REG
 	{
 		if (war->verbose[2] == 1)

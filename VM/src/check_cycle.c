@@ -53,8 +53,6 @@ int		end_game(t_war *war) //il faudra surement rejouer un tour
 {
 	if (war->begin == NULL || (war->cycle_to_die <= 0))
 	{
-		if (war->verbose[3] == 1)
-			printf("It is now cycle [%d]\n", war->cycles);//on observe last live pour le vainqueur
 		printf("Contestant %d, \"%s\", has won !\n", war->lastlive, war->player[war->lastlive - 1].header.prog_name);
 //		else
 //			printf("Contestant %d, \"%s\", has won !\n", war->lastlive, war->player[war->lastlive - 1].header.prog_name);
@@ -70,13 +68,13 @@ int			check_cycle(t_war *war, t_chariot *chariot)
 	{
 		war->cycle_last_check = war->cycles;
 		v_alive_chariot(chariot, war);
+		reset_lives_chariot(war);
 		if (!(end_game(war) == SUCCESS))
         	return (FAILURE);
 		printf("war->nb_lives = %d ET [%d]\n", war->nb_lives, (war->begin)->live);
 		if (war->nb_lives >= NBR_LIVE || war->check_cycles_to_die >= MAX_CHECKS)
 		{
 			war->cycle_to_die -= CYCLE_DELTA;
-			reset_lives_chariot(war);
 			printf("CTD = %d\n", war->cycle_to_die);
 			if (!(end_game(war) == SUCCESS))
 				return (FAILURE);

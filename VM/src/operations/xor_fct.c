@@ -13,13 +13,12 @@
 #include "../../includes/corewar.h"
 
 int			xor_fct(t_war *war, t_chariot *chariot)
-{
+{/*
 	int i;
 	int param1;
 	int param2;
 	int r;
 
-	get_bin_ocp(chariot, war);
 	i = 1;
 	if (war->rtype[0] == REG_CODE)//REG
 	{
@@ -77,6 +76,6 @@ int			xor_fct(t_war *war, t_chariot *chariot)
 		else
 			chariot->carry = 0;
 	}
-	//printf("XOR_FCT : index_chariot : %d\tto_die : %d\n", chariot->index, war->to_die);
+	//printf("XOR_FCT : index_chariot : %d\tto_die : %d\n", chariot->index, war->to_die);*/
 	return (0);
 }

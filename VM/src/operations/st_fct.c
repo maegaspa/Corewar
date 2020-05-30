@@ -14,6 +14,19 @@
 
 int			st_fct(t_war *war, t_chariot *chariot)
 {
+	verbose(war, chariot);
+	if (war->rtype[1] == REG_CODE)
+		chariot->registres[war->param[0]] = war->param[1];
+	else
+	{
+		write_on_arena(war, chariot->registres[war->param[0]], calc_addr(chariot->pc + chariot->start_pos + (war->param[1] % IDX_MOD)), 4);
+//		printf("chariot->registres[war->param[0]] = %d\n", chariot->registres[war->param[0]]);
+	}
+	return (0);
+}
+/*
+int			st_fct(t_war *war, t_chariot *chariot)
+{
 	int i;
 	int param;
 	int r;
@@ -55,4 +68,4 @@ int			st_fct(t_war *war, t_chariot *chariot)
 		}
 	}
 	return (0);
-}
+}*/

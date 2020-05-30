@@ -86,7 +86,7 @@ typedef struct			s_chariot
 	int					registres[REG_NUMBER]; //char?
 	int					index;
 	int 				addr;
-
+	int					last_live;
 	int					prev_cursor;
     int					player;//pour visu
     int					prev_color;
@@ -108,6 +108,7 @@ typedef struct			visual//visu
 */
 typedef struct			s_war
 {
+	int					i_ocp;
 	int					nb_chariot;
 	int					back_pc;
 	int					visu;
@@ -243,5 +244,7 @@ int		verif_endgame(t_war *war, t_chariot *chariot);
 int		check_cycle(t_war *war, t_chariot *chariot);
 int		v_alive_chariot(t_chariot *chariot, t_war *war);
 void	reset_lives_chariot(t_war *war);
+void	verbose(t_war *war, t_chariot *chariot);
+int		ft_load(t_war *war, int size, int adress);
 
 #endif

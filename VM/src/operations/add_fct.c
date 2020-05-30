@@ -19,7 +19,7 @@ int			add_fct(t_war *war, t_chariot *chariot)
 	unsigned char reg3;
 	int result;
 
-	get_bin_ocp(chariot, war);
+	//get_bin_ocp(chariot, war);
 	if (war->rtype[0] == REG_CODE && war->rtype[1] == REG_CODE && war->rtype[2] == REG_CODE)
 	{
 		reg1 = (unsigned char)war->arena[calc_addr(chariot->addr + 2)];

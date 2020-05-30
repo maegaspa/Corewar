@@ -14,28 +14,23 @@
 
 int			live_fct(t_war *war, t_chariot *chariot)
 {
-	int nb_player;
-	//t_chariot *ch;
-	int i;
+	int		id_player;
 
-	//ch = war->begin;
-	war->lastlive = 0;
-	war->nb_lives++;
-	nb_player = get_4_val(war, chariot, 1);
+	id_player = war->param[0];
+//	printf("id_player = %d\n", id_player);
+//	printf("chariot fait live\n");
+	chariot->live += 1;
+	chariot->last_live = war->cycles;
+	war->nb_lives += 1;
 	if (war->verbose[2] == 1)
-		printf("P %4d | live %d\n", (chariot->index + 1), nb_player);
-	i = -1;
-	while (++i < war->nb_player)
+		printf("P %4d | live %d\n", (chariot->index + 1), id_player);
+    if (id_player < 0 && id_player >= -(war->nb_player))
 	{
-		if (nb_player == ((war->player[i].num + 1) * -1))
-		{
-			if (war->verbose[4] == 1)
-				printf("Player %d (%s) is said to be alive\n", (nb_player * -1), war->player[(nb_player * -1) - 1].header.prog_name);
-			war->lastlive = nb_player * -1;
-			print_verbose_16(war, chariot, 5);
-			return (0);
-		}
+		id_player = -id_player;
+		war->lastlive = id_player;
+		if (war->verbose[4] == 1)
+        	printf("Player %d (%s) is said to be alive\n", id_player, war->player[id_player - 1].header.prog_name);
 	}
-	print_verbose_16(war, chariot, 5);
 	return (0);
 }
+
