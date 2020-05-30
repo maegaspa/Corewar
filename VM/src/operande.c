@@ -30,23 +30,30 @@ int			ft_get_op(t_war *war, t_chariot *chariot)
 	return (1);
 }
 
-int			is_conform(char ocp, int param, int ope, t_war *war)
+int			is_conform(char ocp, int param, t_chariot *chariot, t_war *war)
 {
+	int		i;
+
+	i = -1;
+	while (++i < g_op_tab[chariot->ope - 1].nb_params)
+    	war->rtype[i] = 0;
 	if (ocp == 0)
 		return (FAILURE);
-	if (ocp == 1 && (0x01 & g_op_tab[ope].params_type[param])) // <=> (g_op_tab[ope].params_type[param] % 2) == 1
+	if (ocp == 1 && //get_val(war, chariot, war->jump) > 0 &&
+		//get_val(war, chariot, war->jump) <= 16 &&
+		(0x01 & g_op_tab[chariot->ope - 1].params_type[param]))
 	{
 		war->rtype[war->i_ocp++] = REG_CODE;
 		return (T_REG);
 	}
-	if (ocp == 2 && (0x02 & g_op_tab[ope].params_type[param])) // <=> (g_op_tab[ope].params_type[param] % 4) >= 2
+	if (ocp == 2 && (0x02 & g_op_tab[chariot->ope - 1].params_type[param])) // <=> (g_op_tab[ope].params_type[param] % 4) >= 2
 	{
 		war->rtype[war->i_ocp++] = DIR_CODE;
-		if (g_op_tab[ope].label_size)
+		if (g_op_tab[chariot->ope - 1].label_size)
 			return (T_DIR_TWO);
 		return (T_DIR_FOUR);
 	}
-	if (ocp == 3 && (0x04 & g_op_tab[ope].params_type[param])) // <=> (g_op_tab[ope].params_type[param] % 8) >= 4
+	if (ocp == 3 && (0x04 & g_op_tab[chariot->ope - 1].params_type[param])) // <=> (g_op_tab[ope].params_type[param] % 8) >= 4
 	{
 		war->rtype[war->i_ocp++] = IND_CODE;
 		return (2);
@@ -57,27 +64,26 @@ int			is_conform(char ocp, int param, int ope, t_war *war)
 int			ft_tcheck_ocp(t_chariot *chariot, t_war *war)//return jump
 {
 	unsigned char		ocp;
-	int					jump;
 
 	war->i_ocp = 0;
 	if (chariot->ope == 1)
 		return (5);
 	if (g_op_tab[chariot->ope - 1].acb == 0)
 		return (3);
-	jump = 2;
+	war->jump = 2;
 	ocp = war->arena[calc_addr(chariot->start_pos + chariot->pc + 1)];
 	if (ocp <= 0)
 		return (FAILURE);
-	if (!(jump += is_conform((ocp >> 6), 0, chariot->ope - 1, war)))
+	if (!(war->jump += is_conform((ocp >> 6), 0, chariot, war)))
 		return (FAILURE);
 	if (g_op_tab[chariot->ope - 1].nb_params >= 2)
-		if (!(jump += is_conform(((ocp & 0x30) >> 4), 1, chariot->ope - 1, war)))
+		if (!(war->jump += is_conform(((ocp & 0x30) >> 4), 1, chariot, war)))
 			return (FAILURE);
 	if (g_op_tab[chariot->ope - 1].nb_params == 3)
-		if (!(jump += is_conform(((ocp & 0x0C) >> 2), 2, chariot->ope - 1, war)))
+		if (!(war->jump += is_conform(((ocp & 0x0C) >> 2), 2, chariot, war)))
 			return (FAILURE);
-//	printf("1 = %d\n", jump);
-	return (jump);
+	printf("1 = %d\n", war->jump);
+	return (war->jump);
 }
 
 void		ft_exec_opp(t_chariot *chariot, t_war *war, t_opp *opp_tab)
@@ -96,6 +102,7 @@ void		ft_exec_opp(t_chariot *chariot, t_war *war, t_opp *opp_tab)
 //			printf("GAY\n");
 			chariot->addr = calc_addr(chariot->start_pos + chariot->pc);
 			opp_tab[chariot->ope - 1](war, chariot);
+			print_verbose_16(war, chariot, jump);
 			if (war->back_pc == 0)
 				chariot->pc = calc_addr(chariot->pc + jump);
 			war->back_pc = 0;

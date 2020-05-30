@@ -189,6 +189,7 @@ void			ft_init_war(t_parse_file file, t_war *war)
 	//printf("nbplayer = %d\n", file.nb_player);
 	war->nb_chariot = war->nb_player;
 	war->dump = file.dump;
+	war->jump = 2;
 	war->lastlive = file.nb_player;
 	war->nb_lives = 0; //new
 	war->next_check = CYCLE_TO_DIE;

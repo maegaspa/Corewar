@@ -79,14 +79,7 @@ void		verbose_ind(t_war *war, t_chariot *chariot, int i)
 
 void		verbose_dir(t_war *war, t_chariot *chariot, int i)
 {
-	if (chariot->ope == 9)
-	{
-		if (chariot->carry == 1)
-			printf("%d OK", (short)war->param[i] % IDX_MOD);
-		else
-			printf("%d FAILED", (short)war->param[i]);
-	}
-	else if (chariot->ope == 12)
+	if (chariot->ope == 12)
 		printf("%d (%d)", (short)war->param[i],
 		calc_addr(chariot->pc + (war->param[i] % IDX_MOD)));
 	else if (chariot->ope == 15)

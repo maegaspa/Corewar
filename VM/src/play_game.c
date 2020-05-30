@@ -12,6 +12,11 @@
 
 #include "../includes/corewar.h"
 
+int		get_val(t_war *war, t_chariot *chariot, int i)
+{
+	return ((unsigned char)war->arena[calc_addr(chariot->start_pos + chariot->pc + i)]);
+}
+
 int	get_all_param(t_chariot *chariot, t_war *war, int ope)
 {
 	int		i;
@@ -30,9 +35,18 @@ int	get_all_param(t_chariot *chariot, t_war *war, int ope)
     	war->param[0] = get_4_val(war, chariot, 1);
     	return (5);
     }
+    if (chariot->ope == 12 || chariot->ope == 15 || chariot->ope == 9)
+    {
+    	war->param[0] = get_2_val(war, chariot, 1);
+    	return (3);
+    }
 	i = 0;
 	while (i < g_op_tab[ope].nb_params)
 	{
+		printf("ON PASSE DANS BOUCLE\n");
+		printf("get_val = %d\n", get_val(war, chariot, tmpc));
+		if (war->rtype[i] == 0 || (war->rtype[i] == REG_CODE && (get_val(war, chariot, tmpc) <= 0 || get_val(war, chariot, tmpc) > 16)))
+        	return (-1);
 		if (war->rtype[i] == DIR_CODE)
 		{
 //			printf("ON PASSE DANS DIR\n");
@@ -49,10 +63,11 @@ int	get_all_param(t_chariot *chariot, t_war *war, int ope)
 //				printf("DANS DIR2\n");
 			}
 		}
-		else if (war->rtype[i] == REG_CODE)
+		else if (war->rtype[i] == REG_CODE && get_val(war, chariot, tmpc) > 0 &&
+			get_val(war, chariot, tmpc) <= 16)
 		{
 //			printf("ON PASSE DANS REG\n");
-			war->param[i] = (unsigned char)war->arena[calc_addr(chariot->start_pos + chariot->pc + tmpc)];
+			war->param[i] = get_val(war, chariot, tmpc);
 			tmpc += 1;
 //			printf("DANS REG\n");
 		}
@@ -66,7 +81,7 @@ int	get_all_param(t_chariot *chariot, t_war *war, int ope)
 		i++;
 	}
 	printf("new war->param[0] =  %d | param[1] = %d | param[2] = %d\n", war->param[0], war->param[1], war->param[2]);
-//	printf("2tmpc = %d\n", tmpc);
+	printf("2tmpc = %d\n", tmpc);
 	return (tmpc);
 }
 
