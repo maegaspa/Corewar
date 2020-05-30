@@ -28,22 +28,47 @@ short		get_2_val(t_war *war, t_chariot *chariot, int i)
 	return (res);
 }
 
+void 		sti_verbose(t_war *war, t_chariot *chariot, int p1, int p2)
+{
+	int 	res;
+
+	res = p1 + p2;
+	if (war->verbose[2] == 1)
+		printf("       | -> store to %d + %d = %d (with pc and mod %d)\n", p1, p2, res, chariot->pc + res % IDX_MOD);
+}
+
 int			sti_fct(t_war *war, t_chariot *chariot)
 {
 	verbose(war, chariot);
-	//printf("pc %d, p1 %d, p2 %d, p1+p2 %d\n", chariot->pc, ft_load(war, 4, calc_addr(chariot->pc + war->param[1] % IDX_MOD)), (short)war->param[2], calc_addr(chariot->pc + chariot->start_pos + ft_load(war, 4, calc_addr(chariot->pc + chariot->start_pos + war->param[1] % IDX_MOD)) + (short)war->param[2]) % IDX_MOD);
-	//printf("GAY %d\n", calc_addr(chariot->pc + chariot->start_pos + ((chariot->registres[war->param[1]- 1] + chariot->registres[war->param[2] - 1]) % IDX_MOD)));
 	if (war->rtype[0] == REG_CODE && war->rtype[1] == REG_CODE && war->rtype[2] == REG_CODE)
+	{
+		sti_verbose(war, chariot, chariot->registres[war->param[1]- 1], chariot->registres[war->param[2] - 1]);
 		write_on_arena(war, chariot->registres[war->param[0] - 1], calc_addr(chariot->pc + chariot->start_pos + ((chariot->registres[war->param[1]- 1] + chariot->registres[war->param[2] - 1]) % IDX_MOD)), 4);
+	}
 	else if (war->rtype[1] == IND_CODE && war->rtype[2] != REG_CODE)
+	{
+		sti_verbose(war, chariot, chariot->registres[war->param[1]- 1], chariot->registres[war->param[2] - 1]);
     	write_on_arena(war, chariot->registres[war->param[0] - 1],  calc_addr(chariot->pc + chariot->start_pos + ft_load(war, 4, calc_addr(chariot->pc + chariot->start_pos + war->param[1] % IDX_MOD)) + (short)war->param[2]) % IDX_MOD, 4);
+	}
 	else if (war->rtype[1] == IND_CODE && war->rtype[2] == REG_CODE)
+	{
+		sti_verbose(war, chariot, war->param[1], chariot->registres[war->param[2] - 1]);
 		write_on_arena(war, chariot->registres[war->param[0] - 1],  calc_addr(chariot->pc + chariot->start_pos + ft_load(war, 4, calc_addr(chariot->pc + chariot->start_pos + war->param[1] % IDX_MOD)) + chariot->registres[war->param[2] - 1]) % IDX_MOD, 4);
+	}
 	else if (war->rtype[0] == REG_CODE && war->rtype[1] == REG_CODE && war->rtype[2] != REG_CODE)
+	{
+		sti_verbose(war, chariot, chariot->registres[war->param[1] - 1], war->param[2]);
     	write_on_arena(war, chariot->registres[war->param[0] - 1], calc_addr(chariot->pc + chariot->start_pos + ((chariot->registres[war->param[1]- 1] + war->param[2]) % IDX_MOD)), 4);
+	}
     else if (war->rtype[0] == REG_CODE && war->rtype[1] != REG_CODE && war->rtype[2] == REG_CODE)
+    {
+    	sti_verbose(war, chariot, war->param[1], chariot->registres[war->param[2] - 1]);
     	write_on_arena(war, chariot->registres[war->param[0] - 1], calc_addr(chariot->pc + chariot->start_pos + ((war->param[1] + chariot->registres[war->param[2] - 1]) % IDX_MOD)), 4);
+    }
 	else
+	{
+		sti_verbose(war, chariot, war->param[1], war->param[2]);
 		write_on_arena(war, chariot->registres[war->param[0] - 1], calc_addr(chariot->pc + chariot->start_pos + ((war->param[1] + war->param[2]) % IDX_MOD)), 4);
+	}
 	return (0);
 }
