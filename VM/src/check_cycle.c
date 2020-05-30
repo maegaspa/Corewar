@@ -71,7 +71,7 @@ int			check_cycle(t_war *war, t_chariot *chariot)
 		reset_lives_chariot(war);
 		if (!(end_game(war) == SUCCESS))
         	return (FAILURE);
-		printf("war->nb_lives = %d ET [%d]\n", war->nb_lives, (war->begin)->live);
+		//printf("war->nb_lives = %d ET [%d]\n", war->nb_lives, (war->begin)->live);
 		if (war->nb_lives >= NBR_LIVE || war->check_cycles_to_die >= MAX_CHECKS)
 		{
 			war->cycle_to_die -= CYCLE_DELTA;

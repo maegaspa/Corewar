@@ -22,7 +22,7 @@ static	t_chariot *ft_fork_chariot(t_chariot *chariot, int param, t_war *war)
 		return (NULL);
 	//printf("nb_chariot = %d\n", war->nb_chariot);
 	new->pc = calc_addr(chariot->pc + chariot->start_pos + (param % IDX_MOD));
-	printf("new_add = %d\n", new->pc);
+//	printf("new_add = %d\n", new->pc);
 	new->live = chariot->live; //a check, sujet dit de garder le meme last_live, on a fait differament
 	new->carry = chariot->carry;
 	new->wait = 0;
@@ -44,9 +44,9 @@ int			fork_fct(t_war *war, t_chariot *chariot)
 	t_chariot *tmp_char;
 
 	if (war->verbose[2] == 1)
-        printf("P %4d | fork %hd (%d)\n", (chariot->index + 1), war->param[0], calc_addr(chariot->pc + chariot->start_pos + (war->param[0] % IDX_MOD)));
+        printf("P %4d | fork %d (%d)\n", (chariot->index + 1), (short)war->param[0], calc_addr(chariot->pc + chariot->start_pos + (war->param[0] % IDX_MOD)));
 //    print_verbose_16(war, chariot, 3);
-	printf("war->param[0] = %d\n", war->param[0]);
+//	printf("war->param[0] = %d\n", war->param[0]);
 	war->nb_chariot++;
 	if (!(tmp_char = ft_fork_chariot(chariot, war->param[0], war)))
 		return (ERROR_MALLOC);

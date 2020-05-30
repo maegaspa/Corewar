@@ -91,7 +91,7 @@ int		v_alive_chariot(t_chariot *chariot, t_war *war)
 		//printf("chariot++\n");
 		if (chariot->live == 0)
 			delete_chariot(chariot, war);
-		printf("un chariot est vivant\n");
+		//printf("un chariot est vivant\n");
 		chariot = chariot->next;
 	}
 	chariot = war->begin;

@@ -14,48 +14,42 @@
 
 int   get_4_val(t_war *war, t_chariot *chariot, int i)
 {
-  unsigned int  res;
-  int       tmp;
+	unsigned int  res;
+	int       tmp;
 
-  res = 0;
-  tmp = i;
-  while (i < tmp + 4)
-  {
-    res = res << 8;
-    res = res + (unsigned char)war->arena[calc_addr(chariot->pc + chariot->start_pos + i)];
-    i++;
-  }
-  return (res);
+	res = 0;
+	tmp = i;
+	while (i < tmp + 4)
+	{
+		res = res << 8;
+		res = res + (unsigned char)war->arena[calc_addr(chariot->pc + chariot->start_pos + i)];
+		i++;
+	}
+	return (res);
 }
 
 int			ld_fct(t_war *war, t_chariot *chariot)
 {
 	int		cell_load;
 
+	verbose(war, chariot);
+	//	printf("HEUUUUUUU\n");
 	chariot->addr = calc_addr(chariot->start_pos + chariot->pc);
 	if (war->param[1] >= 0 && war->param[1] < 16)
 	{
-		//il faut new func verbose ici bg
-		verbose(war, chariot);
 		if (war->rtype[0] == DIR_CODE)
-		{
-//			printf("param0 = %d\n", war->param[0]);
 			chariot->registres[war->param[1] - 1] = war->param[0];
-		}
 		else
 		{
-//			printf("ON EST LA [%d]\n", calc_addr(chariot->pc + chariot->start_pos + (war->param[0] % IDX_MOD)));
 			cell_load = ft_load(war, 4, calc_addr(chariot->pc + chariot->start_pos + (war->param[0] % IDX_MOD)));
-//			printf("cell load = %d\n", cell_load);
 			chariot->registres[war->param[1] - 1] = cell_load;//ft_load(war, 4, cell_load);
-			//printf("LD = char->reg[] = %d\n", chariot->registres[war->param[1] - 1]);
 		}
-		if (war->param[0] == 0)
-			chariot->carry = 1;
-		else
-			chariot->carry = 0;
 		//verbose ADV func bg
 	}
+	if (war->param[0] == 0)
+		chariot->carry = 1;
+	else
+		chariot->carry = 0;
 	return (0);
 }
 

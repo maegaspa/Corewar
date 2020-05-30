@@ -1,9 +1,9 @@
 .name "ld"
 .comment "ld"
 
-ld %1, r1
+ld 0, r1
 ld 1, r1
-ld %-1, r1
+ld %0, r1
 ld -1, r1
 ld %2, r2
 ld 2, r2
