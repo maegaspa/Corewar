@@ -14,18 +14,33 @@
 
 int			ldi_fct(t_war *war, t_chariot *chariot)
 {
-	verbose(war, chariot);
+	verbose(war, chariot); // A FINIR
 	if (war->rtype[0] == REG_CODE && war->rtype[1] == REG_CODE)
+	{
+		printf("       | -> load to  %d + %d = %d (with pc and mod %d)\n", chariot->registres[war->param[0]- 1], chariot->registres[war->param[1]- 1], chariot->registres[war->param[0]- 1] + chariot->registres[war->param[1]- 1], (chariot->registres[war->param[0]- 1] + chariot->registres[war->param[1]- 1]) % IDX_MOD);
 		chariot->registres[war->param[2] - 1] = ft_load(war, 4, calc_addr(chariot->pc + chariot->start_pos + ((chariot->registres[war->param[0]- 1] + chariot->registres[war->param[1] - 1]) % IDX_MOD)));
+	}
 	else if (war->rtype[0] == IND_CODE)
+	{
+		//printf("       | -> load to  %d + %d = %d (with pc and mod %d)\n", calc_addr(chariot->pc + chariot->start_pos + war->param[0] % IDX_MOD), chariot->registres[war->param[1]- 1], chariot->registres[war->param[0]- 1] + chariot->registres[war->param[1]- 1], (chariot->registres[war->param[0]- 1] + chariot->registres[war->param[1]- 1]) % IDX_MOD);
 		chariot->registres[war->param[2] - 1] = ft_load(war, 4, calc_addr(chariot->pc + chariot->start_pos + war->param[0] % IDX_MOD)) + war->param[1] % IDX_MOD;
+	}
 	else if (war->rtype[0] == IND_CODE && war->rtype[1] == REG_CODE)
+	{
 		chariot->registres[war->param[2] - 1] = ft_load(war, 4, calc_addr(chariot->pc + chariot->start_pos + war->param[0] % IDX_MOD)) + chariot->registres[war->param[1] - 1] % IDX_MOD;
+	}
 	else if (war->rtype[0] != REG_CODE && war->rtype[1] == REG_CODE)
+	{
 		chariot->registres[war->param[2] - 1] = ft_load(war, 4, calc_addr(chariot->pc + chariot->start_pos + ((war->param[0] + chariot->registres[war->param[1] - 1]) % IDX_MOD)));
+	}
 	else if (war->rtype[0] == REG_CODE && war->rtype[1] != REG_CODE)
+	{
 		chariot->registres[war->param[2] - 1] = ft_load(war, 4, calc_addr(chariot->pc + chariot->start_pos + ((chariot->registres[war->param[0]- 1] + war->param[1]) % IDX_MOD)));
+	}
 	else
+	{
+
 		chariot->registres[war->param[2] - 1] = ft_load(war, 4, calc_addr(chariot->pc + chariot->start_pos + ((war->param[0] + war->param[1]) % IDX_MOD)));
+	}
 	return (0);
 }

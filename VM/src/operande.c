@@ -107,7 +107,7 @@ void		ft_exec_opp(t_chariot *chariot, t_war *war, t_opp *opp_tab)
 //			printf("GAY\n");
 			chariot->addr = calc_addr(chariot->start_pos + chariot->pc);
 			opp_tab[chariot->ope - 1](war, chariot);
-			if (chariot->ope != 3)
+			if (chariot->ope != 3 && war->back_pc == 0)
 				print_verbose_16(war, chariot, jump);
 			if (war->back_pc == 0)
 				chariot->pc = calc_addr(chariot->pc + jump);

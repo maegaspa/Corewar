@@ -68,7 +68,7 @@ void		verbose_ind(t_war *war, t_chariot *chariot, int i)
     else if (chariot->ope == 13)
     	printf("%d", ft_load(war, 4, calc_addr(chariot->pc + war->param[i] % IDX_MOD)));
     else if (chariot->ope == 11 && war->rtype[i] == 3)
-    	printf("GAY%d", ft_load(war, 4, calc_addr(chariot->pc + war->param[i] % IDX_MOD)));
+    	printf("%d", ft_load(war, 4, calc_addr(chariot->pc + war->param[i] % IDX_MOD)));
     else if (chariot->ope == 6 && war->rtype[i] == 3)
     	printf("%d", ft_load(war, 4, calc_addr(chariot->pc + war->param[i] % IDX_MOD)));
     else if (chariot->ope == 14 && war->rtype[i] == 3)
