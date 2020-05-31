@@ -12,26 +12,90 @@
 
 #include "../includes/corewar.h"
 
-/*void	cycle_keys(t_war *war, int c)
+void	print_cursor_temp(t_war *war, int temp)
+{
+	int			pos;
+	t_chariot	*chariot;
+
+	war->visual.process_nb = 0;
+	chariot = war->begin;
+	while (chariot)
+	{
+		pos = (chariot->start_pos + chariot->pc) % MEM_SIZE;
+		wattron(war->visual.arena_win, COLOR_PAIR(chariot->player));
+		mvwprintw(war->visual.arena_win, (pos / 64) + 1,
+		((pos % 64) * 3) + 2, "%02x", (unsigned char)war->visual.arena_list[temp][pos]);
+		wattroff(war->visual.arena_win, COLOR_PAIR(chariot->player));
+		chariot->prev_cursor = pos;
+		war->visual.process_nb++;
+		chariot = chariot->next;
+	}
+}
+
+void	refresh_arena_temp(t_war *war, int temp)
+{
+	int i;
+	int line;
+	int col;
+
+	i = 0;
+	line = 1;
+	col = 2;
+	wattron(war->visual.arena_win, COLOR_PAIR(6));
+	while (i < MEM_SIZE)
+	{
+		mvwprintw(war->visual.arena_win, line, col, "%02x",
+				(unsigned char)war->visual.arena_list[temp][i]);
+		col = col + 3;
+		if (col >= 194)
+		{
+			col = 2;
+			line++;
+		}
+		i++;
+	}
+	wattroff(war->visual.arena_win, COLOR_PAIR(6));
+}
+
+void	cycle_keys(t_war *war, int c)
 {
 	int	temp_cursor;
+
 	temp_cursor = war->visual.arena_cursor;
 	if (war->visual.pause == 1)
 	{
 		if (c == 97 && temp_cursor > 0)
 		{
-			temp_cursor--;
-			refresh_arena(war, temp_cursor);
-			print_cursor(war, temp_cursor);
+			war->visual.arena_cursor--;
+			mvwprintw(war->visual.keys_win, 12, 4, "cursor : %d", temp_cursor);
+			refresh_arena_temp(war, temp_cursor);
+			print_cursor_temp(war, temp_cursor);
 		}
 		if (c == 100 && temp_cursor < 100)
 		{
-			temp_cursor++;
-			refresh_arena(war, temp_cursor);
-			print_cursor(war, temp_cursor);
+			war->visual.arena_cursor++;
+			mvwprintw(war->visual.keys_win, 12, 4, "cursor : %d", temp_cursor);
+			refresh_arena_temp(war, temp_cursor);
+			print_cursor_temp(war, temp_cursor);
 		}
 	}
-}*/
+	wrefresh(war->visual.arena_win);
+	wrefresh(war->visual.infos_win);
+	wrefresh(war->visual.keys_win);
+}
+
+void	free_zob(t_war *war)
+{
+	int i;
+
+	i = 0;
+	while (i < 100)
+	{
+		free(war->visual.arena_list[i]);
+		i++;
+	}
+	free(war->visual.arena_list);
+}
 
 void	sleep_keys(t_war *war, int c)
 {
@@ -58,9 +122,10 @@ void	get_keys(t_war *war)
 		sleep_keys(war, c);
 	if (c == 27)
 	{
+		free_zob(war);
 		endwin();
 		exit(0);
 	}
-//	if (c == 97 || c == 100)
-//		cycle_keys(war, c);
+	if (c == 97 || c == 100)
+		cycle_keys(war, c);
 }

@@ -21,7 +21,7 @@ void	print_cursor(t_war *war)
 	chariot = war->begin;
 	while (chariot)
 	{
-		pos = chariot->start_pos + chariot->pc;
+		pos = (chariot->start_pos + chariot->pc) % MEM_SIZE;
 		wattron(war->visual.arena_win, COLOR_PAIR(chariot->player));
 		mvwprintw(war->visual.arena_win, (pos / 64) + 1,
 		((pos % 64) * 3) + 2, "%02x", (unsigned char)war->arena[pos]);
@@ -44,9 +44,10 @@ void	infos_print(t_war *war)
 		mvwprintw(war->visual.infos_win, 2, 40, "300");
 }
 
-/*void	arena_update(t_war *war)
+void	arena_update(t_war *war)
 {
 	int i;
+
 	i = 0;
 	if (war->cycles < 100)
 	{
@@ -56,11 +57,13 @@ void	infos_print(t_war *war)
 	else
 	{
 		while (++i < 99)
-			ft_memcpy(war->visual.arena_list[i - 1],
-			war->visual.arena_list[i], MEM_SIZE);
+		{
+			ft_memcpy(war->visual.arena_list[i - 1], war->visual.arena_list[i], MEM_SIZE);
+				
+		}
 		ft_memcpy(war->visual.arena_list[99], war->arena, MEM_SIZE);
 	}
-}*/
+}
 
 void	refresh_arena(t_war *war)
 {
@@ -94,9 +97,9 @@ int		update_visu(t_war *war)
 	cbreak();
 	nodelay(war->visual.infos_win, 1);
 	get_keys(war);
-//	arena_update(war);
 	if (war->visual.pause == -1)
 	{
+		arena_update(war);
 		if (war->cycles != 0)
 			usleep(war->visual.sleeptime);
 		wrefresh(war->visual.infos_win);

@@ -99,7 +99,7 @@ $(NAME): $(OBJ)
 	@printf "@@@@@           cgarrot              hmichel               maegaspa              seanseau            @@@@\n"
 	@printf "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n"
 	@make -C ../libft/
-	@$(CC) $(FLAGS) $(SRC) -L. ../libft/libftprintf.a -o $(NAME) -lncurses
+	@$(CC) $(FLAGS) $(SRC) -L. ../libft/libftprintf.a -lncurses -o $(NAME)
 
 object/%.o: src/%.c
 	@$(CC) $(FLAGS) -I $(HEADER) -o $@ -c $<
