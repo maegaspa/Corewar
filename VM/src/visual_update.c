@@ -21,15 +21,12 @@ void	print_cursor(t_war *war)
 	chariot = war->begin;
 	while (chariot)
 	{
-		if (chariot->ope != -1 && chariot->wait != 0)
-		{
-			wattron(war->visual.arena_win, COLOR_PAIR(chariot->player));
-			pos = chariot->start_pos + chariot->pc;
-			mvwprintw(war->visual.arena_win, (pos / 64) + 1,
-			((pos % 64) * 3) + 2, "%02x", (unsigned char)war->arena[pos]);
-			wattroff(war->visual.arena_win, COLOR_PAIR(chariot->player));
-			chariot->prev_cursor = pos;
-		}
+		pos = chariot->start_pos + chariot->pc;
+		wattron(war->visual.arena_win, COLOR_PAIR(chariot->player));
+		mvwprintw(war->visual.arena_win, (pos / 64) + 1,
+		((pos % 64) * 3) + 2, "%02x", (unsigned char)war->arena[pos]);
+		wattroff(war->visual.arena_win, COLOR_PAIR(chariot->player));
+		chariot->prev_cursor = pos;
 		war->visual.process_nb++;
 		chariot = chariot->next;
 	}

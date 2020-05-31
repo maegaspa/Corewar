@@ -161,6 +161,8 @@ int		ft_game(t_war *war, t_parse_file *file)
         if (file->dump == war->cycles || file->long_dump == war->cycles)
 			print_arena(war, file);
 	}
+	while (war->visu == 1)
+		get_keys(war);
 	return (SUCCESS);
 }
 

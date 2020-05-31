@@ -53,7 +53,14 @@ int		end_game(t_war *war) //il faudra surement rejouer un tour
 {
 	if (war->begin == NULL || (war->cycle_to_die <= 0))
 	{
-		printf("Contestant %d, \"%s\", has won !\n", war->lastlive, war->player[war->lastlive - 1].header.prog_name);
+		if (war->visu != 1)
+			printf("Contestant %d, \"%s\", has won !\n", war->lastlive, war->player[war->lastlive - 1].header.prog_name);
+		else
+		{
+			
+			mvwprintw(war->visual.keys_win, 12, 2, "Contestant %d, \"%s\", has won !", war->lastlive, war->player[war->lastlive - 1].header.prog_name);
+			wrefresh(war->visual.keys_win);
+		}
 //		else
 //			printf("Contestant %d, \"%s\", has won !\n", war->lastlive, war->player[war->lastlive - 1].header.prog_name);
 		//war->cycles++;
@@ -75,7 +82,7 @@ int			check_cycle(t_war *war, t_chariot *chariot)
 		if (war->nb_lives >= NBR_LIVE || war->check_cycles_to_die >= MAX_CHECKS)
 		{
 			war->cycle_to_die -= CYCLE_DELTA;
-			printf("CTD = %d\n", war->cycle_to_die);
+			//printf("CTD = %d\n", war->cycle_to_die);
 			if (!(end_game(war) == SUCCESS))
 				return (FAILURE);
 			war->check_cycles_to_die = 1;

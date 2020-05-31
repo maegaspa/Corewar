@@ -57,6 +57,11 @@ void	get_keys(t_war *war)
 		war->visual.pause = war->visual.pause * -1;
 	if (c == '-' || c == '+')
 		sleep_keys(war, c);
+	if (c == 27)
+	{
+		endwin();
+		exit(0);
+	}
 //	if (c == 97 || c == 100)
 //		cycle_keys(war, c);
 }
