@@ -1,0 +1,3 @@
+Check valgrind pour .name "zork"" cote chelou et avec les comment #
+
+SOIT FIX LES ERROR DE SUR FREE

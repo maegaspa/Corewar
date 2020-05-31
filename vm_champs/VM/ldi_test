@@ -1,0 +1,3400 @@
+- Player [1] : weighing 194, "ldi", "ldi"
+ADV 1 (0x0000 -> 0x0001) 0a
+It is now cycle [1]
+ADV 1 (0x0000 -> 0x0001) 0a
+It is now cycle [2]
+ADV 1 (0x0000 -> 0x0001) 0a
+It is now cycle [3]
+ADV 1 (0x0000 -> 0x0001) 0a
+It is now cycle [4]
+ADV 1 (0x0000 -> 0x0001) 0a
+It is now cycle [5]
+ADV 1 (0x0000 -> 0x0001) 0a
+It is now cycle [6]
+ADV 1 (0x0000 -> 0x0001) 0a
+It is now cycle [7]
+ADV 1 (0x0000 -> 0x0001) 0a
+It is now cycle [8]
+ADV 1 (0x0000 -> 0x0001) 0a
+It is now cycle [9]
+ADV 1 (0x0000 -> 0x0001) 0a
+It is now cycle [10]
+ADV 1 (0x0000 -> 0x0001) 0a
+It is now cycle [11]
+ADV 1 (0x0000 -> 0x0001) 0a
+It is now cycle [12]
+ADV 1 (0x0000 -> 0x0001) 0a
+It is now cycle [13]
+ADV 1 (0x0000 -> 0x0001) 0a
+It is now cycle [14]
+ADV 1 (0x0000 -> 0x0001) 0a
+It is now cycle [15]
+ADV 1 (0x0000 -> 0x0001) 0a
+It is now cycle [16]
+ADV 1 (0x0000 -> 0x0001) 0a
+It is now cycle [17]
+ADV 1 (0x0000 -> 0x0001) 0a
+It is now cycle [18]
+ADV 1 (0x0000 -> 0x0001) 0a
+It is now cycle [19]
+ADV 1 (0x0000 -> 0x0001) 0a
+It is now cycle [20]
+ADV 1 (0x0000 -> 0x0001) 0a
+It is now cycle [21]
+ADV 1 (0x0000 -> 0x0001) 0a
+It is now cycle [22]
+ADV 1 (0x0000 -> 0x0001) 0a
+It is now cycle [23]
+ADV 1 (0x0000 -> 0x0001) 0a
+It is now cycle [24]
+ADV 1 (0x0000 -> 0x0001) 0a
+It is now cycle [25]
+1 = 5
+arena : 1
+war->rtype = 0 [1] | 1 [1] | 2 [1]
+ON PASSE DANS REG
+ON PASSE DANS REG
+ON PASSE DANS REG
+new war->paramval 1 | 1 | 1
+2tmpc = 5
+GAY
+P    1 | ldi -1 -1 r1
+       | -> load to  -1 + -1 = -2 (with pc and mod -2)
+ADV 5 (0x0000 -> 0x0005) 0a 54 01 01 01
+It is now cycle [26]
+ADV 1 (0x0005 -> 0x0006) 0a
+It is now cycle [27]
+ADV 1 (0x0005 -> 0x0006) 0a
+It is now cycle [28]
+ADV 1 (0x0005 -> 0x0006) 0a
+It is now cycle [29]
+ADV 1 (0x0005 -> 0x0006) 0a
+It is now cycle [30]
+ADV 1 (0x0005 -> 0x0006) 0a
+It is now cycle [31]
+ADV 1 (0x0005 -> 0x0006) 0a
+It is now cycle [32]
+ADV 1 (0x0005 -> 0x0006) 0a
+It is now cycle [33]
+ADV 1 (0x0005 -> 0x0006) 0a
+It is now cycle [34]
+ADV 1 (0x0005 -> 0x0006) 0a
+It is now cycle [35]
+ADV 1 (0x0005 -> 0x0006) 0a
+It is now cycle [36]
+ADV 1 (0x0005 -> 0x0006) 0a
+It is now cycle [37]
+ADV 1 (0x0005 -> 0x0006) 0a
+It is now cycle [38]
+ADV 1 (0x0005 -> 0x0006) 0a
+It is now cycle [39]
+ADV 1 (0x0005 -> 0x0006) 0a
+It is now cycle [40]
+ADV 1 (0x0005 -> 0x0006) 0a
+It is now cycle [41]
+ADV 1 (0x0005 -> 0x0006) 0a
+It is now cycle [42]
+ADV 1 (0x0005 -> 0x0006) 0a
+It is now cycle [43]
+ADV 1 (0x0005 -> 0x0006) 0a
+It is now cycle [44]
+ADV 1 (0x0005 -> 0x0006) 0a
+It is now cycle [45]
+ADV 1 (0x0005 -> 0x0006) 0a
+It is now cycle [46]
+ADV 1 (0x0005 -> 0x0006) 0a
+It is now cycle [47]
+ADV 1 (0x0005 -> 0x0006) 0a
+It is now cycle [48]
+ADV 1 (0x0005 -> 0x0006) 0a
+It is now cycle [49]
+ADV 1 (0x0005 -> 0x0006) 0a
+It is now cycle [50]
+1 = 6
+arena : 1
+war->rtype = 0 [1] | 1 [2] | 2 [1]
+ON PASSE DANS REG
+ON PASSE DANS DIR
+ON PASSE DANS REG
+new war->paramval 1 | 257 | 10
+2tmpc = 6
+GAY
+P    1 | ldi 1 5 r1
+       | -> load to  1 + 5 = 6 (with pc and mod 11)
+ADV 6 (0x0005 -> 0x000b) 0a 64 01 00 05 01
+It is now cycle [51]
+ADV 1 (0x000b -> 0x000c) 0a
+It is now cycle [52]
+ADV 1 (0x000b -> 0x000c) 0a
+It is now cycle [53]
+ADV 1 (0x000b -> 0x000c) 0a
+It is now cycle [54]
+ADV 1 (0x000b -> 0x000c) 0a
+It is now cycle [55]
+ADV 1 (0x000b -> 0x000c) 0a
+It is now cycle [56]
+ADV 1 (0x000b -> 0x000c) 0a
+It is now cycle [57]
+ADV 1 (0x000b -> 0x000c) 0a
+It is now cycle [58]
+ADV 1 (0x000b -> 0x000c) 0a
+It is now cycle [59]
+ADV 1 (0x000b -> 0x000c) 0a
+It is now cycle [60]
+ADV 1 (0x000b -> 0x000c) 0a
+It is now cycle [61]
+ADV 1 (0x000b -> 0x000c) 0a
+It is now cycle [62]
+ADV 1 (0x000b -> 0x000c) 0a
+It is now cycle [63]
+ADV 1 (0x000b -> 0x000c) 0a
+It is now cycle [64]
+ADV 1 (0x000b -> 0x000c) 0a
+It is now cycle [65]
+ADV 1 (0x000b -> 0x000c) 0a
+It is now cycle [66]
+ADV 1 (0x000b -> 0x000c) 0a
+It is now cycle [67]
+ADV 1 (0x000b -> 0x000c) 0a
+It is now cycle [68]
+ADV 1 (0x000b -> 0x000c) 0a
+It is now cycle [69]
+ADV 1 (0x000b -> 0x000c) 0a
+It is now cycle [70]
+ADV 1 (0x000b -> 0x000c) 0a
+It is now cycle [71]
+ADV 1 (0x000b -> 0x000c) 0a
+It is now cycle [72]
+ADV 1 (0x000b -> 0x000c) 0a
+It is now cycle [73]
+ADV 1 (0x000b -> 0x000c) 0a
+It is now cycle [74]
+ADV 1 (0x000b -> 0x000c) 0a
+It is now cycle [75]
+1 = 6
+arena : 1
+war->rtype = 0 [1] | 1 [2] | 2 [1]
+ON PASSE DANS REG
+ON PASSE DANS DIR
+ON PASSE DANS REG
+new war->paramval 1 | 5 | 10
+2tmpc = 6
+GAY
+P    1 | ldi 1 -5 r1
+       | -> load to  1 + -5 = -4 (with pc and mod 7)
+ADV 6 (0x000b -> 0x0011) 0a 64 01 ff fb 01
+It is now cycle [76]
+ADV 1 (0x0011 -> 0x0012) 0a
+It is now cycle [77]
+ADV 1 (0x0011 -> 0x0012) 0a
+It is now cycle [78]
+ADV 1 (0x0011 -> 0x0012) 0a
+It is now cycle [79]
+ADV 1 (0x0011 -> 0x0012) 0a
+It is now cycle [80]
+ADV 1 (0x0011 -> 0x0012) 0a
+It is now cycle [81]
+ADV 1 (0x0011 -> 0x0012) 0a
+It is now cycle [82]
+ADV 1 (0x0011 -> 0x0012) 0a
+It is now cycle [83]
+ADV 1 (0x0011 -> 0x0012) 0a
+It is now cycle [84]
+ADV 1 (0x0011 -> 0x0012) 0a
+It is now cycle [85]
+ADV 1 (0x0011 -> 0x0012) 0a
+It is now cycle [86]
+ADV 1 (0x0011 -> 0x0012) 0a
+It is now cycle [87]
+ADV 1 (0x0011 -> 0x0012) 0a
+It is now cycle [88]
+ADV 1 (0x0011 -> 0x0012) 0a
+It is now cycle [89]
+ADV 1 (0x0011 -> 0x0012) 0a
+It is now cycle [90]
+ADV 1 (0x0011 -> 0x0012) 0a
+It is now cycle [91]
+ADV 1 (0x0011 -> 0x0012) 0a
+It is now cycle [92]
+ADV 1 (0x0011 -> 0x0012) 0a
+It is now cycle [93]
+ADV 1 (0x0011 -> 0x0012) 0a
+It is now cycle [94]
+ADV 1 (0x0011 -> 0x0012) 0a
+It is now cycle [95]
+ADV 1 (0x0011 -> 0x0012) 0a
+It is now cycle [96]
+ADV 1 (0x0011 -> 0x0012) 0a
+It is now cycle [97]
+ADV 1 (0x0011 -> 0x0012) 0a
+It is now cycle [98]
+ADV 1 (0x0011 -> 0x0012) 0a
+It is now cycle [99]
+ADV 1 (0x0011 -> 0x0012) 0a
+It is now cycle [100]
+1 = 7
+arena : 1
+war->rtype = 0 [2] | 1 [2] | 2 [1]
+ON PASSE DANS DIR
+ON PASSE DANS DIR
+ON PASSE DANS REG
+new war->paramval 511 | -1279 | 100
+2tmpc = 7
+GAY
+P    1 | ldi 5 5 r1
+       | -> load to  5 + 5 = 10 (with pc and mod 27)
+ADV 7 (0x0011 -> 0x0018) 0a a4 00 05 00 05 01
+It is now cycle [101]
+ADV 1 (0x0018 -> 0x0019) 0a
+It is now cycle [102]
+ADV 1 (0x0018 -> 0x0019) 0a
+It is now cycle [103]
+ADV 1 (0x0018 -> 0x0019) 0a
+It is now cycle [104]
+ADV 1 (0x0018 -> 0x0019) 0a
+It is now cycle [105]
+ADV 1 (0x0018 -> 0x0019) 0a
+It is now cycle [106]
+ADV 1 (0x0018 -> 0x0019) 0a
+It is now cycle [107]
+ADV 1 (0x0018 -> 0x0019) 0a
+It is now cycle [108]
+ADV 1 (0x0018 -> 0x0019) 0a
+It is now cycle [109]
+ADV 1 (0x0018 -> 0x0019) 0a
+It is now cycle [110]
+ADV 1 (0x0018 -> 0x0019) 0a
+It is now cycle [111]
+ADV 1 (0x0018 -> 0x0019) 0a
+It is now cycle [112]
+ADV 1 (0x0018 -> 0x0019) 0a
+It is now cycle [113]
+ADV 1 (0x0018 -> 0x0019) 0a
+It is now cycle [114]
+ADV 1 (0x0018 -> 0x0019) 0a
+It is now cycle [115]
+ADV 1 (0x0018 -> 0x0019) 0a
+It is now cycle [116]
+ADV 1 (0x0018 -> 0x0019) 0a
+It is now cycle [117]
+ADV 1 (0x0018 -> 0x0019) 0a
+It is now cycle [118]
+ADV 1 (0x0018 -> 0x0019) 0a
+It is now cycle [119]
+ADV 1 (0x0018 -> 0x0019) 0a
+It is now cycle [120]
+ADV 1 (0x0018 -> 0x0019) 0a
+It is now cycle [121]
+ADV 1 (0x0018 -> 0x0019) 0a
+It is now cycle [122]
+ADV 1 (0x0018 -> 0x0019) 0a
+It is now cycle [123]
+ADV 1 (0x0018 -> 0x0019) 0a
+It is now cycle [124]
+ADV 1 (0x0018 -> 0x0019) 0a
+It is now cycle [125]
+1 = 7
+arena : 1
+war->rtype = 0 [2] | 1 [2] | 2 [1]
+ON PASSE DANS DIR
+ON PASSE DANS DIR
+ON PASSE DANS REG
+new war->paramval 5 | 5 | 100
+2tmpc = 7
+GAY
+P    1 | ldi -5 5 r1
+       | -> load to  -5 + 5 = 0 (with pc and mod 24)
+ADV 7 (0x0018 -> 0x001f) 0a a4 ff fb 00 05 01
+It is now cycle [126]
+ADV 1 (0x001f -> 0x0020) 0a
+It is now cycle [127]
+ADV 1 (0x001f -> 0x0020) 0a
+It is now cycle [128]
+ADV 1 (0x001f -> 0x0020) 0a
+It is now cycle [129]
+ADV 1 (0x001f -> 0x0020) 0a
+It is now cycle [130]
+ADV 1 (0x001f -> 0x0020) 0a
+It is now cycle [131]
+ADV 1 (0x001f -> 0x0020) 0a
+It is now cycle [132]
+ADV 1 (0x001f -> 0x0020) 0a
+It is now cycle [133]
+ADV 1 (0x001f -> 0x0020) 0a
+It is now cycle [134]
+ADV 1 (0x001f -> 0x0020) 0a
+It is now cycle [135]
+ADV 1 (0x001f -> 0x0020) 0a
+It is now cycle [136]
+ADV 1 (0x001f -> 0x0020) 0a
+It is now cycle [137]
+ADV 1 (0x001f -> 0x0020) 0a
+It is now cycle [138]
+ADV 1 (0x001f -> 0x0020) 0a
+It is now cycle [139]
+ADV 1 (0x001f -> 0x0020) 0a
+It is now cycle [140]
+ADV 1 (0x001f -> 0x0020) 0a
+It is now cycle [141]
+ADV 1 (0x001f -> 0x0020) 0a
+It is now cycle [142]
+ADV 1 (0x001f -> 0x0020) 0a
+It is now cycle [143]
+ADV 1 (0x001f -> 0x0020) 0a
+It is now cycle [144]
+ADV 1 (0x001f -> 0x0020) 0a
+It is now cycle [145]
+ADV 1 (0x001f -> 0x0020) 0a
+It is now cycle [146]
+ADV 1 (0x001f -> 0x0020) 0a
+It is now cycle [147]
+ADV 1 (0x001f -> 0x0020) 0a
+It is now cycle [148]
+ADV 1 (0x001f -> 0x0020) 0a
+It is now cycle [149]
+ADV 1 (0x001f -> 0x0020) 0a
+It is now cycle [150]
+1 = 7
+arena : 1
+war->rtype = 0 [2] | 1 [2] | 2 [1]
+ON PASSE DANS DIR
+ON PASSE DANS DIR
+ON PASSE DANS REG
+new war->paramval -5 | 5 | 100
+2tmpc = 7
+GAY
+P    1 | ldi 5 -5 r1
+       | -> load to  5 + -5 = 0 (with pc and mod 31)
+ADV 7 (0x001f -> 0x0026) 0a a4 00 05 ff fb 01
+It is now cycle [151]
+ADV 1 (0x0026 -> 0x0027) 0a
+It is now cycle [152]
+ADV 1 (0x0026 -> 0x0027) 0a
+It is now cycle [153]
+ADV 1 (0x0026 -> 0x0027) 0a
+It is now cycle [154]
+ADV 1 (0x0026 -> 0x0027) 0a
+It is now cycle [155]
+ADV 1 (0x0026 -> 0x0027) 0a
+It is now cycle [156]
+ADV 1 (0x0026 -> 0x0027) 0a
+It is now cycle [157]
+ADV 1 (0x0026 -> 0x0027) 0a
+It is now cycle [158]
+ADV 1 (0x0026 -> 0x0027) 0a
+It is now cycle [159]
+ADV 1 (0x0026 -> 0x0027) 0a
+It is now cycle [160]
+ADV 1 (0x0026 -> 0x0027) 0a
+It is now cycle [161]
+ADV 1 (0x0026 -> 0x0027) 0a
+It is now cycle [162]
+ADV 1 (0x0026 -> 0x0027) 0a
+It is now cycle [163]
+ADV 1 (0x0026 -> 0x0027) 0a
+It is now cycle [164]
+ADV 1 (0x0026 -> 0x0027) 0a
+It is now cycle [165]
+ADV 1 (0x0026 -> 0x0027) 0a
+It is now cycle [166]
+ADV 1 (0x0026 -> 0x0027) 0a
+It is now cycle [167]
+ADV 1 (0x0026 -> 0x0027) 0a
+It is now cycle [168]
+ADV 1 (0x0026 -> 0x0027) 0a
+It is now cycle [169]
+ADV 1 (0x0026 -> 0x0027) 0a
+It is now cycle [170]
+ADV 1 (0x0026 -> 0x0027) 0a
+It is now cycle [171]
+ADV 1 (0x0026 -> 0x0027) 0a
+It is now cycle [172]
+ADV 1 (0x0026 -> 0x0027) 0a
+It is now cycle [173]
+ADV 1 (0x0026 -> 0x0027) 0a
+It is now cycle [174]
+ADV 1 (0x0026 -> 0x0027) 0a
+It is now cycle [175]
+1 = 7
+arena : 1
+war->rtype = 0 [2] | 1 [2] | 2 [1]
+ON PASSE DANS DIR
+ON PASSE DANS DIR
+ON PASSE DANS REG
+new war->paramval 5 | -5 | 100
+2tmpc = 7
+GAY
+P    1 | ldi -5 -5 r1
+       | -> load to  -5 + -5 = -10 (with pc and mod 28)
+ADV 7 (0x0026 -> 0x002d) 0a a4 ff fb ff fb 01
+It is now cycle [176]
+ADV 1 (0x002d -> 0x002e) 0a
+It is now cycle [177]
+ADV 1 (0x002d -> 0x002e) 0a
+It is now cycle [178]
+ADV 1 (0x002d -> 0x002e) 0a
+It is now cycle [179]
+ADV 1 (0x002d -> 0x002e) 0a
+It is now cycle [180]
+ADV 1 (0x002d -> 0x002e) 0a
+It is now cycle [181]
+ADV 1 (0x002d -> 0x002e) 0a
+It is now cycle [182]
+ADV 1 (0x002d -> 0x002e) 0a
+It is now cycle [183]
+ADV 1 (0x002d -> 0x002e) 0a
+It is now cycle [184]
+ADV 1 (0x002d -> 0x002e) 0a
+It is now cycle [185]
+ADV 1 (0x002d -> 0x002e) 0a
+It is now cycle [186]
+ADV 1 (0x002d -> 0x002e) 0a
+It is now cycle [187]
+ADV 1 (0x002d -> 0x002e) 0a
+It is now cycle [188]
+ADV 1 (0x002d -> 0x002e) 0a
+It is now cycle [189]
+ADV 1 (0x002d -> 0x002e) 0a
+It is now cycle [190]
+ADV 1 (0x002d -> 0x002e) 0a
+It is now cycle [191]
+ADV 1 (0x002d -> 0x002e) 0a
+It is now cycle [192]
+ADV 1 (0x002d -> 0x002e) 0a
+It is now cycle [193]
+ADV 1 (0x002d -> 0x002e) 0a
+It is now cycle [194]
+ADV 1 (0x002d -> 0x002e) 0a
+It is now cycle [195]
+ADV 1 (0x002d -> 0x002e) 0a
+It is now cycle [196]
+ADV 1 (0x002d -> 0x002e) 0a
+It is now cycle [197]
+ADV 1 (0x002d -> 0x002e) 0a
+It is now cycle [198]
+ADV 1 (0x002d -> 0x002e) 0a
+It is now cycle [199]
+ADV 1 (0x002d -> 0x002e) 0a
+It is now cycle [200]
+1 = 7
+arena : 1
+war->rtype = 0 [3] | 1 [2] | 2 [1]
+ON PASSE DANS IND
+ON PASSE DANS DIR
+ON PASSE DANS REG
+new war->paramval -5 | -5 | 100
+2tmpc = 7
+GAY
+P    1 | ldi 5 5 r1
+       | -> load to  5 + 5 = 10 (with pc and mod 55)
+ADV 7 (0x002d -> 0x0034) 0a e4 00 05 00 05 01
+It is now cycle [201]
+ADV 1 (0x0034 -> 0x0035) 0a
+It is now cycle [202]
+ADV 1 (0x0034 -> 0x0035) 0a
+It is now cycle [203]
+ADV 1 (0x0034 -> 0x0035) 0a
+It is now cycle [204]
+ADV 1 (0x0034 -> 0x0035) 0a
+It is now cycle [205]
+ADV 1 (0x0034 -> 0x0035) 0a
+It is now cycle [206]
+ADV 1 (0x0034 -> 0x0035) 0a
+It is now cycle [207]
+ADV 1 (0x0034 -> 0x0035) 0a
+It is now cycle [208]
+ADV 1 (0x0034 -> 0x0035) 0a
+It is now cycle [209]
+ADV 1 (0x0034 -> 0x0035) 0a
+It is now cycle [210]
+ADV 1 (0x0034 -> 0x0035) 0a
+It is now cycle [211]
+ADV 1 (0x0034 -> 0x0035) 0a
+It is now cycle [212]
+ADV 1 (0x0034 -> 0x0035) 0a
+It is now cycle [213]
+ADV 1 (0x0034 -> 0x0035) 0a
+It is now cycle [214]
+ADV 1 (0x0034 -> 0x0035) 0a
+It is now cycle [215]
+ADV 1 (0x0034 -> 0x0035) 0a
+It is now cycle [216]
+ADV 1 (0x0034 -> 0x0035) 0a
+It is now cycle [217]
+ADV 1 (0x0034 -> 0x0035) 0a
+It is now cycle [218]
+ADV 1 (0x0034 -> 0x0035) 0a
+It is now cycle [219]
+ADV 1 (0x0034 -> 0x0035) 0a
+It is now cycle [220]
+ADV 1 (0x0034 -> 0x0035) 0a
+It is now cycle [221]
+ADV 1 (0x0034 -> 0x0035) 0a
+It is now cycle [222]
+ADV 1 (0x0034 -> 0x0035) 0a
+It is now cycle [223]
+ADV 1 (0x0034 -> 0x0035) 0a
+It is now cycle [224]
+ADV 1 (0x0034 -> 0x0035) 0a
+It is now cycle [225]
+1 = 7
+arena : 1
+war->rtype = 0 [3] | 1 [2] | 2 [1]
+ON PASSE DANS IND
+ON PASSE DANS DIR
+ON PASSE DANS REG
+new war->paramval 5 | 5 | 100
+2tmpc = 7
+GAY
+P    1 | ldi 5 -5 r1
+       | -> load to  5 + -5 = 0 (with pc and mod 52)
+ADV 7 (0x0034 -> 0x003b) 0a e4 00 05 ff fb 01
+It is now cycle [226]
+ADV 1 (0x003b -> 0x003c) 0a
+It is now cycle [227]
+ADV 1 (0x003b -> 0x003c) 0a
+It is now cycle [228]
+ADV 1 (0x003b -> 0x003c) 0a
+It is now cycle [229]
+ADV 1 (0x003b -> 0x003c) 0a
+It is now cycle [230]
+ADV 1 (0x003b -> 0x003c) 0a
+It is now cycle [231]
+ADV 1 (0x003b -> 0x003c) 0a
+It is now cycle [232]
+ADV 1 (0x003b -> 0x003c) 0a
+It is now cycle [233]
+ADV 1 (0x003b -> 0x003c) 0a
+It is now cycle [234]
+ADV 1 (0x003b -> 0x003c) 0a
+It is now cycle [235]
+ADV 1 (0x003b -> 0x003c) 0a
+It is now cycle [236]
+ADV 1 (0x003b -> 0x003c) 0a
+It is now cycle [237]
+ADV 1 (0x003b -> 0x003c) 0a
+It is now cycle [238]
+ADV 1 (0x003b -> 0x003c) 0a
+It is now cycle [239]
+ADV 1 (0x003b -> 0x003c) 0a
+It is now cycle [240]
+ADV 1 (0x003b -> 0x003c) 0a
+It is now cycle [241]
+ADV 1 (0x003b -> 0x003c) 0a
+It is now cycle [242]
+ADV 1 (0x003b -> 0x003c) 0a
+It is now cycle [243]
+ADV 1 (0x003b -> 0x003c) 0a
+It is now cycle [244]
+ADV 1 (0x003b -> 0x003c) 0a
+It is now cycle [245]
+ADV 1 (0x003b -> 0x003c) 0a
+It is now cycle [246]
+ADV 1 (0x003b -> 0x003c) 0a
+It is now cycle [247]
+ADV 1 (0x003b -> 0x003c) 0a
+It is now cycle [248]
+ADV 1 (0x003b -> 0x003c) 0a
+It is now cycle [249]
+ADV 1 (0x003b -> 0x003c) 0a
+It is now cycle [250]
+1 = 7
+arena : 1
+war->rtype = 0 [3] | 1 [2] | 2 [1]
+ON PASSE DANS IND
+ON PASSE DANS DIR
+ON PASSE DANS REG
+new war->paramval 5 | -5 | 100
+2tmpc = 7
+GAY
+P    1 | ldi -5 5 r1
+       | -> load to  -5 + 5 = 0 (with pc and mod 59)
+ADV 7 (0x003b -> 0x0042) 0a e4 ff fb 00 05 01
+It is now cycle [251]
+ADV 1 (0x0042 -> 0x0043) 0a
+It is now cycle [252]
+ADV 1 (0x0042 -> 0x0043) 0a
+It is now cycle [253]
+ADV 1 (0x0042 -> 0x0043) 0a
+It is now cycle [254]
+ADV 1 (0x0042 -> 0x0043) 0a
+It is now cycle [255]
+ADV 1 (0x0042 -> 0x0043) 0a
+It is now cycle [256]
+ADV 1 (0x0042 -> 0x0043) 0a
+It is now cycle [257]
+ADV 1 (0x0042 -> 0x0043) 0a
+It is now cycle [258]
+ADV 1 (0x0042 -> 0x0043) 0a
+It is now cycle [259]
+ADV 1 (0x0042 -> 0x0043) 0a
+It is now cycle [260]
+ADV 1 (0x0042 -> 0x0043) 0a
+It is now cycle [261]
+ADV 1 (0x0042 -> 0x0043) 0a
+It is now cycle [262]
+ADV 1 (0x0042 -> 0x0043) 0a
+It is now cycle [263]
+ADV 1 (0x0042 -> 0x0043) 0a
+It is now cycle [264]
+ADV 1 (0x0042 -> 0x0043) 0a
+It is now cycle [265]
+ADV 1 (0x0042 -> 0x0043) 0a
+It is now cycle [266]
+ADV 1 (0x0042 -> 0x0043) 0a
+It is now cycle [267]
+ADV 1 (0x0042 -> 0x0043) 0a
+It is now cycle [268]
+ADV 1 (0x0042 -> 0x0043) 0a
+It is now cycle [269]
+ADV 1 (0x0042 -> 0x0043) 0a
+It is now cycle [270]
+ADV 1 (0x0042 -> 0x0043) 0a
+It is now cycle [271]
+ADV 1 (0x0042 -> 0x0043) 0a
+It is now cycle [272]
+ADV 1 (0x0042 -> 0x0043) 0a
+It is now cycle [273]
+ADV 1 (0x0042 -> 0x0043) 0a
+It is now cycle [274]
+ADV 1 (0x0042 -> 0x0043) 0a
+It is now cycle [275]
+1 = 7
+arena : 1
+war->rtype = 0 [3] | 1 [2] | 2 [1]
+ON PASSE DANS IND
+ON PASSE DANS DIR
+ON PASSE DANS REG
+new war->paramval -5 | 5 | 100
+2tmpc = 7
+GAY
+P    1 | ldi -5 -5 r1
+       | -> load to  -5 + -5 = -10 (with pc and mod 56)
+ADV 7 (0x0042 -> 0x0049) 0a e4 ff fb ff fb 01
+It is now cycle [276]
+ADV 1 (0x0049 -> 0x004a) 0a
+It is now cycle [277]
+ADV 1 (0x0049 -> 0x004a) 0a
+It is now cycle [278]
+ADV 1 (0x0049 -> 0x004a) 0a
+It is now cycle [279]
+ADV 1 (0x0049 -> 0x004a) 0a
+It is now cycle [280]
+ADV 1 (0x0049 -> 0x004a) 0a
+It is now cycle [281]
+ADV 1 (0x0049 -> 0x004a) 0a
+It is now cycle [282]
+ADV 1 (0x0049 -> 0x004a) 0a
+It is now cycle [283]
+ADV 1 (0x0049 -> 0x004a) 0a
+It is now cycle [284]
+ADV 1 (0x0049 -> 0x004a) 0a
+It is now cycle [285]
+ADV 1 (0x0049 -> 0x004a) 0a
+It is now cycle [286]
+ADV 1 (0x0049 -> 0x004a) 0a
+It is now cycle [287]
+ADV 1 (0x0049 -> 0x004a) 0a
+It is now cycle [288]
+ADV 1 (0x0049 -> 0x004a) 0a
+It is now cycle [289]
+ADV 1 (0x0049 -> 0x004a) 0a
+It is now cycle [290]
+ADV 1 (0x0049 -> 0x004a) 0a
+It is now cycle [291]
+ADV 1 (0x0049 -> 0x004a) 0a
+It is now cycle [292]
+ADV 1 (0x0049 -> 0x004a) 0a
+It is now cycle [293]
+ADV 1 (0x0049 -> 0x004a) 0a
+It is now cycle [294]
+ADV 1 (0x0049 -> 0x004a) 0a
+It is now cycle [295]
+ADV 1 (0x0049 -> 0x004a) 0a
+It is now cycle [296]
+ADV 1 (0x0049 -> 0x004a) 0a
+It is now cycle [297]
+ADV 1 (0x0049 -> 0x004a) 0a
+It is now cycle [298]
+ADV 1 (0x0049 -> 0x004a) 0a
+It is now cycle [299]
+ADV 1 (0x0049 -> 0x004a) 0a
+It is now cycle [300]
+1 = 6
+arena : 1
+war->rtype = 0 [3] | 1 [1] | 2 [1]
+ON PASSE DANS IND
+ON PASSE DANS REG
+ON PASSE DANS REG
+new war->paramval -5 | 1 | 10
+2tmpc = 6
+GAY
+P    1 | ldi 5 1 r1
+       | -> load to  5 + 1 = 6 (with pc and mod 79)
+ADV 6 (0x0049 -> 0x004f) 0a d4 00 05 01 01
+It is now cycle [301]
+ADV 1 (0x004f -> 0x0050) 0a
+It is now cycle [302]
+ADV 1 (0x004f -> 0x0050) 0a
+It is now cycle [303]
+ADV 1 (0x004f -> 0x0050) 0a
+It is now cycle [304]
+ADV 1 (0x004f -> 0x0050) 0a
+It is now cycle [305]
+ADV 1 (0x004f -> 0x0050) 0a
+It is now cycle [306]
+ADV 1 (0x004f -> 0x0050) 0a
+It is now cycle [307]
+ADV 1 (0x004f -> 0x0050) 0a
+It is now cycle [308]
+ADV 1 (0x004f -> 0x0050) 0a
+It is now cycle [309]
+ADV 1 (0x004f -> 0x0050) 0a
+It is now cycle [310]
+ADV 1 (0x004f -> 0x0050) 0a
+It is now cycle [311]
+ADV 1 (0x004f -> 0x0050) 0a
+It is now cycle [312]
+ADV 1 (0x004f -> 0x0050) 0a
+It is now cycle [313]
+ADV 1 (0x004f -> 0x0050) 0a
+It is now cycle [314]
+ADV 1 (0x004f -> 0x0050) 0a
+It is now cycle [315]
+ADV 1 (0x004f -> 0x0050) 0a
+It is now cycle [316]
+ADV 1 (0x004f -> 0x0050) 0a
+It is now cycle [317]
+ADV 1 (0x004f -> 0x0050) 0a
+It is now cycle [318]
+ADV 1 (0x004f -> 0x0050) 0a
+It is now cycle [319]
+ADV 1 (0x004f -> 0x0050) 0a
+It is now cycle [320]
+ADV 1 (0x004f -> 0x0050) 0a
+It is now cycle [321]
+ADV 1 (0x004f -> 0x0050) 0a
+It is now cycle [322]
+ADV 1 (0x004f -> 0x0050) 0a
+It is now cycle [323]
+ADV 1 (0x004f -> 0x0050) 0a
+It is now cycle [324]
+ADV 1 (0x004f -> 0x0050) 0a
+It is now cycle [325]
+1 = 6
+arena : 1
+war->rtype = 0 [3] | 1 [1] | 2 [1]
+ON PASSE DANS IND
+ON PASSE DANS REG
+ON PASSE DANS REG
+new war->paramval 5 | 1 | 10
+2tmpc = 6
+GAY
+P    1 | ldi 5 1 r1
+       | -> load to  5 + 1 = 6 (with pc and mod 85)
+ADV 6 (0x004f -> 0x0055) 0a d4 00 05 01 01
+It is now cycle [326]
+ADV 1 (0x0055 -> 0x0056) 0a
+It is now cycle [327]
+ADV 1 (0x0055 -> 0x0056) 0a
+It is now cycle [328]
+ADV 1 (0x0055 -> 0x0056) 0a
+It is now cycle [329]
+ADV 1 (0x0055 -> 0x0056) 0a
+It is now cycle [330]
+ADV 1 (0x0055 -> 0x0056) 0a
+It is now cycle [331]
+ADV 1 (0x0055 -> 0x0056) 0a
+It is now cycle [332]
+ADV 1 (0x0055 -> 0x0056) 0a
+It is now cycle [333]
+ADV 1 (0x0055 -> 0x0056) 0a
+It is now cycle [334]
+ADV 1 (0x0055 -> 0x0056) 0a
+It is now cycle [335]
+ADV 1 (0x0055 -> 0x0056) 0a
+It is now cycle [336]
+ADV 1 (0x0055 -> 0x0056) 0a
+It is now cycle [337]
+ADV 1 (0x0055 -> 0x0056) 0a
+It is now cycle [338]
+ADV 1 (0x0055 -> 0x0056) 0a
+It is now cycle [339]
+ADV 1 (0x0055 -> 0x0056) 0a
+It is now cycle [340]
+ADV 1 (0x0055 -> 0x0056) 0a
+It is now cycle [341]
+ADV 1 (0x0055 -> 0x0056) 0a
+It is now cycle [342]
+ADV 1 (0x0055 -> 0x0056) 0a
+It is now cycle [343]
+ADV 1 (0x0055 -> 0x0056) 0a
+It is now cycle [344]
+ADV 1 (0x0055 -> 0x0056) 0a
+It is now cycle [345]
+ADV 1 (0x0055 -> 0x0056) 0a
+It is now cycle [346]
+ADV 1 (0x0055 -> 0x0056) 0a
+It is now cycle [347]
+ADV 1 (0x0055 -> 0x0056) 0a
+It is now cycle [348]
+ADV 1 (0x0055 -> 0x0056) 0a
+It is now cycle [349]
+ADV 1 (0x0055 -> 0x0056) 0a
+It is now cycle [350]
+1 = 6
+arena : 1
+war->rtype = 0 [3] | 1 [1] | 2 [1]
+ON PASSE DANS IND
+ON PASSE DANS REG
+ON PASSE DANS REG
+new war->paramval 5 | 1 | 10
+2tmpc = 6
+GAY
+P    1 | ldi -5 1 r1
+       | -> load to  -5 + 1 = -4 (with pc and mod 81)
+ADV 6 (0x0055 -> 0x005b) 0a d4 ff fb 01 01
+It is now cycle [351]
+ADV 1 (0x005b -> 0x005c) 0a
+It is now cycle [352]
+ADV 1 (0x005b -> 0x005c) 0a
+It is now cycle [353]
+ADV 1 (0x005b -> 0x005c) 0a
+It is now cycle [354]
+ADV 1 (0x005b -> 0x005c) 0a
+It is now cycle [355]
+ADV 1 (0x005b -> 0x005c) 0a
+It is now cycle [356]
+ADV 1 (0x005b -> 0x005c) 0a
+It is now cycle [357]
+ADV 1 (0x005b -> 0x005c) 0a
+It is now cycle [358]
+ADV 1 (0x005b -> 0x005c) 0a
+It is now cycle [359]
+ADV 1 (0x005b -> 0x005c) 0a
+It is now cycle [360]
+ADV 1 (0x005b -> 0x005c) 0a
+It is now cycle [361]
+ADV 1 (0x005b -> 0x005c) 0a
+It is now cycle [362]
+ADV 1 (0x005b -> 0x005c) 0a
+It is now cycle [363]
+ADV 1 (0x005b -> 0x005c) 0a
+It is now cycle [364]
+ADV 1 (0x005b -> 0x005c) 0a
+It is now cycle [365]
+ADV 1 (0x005b -> 0x005c) 0a
+It is now cycle [366]
+ADV 1 (0x005b -> 0x005c) 0a
+It is now cycle [367]
+ADV 1 (0x005b -> 0x005c) 0a
+It is now cycle [368]
+ADV 1 (0x005b -> 0x005c) 0a
+It is now cycle [369]
+ADV 1 (0x005b -> 0x005c) 0a
+It is now cycle [370]
+ADV 1 (0x005b -> 0x005c) 0a
+It is now cycle [371]
+ADV 1 (0x005b -> 0x005c) 0a
+It is now cycle [372]
+ADV 1 (0x005b -> 0x005c) 0a
+It is now cycle [373]
+ADV 1 (0x005b -> 0x005c) 0a
+It is now cycle [374]
+ADV 1 (0x005b -> 0x005c) 0a
+It is now cycle [375]
+1 = 6
+arena : 1
+war->rtype = 0 [3] | 1 [1] | 2 [1]
+ON PASSE DANS IND
+ON PASSE DANS REG
+ON PASSE DANS REG
+new war->paramval -5 | 1 | 10
+2tmpc = 6
+GAY
+P    1 | ldi -5 1 r1
+       | -> load to  -5 + 1 = -4 (with pc and mod 87)
+ADV 6 (0x005b -> 0x0061) 0a d4 ff fb 01 01
+It is now cycle [376]
+ADV 1 (0x0061 -> 0x0062) 0a
+It is now cycle [377]
+ADV 1 (0x0061 -> 0x0062) 0a
+It is now cycle [378]
+ADV 1 (0x0061 -> 0x0062) 0a
+It is now cycle [379]
+ADV 1 (0x0061 -> 0x0062) 0a
+It is now cycle [380]
+ADV 1 (0x0061 -> 0x0062) 0a
+It is now cycle [381]
+ADV 1 (0x0061 -> 0x0062) 0a
+It is now cycle [382]
+ADV 1 (0x0061 -> 0x0062) 0a
+It is now cycle [383]
+ADV 1 (0x0061 -> 0x0062) 0a
+It is now cycle [384]
+ADV 1 (0x0061 -> 0x0062) 0a
+It is now cycle [385]
+ADV 1 (0x0061 -> 0x0062) 0a
+It is now cycle [386]
+ADV 1 (0x0061 -> 0x0062) 0a
+It is now cycle [387]
+ADV 1 (0x0061 -> 0x0062) 0a
+It is now cycle [388]
+ADV 1 (0x0061 -> 0x0062) 0a
+It is now cycle [389]
+ADV 1 (0x0061 -> 0x0062) 0a
+It is now cycle [390]
+ADV 1 (0x0061 -> 0x0062) 0a
+It is now cycle [391]
+ADV 1 (0x0061 -> 0x0062) 0a
+It is now cycle [392]
+ADV 1 (0x0061 -> 0x0062) 0a
+It is now cycle [393]
+ADV 1 (0x0061 -> 0x0062) 0a
+It is now cycle [394]
+ADV 1 (0x0061 -> 0x0062) 0a
+It is now cycle [395]
+ADV 1 (0x0061 -> 0x0062) 0a
+It is now cycle [396]
+ADV 1 (0x0061 -> 0x0062) 0a
+It is now cycle [397]
+ADV 1 (0x0061 -> 0x0062) 0a
+It is now cycle [398]
+ADV 1 (0x0061 -> 0x0062) 0a
+It is now cycle [399]
+ADV 1 (0x0061 -> 0x0062) 0a
+It is now cycle [400]
+1 = 5
+arena : 1
+war->rtype = 0 [1] | 1 [1] | 2 [1]
+ON PASSE DANS REG
+ON PASSE DANS REG
+ON PASSE DANS REG
+new war->paramval 1 | 1 | 1
+2tmpc = 5
+GAY
+P    1 | ldi -738264319 -738264319 r1
+       | -> load to  -738264319 + -738264319 = -1476528638 (with pc and mod -510)
+ADV 5 (0x0061 -> 0x0066) 0a 54 01 01 01
+It is now cycle [401]
+ADV 1 (0x0066 -> 0x0067) 0a
+It is now cycle [402]
+ADV 1 (0x0066 -> 0x0067) 0a
+It is now cycle [403]
+ADV 1 (0x0066 -> 0x0067) 0a
+It is now cycle [404]
+ADV 1 (0x0066 -> 0x0067) 0a
+It is now cycle [405]
+ADV 1 (0x0066 -> 0x0067) 0a
+It is now cycle [406]
+ADV 1 (0x0066 -> 0x0067) 0a
+It is now cycle [407]
+ADV 1 (0x0066 -> 0x0067) 0a
+It is now cycle [408]
+ADV 1 (0x0066 -> 0x0067) 0a
+It is now cycle [409]
+ADV 1 (0x0066 -> 0x0067) 0a
+It is now cycle [410]
+ADV 1 (0x0066 -> 0x0067) 0a
+It is now cycle [411]
+ADV 1 (0x0066 -> 0x0067) 0a
+It is now cycle [412]
+ADV 1 (0x0066 -> 0x0067) 0a
+It is now cycle [413]
+ADV 1 (0x0066 -> 0x0067) 0a
+It is now cycle [414]
+ADV 1 (0x0066 -> 0x0067) 0a
+It is now cycle [415]
+ADV 1 (0x0066 -> 0x0067) 0a
+It is now cycle [416]
+ADV 1 (0x0066 -> 0x0067) 0a
+It is now cycle [417]
+ADV 1 (0x0066 -> 0x0067) 0a
+It is now cycle [418]
+ADV 1 (0x0066 -> 0x0067) 0a
+It is now cycle [419]
+ADV 1 (0x0066 -> 0x0067) 0a
+It is now cycle [420]
+ADV 1 (0x0066 -> 0x0067) 0a
+It is now cycle [421]
+ADV 1 (0x0066 -> 0x0067) 0a
+It is now cycle [422]
+ADV 1 (0x0066 -> 0x0067) 0a
+It is now cycle [423]
+ADV 1 (0x0066 -> 0x0067) 0a
+It is now cycle [424]
+ADV 1 (0x0066 -> 0x0067) 0a
+It is now cycle [425]
+1 = 6
+arena : 1
+war->rtype = 0 [1] | 1 [2] | 2 [1]
+ON PASSE DANS REG
+ON PASSE DANS DIR
+ON PASSE DANS REG
+new war->paramval 1 | 257 | 10
+2tmpc = 6
+GAY
+P    1 | ldi 1 5 r1
+       | -> load to  1 + 5 = 6 (with pc and mod 108)
+ADV 6 (0x0066 -> 0x006c) 0a 64 01 00 05 01
+It is now cycle [426]
+ADV 1 (0x006c -> 0x006d) 0a
+It is now cycle [427]
+ADV 1 (0x006c -> 0x006d) 0a
+It is now cycle [428]
+ADV 1 (0x006c -> 0x006d) 0a
+It is now cycle [429]
+ADV 1 (0x006c -> 0x006d) 0a
+It is now cycle [430]
+ADV 1 (0x006c -> 0x006d) 0a
+It is now cycle [431]
+ADV 1 (0x006c -> 0x006d) 0a
+It is now cycle [432]
+ADV 1 (0x006c -> 0x006d) 0a
+It is now cycle [433]
+ADV 1 (0x006c -> 0x006d) 0a
+It is now cycle [434]
+ADV 1 (0x006c -> 0x006d) 0a
+It is now cycle [435]
+ADV 1 (0x006c -> 0x006d) 0a
+It is now cycle [436]
+ADV 1 (0x006c -> 0x006d) 0a
+It is now cycle [437]
+ADV 1 (0x006c -> 0x006d) 0a
+It is now cycle [438]
+ADV 1 (0x006c -> 0x006d) 0a
+It is now cycle [439]
+ADV 1 (0x006c -> 0x006d) 0a
+It is now cycle [440]
+ADV 1 (0x006c -> 0x006d) 0a
+It is now cycle [441]
+ADV 1 (0x006c -> 0x006d) 0a
+It is now cycle [442]
+ADV 1 (0x006c -> 0x006d) 0a
+It is now cycle [443]
+ADV 1 (0x006c -> 0x006d) 0a
+It is now cycle [444]
+ADV 1 (0x006c -> 0x006d) 0a
+It is now cycle [445]
+ADV 1 (0x006c -> 0x006d) 0a
+It is now cycle [446]
+ADV 1 (0x006c -> 0x006d) 0a
+It is now cycle [447]
+ADV 1 (0x006c -> 0x006d) 0a
+It is now cycle [448]
+ADV 1 (0x006c -> 0x006d) 0a
+It is now cycle [449]
+ADV 1 (0x006c -> 0x006d) 0a
+It is now cycle [450]
+1 = 6
+arena : 1
+war->rtype = 0 [1] | 1 [2] | 2 [1]
+ON PASSE DANS REG
+ON PASSE DANS DIR
+ON PASSE DANS REG
+new war->paramval 1 | 5 | 10
+2tmpc = 6
+GAY
+P    1 | ldi 1 -5 r1
+       | -> load to  1 + -5 = -4 (with pc and mod 104)
+ADV 6 (0x006c -> 0x0072) 0a 64 01 ff fb 01
+It is now cycle [451]
+ADV 1 (0x0072 -> 0x0073) 0a
+It is now cycle [452]
+ADV 1 (0x0072 -> 0x0073) 0a
+It is now cycle [453]
+ADV 1 (0x0072 -> 0x0073) 0a
+It is now cycle [454]
+ADV 1 (0x0072 -> 0x0073) 0a
+It is now cycle [455]
+ADV 1 (0x0072 -> 0x0073) 0a
+It is now cycle [456]
+ADV 1 (0x0072 -> 0x0073) 0a
+It is now cycle [457]
+ADV 1 (0x0072 -> 0x0073) 0a
+It is now cycle [458]
+ADV 1 (0x0072 -> 0x0073) 0a
+It is now cycle [459]
+ADV 1 (0x0072 -> 0x0073) 0a
+It is now cycle [460]
+ADV 1 (0x0072 -> 0x0073) 0a
+It is now cycle [461]
+ADV 1 (0x0072 -> 0x0073) 0a
+It is now cycle [462]
+ADV 1 (0x0072 -> 0x0073) 0a
+It is now cycle [463]
+ADV 1 (0x0072 -> 0x0073) 0a
+It is now cycle [464]
+ADV 1 (0x0072 -> 0x0073) 0a
+It is now cycle [465]
+ADV 1 (0x0072 -> 0x0073) 0a
+It is now cycle [466]
+ADV 1 (0x0072 -> 0x0073) 0a
+It is now cycle [467]
+ADV 1 (0x0072 -> 0x0073) 0a
+It is now cycle [468]
+ADV 1 (0x0072 -> 0x0073) 0a
+It is now cycle [469]
+ADV 1 (0x0072 -> 0x0073) 0a
+It is now cycle [470]
+ADV 1 (0x0072 -> 0x0073) 0a
+It is now cycle [471]
+ADV 1 (0x0072 -> 0x0073) 0a
+It is now cycle [472]
+ADV 1 (0x0072 -> 0x0073) 0a
+It is now cycle [473]
+ADV 1 (0x0072 -> 0x0073) 0a
+It is now cycle [474]
+ADV 1 (0x0072 -> 0x0073) 0a
+It is now cycle [475]
+1 = 7
+arena : 1
+war->rtype = 0 [2] | 1 [2] | 2 [1]
+ON PASSE DANS DIR
+ON PASSE DANS DIR
+ON PASSE DANS REG
+new war->paramval 511 | -1279 | 100
+2tmpc = 7
+GAY
+P    1 | ldi 5 44 r8
+       | -> load to  5 + 44 = 49 (with pc and mod 163)
+ADV 7 (0x0072 -> 0x0079) 0a a4 00 05 00 2c 08
+It is now cycle [476]
+ADV 1 (0x0079 -> 0x007a) 0a
+It is now cycle [477]
+ADV 1 (0x0079 -> 0x007a) 0a
+It is now cycle [478]
+ADV 1 (0x0079 -> 0x007a) 0a
+It is now cycle [479]
+ADV 1 (0x0079 -> 0x007a) 0a
+It is now cycle [480]
+ADV 1 (0x0079 -> 0x007a) 0a
+It is now cycle [481]
+ADV 1 (0x0079 -> 0x007a) 0a
+It is now cycle [482]
+ADV 1 (0x0079 -> 0x007a) 0a
+It is now cycle [483]
+ADV 1 (0x0079 -> 0x007a) 0a
+It is now cycle [484]
+ADV 1 (0x0079 -> 0x007a) 0a
+It is now cycle [485]
+ADV 1 (0x0079 -> 0x007a) 0a
+It is now cycle [486]
+ADV 1 (0x0079 -> 0x007a) 0a
+It is now cycle [487]
+ADV 1 (0x0079 -> 0x007a) 0a
+It is now cycle [488]
+ADV 1 (0x0079 -> 0x007a) 0a
+It is now cycle [489]
+ADV 1 (0x0079 -> 0x007a) 0a
+It is now cycle [490]
+ADV 1 (0x0079 -> 0x007a) 0a
+It is now cycle [491]
+ADV 1 (0x0079 -> 0x007a) 0a
+It is now cycle [492]
+ADV 1 (0x0079 -> 0x007a) 0a
+It is now cycle [493]
+ADV 1 (0x0079 -> 0x007a) 0a
+It is now cycle [494]
+ADV 1 (0x0079 -> 0x007a) 0a
+It is now cycle [495]
+ADV 1 (0x0079 -> 0x007a) 0a
+It is now cycle [496]
+ADV 1 (0x0079 -> 0x007a) 0a
+It is now cycle [497]
+ADV 1 (0x0079 -> 0x007a) 0a
+It is now cycle [498]
+ADV 1 (0x0079 -> 0x007a) 0a
+It is now cycle [499]
+ADV 1 (0x0079 -> 0x007a) 0a
+It is now cycle [500]
+1 = 7
+arena : 1
+war->rtype = 0 [2] | 1 [2] | 2 [1]
+ON PASSE DANS DIR
+ON PASSE DANS DIR
+ON PASSE DANS REG
+new war->paramval 5 | 44 | 100
+2tmpc = 7
+GAY
+P    1 | ldi -77 5 r1
+       | -> load to  -77 + 5 = -72 (with pc and mod 49)
+ADV 7 (0x0079 -> 0x0080) 0a a4 ff b3 00 05 01
+It is now cycle [501]
+ADV 1 (0x0080 -> 0x0081) 0a
+It is now cycle [502]
+ADV 1 (0x0080 -> 0x0081) 0a
+It is now cycle [503]
+ADV 1 (0x0080 -> 0x0081) 0a
+It is now cycle [504]
+ADV 1 (0x0080 -> 0x0081) 0a
+It is now cycle [505]
+ADV 1 (0x0080 -> 0x0081) 0a
+It is now cycle [506]
+ADV 1 (0x0080 -> 0x0081) 0a
+It is now cycle [507]
+ADV 1 (0x0080 -> 0x0081) 0a
+It is now cycle [508]
+ADV 1 (0x0080 -> 0x0081) 0a
+It is now cycle [509]
+ADV 1 (0x0080 -> 0x0081) 0a
+It is now cycle [510]
+ADV 1 (0x0080 -> 0x0081) 0a
+It is now cycle [511]
+ADV 1 (0x0080 -> 0x0081) 0a
+It is now cycle [512]
+ADV 1 (0x0080 -> 0x0081) 0a
+It is now cycle [513]
+ADV 1 (0x0080 -> 0x0081) 0a
+It is now cycle [514]
+ADV 1 (0x0080 -> 0x0081) 0a
+It is now cycle [515]
+ADV 1 (0x0080 -> 0x0081) 0a
+It is now cycle [516]
+ADV 1 (0x0080 -> 0x0081) 0a
+It is now cycle [517]
+ADV 1 (0x0080 -> 0x0081) 0a
+It is now cycle [518]
+ADV 1 (0x0080 -> 0x0081) 0a
+It is now cycle [519]
+ADV 1 (0x0080 -> 0x0081) 0a
+It is now cycle [520]
+ADV 1 (0x0080 -> 0x0081) 0a
+It is now cycle [521]
+ADV 1 (0x0080 -> 0x0081) 0a
+It is now cycle [522]
+ADV 1 (0x0080 -> 0x0081) 0a
+It is now cycle [523]
+ADV 1 (0x0080 -> 0x0081) 0a
+It is now cycle [524]
+ADV 1 (0x0080 -> 0x0081) 0a
+It is now cycle [525]
+1 = 7
+arena : 1
+war->rtype = 0 [2] | 1 [2] | 2 [1]
+ON PASSE DANS DIR
+ON PASSE DANS DIR
+ON PASSE DANS REG
+new war->paramval -77 | 5 | 100
+2tmpc = 7
+GAY
+P    1 | ldi 5 -5 r3
+       | -> load to  5 + -5 = 0 (with pc and mod 128)
+ADV 7 (0x0080 -> 0x0087) 0a a4 00 05 ff fb 03
+It is now cycle [526]
+ADV 1 (0x0087 -> 0x0088) 0a
+It is now cycle [527]
+ADV 1 (0x0087 -> 0x0088) 0a
+It is now cycle [528]
+ADV 1 (0x0087 -> 0x0088) 0a
+It is now cycle [529]
+ADV 1 (0x0087 -> 0x0088) 0a
+It is now cycle [530]
+ADV 1 (0x0087 -> 0x0088) 0a
+It is now cycle [531]
+ADV 1 (0x0087 -> 0x0088) 0a
+It is now cycle [532]
+ADV 1 (0x0087 -> 0x0088) 0a
+It is now cycle [533]
+ADV 1 (0x0087 -> 0x0088) 0a
+It is now cycle [534]
+ADV 1 (0x0087 -> 0x0088) 0a
+It is now cycle [535]
+ADV 1 (0x0087 -> 0x0088) 0a
+It is now cycle [536]
+ADV 1 (0x0087 -> 0x0088) 0a
+It is now cycle [537]
+ADV 1 (0x0087 -> 0x0088) 0a
+It is now cycle [538]
+ADV 1 (0x0087 -> 0x0088) 0a
+It is now cycle [539]
+ADV 1 (0x0087 -> 0x0088) 0a
+It is now cycle [540]
+ADV 1 (0x0087 -> 0x0088) 0a
+It is now cycle [541]
+ADV 1 (0x0087 -> 0x0088) 0a
+It is now cycle [542]
+ADV 1 (0x0087 -> 0x0088) 0a
+It is now cycle [543]
+ADV 1 (0x0087 -> 0x0088) 0a
+It is now cycle [544]
+ADV 1 (0x0087 -> 0x0088) 0a
+It is now cycle [545]
+ADV 1 (0x0087 -> 0x0088) 0a
+It is now cycle [546]
+ADV 1 (0x0087 -> 0x0088) 0a
+It is now cycle [547]
+ADV 1 (0x0087 -> 0x0088) 0a
+It is now cycle [548]
+ADV 1 (0x0087 -> 0x0088) 0a
+It is now cycle [549]
+ADV 1 (0x0087 -> 0x0088) 0a
+It is now cycle [550]
+1 = 7
+arena : 1
+war->rtype = 0 [2] | 1 [2] | 2 [1]
+ON PASSE DANS DIR
+ON PASSE DANS DIR
+ON PASSE DANS REG
+new war->paramval 5 | -5 | 100
+2tmpc = 7
+GAY
+P    1 | ldi -888 -5 r1
+       | -> load to  -888 + -5 = -893 (with pc and mod 3850)
+ADV 7 (0x0087 -> 0x008e) 0a a4 fc 88 ff fb 01
+It is now cycle [551]
+ADV 1 (0x008e -> 0x008f) 0a
+It is now cycle [552]
+ADV 1 (0x008e -> 0x008f) 0a
+It is now cycle [553]
+ADV 1 (0x008e -> 0x008f) 0a
+It is now cycle [554]
+ADV 1 (0x008e -> 0x008f) 0a
+It is now cycle [555]
+ADV 1 (0x008e -> 0x008f) 0a
+It is now cycle [556]
+ADV 1 (0x008e -> 0x008f) 0a
+It is now cycle [557]
+ADV 1 (0x008e -> 0x008f) 0a
+It is now cycle [558]
+ADV 1 (0x008e -> 0x008f) 0a
+It is now cycle [559]
+ADV 1 (0x008e -> 0x008f) 0a
+It is now cycle [560]
+ADV 1 (0x008e -> 0x008f) 0a
+It is now cycle [561]
+ADV 1 (0x008e -> 0x008f) 0a
+It is now cycle [562]
+ADV 1 (0x008e -> 0x008f) 0a
+It is now cycle [563]
+ADV 1 (0x008e -> 0x008f) 0a
+It is now cycle [564]
+ADV 1 (0x008e -> 0x008f) 0a
+It is now cycle [565]
+ADV 1 (0x008e -> 0x008f) 0a
+It is now cycle [566]
+ADV 1 (0x008e -> 0x008f) 0a
+It is now cycle [567]
+ADV 1 (0x008e -> 0x008f) 0a
+It is now cycle [568]
+ADV 1 (0x008e -> 0x008f) 0a
+It is now cycle [569]
+ADV 1 (0x008e -> 0x008f) 0a
+It is now cycle [570]
+ADV 1 (0x008e -> 0x008f) 0a
+It is now cycle [571]
+ADV 1 (0x008e -> 0x008f) 0a
+It is now cycle [572]
+ADV 1 (0x008e -> 0x008f) 0a
+It is now cycle [573]
+ADV 1 (0x008e -> 0x008f) 0a
+It is now cycle [574]
+ADV 1 (0x008e -> 0x008f) 0a
+It is now cycle [575]
+1 = 7
+arena : 1
+war->rtype = 0 [3] | 1 [2] | 2 [1]
+ON PASSE DANS IND
+ON PASSE DANS DIR
+ON PASSE DANS REG
+new war->paramval -888 | -5 | 100
+2tmpc = 7
+GAY
+P    1 | ldi 5 5 r6
+       | -> load to  5 + 5 = 10 (with pc and mod 152)
+ADV 7 (0x008e -> 0x0095) 0a e4 00 05 00 05 06
+It is now cycle [576]
+ADV 1 (0x0095 -> 0x0096) 0a
+It is now cycle [577]
+ADV 1 (0x0095 -> 0x0096) 0a
+It is now cycle [578]
+ADV 1 (0x0095 -> 0x0096) 0a
+It is now cycle [579]
+ADV 1 (0x0095 -> 0x0096) 0a
+It is now cycle [580]
+ADV 1 (0x0095 -> 0x0096) 0a
+It is now cycle [581]
+ADV 1 (0x0095 -> 0x0096) 0a
+It is now cycle [582]
+ADV 1 (0x0095 -> 0x0096) 0a
+It is now cycle [583]
+ADV 1 (0x0095 -> 0x0096) 0a
+It is now cycle [584]
+ADV 1 (0x0095 -> 0x0096) 0a
+It is now cycle [585]
+ADV 1 (0x0095 -> 0x0096) 0a
+It is now cycle [586]
+ADV 1 (0x0095 -> 0x0096) 0a
+It is now cycle [587]
+ADV 1 (0x0095 -> 0x0096) 0a
+It is now cycle [588]
+ADV 1 (0x0095 -> 0x0096) 0a
+It is now cycle [589]
+ADV 1 (0x0095 -> 0x0096) 0a
+It is now cycle [590]
+ADV 1 (0x0095 -> 0x0096) 0a
+It is now cycle [591]
+ADV 1 (0x0095 -> 0x0096) 0a
+It is now cycle [592]
+ADV 1 (0x0095 -> 0x0096) 0a
+It is now cycle [593]
+ADV 1 (0x0095 -> 0x0096) 0a
+It is now cycle [594]
+ADV 1 (0x0095 -> 0x0096) 0a
+It is now cycle [595]
+ADV 1 (0x0095 -> 0x0096) 0a
+It is now cycle [596]
+ADV 1 (0x0095 -> 0x0096) 0a
+It is now cycle [597]
+ADV 1 (0x0095 -> 0x0096) 0a
+It is now cycle [598]
+ADV 1 (0x0095 -> 0x0096) 0a
+It is now cycle [599]
+ADV 1 (0x0095 -> 0x0096) 0a
+It is now cycle [600]
+1 = 7
+arena : 1
+war->rtype = 0 [3] | 1 [2] | 2 [1]
+ON PASSE DANS IND
+ON PASSE DANS DIR
+ON PASSE DANS REG
+new war->paramval 5 | 5 | 100
+2tmpc = 7
+GAY
+P    1 | ldi 5 -44 r1
+       | -> load to  5 + -44 = -39 (with pc and mod 110)
+ADV 7 (0x0095 -> 0x009c) 0a e4 00 05 ff d4 01
+It is now cycle [601]
+ADV 1 (0x009c -> 0x009d) 0a
+It is now cycle [602]
+ADV 1 (0x009c -> 0x009d) 0a
+It is now cycle [603]
+ADV 1 (0x009c -> 0x009d) 0a
+It is now cycle [604]
+ADV 1 (0x009c -> 0x009d) 0a
+It is now cycle [605]
+ADV 1 (0x009c -> 0x009d) 0a
+It is now cycle [606]
+ADV 1 (0x009c -> 0x009d) 0a
+It is now cycle [607]
+ADV 1 (0x009c -> 0x009d) 0a
+It is now cycle [608]
+ADV 1 (0x009c -> 0x009d) 0a
+It is now cycle [609]
+ADV 1 (0x009c -> 0x009d) 0a
+It is now cycle [610]
+ADV 1 (0x009c -> 0x009d) 0a
+It is now cycle [611]
+ADV 1 (0x009c -> 0x009d) 0a
+It is now cycle [612]
+ADV 1 (0x009c -> 0x009d) 0a
+It is now cycle [613]
+ADV 1 (0x009c -> 0x009d) 0a
+It is now cycle [614]
+ADV 1 (0x009c -> 0x009d) 0a
+It is now cycle [615]
+ADV 1 (0x009c -> 0x009d) 0a
+It is now cycle [616]
+ADV 1 (0x009c -> 0x009d) 0a
+It is now cycle [617]
+ADV 1 (0x009c -> 0x009d) 0a
+It is now cycle [618]
+ADV 1 (0x009c -> 0x009d) 0a
+It is now cycle [619]
+ADV 1 (0x009c -> 0x009d) 0a
+It is now cycle [620]
+ADV 1 (0x009c -> 0x009d) 0a
+It is now cycle [621]
+ADV 1 (0x009c -> 0x009d) 0a
+It is now cycle [622]
+ADV 1 (0x009c -> 0x009d) 0a
+It is now cycle [623]
+ADV 1 (0x009c -> 0x009d) 0a
+It is now cycle [624]
+ADV 1 (0x009c -> 0x009d) 0a
+It is now cycle [625]
+1 = 7
+arena : 1
+war->rtype = 0 [3] | 1 [2] | 2 [1]
+ON PASSE DANS IND
+ON PASSE DANS DIR
+ON PASSE DANS REG
+new war->paramval 5 | -44 | 100
+2tmpc = 7
+GAY
+P    1 | ldi -455 5 r8
+       | -> load to  -455 + 5 = -450 (with pc and mod 3802)
+ADV 7 (0x009c -> 0x00a3) 0a e4 fe 39 00 05 08
+It is now cycle [626]
+ADV 1 (0x00a3 -> 0x00a4) 0a
+It is now cycle [627]
+ADV 1 (0x00a3 -> 0x00a4) 0a
+It is now cycle [628]
+ADV 1 (0x00a3 -> 0x00a4) 0a
+It is now cycle [629]
+ADV 1 (0x00a3 -> 0x00a4) 0a
+It is now cycle [630]
+ADV 1 (0x00a3 -> 0x00a4) 0a
+It is now cycle [631]
+ADV 1 (0x00a3 -> 0x00a4) 0a
+It is now cycle [632]
+ADV 1 (0x00a3 -> 0x00a4) 0a
+It is now cycle [633]
+ADV 1 (0x00a3 -> 0x00a4) 0a
+It is now cycle [634]
+ADV 1 (0x00a3 -> 0x00a4) 0a
+It is now cycle [635]
+ADV 1 (0x00a3 -> 0x00a4) 0a
+It is now cycle [636]
+ADV 1 (0x00a3 -> 0x00a4) 0a
+It is now cycle [637]
+ADV 1 (0x00a3 -> 0x00a4) 0a
+It is now cycle [638]
+ADV 1 (0x00a3 -> 0x00a4) 0a
+It is now cycle [639]
+ADV 1 (0x00a3 -> 0x00a4) 0a
+It is now cycle [640]
+ADV 1 (0x00a3 -> 0x00a4) 0a
+It is now cycle [641]
+ADV 1 (0x00a3 -> 0x00a4) 0a
+It is now cycle [642]
+ADV 1 (0x00a3 -> 0x00a4) 0a
+It is now cycle [643]
+ADV 1 (0x00a3 -> 0x00a4) 0a
+It is now cycle [644]
+ADV 1 (0x00a3 -> 0x00a4) 0a
+It is now cycle [645]
+ADV 1 (0x00a3 -> 0x00a4) 0a
+It is now cycle [646]
+ADV 1 (0x00a3 -> 0x00a4) 0a
+It is now cycle [647]
+ADV 1 (0x00a3 -> 0x00a4) 0a
+It is now cycle [648]
+ADV 1 (0x00a3 -> 0x00a4) 0a
+It is now cycle [649]
+ADV 1 (0x00a3 -> 0x00a4) 0a
+It is now cycle [650]
+1 = 7
+arena : 1
+war->rtype = 0 [3] | 1 [2] | 2 [1]
+ON PASSE DANS IND
+ON PASSE DANS DIR
+ON PASSE DANS REG
+new war->paramval -455 | 5 | 100
+2tmpc = 7
+GAY
+P    1 | ldi -5 -5 r1
+       | -> load to  -5 + -5 = -10 (with pc and mod 153)
+ADV 7 (0x00a3 -> 0x00aa) 0a e4 ff fb ff fb 01
+It is now cycle [651]
+ADV 1 (0x00aa -> 0x00ab) 0a
+It is now cycle [652]
+ADV 1 (0x00aa -> 0x00ab) 0a
+It is now cycle [653]
+ADV 1 (0x00aa -> 0x00ab) 0a
+It is now cycle [654]
+ADV 1 (0x00aa -> 0x00ab) 0a
+It is now cycle [655]
+ADV 1 (0x00aa -> 0x00ab) 0a
+It is now cycle [656]
+ADV 1 (0x00aa -> 0x00ab) 0a
+It is now cycle [657]
+ADV 1 (0x00aa -> 0x00ab) 0a
+It is now cycle [658]
+ADV 1 (0x00aa -> 0x00ab) 0a
+It is now cycle [659]
+ADV 1 (0x00aa -> 0x00ab) 0a
+It is now cycle [660]
+ADV 1 (0x00aa -> 0x00ab) 0a
+It is now cycle [661]
+ADV 1 (0x00aa -> 0x00ab) 0a
+It is now cycle [662]
+ADV 1 (0x00aa -> 0x00ab) 0a
+It is now cycle [663]
+ADV 1 (0x00aa -> 0x00ab) 0a
+It is now cycle [664]
+ADV 1 (0x00aa -> 0x00ab) 0a
+It is now cycle [665]
+ADV 1 (0x00aa -> 0x00ab) 0a
+It is now cycle [666]
+ADV 1 (0x00aa -> 0x00ab) 0a
+It is now cycle [667]
+ADV 1 (0x00aa -> 0x00ab) 0a
+It is now cycle [668]
+ADV 1 (0x00aa -> 0x00ab) 0a
+It is now cycle [669]
+ADV 1 (0x00aa -> 0x00ab) 0a
+It is now cycle [670]
+ADV 1 (0x00aa -> 0x00ab) 0a
+It is now cycle [671]
+ADV 1 (0x00aa -> 0x00ab) 0a
+It is now cycle [672]
+ADV 1 (0x00aa -> 0x00ab) 0a
+It is now cycle [673]
+ADV 1 (0x00aa -> 0x00ab) 0a
+It is now cycle [674]
+ADV 1 (0x00aa -> 0x00ab) 0a
+It is now cycle [675]
+1 = 6
+arena : 1
+war->rtype = 0 [3] | 1 [1] | 2 [1]
+ON PASSE DANS IND
+ON PASSE DANS REG
+ON PASSE DANS REG
+new war->paramval -5 | 1 | 10
+2tmpc = 6
+GAY
+P    1 | ldi 775 5 r4
+       | -> load to  775 + 5 = 780 (with pc and mod 438)
+ADV 6 (0x00aa -> 0x00b0) 0a d4 03 07 05 04
+It is now cycle [676]
+ADV 1 (0x00b0 -> 0x00b1) 0a
+It is now cycle [677]
+ADV 1 (0x00b0 -> 0x00b1) 0a
+It is now cycle [678]
+ADV 1 (0x00b0 -> 0x00b1) 0a
+It is now cycle [679]
+ADV 1 (0x00b0 -> 0x00b1) 0a
+It is now cycle [680]
+ADV 1 (0x00b0 -> 0x00b1) 0a
+It is now cycle [681]
+ADV 1 (0x00b0 -> 0x00b1) 0a
+It is now cycle [682]
+ADV 1 (0x00b0 -> 0x00b1) 0a
+It is now cycle [683]
+ADV 1 (0x00b0 -> 0x00b1) 0a
+It is now cycle [684]
+ADV 1 (0x00b0 -> 0x00b1) 0a
+It is now cycle [685]
+ADV 1 (0x00b0 -> 0x00b1) 0a
+It is now cycle [686]
+ADV 1 (0x00b0 -> 0x00b1) 0a
+It is now cycle [687]
+ADV 1 (0x00b0 -> 0x00b1) 0a
+It is now cycle [688]
+ADV 1 (0x00b0 -> 0x00b1) 0a
+It is now cycle [689]
+ADV 1 (0x00b0 -> 0x00b1) 0a
+It is now cycle [690]
+ADV 1 (0x00b0 -> 0x00b1) 0a
+It is now cycle [691]
+ADV 1 (0x00b0 -> 0x00b1) 0a
+It is now cycle [692]
+ADV 1 (0x00b0 -> 0x00b1) 0a
+It is now cycle [693]
+ADV 1 (0x00b0 -> 0x00b1) 0a
+It is now cycle [694]
+ADV 1 (0x00b0 -> 0x00b1) 0a
+It is now cycle [695]
+ADV 1 (0x00b0 -> 0x00b1) 0a
+It is now cycle [696]
+ADV 1 (0x00b0 -> 0x00b1) 0a
+It is now cycle [697]
+ADV 1 (0x00b0 -> 0x00b1) 0a
+It is now cycle [698]
+ADV 1 (0x00b0 -> 0x00b1) 0a
+It is now cycle [699]
+ADV 1 (0x00b0 -> 0x00b1) 0a
+It is now cycle [700]
+1 = 6
+arena : 1
+war->rtype = 0 [3] | 1 [1] | 2 [1]
+ON PASSE DANS IND
+ON PASSE DANS REG
+ON PASSE DANS REG
+new war->paramval 775 | 1 | 10
+2tmpc = 6
+GAY
+P    1 | ldi 5 1 r1
+       | -> load to  5 + 1 = 6 (with pc and mod 182)
+ADV 6 (0x00b0 -> 0x00b6) 0a d4 00 05 01 01
+It is now cycle [701]
+ADV 1 (0x00b6 -> 0x00b7) 0a
+It is now cycle [702]
+ADV 1 (0x00b6 -> 0x00b7) 0a
+It is now cycle [703]
+ADV 1 (0x00b6 -> 0x00b7) 0a
+It is now cycle [704]
+ADV 1 (0x00b6 -> 0x00b7) 0a
+It is now cycle [705]
+ADV 1 (0x00b6 -> 0x00b7) 0a
+It is now cycle [706]
+ADV 1 (0x00b6 -> 0x00b7) 0a
+It is now cycle [707]
+ADV 1 (0x00b6 -> 0x00b7) 0a
+It is now cycle [708]
+ADV 1 (0x00b6 -> 0x00b7) 0a
+It is now cycle [709]
+ADV 1 (0x00b6 -> 0x00b7) 0a
+It is now cycle [710]
+ADV 1 (0x00b6 -> 0x00b7) 0a
+It is now cycle [711]
+ADV 1 (0x00b6 -> 0x00b7) 0a
+It is now cycle [712]
+ADV 1 (0x00b6 -> 0x00b7) 0a
+It is now cycle [713]
+ADV 1 (0x00b6 -> 0x00b7) 0a
+It is now cycle [714]
+ADV 1 (0x00b6 -> 0x00b7) 0a
+It is now cycle [715]
+ADV 1 (0x00b6 -> 0x00b7) 0a
+It is now cycle [716]
+ADV 1 (0x00b6 -> 0x00b7) 0a
+It is now cycle [717]
+ADV 1 (0x00b6 -> 0x00b7) 0a
+It is now cycle [718]
+ADV 1 (0x00b6 -> 0x00b7) 0a
+It is now cycle [719]
+ADV 1 (0x00b6 -> 0x00b7) 0a
+It is now cycle [720]
+ADV 1 (0x00b6 -> 0x00b7) 0a
+It is now cycle [721]
+ADV 1 (0x00b6 -> 0x00b7) 0a
+It is now cycle [722]
+ADV 1 (0x00b6 -> 0x00b7) 0a
+It is now cycle [723]
+ADV 1 (0x00b6 -> 0x00b7) 0a
+It is now cycle [724]
+ADV 1 (0x00b6 -> 0x00b7) 0a
+It is now cycle [725]
+1 = 6
+arena : 1
+war->rtype = 0 [3] | 1 [1] | 2 [1]
+ON PASSE DANS IND
+ON PASSE DANS REG
+ON PASSE DANS REG
+new war->paramval 5 | 1 | 10
+2tmpc = 6
+GAY
+P    1 | ldi -5 2 r1
+       | -> load to  -5 + 2 = -3 (with pc and mod 179)
+ADV 6 (0x00b6 -> 0x00bc) 0a d4 ff fb 02 01
+It is now cycle [726]
+ADV 1 (0x00bc -> 0x00bd) 0a
+It is now cycle [727]
+ADV 1 (0x00bc -> 0x00bd) 0a
+It is now cycle [728]
+ADV 1 (0x00bc -> 0x00bd) 0a
+It is now cycle [729]
+ADV 1 (0x00bc -> 0x00bd) 0a
+It is now cycle [730]
+ADV 1 (0x00bc -> 0x00bd) 0a
+It is now cycle [731]
+ADV 1 (0x00bc -> 0x00bd) 0a
+It is now cycle [732]
+ADV 1 (0x00bc -> 0x00bd) 0a
+It is now cycle [733]
+ADV 1 (0x00bc -> 0x00bd) 0a
+It is now cycle [734]
+ADV 1 (0x00bc -> 0x00bd) 0a
+It is now cycle [735]
+ADV 1 (0x00bc -> 0x00bd) 0a
+It is now cycle [736]
+ADV 1 (0x00bc -> 0x00bd) 0a
+It is now cycle [737]
+ADV 1 (0x00bc -> 0x00bd) 0a
+It is now cycle [738]
+ADV 1 (0x00bc -> 0x00bd) 0a
+It is now cycle [739]
+ADV 1 (0x00bc -> 0x00bd) 0a
+It is now cycle [740]
+ADV 1 (0x00bc -> 0x00bd) 0a
+It is now cycle [741]
+ADV 1 (0x00bc -> 0x00bd) 0a
+It is now cycle [742]
+ADV 1 (0x00bc -> 0x00bd) 0a
+It is now cycle [743]
+ADV 1 (0x00bc -> 0x00bd) 0a
+It is now cycle [744]
+ADV 1 (0x00bc -> 0x00bd) 0a
+It is now cycle [745]
+ADV 1 (0x00bc -> 0x00bd) 0a
+It is now cycle [746]
+ADV 1 (0x00bc -> 0x00bd) 0a
+It is now cycle [747]
+ADV 1 (0x00bc -> 0x00bd) 0a
+It is now cycle [748]
+ADV 1 (0x00bc -> 0x00bd) 0a
+It is now cycle [749]
+ADV 1 (0x00bc -> 0x00bd) 0a
+It is now cycle [750]
+1 = 6
+arena : 1
+war->rtype = 0 [3] | 1 [1] | 2 [1]
+ON PASSE DANS IND
+ON PASSE DANS REG
+ON PASSE DANS REG
+new war->paramval -5 | 1 | 10
+2tmpc = 6
+GAY
+P    1 | ldi -5 1 r6
+       | -> load to  -5 + 1 = -4 (with pc and mod 184)
+ADV 6 (0x00bc -> 0x00c2) 0a d4 ff fb 01 06
+It is now cycle [751]
+ADV 1 (0x00c3 -> 0x00c4) 00
+It is now cycle [752]
+ADV 1 (0x00c4 -> 0x00c5) 00
+It is now cycle [753]
+ADV 1 (0x00c5 -> 0x00c6) 00
+It is now cycle [754]
+ADV 1 (0x00c6 -> 0x00c7) 00
+It is now cycle [755]
+ADV 1 (0x00c7 -> 0x00c8) 00
+It is now cycle [756]
+ADV 1 (0x00c8 -> 0x00c9) 00
+It is now cycle [757]
+ADV 1 (0x00c9 -> 0x00ca) 00
+It is now cycle [758]
+ADV 1 (0x00ca -> 0x00cb) 00
+It is now cycle [759]
+ADV 1 (0x00cb -> 0x00cc) 00
+It is now cycle [760]
+ADV 1 (0x00cc -> 0x00cd) 00
+It is now cycle [761]
+ADV 1 (0x00cd -> 0x00ce) 00
+It is now cycle [762]
+ADV 1 (0x00ce -> 0x00cf) 00
+It is now cycle [763]
+ADV 1 (0x00cf -> 0x00d0) 00
+It is now cycle [764]
+ADV 1 (0x00d0 -> 0x00d1) 00
+It is now cycle [765]
+ADV 1 (0x00d1 -> 0x00d2) 00
+It is now cycle [766]
+ADV 1 (0x00d2 -> 0x00d3) 00
+It is now cycle [767]
+ADV 1 (0x00d3 -> 0x00d4) 00
+It is now cycle [768]
+ADV 1 (0x00d4 -> 0x00d5) 00
+It is now cycle [769]
+ADV 1 (0x00d5 -> 0x00d6) 00
+It is now cycle [770]
+ADV 1 (0x00d6 -> 0x00d7) 00
+It is now cycle [771]
+ADV 1 (0x00d7 -> 0x00d8) 00
+It is now cycle [772]
+ADV 1 (0x00d8 -> 0x00d9) 00
+It is now cycle [773]
+ADV 1 (0x00d9 -> 0x00da) 00
+It is now cycle [774]
+ADV 1 (0x00da -> 0x00db) 00
+It is now cycle [775]
+ADV 1 (0x00db -> 0x00dc) 00
+It is now cycle [776]
+ADV 1 (0x00dc -> 0x00dd) 00
+It is now cycle [777]
+ADV 1 (0x00dd -> 0x00de) 00
+It is now cycle [778]
+ADV 1 (0x00de -> 0x00df) 00
+It is now cycle [779]
+ADV 1 (0x00df -> 0x00e0) 00
+It is now cycle [780]
+ADV 1 (0x00e0 -> 0x00e1) 00
+It is now cycle [781]
+ADV 1 (0x00e1 -> 0x00e2) 00
+It is now cycle [782]
+ADV 1 (0x00e2 -> 0x00e3) 00
+It is now cycle [783]
+ADV 1 (0x00e3 -> 0x00e4) 00
+It is now cycle [784]
+ADV 1 (0x00e4 -> 0x00e5) 00
+It is now cycle [785]
+ADV 1 (0x00e5 -> 0x00e6) 00
+It is now cycle [786]
+ADV 1 (0x00e6 -> 0x00e7) 00
+It is now cycle [787]
+ADV 1 (0x00e7 -> 0x00e8) 00
+It is now cycle [788]
+ADV 1 (0x00e8 -> 0x00e9) 00
+It is now cycle [789]
+ADV 1 (0x00e9 -> 0x00ea) 00
+It is now cycle [790]
+ADV 1 (0x00ea -> 0x00eb) 00
+It is now cycle [791]
+ADV 1 (0x00eb -> 0x00ec) 00
+It is now cycle [792]
+ADV 1 (0x00ec -> 0x00ed) 00
+It is now cycle [793]
+ADV 1 (0x00ed -> 0x00ee) 00
+It is now cycle [794]
+ADV 1 (0x00ee -> 0x00ef) 00
+It is now cycle [795]
+ADV 1 (0x00ef -> 0x00f0) 00
+It is now cycle [796]
+ADV 1 (0x00f0 -> 0x00f1) 00
+It is now cycle [797]
+ADV 1 (0x00f1 -> 0x00f2) 00
+It is now cycle [798]
+ADV 1 (0x00f2 -> 0x00f3) 00
+It is now cycle [799]
+ADV 1 (0x00f3 -> 0x00f4) 00
+It is now cycle [800]
+ADV 1 (0x00f4 -> 0x00f5) 00
+It is now cycle [801]
+ADV 1 (0x00f5 -> 0x00f6) 00
+It is now cycle [802]
+ADV 1 (0x00f6 -> 0x00f7) 00
+It is now cycle [803]
+ADV 1 (0x00f7 -> 0x00f8) 00
+It is now cycle [804]
+ADV 1 (0x00f8 -> 0x00f9) 00
+It is now cycle [805]
+ADV 1 (0x00f9 -> 0x00fa) 00
+It is now cycle [806]
+ADV 1 (0x00fa -> 0x00fb) 00
+It is now cycle [807]
+ADV 1 (0x00fb -> 0x00fc) 00
+It is now cycle [808]
+ADV 1 (0x00fc -> 0x00fd) 00
+It is now cycle [809]
+ADV 1 (0x00fd -> 0x00fe) 00
+It is now cycle [810]
+ADV 1 (0x00fe -> 0x00ff) 00
+It is now cycle [811]
+ADV 1 (0x00ff -> 0x0100) 00
+It is now cycle [812]
+ADV 1 (0x0100 -> 0x0101) 00
+It is now cycle [813]
+ADV 1 (0x0101 -> 0x0102) 00
+It is now cycle [814]
+ADV 1 (0x0102 -> 0x0103) 00
+It is now cycle [815]
+ADV 1 (0x0103 -> 0x0104) 00
+It is now cycle [816]
+ADV 1 (0x0104 -> 0x0105) 00
+It is now cycle [817]
+ADV 1 (0x0105 -> 0x0106) 00
+It is now cycle [818]
+ADV 1 (0x0106 -> 0x0107) 00
+It is now cycle [819]
+ADV 1 (0x0107 -> 0x0108) 00
+It is now cycle [820]
+ADV 1 (0x0108 -> 0x0109) 00
+It is now cycle [821]
+ADV 1 (0x0109 -> 0x010a) 00
+It is now cycle [822]
+ADV 1 (0x010a -> 0x010b) 00
+It is now cycle [823]
+ADV 1 (0x010b -> 0x010c) 00
+It is now cycle [824]
+ADV 1 (0x010c -> 0x010d) 00
+It is now cycle [825]
+ADV 1 (0x010d -> 0x010e) 00
+It is now cycle [826]
+ADV 1 (0x010e -> 0x010f) 00
+It is now cycle [827]
+ADV 1 (0x010f -> 0x0110) 00
+It is now cycle [828]
+ADV 1 (0x0110 -> 0x0111) 00
+It is now cycle [829]
+ADV 1 (0x0111 -> 0x0112) 00
+It is now cycle [830]
+ADV 1 (0x0112 -> 0x0113) 00
+It is now cycle [831]
+ADV 1 (0x0113 -> 0x0114) 00
+It is now cycle [832]
+ADV 1 (0x0114 -> 0x0115) 00
+It is now cycle [833]
+ADV 1 (0x0115 -> 0x0116) 00
+It is now cycle [834]
+ADV 1 (0x0116 -> 0x0117) 00
+It is now cycle [835]
+ADV 1 (0x0117 -> 0x0118) 00
+It is now cycle [836]
+ADV 1 (0x0118 -> 0x0119) 00
+It is now cycle [837]
+ADV 1 (0x0119 -> 0x011a) 00
+It is now cycle [838]
+ADV 1 (0x011a -> 0x011b) 00
+It is now cycle [839]
+ADV 1 (0x011b -> 0x011c) 00
+It is now cycle [840]
+ADV 1 (0x011c -> 0x011d) 00
+It is now cycle [841]
+ADV 1 (0x011d -> 0x011e) 00
+It is now cycle [842]
+ADV 1 (0x011e -> 0x011f) 00
+It is now cycle [843]
+ADV 1 (0x011f -> 0x0120) 00
+It is now cycle [844]
+ADV 1 (0x0120 -> 0x0121) 00
+It is now cycle [845]
+ADV 1 (0x0121 -> 0x0122) 00
+It is now cycle [846]
+ADV 1 (0x0122 -> 0x0123) 00
+It is now cycle [847]
+ADV 1 (0x0123 -> 0x0124) 00
+It is now cycle [848]
+ADV 1 (0x0124 -> 0x0125) 00
+It is now cycle [849]
+ADV 1 (0x0125 -> 0x0126) 00
+It is now cycle [850]
+ADV 1 (0x0126 -> 0x0127) 00
+It is now cycle [851]
+ADV 1 (0x0127 -> 0x0128) 00
+It is now cycle [852]
+ADV 1 (0x0128 -> 0x0129) 00
+It is now cycle [853]
+ADV 1 (0x0129 -> 0x012a) 00
+It is now cycle [854]
+ADV 1 (0x012a -> 0x012b) 00
+It is now cycle [855]
+ADV 1 (0x012b -> 0x012c) 00
+It is now cycle [856]
+ADV 1 (0x012c -> 0x012d) 00
+It is now cycle [857]
+ADV 1 (0x012d -> 0x012e) 00
+It is now cycle [858]
+ADV 1 (0x012e -> 0x012f) 00
+It is now cycle [859]
+ADV 1 (0x012f -> 0x0130) 00
+It is now cycle [860]
+ADV 1 (0x0130 -> 0x0131) 00
+It is now cycle [861]
+ADV 1 (0x0131 -> 0x0132) 00
+It is now cycle [862]
+ADV 1 (0x0132 -> 0x0133) 00
+It is now cycle [863]
+ADV 1 (0x0133 -> 0x0134) 00
+It is now cycle [864]
+ADV 1 (0x0134 -> 0x0135) 00
+It is now cycle [865]
+ADV 1 (0x0135 -> 0x0136) 00
+It is now cycle [866]
+ADV 1 (0x0136 -> 0x0137) 00
+It is now cycle [867]
+ADV 1 (0x0137 -> 0x0138) 00
+It is now cycle [868]
+ADV 1 (0x0138 -> 0x0139) 00
+It is now cycle [869]
+ADV 1 (0x0139 -> 0x013a) 00
+It is now cycle [870]
+ADV 1 (0x013a -> 0x013b) 00
+It is now cycle [871]
+ADV 1 (0x013b -> 0x013c) 00
+It is now cycle [872]
+ADV 1 (0x013c -> 0x013d) 00
+It is now cycle [873]
+ADV 1 (0x013d -> 0x013e) 00
+It is now cycle [874]
+ADV 1 (0x013e -> 0x013f) 00
+It is now cycle [875]
+ADV 1 (0x013f -> 0x0140) 00
+It is now cycle [876]
+ADV 1 (0x0140 -> 0x0141) 00
+It is now cycle [877]
+ADV 1 (0x0141 -> 0x0142) 00
+It is now cycle [878]
+ADV 1 (0x0142 -> 0x0143) 00
+It is now cycle [879]
+ADV 1 (0x0143 -> 0x0144) 00
+It is now cycle [880]
+ADV 1 (0x0144 -> 0x0145) 00
+It is now cycle [881]
+ADV 1 (0x0145 -> 0x0146) 00
+It is now cycle [882]
+ADV 1 (0x0146 -> 0x0147) 00
+It is now cycle [883]
+ADV 1 (0x0147 -> 0x0148) 00
+It is now cycle [884]
+ADV 1 (0x0148 -> 0x0149) 00
+It is now cycle [885]
+ADV 1 (0x0149 -> 0x014a) 00
+It is now cycle [886]
+ADV 1 (0x014a -> 0x014b) 00
+It is now cycle [887]
+ADV 1 (0x014b -> 0x014c) 00
+It is now cycle [888]
+ADV 1 (0x014c -> 0x014d) 00
+It is now cycle [889]
+ADV 1 (0x014d -> 0x014e) 00
+It is now cycle [890]
+ADV 1 (0x014e -> 0x014f) 00
+It is now cycle [891]
+ADV 1 (0x014f -> 0x0150) 00
+It is now cycle [892]
+ADV 1 (0x0150 -> 0x0151) 00
+It is now cycle [893]
+ADV 1 (0x0151 -> 0x0152) 00
+It is now cycle [894]
+ADV 1 (0x0152 -> 0x0153) 00
+It is now cycle [895]
+ADV 1 (0x0153 -> 0x0154) 00
+It is now cycle [896]
+ADV 1 (0x0154 -> 0x0155) 00
+It is now cycle [897]
+ADV 1 (0x0155 -> 0x0156) 00
+It is now cycle [898]
+ADV 1 (0x0156 -> 0x0157) 00
+It is now cycle [899]
+ADV 1 (0x0157 -> 0x0158) 00
+It is now cycle [900]
+ADV 1 (0x0158 -> 0x0159) 00
+It is now cycle [901]
+ADV 1 (0x0159 -> 0x015a) 00
+It is now cycle [902]
+ADV 1 (0x015a -> 0x015b) 00
+It is now cycle [903]
+ADV 1 (0x015b -> 0x015c) 00
+It is now cycle [904]
+ADV 1 (0x015c -> 0x015d) 00
+It is now cycle [905]
+ADV 1 (0x015d -> 0x015e) 00
+It is now cycle [906]
+ADV 1 (0x015e -> 0x015f) 00
+It is now cycle [907]
+ADV 1 (0x015f -> 0x0160) 00
+It is now cycle [908]
+ADV 1 (0x0160 -> 0x0161) 00
+It is now cycle [909]
+ADV 1 (0x0161 -> 0x0162) 00
+It is now cycle [910]
+ADV 1 (0x0162 -> 0x0163) 00
+It is now cycle [911]
+ADV 1 (0x0163 -> 0x0164) 00
+It is now cycle [912]
+ADV 1 (0x0164 -> 0x0165) 00
+It is now cycle [913]
+ADV 1 (0x0165 -> 0x0166) 00
+It is now cycle [914]
+ADV 1 (0x0166 -> 0x0167) 00
+It is now cycle [915]
+ADV 1 (0x0167 -> 0x0168) 00
+It is now cycle [916]
+ADV 1 (0x0168 -> 0x0169) 00
+It is now cycle [917]
+ADV 1 (0x0169 -> 0x016a) 00
+It is now cycle [918]
+ADV 1 (0x016a -> 0x016b) 00
+It is now cycle [919]
+ADV 1 (0x016b -> 0x016c) 00
+It is now cycle [920]
+ADV 1 (0x016c -> 0x016d) 00
+It is now cycle [921]
+ADV 1 (0x016d -> 0x016e) 00
+It is now cycle [922]
+ADV 1 (0x016e -> 0x016f) 00
+It is now cycle [923]
+ADV 1 (0x016f -> 0x0170) 00
+It is now cycle [924]
+ADV 1 (0x0170 -> 0x0171) 00
+It is now cycle [925]
+ADV 1 (0x0171 -> 0x0172) 00
+It is now cycle [926]
+ADV 1 (0x0172 -> 0x0173) 00
+It is now cycle [927]
+ADV 1 (0x0173 -> 0x0174) 00
+It is now cycle [928]
+ADV 1 (0x0174 -> 0x0175) 00
+It is now cycle [929]
+ADV 1 (0x0175 -> 0x0176) 00
+It is now cycle [930]
+ADV 1 (0x0176 -> 0x0177) 00
+It is now cycle [931]
+ADV 1 (0x0177 -> 0x0178) 00
+It is now cycle [932]
+ADV 1 (0x0178 -> 0x0179) 00
+It is now cycle [933]
+ADV 1 (0x0179 -> 0x017a) 00
+It is now cycle [934]
+ADV 1 (0x017a -> 0x017b) 00
+It is now cycle [935]
+ADV 1 (0x017b -> 0x017c) 00
+It is now cycle [936]
+ADV 1 (0x017c -> 0x017d) 00
+It is now cycle [937]
+ADV 1 (0x017d -> 0x017e) 00
+It is now cycle [938]
+ADV 1 (0x017e -> 0x017f) 00
+It is now cycle [939]
+ADV 1 (0x017f -> 0x0180) 00
+It is now cycle [940]
+ADV 1 (0x0180 -> 0x0181) 00
+It is now cycle [941]
+ADV 1 (0x0181 -> 0x0182) 00
+It is now cycle [942]
+ADV 1 (0x0182 -> 0x0183) 00
+It is now cycle [943]
+ADV 1 (0x0183 -> 0x0184) 00
+It is now cycle [944]
+ADV 1 (0x0184 -> 0x0185) 00
+It is now cycle [945]
+ADV 1 (0x0185 -> 0x0186) 00
+It is now cycle [946]
+ADV 1 (0x0186 -> 0x0187) 00
+It is now cycle [947]
+ADV 1 (0x0187 -> 0x0188) 00
+It is now cycle [948]
+ADV 1 (0x0188 -> 0x0189) 00
+It is now cycle [949]
+ADV 1 (0x0189 -> 0x018a) 00
+It is now cycle [950]
+ADV 1 (0x018a -> 0x018b) 00
+It is now cycle [951]
+ADV 1 (0x018b -> 0x018c) 00
+It is now cycle [952]
+ADV 1 (0x018c -> 0x018d) 00
+It is now cycle [953]
+ADV 1 (0x018d -> 0x018e) 00
+It is now cycle [954]
+ADV 1 (0x018e -> 0x018f) 00
+It is now cycle [955]
+ADV 1 (0x018f -> 0x0190) 00
+It is now cycle [956]
+ADV 1 (0x0190 -> 0x0191) 00
+It is now cycle [957]
+ADV 1 (0x0191 -> 0x0192) 00
+It is now cycle [958]
+ADV 1 (0x0192 -> 0x0193) 00
+It is now cycle [959]
+ADV 1 (0x0193 -> 0x0194) 00
+It is now cycle [960]
+ADV 1 (0x0194 -> 0x0195) 00
+It is now cycle [961]
+ADV 1 (0x0195 -> 0x0196) 00
+It is now cycle [962]
+ADV 1 (0x0196 -> 0x0197) 00
+It is now cycle [963]
+ADV 1 (0x0197 -> 0x0198) 00
+It is now cycle [964]
+ADV 1 (0x0198 -> 0x0199) 00
+It is now cycle [965]
+ADV 1 (0x0199 -> 0x019a) 00
+It is now cycle [966]
+ADV 1 (0x019a -> 0x019b) 00
+It is now cycle [967]
+ADV 1 (0x019b -> 0x019c) 00
+It is now cycle [968]
+ADV 1 (0x019c -> 0x019d) 00
+It is now cycle [969]
+ADV 1 (0x019d -> 0x019e) 00
+It is now cycle [970]
+ADV 1 (0x019e -> 0x019f) 00
+It is now cycle [971]
+ADV 1 (0x019f -> 0x01a0) 00
+It is now cycle [972]
+ADV 1 (0x01a0 -> 0x01a1) 00
+It is now cycle [973]
+ADV 1 (0x01a1 -> 0x01a2) 00
+It is now cycle [974]
+ADV 1 (0x01a2 -> 0x01a3) 00
+It is now cycle [975]
+ADV 1 (0x01a3 -> 0x01a4) 00
+It is now cycle [976]
+ADV 1 (0x01a4 -> 0x01a5) 00
+It is now cycle [977]
+ADV 1 (0x01a5 -> 0x01a6) 00
+It is now cycle [978]
+ADV 1 (0x01a6 -> 0x01a7) 00
+It is now cycle [979]
+ADV 1 (0x01a7 -> 0x01a8) 00
+It is now cycle [980]
+ADV 1 (0x01a8 -> 0x01a9) 00
+It is now cycle [981]
+ADV 1 (0x01a9 -> 0x01aa) 00
+It is now cycle [982]
+ADV 1 (0x01aa -> 0x01ab) 00
+It is now cycle [983]
+ADV 1 (0x01ab -> 0x01ac) 00
+It is now cycle [984]
+ADV 1 (0x01ac -> 0x01ad) 00
+It is now cycle [985]
+ADV 1 (0x01ad -> 0x01ae) 00
+It is now cycle [986]
+ADV 1 (0x01ae -> 0x01af) 00
+It is now cycle [987]
+ADV 1 (0x01af -> 0x01b0) 00
+It is now cycle [988]
+ADV 1 (0x01b0 -> 0x01b1) 00
+It is now cycle [989]
+ADV 1 (0x01b1 -> 0x01b2) 00
+It is now cycle [990]
+ADV 1 (0x01b2 -> 0x01b3) 00
+It is now cycle [991]
+ADV 1 (0x01b3 -> 0x01b4) 00
+It is now cycle [992]
+ADV 1 (0x01b4 -> 0x01b5) 00
+It is now cycle [993]
+ADV 1 (0x01b5 -> 0x01b6) 00
+It is now cycle [994]
+ADV 1 (0x01b6 -> 0x01b7) 00
+It is now cycle [995]
+ADV 1 (0x01b7 -> 0x01b8) 00
+It is now cycle [996]
+ADV 1 (0x01b8 -> 0x01b9) 00
+It is now cycle [997]
+ADV 1 (0x01b9 -> 0x01ba) 00
+It is now cycle [998]
+ADV 1 (0x01ba -> 0x01bb) 00
+It is now cycle [999]
+ADV 1 (0x01bb -> 0x01bc) 00
+It is now cycle [1000]
+ADV 1 (0x01bc -> 0x01bd) 00
+It is now cycle [1001]
+ADV 1 (0x01bd -> 0x01be) 00
+It is now cycle [1002]
+ADV 1 (0x01be -> 0x01bf) 00
+It is now cycle [1003]
+ADV 1 (0x01bf -> 0x01c0) 00
+It is now cycle [1004]
+ADV 1 (0x01c0 -> 0x01c1) 00
+It is now cycle [1005]
+ADV 1 (0x01c1 -> 0x01c2) 00
+It is now cycle [1006]
+ADV 1 (0x01c2 -> 0x01c3) 00
+It is now cycle [1007]
+ADV 1 (0x01c3 -> 0x01c4) 00
+It is now cycle [1008]
+ADV 1 (0x01c4 -> 0x01c5) 00
+It is now cycle [1009]
+ADV 1 (0x01c5 -> 0x01c6) 00
+It is now cycle [1010]
+ADV 1 (0x01c6 -> 0x01c7) 00
+It is now cycle [1011]
+ADV 1 (0x01c7 -> 0x01c8) 00
+It is now cycle [1012]
+ADV 1 (0x01c8 -> 0x01c9) 00
+It is now cycle [1013]
+ADV 1 (0x01c9 -> 0x01ca) 00
+It is now cycle [1014]
+ADV 1 (0x01ca -> 0x01cb) 00
+It is now cycle [1015]
+ADV 1 (0x01cb -> 0x01cc) 00
+It is now cycle [1016]
+ADV 1 (0x01cc -> 0x01cd) 00
+It is now cycle [1017]
+ADV 1 (0x01cd -> 0x01ce) 00
+It is now cycle [1018]
+ADV 1 (0x01ce -> 0x01cf) 00
+It is now cycle [1019]
+ADV 1 (0x01cf -> 0x01d0) 00
+It is now cycle [1020]
+ADV 1 (0x01d0 -> 0x01d1) 00
+It is now cycle [1021]
+ADV 1 (0x01d1 -> 0x01d2) 00
+It is now cycle [1022]
+ADV 1 (0x01d2 -> 0x01d3) 00
+It is now cycle [1023]
+ADV 1 (0x01d3 -> 0x01d4) 00
+It is now cycle [1024]
+ADV 1 (0x01d4 -> 0x01d5) 00
+It is now cycle [1025]
+ADV 1 (0x01d5 -> 0x01d6) 00
+It is now cycle [1026]
+ADV 1 (0x01d6 -> 0x01d7) 00
+It is now cycle [1027]
+ADV 1 (0x01d7 -> 0x01d8) 00
+It is now cycle [1028]
+ADV 1 (0x01d8 -> 0x01d9) 00
+It is now cycle [1029]
+ADV 1 (0x01d9 -> 0x01da) 00
+It is now cycle [1030]
+ADV 1 (0x01da -> 0x01db) 00
+It is now cycle [1031]
+ADV 1 (0x01db -> 0x01dc) 00
+It is now cycle [1032]
+ADV 1 (0x01dc -> 0x01dd) 00
+It is now cycle [1033]
+ADV 1 (0x01dd -> 0x01de) 00
+It is now cycle [1034]
+ADV 1 (0x01de -> 0x01df) 00
+It is now cycle [1035]
+ADV 1 (0x01df -> 0x01e0) 00
+It is now cycle [1036]
+ADV 1 (0x01e0 -> 0x01e1) 00
+It is now cycle [1037]
+ADV 1 (0x01e1 -> 0x01e2) 00
+It is now cycle [1038]
+ADV 1 (0x01e2 -> 0x01e3) 00
+It is now cycle [1039]
+ADV 1 (0x01e3 -> 0x01e4) 00
+It is now cycle [1040]
+ADV 1 (0x01e4 -> 0x01e5) 00
+It is now cycle [1041]
+ADV 1 (0x01e5 -> 0x01e6) 00
+It is now cycle [1042]
+ADV 1 (0x01e6 -> 0x01e7) 00
+It is now cycle [1043]
+ADV 1 (0x01e7 -> 0x01e8) 00
+It is now cycle [1044]
+ADV 1 (0x01e8 -> 0x01e9) 00
+It is now cycle [1045]
+ADV 1 (0x01e9 -> 0x01ea) 00
+It is now cycle [1046]
+ADV 1 (0x01ea -> 0x01eb) 00
+It is now cycle [1047]
+ADV 1 (0x01eb -> 0x01ec) 00
+It is now cycle [1048]
+ADV 1 (0x01ec -> 0x01ed) 00
+It is now cycle [1049]
+ADV 1 (0x01ed -> 0x01ee) 00
+It is now cycle [1050]
+ADV 1 (0x01ee -> 0x01ef) 00
+It is now cycle [1051]
+ADV 1 (0x01ef -> 0x01f0) 00
+It is now cycle [1052]
+ADV 1 (0x01f0 -> 0x01f1) 00
+It is now cycle [1053]
+ADV 1 (0x01f1 -> 0x01f2) 00
+It is now cycle [1054]
+ADV 1 (0x01f2 -> 0x01f3) 00
+It is now cycle [1055]
+ADV 1 (0x01f3 -> 0x01f4) 00
+It is now cycle [1056]
+ADV 1 (0x01f4 -> 0x01f5) 00
+It is now cycle [1057]
+ADV 1 (0x01f5 -> 0x01f6) 00
+It is now cycle [1058]
+ADV 1 (0x01f6 -> 0x01f7) 00
+It is now cycle [1059]
+ADV 1 (0x01f7 -> 0x01f8) 00
+It is now cycle [1060]
+ADV 1 (0x01f8 -> 0x01f9) 00
+It is now cycle [1061]
+ADV 1 (0x01f9 -> 0x01fa) 00
+It is now cycle [1062]
+ADV 1 (0x01fa -> 0x01fb) 00
+It is now cycle [1063]
+ADV 1 (0x01fb -> 0x01fc) 00
+It is now cycle [1064]
+ADV 1 (0x01fc -> 0x01fd) 00
+It is now cycle [1065]
+ADV 1 (0x01fd -> 0x01fe) 00
+It is now cycle [1066]
+ADV 1 (0x01fe -> 0x01ff) 00
+It is now cycle [1067]
+ADV 1 (0x01ff -> 0x0200) 00
+It is now cycle [1068]
+ADV 1 (0x0200 -> 0x0201) 00
+It is now cycle [1069]
+ADV 1 (0x0201 -> 0x0202) 00
+It is now cycle [1070]
+ADV 1 (0x0202 -> 0x0203) 00
+It is now cycle [1071]
+ADV 1 (0x0203 -> 0x0204) 00
+It is now cycle [1072]
+ADV 1 (0x0204 -> 0x0205) 00
+It is now cycle [1073]
+ADV 1 (0x0205 -> 0x0206) 00
+It is now cycle [1074]
+ADV 1 (0x0206 -> 0x0207) 00
+It is now cycle [1075]
+ADV 1 (0x0207 -> 0x0208) 00
+It is now cycle [1076]
+ADV 1 (0x0208 -> 0x0209) 00
+It is now cycle [1077]
+ADV 1 (0x0209 -> 0x020a) 00
+It is now cycle [1078]
+ADV 1 (0x020a -> 0x020b) 00
+It is now cycle [1079]
+ADV 1 (0x020b -> 0x020c) 00
+It is now cycle [1080]
+ADV 1 (0x020c -> 0x020d) 00
+It is now cycle [1081]
+ADV 1 (0x020d -> 0x020e) 00
+It is now cycle [1082]
+ADV 1 (0x020e -> 0x020f) 00
+It is now cycle [1083]
+ADV 1 (0x020f -> 0x0210) 00
+It is now cycle [1084]
+ADV 1 (0x0210 -> 0x0211) 00
+It is now cycle [1085]
+ADV 1 (0x0211 -> 0x0212) 00
+It is now cycle [1086]
+ADV 1 (0x0212 -> 0x0213) 00
+It is now cycle [1087]
+ADV 1 (0x0213 -> 0x0214) 00
+It is now cycle [1088]
+ADV 1 (0x0214 -> 0x0215) 00
+It is now cycle [1089]
+ADV 1 (0x0215 -> 0x0216) 00
+It is now cycle [1090]
+ADV 1 (0x0216 -> 0x0217) 00
+It is now cycle [1091]
+ADV 1 (0x0217 -> 0x0218) 00
+It is now cycle [1092]
+ADV 1 (0x0218 -> 0x0219) 00
+It is now cycle [1093]
+ADV 1 (0x0219 -> 0x021a) 00
+It is now cycle [1094]
+ADV 1 (0x021a -> 0x021b) 00
+It is now cycle [1095]
+ADV 1 (0x021b -> 0x021c) 00
+It is now cycle [1096]
+ADV 1 (0x021c -> 0x021d) 00
+It is now cycle [1097]
+ADV 1 (0x021d -> 0x021e) 00
+It is now cycle [1098]
+ADV 1 (0x021e -> 0x021f) 00
+It is now cycle [1099]
+ADV 1 (0x021f -> 0x0220) 00
+It is now cycle [1100]
+ADV 1 (0x0220 -> 0x0221) 00
+It is now cycle [1101]
+ADV 1 (0x0221 -> 0x0222) 00
+It is now cycle [1102]
+ADV 1 (0x0222 -> 0x0223) 00
+It is now cycle [1103]
+ADV 1 (0x0223 -> 0x0224) 00
+It is now cycle [1104]
+ADV 1 (0x0224 -> 0x0225) 00
+It is now cycle [1105]
+ADV 1 (0x0225 -> 0x0226) 00
+It is now cycle [1106]
+ADV 1 (0x0226 -> 0x0227) 00
+It is now cycle [1107]
+ADV 1 (0x0227 -> 0x0228) 00
+It is now cycle [1108]
+ADV 1 (0x0228 -> 0x0229) 00
+It is now cycle [1109]
+ADV 1 (0x0229 -> 0x022a) 00
+It is now cycle [1110]
+ADV 1 (0x022a -> 0x022b) 00
+It is now cycle [1111]
+ADV 1 (0x022b -> 0x022c) 00
+It is now cycle [1112]
+ADV 1 (0x022c -> 0x022d) 00
+It is now cycle [1113]
+ADV 1 (0x022d -> 0x022e) 00
+It is now cycle [1114]
+ADV 1 (0x022e -> 0x022f) 00
+It is now cycle [1115]
+ADV 1 (0x022f -> 0x0230) 00
+It is now cycle [1116]
+ADV 1 (0x0230 -> 0x0231) 00
+It is now cycle [1117]
+ADV 1 (0x0231 -> 0x0232) 00
+It is now cycle [1118]
+ADV 1 (0x0232 -> 0x0233) 00
+It is now cycle [1119]
+ADV 1 (0x0233 -> 0x0234) 00
+It is now cycle [1120]
+ADV 1 (0x0234 -> 0x0235) 00
+It is now cycle [1121]
+ADV 1 (0x0235 -> 0x0236) 00
+It is now cycle [1122]
+ADV 1 (0x0236 -> 0x0237) 00
+It is now cycle [1123]
+ADV 1 (0x0237 -> 0x0238) 00
+It is now cycle [1124]
+ADV 1 (0x0238 -> 0x0239) 00
+It is now cycle [1125]
+ADV 1 (0x0239 -> 0x023a) 00
+It is now cycle [1126]
+ADV 1 (0x023a -> 0x023b) 00
+It is now cycle [1127]
+ADV 1 (0x023b -> 0x023c) 00
+It is now cycle [1128]
+ADV 1 (0x023c -> 0x023d) 00
+It is now cycle [1129]
+ADV 1 (0x023d -> 0x023e) 00
+It is now cycle [1130]
+ADV 1 (0x023e -> 0x023f) 00
+It is now cycle [1131]
+ADV 1 (0x023f -> 0x0240) 00
+It is now cycle [1132]
+ADV 1 (0x0240 -> 0x0241) 00
+It is now cycle [1133]
+ADV 1 (0x0241 -> 0x0242) 00
+It is now cycle [1134]
+ADV 1 (0x0242 -> 0x0243) 00
+It is now cycle [1135]
+ADV 1 (0x0243 -> 0x0244) 00
+It is now cycle [1136]
+ADV 1 (0x0244 -> 0x0245) 00
+It is now cycle [1137]
+ADV 1 (0x0245 -> 0x0246) 00
+It is now cycle [1138]
+ADV 1 (0x0246 -> 0x0247) 00
+It is now cycle [1139]
+ADV 1 (0x0247 -> 0x0248) 00
+It is now cycle [1140]
+ADV 1 (0x0248 -> 0x0249) 00
+It is now cycle [1141]
+ADV 1 (0x0249 -> 0x024a) 00
+It is now cycle [1142]
+ADV 1 (0x024a -> 0x024b) 00
+It is now cycle [1143]
+ADV 1 (0x024b -> 0x024c) 00
+It is now cycle [1144]
+ADV 1 (0x024c -> 0x024d) 00
+It is now cycle [1145]
+ADV 1 (0x024d -> 0x024e) 00
+It is now cycle [1146]
+ADV 1 (0x024e -> 0x024f) 00
+It is now cycle [1147]
+ADV 1 (0x024f -> 0x0250) 00
+It is now cycle [1148]
+ADV 1 (0x0250 -> 0x0251) 00
+It is now cycle [1149]
+ADV 1 (0x0251 -> 0x0252) 00
+It is now cycle [1150]
+ADV 1 (0x0252 -> 0x0253) 00
+It is now cycle [1151]
+ADV 1 (0x0253 -> 0x0254) 00
+It is now cycle [1152]
+ADV 1 (0x0254 -> 0x0255) 00
+It is now cycle [1153]
+ADV 1 (0x0255 -> 0x0256) 00
+It is now cycle [1154]
+ADV 1 (0x0256 -> 0x0257) 00
+It is now cycle [1155]
+ADV 1 (0x0257 -> 0x0258) 00
+It is now cycle [1156]
+ADV 1 (0x0258 -> 0x0259) 00
+It is now cycle [1157]
+ADV 1 (0x0259 -> 0x025a) 00
+It is now cycle [1158]
+ADV 1 (0x025a -> 0x025b) 00
+It is now cycle [1159]
+ADV 1 (0x025b -> 0x025c) 00
+It is now cycle [1160]
+ADV 1 (0x025c -> 0x025d) 00
+It is now cycle [1161]
+ADV 1 (0x025d -> 0x025e) 00
+It is now cycle [1162]
+ADV 1 (0x025e -> 0x025f) 00
+It is now cycle [1163]
+ADV 1 (0x025f -> 0x0260) 00
+It is now cycle [1164]
+ADV 1 (0x0260 -> 0x0261) 00
+It is now cycle [1165]
+ADV 1 (0x0261 -> 0x0262) 00
+It is now cycle [1166]
+ADV 1 (0x0262 -> 0x0263) 00
+It is now cycle [1167]
+ADV 1 (0x0263 -> 0x0264) 00
+It is now cycle [1168]
+ADV 1 (0x0264 -> 0x0265) 00
+It is now cycle [1169]
+ADV 1 (0x0265 -> 0x0266) 00
+It is now cycle [1170]
+ADV 1 (0x0266 -> 0x0267) 00
+It is now cycle [1171]
+ADV 1 (0x0267 -> 0x0268) 00
+It is now cycle [1172]
+ADV 1 (0x0268 -> 0x0269) 00
+It is now cycle [1173]
+ADV 1 (0x0269 -> 0x026a) 00
+It is now cycle [1174]
+ADV 1 (0x026a -> 0x026b) 00
+It is now cycle [1175]
+ADV 1 (0x026b -> 0x026c) 00
+It is now cycle [1176]
+ADV 1 (0x026c -> 0x026d) 00
+It is now cycle [1177]
+ADV 1 (0x026d -> 0x026e) 00
+It is now cycle [1178]
+ADV 1 (0x026e -> 0x026f) 00
+It is now cycle [1179]
+ADV 1 (0x026f -> 0x0270) 00
+It is now cycle [1180]
+ADV 1 (0x0270 -> 0x0271) 00
+It is now cycle [1181]
+ADV 1 (0x0271 -> 0x0272) 00
+It is now cycle [1182]
+ADV 1 (0x0272 -> 0x0273) 00
+It is now cycle [1183]
+ADV 1 (0x0273 -> 0x0274) 00
+It is now cycle [1184]
+ADV 1 (0x0274 -> 0x0275) 00
+It is now cycle [1185]
+ADV 1 (0x0275 -> 0x0276) 00
+It is now cycle [1186]
+ADV 1 (0x0276 -> 0x0277) 00
+It is now cycle [1187]
+ADV 1 (0x0277 -> 0x0278) 00
+It is now cycle [1188]
+ADV 1 (0x0278 -> 0x0279) 00
+It is now cycle [1189]
+ADV 1 (0x0279 -> 0x027a) 00
+It is now cycle [1190]
+ADV 1 (0x027a -> 0x027b) 00
+It is now cycle [1191]
+ADV 1 (0x027b -> 0x027c) 00
+It is now cycle [1192]
+ADV 1 (0x027c -> 0x027d) 00
+It is now cycle [1193]
+ADV 1 (0x027d -> 0x027e) 00
+It is now cycle [1194]
+ADV 1 (0x027e -> 0x027f) 00
+It is now cycle [1195]
+ADV 1 (0x027f -> 0x0280) 00
+It is now cycle [1196]
+ADV 1 (0x0280 -> 0x0281) 00
+It is now cycle [1197]
+ADV 1 (0x0281 -> 0x0282) 00
+It is now cycle [1198]
+ADV 1 (0x0282 -> 0x0283) 00
+It is now cycle [1199]
+ADV 1 (0x0283 -> 0x0284) 00
+It is now cycle [1200]
+ADV 1 (0x0284 -> 0x0285) 00
+It is now cycle [1201]
+ADV 1 (0x0285 -> 0x0286) 00
+It is now cycle [1202]
+ADV 1 (0x0286 -> 0x0287) 00
+It is now cycle [1203]
+ADV 1 (0x0287 -> 0x0288) 00
+It is now cycle [1204]
+ADV 1 (0x0288 -> 0x0289) 00
+It is now cycle [1205]
+ADV 1 (0x0289 -> 0x028a) 00
+It is now cycle [1206]
+ADV 1 (0x028a -> 0x028b) 00
+It is now cycle [1207]
+ADV 1 (0x028b -> 0x028c) 00
+It is now cycle [1208]
+ADV 1 (0x028c -> 0x028d) 00
+It is now cycle [1209]
+ADV 1 (0x028d -> 0x028e) 00
+It is now cycle [1210]
+ADV 1 (0x028e -> 0x028f) 00
+It is now cycle [1211]
+ADV 1 (0x028f -> 0x0290) 00
+It is now cycle [1212]
+ADV 1 (0x0290 -> 0x0291) 00
+It is now cycle [1213]
+ADV 1 (0x0291 -> 0x0292) 00
+It is now cycle [1214]
+ADV 1 (0x0292 -> 0x0293) 00
+It is now cycle [1215]
+ADV 1 (0x0293 -> 0x0294) 00
+It is now cycle [1216]
+ADV 1 (0x0294 -> 0x0295) 00
+It is now cycle [1217]
+ADV 1 (0x0295 -> 0x0296) 00
+It is now cycle [1218]
+ADV 1 (0x0296 -> 0x0297) 00
+It is now cycle [1219]
+ADV 1 (0x0297 -> 0x0298) 00
+It is now cycle [1220]
+ADV 1 (0x0298 -> 0x0299) 00
+It is now cycle [1221]
+ADV 1 (0x0299 -> 0x029a) 00
+It is now cycle [1222]
+ADV 1 (0x029a -> 0x029b) 00
+It is now cycle [1223]
+ADV 1 (0x029b -> 0x029c) 00
+It is now cycle [1224]
+ADV 1 (0x029c -> 0x029d) 00
+It is now cycle [1225]
+ADV 1 (0x029d -> 0x029e) 00
+It is now cycle [1226]
+ADV 1 (0x029e -> 0x029f) 00
+It is now cycle [1227]
+ADV 1 (0x029f -> 0x02a0) 00
+It is now cycle [1228]
+ADV 1 (0x02a0 -> 0x02a1) 00
+It is now cycle [1229]
+ADV 1 (0x02a1 -> 0x02a2) 00
+It is now cycle [1230]
+ADV 1 (0x02a2 -> 0x02a3) 00
+It is now cycle [1231]
+ADV 1 (0x02a3 -> 0x02a4) 00
+It is now cycle [1232]
+ADV 1 (0x02a4 -> 0x02a5) 00
+It is now cycle [1233]
+ADV 1 (0x02a5 -> 0x02a6) 00
+It is now cycle [1234]
+ADV 1 (0x02a6 -> 0x02a7) 00
+It is now cycle [1235]
+ADV 1 (0x02a7 -> 0x02a8) 00
+It is now cycle [1236]
+ADV 1 (0x02a8 -> 0x02a9) 00
+It is now cycle [1237]
+ADV 1 (0x02a9 -> 0x02aa) 00
+It is now cycle [1238]
+ADV 1 (0x02aa -> 0x02ab) 00
+It is now cycle [1239]
+ADV 1 (0x02ab -> 0x02ac) 00
+It is now cycle [1240]
+ADV 1 (0x02ac -> 0x02ad) 00
+It is now cycle [1241]
+ADV 1 (0x02ad -> 0x02ae) 00
+It is now cycle [1242]
+ADV 1 (0x02ae -> 0x02af) 00
+It is now cycle [1243]
+ADV 1 (0x02af -> 0x02b0) 00
+It is now cycle [1244]
+ADV 1 (0x02b0 -> 0x02b1) 00
+It is now cycle [1245]
+ADV 1 (0x02b1 -> 0x02b2) 00
+It is now cycle [1246]
+ADV 1 (0x02b2 -> 0x02b3) 00
+It is now cycle [1247]
+ADV 1 (0x02b3 -> 0x02b4) 00
+It is now cycle [1248]
+ADV 1 (0x02b4 -> 0x02b5) 00
+It is now cycle [1249]
+ADV 1 (0x02b5 -> 0x02b6) 00
+It is now cycle [1250]
+ADV 1 (0x02b6 -> 0x02b7) 00
+It is now cycle [1251]
+ADV 1 (0x02b7 -> 0x02b8) 00
+It is now cycle [1252]
+ADV 1 (0x02b8 -> 0x02b9) 00
+It is now cycle [1253]
+ADV 1 (0x02b9 -> 0x02ba) 00
+It is now cycle [1254]
+ADV 1 (0x02ba -> 0x02bb) 00
+It is now cycle [1255]
+ADV 1 (0x02bb -> 0x02bc) 00
+It is now cycle [1256]
+ADV 1 (0x02bc -> 0x02bd) 00
+It is now cycle [1257]
+ADV 1 (0x02bd -> 0x02be) 00
+It is now cycle [1258]
+ADV 1 (0x02be -> 0x02bf) 00
+It is now cycle [1259]
+ADV 1 (0x02bf -> 0x02c0) 00
+It is now cycle [1260]
+ADV 1 (0x02c0 -> 0x02c1) 00
+It is now cycle [1261]
+ADV 1 (0x02c1 -> 0x02c2) 00
+It is now cycle [1262]
+ADV 1 (0x02c2 -> 0x02c3) 00
+It is now cycle [1263]
+ADV 1 (0x02c3 -> 0x02c4) 00
+It is now cycle [1264]
+ADV 1 (0x02c4 -> 0x02c5) 00
+It is now cycle [1265]
+ADV 1 (0x02c5 -> 0x02c6) 00
+It is now cycle [1266]
+ADV 1 (0x02c6 -> 0x02c7) 00
+It is now cycle [1267]
+ADV 1 (0x02c7 -> 0x02c8) 00
+It is now cycle [1268]
+ADV 1 (0x02c8 -> 0x02c9) 00
+It is now cycle [1269]
+ADV 1 (0x02c9 -> 0x02ca) 00
+It is now cycle [1270]
+ADV 1 (0x02ca -> 0x02cb) 00
+It is now cycle [1271]
+ADV 1 (0x02cb -> 0x02cc) 00
+It is now cycle [1272]
+ADV 1 (0x02cc -> 0x02cd) 00
+It is now cycle [1273]
+ADV 1 (0x02cd -> 0x02ce) 00
+It is now cycle [1274]
+ADV 1 (0x02ce -> 0x02cf) 00
+It is now cycle [1275]
+ADV 1 (0x02cf -> 0x02d0) 00
+It is now cycle [1276]
+ADV 1 (0x02d0 -> 0x02d1) 00
+It is now cycle [1277]
+ADV 1 (0x02d1 -> 0x02d2) 00
+It is now cycle [1278]
+ADV 1 (0x02d2 -> 0x02d3) 00
+It is now cycle [1279]
+ADV 1 (0x02d3 -> 0x02d4) 00
+It is now cycle [1280]
+ADV 1 (0x02d4 -> 0x02d5) 00
+It is now cycle [1281]
+ADV 1 (0x02d5 -> 0x02d6) 00
+It is now cycle [1282]
+ADV 1 (0x02d6 -> 0x02d7) 00
+It is now cycle [1283]
+ADV 1 (0x02d7 -> 0x02d8) 00
+It is now cycle [1284]
+ADV 1 (0x02d8 -> 0x02d9) 00
+It is now cycle [1285]
+ADV 1 (0x02d9 -> 0x02da) 00
+It is now cycle [1286]
+ADV 1 (0x02da -> 0x02db) 00
+It is now cycle [1287]
+ADV 1 (0x02db -> 0x02dc) 00
+It is now cycle [1288]
+ADV 1 (0x02dc -> 0x02dd) 00
+It is now cycle [1289]
+ADV 1 (0x02dd -> 0x02de) 00
+It is now cycle [1290]
+ADV 1 (0x02de -> 0x02df) 00
+It is now cycle [1291]
+ADV 1 (0x02df -> 0x02e0) 00
+It is now cycle [1292]
+ADV 1 (0x02e0 -> 0x02e1) 00
+It is now cycle [1293]
+ADV 1 (0x02e1 -> 0x02e2) 00
+It is now cycle [1294]
+ADV 1 (0x02e2 -> 0x02e3) 00
+It is now cycle [1295]
+ADV 1 (0x02e3 -> 0x02e4) 00
+It is now cycle [1296]
+ADV 1 (0x02e4 -> 0x02e5) 00
+It is now cycle [1297]
+ADV 1 (0x02e5 -> 0x02e6) 00
+It is now cycle [1298]
+ADV 1 (0x02e6 -> 0x02e7) 00
+It is now cycle [1299]
+ADV 1 (0x02e7 -> 0x02e8) 00
+It is now cycle [1300]
+ADV 1 (0x02e8 -> 0x02e9) 00
+It is now cycle [1301]
+ADV 1 (0x02e9 -> 0x02ea) 00
+It is now cycle [1302]
+ADV 1 (0x02ea -> 0x02eb) 00
+It is now cycle [1303]
+ADV 1 (0x02eb -> 0x02ec) 00
+It is now cycle [1304]
+ADV 1 (0x02ec -> 0x02ed) 00
+It is now cycle [1305]
+ADV 1 (0x02ed -> 0x02ee) 00
+It is now cycle [1306]
+ADV 1 (0x02ee -> 0x02ef) 00
+It is now cycle [1307]
+ADV 1 (0x02ef -> 0x02f0) 00
+It is now cycle [1308]
+ADV 1 (0x02f0 -> 0x02f1) 00
+It is now cycle [1309]
+ADV 1 (0x02f1 -> 0x02f2) 00
+It is now cycle [1310]
+ADV 1 (0x02f2 -> 0x02f3) 00
+It is now cycle [1311]
+ADV 1 (0x02f3 -> 0x02f4) 00
+It is now cycle [1312]
+ADV 1 (0x02f4 -> 0x02f5) 00
+It is now cycle [1313]
+ADV 1 (0x02f5 -> 0x02f6) 00
+It is now cycle [1314]
+ADV 1 (0x02f6 -> 0x02f7) 00
+It is now cycle [1315]
+ADV 1 (0x02f7 -> 0x02f8) 00
+It is now cycle [1316]
+ADV 1 (0x02f8 -> 0x02f9) 00
+It is now cycle [1317]
+ADV 1 (0x02f9 -> 0x02fa) 00
+It is now cycle [1318]
+ADV 1 (0x02fa -> 0x02fb) 00
+It is now cycle [1319]
+ADV 1 (0x02fb -> 0x02fc) 00
+It is now cycle [1320]
+ADV 1 (0x02fc -> 0x02fd) 00
+It is now cycle [1321]
+ADV 1 (0x02fd -> 0x02fe) 00
+It is now cycle [1322]
+ADV 1 (0x02fe -> 0x02ff) 00
+It is now cycle [1323]
+ADV 1 (0x02ff -> 0x0300) 00
+It is now cycle [1324]
+ADV 1 (0x0300 -> 0x0301) 00
+It is now cycle [1325]
+ADV 1 (0x0301 -> 0x0302) 00
+It is now cycle [1326]
+ADV 1 (0x0302 -> 0x0303) 00
+It is now cycle [1327]
+ADV 1 (0x0303 -> 0x0304) 00
+It is now cycle [1328]
+ADV 1 (0x0304 -> 0x0305) 00
+It is now cycle [1329]
+ADV 1 (0x0305 -> 0x0306) 00
+It is now cycle [1330]
+ADV 1 (0x0306 -> 0x0307) 00
+It is now cycle [1331]
+ADV 1 (0x0307 -> 0x0308) 00
+It is now cycle [1332]
+ADV 1 (0x0308 -> 0x0309) 00
+It is now cycle [1333]
+ADV 1 (0x0309 -> 0x030a) 00
+It is now cycle [1334]
+ADV 1 (0x030a -> 0x030b) 00
+It is now cycle [1335]
+ADV 1 (0x030b -> 0x030c) 00
+It is now cycle [1336]
+ADV 1 (0x030c -> 0x030d) 00
+It is now cycle [1337]
+ADV 1 (0x030d -> 0x030e) 00
+It is now cycle [1338]
+ADV 1 (0x030e -> 0x030f) 00
+It is now cycle [1339]
+ADV 1 (0x030f -> 0x0310) 00
+It is now cycle [1340]
+ADV 1 (0x0310 -> 0x0311) 00
+It is now cycle [1341]
+ADV 1 (0x0311 -> 0x0312) 00
+It is now cycle [1342]
+ADV 1 (0x0312 -> 0x0313) 00
+It is now cycle [1343]
+ADV 1 (0x0313 -> 0x0314) 00
+It is now cycle [1344]
+ADV 1 (0x0314 -> 0x0315) 00
+It is now cycle [1345]
+ADV 1 (0x0315 -> 0x0316) 00
+It is now cycle [1346]
+ADV 1 (0x0316 -> 0x0317) 00
+It is now cycle [1347]
+ADV 1 (0x0317 -> 0x0318) 00
+It is now cycle [1348]
+ADV 1 (0x0318 -> 0x0319) 00
+It is now cycle [1349]
+ADV 1 (0x0319 -> 0x031a) 00
+It is now cycle [1350]
+ADV 1 (0x031a -> 0x031b) 00
+It is now cycle [1351]
+ADV 1 (0x031b -> 0x031c) 00
+It is now cycle [1352]
+ADV 1 (0x031c -> 0x031d) 00
+It is now cycle [1353]
+ADV 1 (0x031d -> 0x031e) 00
+It is now cycle [1354]
+ADV 1 (0x031e -> 0x031f) 00
+It is now cycle [1355]
+ADV 1 (0x031f -> 0x0320) 00
+It is now cycle [1356]
+ADV 1 (0x0320 -> 0x0321) 00
+It is now cycle [1357]
+ADV 1 (0x0321 -> 0x0322) 00
+It is now cycle [1358]
+ADV 1 (0x0322 -> 0x0323) 00
+It is now cycle [1359]
+ADV 1 (0x0323 -> 0x0324) 00
+It is now cycle [1360]
+ADV 1 (0x0324 -> 0x0325) 00
+It is now cycle [1361]
+ADV 1 (0x0325 -> 0x0326) 00
+It is now cycle [1362]
+ADV 1 (0x0326 -> 0x0327) 00
+It is now cycle [1363]
+ADV 1 (0x0327 -> 0x0328) 00
+It is now cycle [1364]
+ADV 1 (0x0328 -> 0x0329) 00
+It is now cycle [1365]
+ADV 1 (0x0329 -> 0x032a) 00
+It is now cycle [1366]
+ADV 1 (0x032a -> 0x032b) 00
+It is now cycle [1367]
+ADV 1 (0x032b -> 0x032c) 00
+It is now cycle [1368]
+ADV 1 (0x032c -> 0x032d) 00
+It is now cycle [1369]
+ADV 1 (0x032d -> 0x032e) 00
+It is now cycle [1370]
+ADV 1 (0x032e -> 0x032f) 00
+It is now cycle [1371]
+ADV 1 (0x032f -> 0x0330) 00
+It is now cycle [1372]
+ADV 1 (0x0330 -> 0x0331) 00
+It is now cycle [1373]
+ADV 1 (0x0331 -> 0x0332) 00
+It is now cycle [1374]
+ADV 1 (0x0332 -> 0x0333) 00
+It is now cycle [1375]
+ADV 1 (0x0333 -> 0x0334) 00
+It is now cycle [1376]
+ADV 1 (0x0334 -> 0x0335) 00
+It is now cycle [1377]
+ADV 1 (0x0335 -> 0x0336) 00
+It is now cycle [1378]
+ADV 1 (0x0336 -> 0x0337) 00
+It is now cycle [1379]
+ADV 1 (0x0337 -> 0x0338) 00
+It is now cycle [1380]
+ADV 1 (0x0338 -> 0x0339) 00
+It is now cycle [1381]
+ADV 1 (0x0339 -> 0x033a) 00
+It is now cycle [1382]
+ADV 1 (0x033a -> 0x033b) 00
+It is now cycle [1383]
+ADV 1 (0x033b -> 0x033c) 00
+It is now cycle [1384]
+ADV 1 (0x033c -> 0x033d) 00
+It is now cycle [1385]
+ADV 1 (0x033d -> 0x033e) 00
+It is now cycle [1386]
+ADV 1 (0x033e -> 0x033f) 00
+It is now cycle [1387]
+ADV 1 (0x033f -> 0x0340) 00
+It is now cycle [1388]
+ADV 1 (0x0340 -> 0x0341) 00
+It is now cycle [1389]
+ADV 1 (0x0341 -> 0x0342) 00
+It is now cycle [1390]
+ADV 1 (0x0342 -> 0x0343) 00
+It is now cycle [1391]
+ADV 1 (0x0343 -> 0x0344) 00
+It is now cycle [1392]
+ADV 1 (0x0344 -> 0x0345) 00
+It is now cycle [1393]
+ADV 1 (0x0345 -> 0x0346) 00
+It is now cycle [1394]
+ADV 1 (0x0346 -> 0x0347) 00
+It is now cycle [1395]
+ADV 1 (0x0347 -> 0x0348) 00
+It is now cycle [1396]
+ADV 1 (0x0348 -> 0x0349) 00
+It is now cycle [1397]
+ADV 1 (0x0349 -> 0x034a) 00
+It is now cycle [1398]
+ADV 1 (0x034a -> 0x034b) 00
+It is now cycle [1399]
+ADV 1 (0x034b -> 0x034c) 00
+It is now cycle [1400]
+ADV 1 (0x034c -> 0x034d) 00
+It is now cycle [1401]
+ADV 1 (0x034d -> 0x034e) 00
+It is now cycle [1402]
+ADV 1 (0x034e -> 0x034f) 00
+It is now cycle [1403]
+ADV 1 (0x034f -> 0x0350) 00
+It is now cycle [1404]
+ADV 1 (0x0350 -> 0x0351) 00
+It is now cycle [1405]
+ADV 1 (0x0351 -> 0x0352) 00
+It is now cycle [1406]
+ADV 1 (0x0352 -> 0x0353) 00
+It is now cycle [1407]
+ADV 1 (0x0353 -> 0x0354) 00
+It is now cycle [1408]
+ADV 1 (0x0354 -> 0x0355) 00
+It is now cycle [1409]
+ADV 1 (0x0355 -> 0x0356) 00
+It is now cycle [1410]
+ADV 1 (0x0356 -> 0x0357) 00
+It is now cycle [1411]
+ADV 1 (0x0357 -> 0x0358) 00
+It is now cycle [1412]
+ADV 1 (0x0358 -> 0x0359) 00
+It is now cycle [1413]
+ADV 1 (0x0359 -> 0x035a) 00
+It is now cycle [1414]
+ADV 1 (0x035a -> 0x035b) 00
+It is now cycle [1415]
+ADV 1 (0x035b -> 0x035c) 00
+It is now cycle [1416]
+ADV 1 (0x035c -> 0x035d) 00
+It is now cycle [1417]
+ADV 1 (0x035d -> 0x035e) 00
+It is now cycle [1418]
+ADV 1 (0x035e -> 0x035f) 00
+It is now cycle [1419]
+ADV 1 (0x035f -> 0x0360) 00
+It is now cycle [1420]
+ADV 1 (0x0360 -> 0x0361) 00
+It is now cycle [1421]
+ADV 1 (0x0361 -> 0x0362) 00
+It is now cycle [1422]
+ADV 1 (0x0362 -> 0x0363) 00
+It is now cycle [1423]
+ADV 1 (0x0363 -> 0x0364) 00
+It is now cycle [1424]
+ADV 1 (0x0364 -> 0x0365) 00
+It is now cycle [1425]
+ADV 1 (0x0365 -> 0x0366) 00
+It is now cycle [1426]
+ADV 1 (0x0366 -> 0x0367) 00
+It is now cycle [1427]
+ADV 1 (0x0367 -> 0x0368) 00
+It is now cycle [1428]
+ADV 1 (0x0368 -> 0x0369) 00
+It is now cycle [1429]
+ADV 1 (0x0369 -> 0x036a) 00
+It is now cycle [1430]
+ADV 1 (0x036a -> 0x036b) 00
+It is now cycle [1431]
+ADV 1 (0x036b -> 0x036c) 00
+It is now cycle [1432]
+ADV 1 (0x036c -> 0x036d) 00
+It is now cycle [1433]
+ADV 1 (0x036d -> 0x036e) 00
+It is now cycle [1434]
+ADV 1 (0x036e -> 0x036f) 00
+It is now cycle [1435]
+ADV 1 (0x036f -> 0x0370) 00
+It is now cycle [1436]
+ADV 1 (0x0370 -> 0x0371) 00
+It is now cycle [1437]
+ADV 1 (0x0371 -> 0x0372) 00
+It is now cycle [1438]
+ADV 1 (0x0372 -> 0x0373) 00
+It is now cycle [1439]
+ADV 1 (0x0373 -> 0x0374) 00
+It is now cycle [1440]
+ADV 1 (0x0374 -> 0x0375) 00
+It is now cycle [1441]
+ADV 1 (0x0375 -> 0x0376) 00
+It is now cycle [1442]
+ADV 1 (0x0376 -> 0x0377) 00
+It is now cycle [1443]
+ADV 1 (0x0377 -> 0x0378) 00
+It is now cycle [1444]
+ADV 1 (0x0378 -> 0x0379) 00
+It is now cycle [1445]
+ADV 1 (0x0379 -> 0x037a) 00
+It is now cycle [1446]
+ADV 1 (0x037a -> 0x037b) 00
+It is now cycle [1447]
+ADV 1 (0x037b -> 0x037c) 00
+It is now cycle [1448]
+ADV 1 (0x037c -> 0x037d) 00
+It is now cycle [1449]
+ADV 1 (0x037d -> 0x037e) 00
+It is now cycle [1450]
+ADV 1 (0x037e -> 0x037f) 00
+It is now cycle [1451]
+ADV 1 (0x037f -> 0x0380) 00
+It is now cycle [1452]
+ADV 1 (0x0380 -> 0x0381) 00
+It is now cycle [1453]
+ADV 1 (0x0381 -> 0x0382) 00
+It is now cycle [1454]
+ADV 1 (0x0382 -> 0x0383) 00
+It is now cycle [1455]
+ADV 1 (0x0383 -> 0x0384) 00
+It is now cycle [1456]
+ADV 1 (0x0384 -> 0x0385) 00
+It is now cycle [1457]
+ADV 1 (0x0385 -> 0x0386) 00
+It is now cycle [1458]
+ADV 1 (0x0386 -> 0x0387) 00
+It is now cycle [1459]
+ADV 1 (0x0387 -> 0x0388) 00
+It is now cycle [1460]
+ADV 1 (0x0388 -> 0x0389) 00
+It is now cycle [1461]
+ADV 1 (0x0389 -> 0x038a) 00
+It is now cycle [1462]
+ADV 1 (0x038a -> 0x038b) 00
+It is now cycle [1463]
+ADV 1 (0x038b -> 0x038c) 00
+It is now cycle [1464]
+ADV 1 (0x038c -> 0x038d) 00
+It is now cycle [1465]
+ADV 1 (0x038d -> 0x038e) 00
+It is now cycle [1466]
+ADV 1 (0x038e -> 0x038f) 00
+It is now cycle [1467]
+ADV 1 (0x038f -> 0x0390) 00
+It is now cycle [1468]
+ADV 1 (0x0390 -> 0x0391) 00
+It is now cycle [1469]
+ADV 1 (0x0391 -> 0x0392) 00
+It is now cycle [1470]
+ADV 1 (0x0392 -> 0x0393) 00
+It is now cycle [1471]
+ADV 1 (0x0393 -> 0x0394) 00
+It is now cycle [1472]
+ADV 1 (0x0394 -> 0x0395) 00
+It is now cycle [1473]
+ADV 1 (0x0395 -> 0x0396) 00
+It is now cycle [1474]
+ADV 1 (0x0396 -> 0x0397) 00
+It is now cycle [1475]
+ADV 1 (0x0397 -> 0x0398) 00
+It is now cycle [1476]
+ADV 1 (0x0398 -> 0x0399) 00
+It is now cycle [1477]
+ADV 1 (0x0399 -> 0x039a) 00
+It is now cycle [1478]
+ADV 1 (0x039a -> 0x039b) 00
+It is now cycle [1479]
+ADV 1 (0x039b -> 0x039c) 00
+It is now cycle [1480]
+ADV 1 (0x039c -> 0x039d) 00
+It is now cycle [1481]
+ADV 1 (0x039d -> 0x039e) 00
+It is now cycle [1482]
+ADV 1 (0x039e -> 0x039f) 00
+It is now cycle [1483]
+ADV 1 (0x039f -> 0x03a0) 00
+It is now cycle [1484]
+ADV 1 (0x03a0 -> 0x03a1) 00
+It is now cycle [1485]
+ADV 1 (0x03a1 -> 0x03a2) 00
+It is now cycle [1486]
+ADV 1 (0x03a2 -> 0x03a3) 00
+It is now cycle [1487]
+ADV 1 (0x03a3 -> 0x03a4) 00
+It is now cycle [1488]
+ADV 1 (0x03a4 -> 0x03a5) 00
+It is now cycle [1489]
+ADV 1 (0x03a5 -> 0x03a6) 00
+It is now cycle [1490]
+ADV 1 (0x03a6 -> 0x03a7) 00
+It is now cycle [1491]
+ADV 1 (0x03a7 -> 0x03a8) 00
+It is now cycle [1492]
+ADV 1 (0x03a8 -> 0x03a9) 00
+It is now cycle [1493]
+ADV 1 (0x03a9 -> 0x03aa) 00
+It is now cycle [1494]
+ADV 1 (0x03aa -> 0x03ab) 00
+It is now cycle [1495]
+ADV 1 (0x03ab -> 0x03ac) 00
+It is now cycle [1496]
+ADV 1 (0x03ac -> 0x03ad) 00
+It is now cycle [1497]
+ADV 1 (0x03ad -> 0x03ae) 00
+It is now cycle [1498]
+ADV 1 (0x03ae -> 0x03af) 00
+It is now cycle [1499]
+ADV 1 (0x03af -> 0x03b0) 00
+It is now cycle [1500]
+ADV 1 (0x03b0 -> 0x03b1) 00
+It is now cycle [1501]
+ADV 1 (0x03b1 -> 0x03b2) 00
+It is now cycle [1502]
+ADV 1 (0x03b2 -> 0x03b3) 00
+It is now cycle [1503]
+ADV 1 (0x03b3 -> 0x03b4) 00
+It is now cycle [1504]
+ADV 1 (0x03b4 -> 0x03b5) 00
+It is now cycle [1505]
+ADV 1 (0x03b5 -> 0x03b6) 00
+It is now cycle [1506]
+ADV 1 (0x03b6 -> 0x03b7) 00
+It is now cycle [1507]
+ADV 1 (0x03b7 -> 0x03b8) 00
+It is now cycle [1508]
+ADV 1 (0x03b8 -> 0x03b9) 00
+It is now cycle [1509]
+ADV 1 (0x03b9 -> 0x03ba) 00
+It is now cycle [1510]
+ADV 1 (0x03ba -> 0x03bb) 00
+It is now cycle [1511]
+ADV 1 (0x03bb -> 0x03bc) 00
+It is now cycle [1512]
+ADV 1 (0x03bc -> 0x03bd) 00
+It is now cycle [1513]
+ADV 1 (0x03bd -> 0x03be) 00
+It is now cycle [1514]
+ADV 1 (0x03be -> 0x03bf) 00
+It is now cycle [1515]
+ADV 1 (0x03bf -> 0x03c0) 00
+It is now cycle [1516]
+ADV 1 (0x03c0 -> 0x03c1) 00
+It is now cycle [1517]
+ADV 1 (0x03c1 -> 0x03c2) 00
+It is now cycle [1518]
+ADV 1 (0x03c2 -> 0x03c3) 00
+It is now cycle [1519]
+ADV 1 (0x03c3 -> 0x03c4) 00
+It is now cycle [1520]
+ADV 1 (0x03c4 -> 0x03c5) 00
+It is now cycle [1521]
+ADV 1 (0x03c5 -> 0x03c6) 00
+It is now cycle [1522]
+ADV 1 (0x03c6 -> 0x03c7) 00
+It is now cycle [1523]
+ADV 1 (0x03c7 -> 0x03c8) 00
+It is now cycle [1524]
+ADV 1 (0x03c8 -> 0x03c9) 00
+It is now cycle [1525]
+ADV 1 (0x03c9 -> 0x03ca) 00
+It is now cycle [1526]
+ADV 1 (0x03ca -> 0x03cb) 00
+It is now cycle [1527]
+ADV 1 (0x03cb -> 0x03cc) 00
+It is now cycle [1528]
+ADV 1 (0x03cc -> 0x03cd) 00
+It is now cycle [1529]
+ADV 1 (0x03cd -> 0x03ce) 00
+It is now cycle [1530]
+ADV 1 (0x03ce -> 0x03cf) 00
+It is now cycle [1531]
+ADV 1 (0x03cf -> 0x03d0) 00
+It is now cycle [1532]
+ADV 1 (0x03d0 -> 0x03d1) 00
+It is now cycle [1533]
+ADV 1 (0x03d1 -> 0x03d2) 00
+It is now cycle [1534]
+ADV 1 (
