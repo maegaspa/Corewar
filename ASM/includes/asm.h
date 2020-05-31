@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   asm.h                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: maegaspa <maegaspa@student.42lyon.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/05/22 17:11:04 by maegaspa          #+#    #+#             */
+/*   Updated: 2020/05/22 17:11:35 by maegaspa         ###   ########lyon.fr   */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef ASM_H
 # define ASM_H
 
@@ -9,7 +21,7 @@
 
 typedef struct s_parameter
 {
-	int 	registre;
+	int 	reg;
 	int 	is_direct;
 	int 	direct;
 	char 	*direct_str;
@@ -72,6 +84,7 @@ typedef struct s_file
 	int 	i;
 	int 	j;
 	int 	k;
+	unsigned int n;
 	int		max_byte;
 	int 	n_param;
 }				t_file;
@@ -117,8 +130,13 @@ int 	is_label_or_instruction(t_tab *tab, t_file *file);
 int 	check_param(t_tab *tab, t_file *file);
 char	**ft_strsplit2(char const *s);
 void 	free_error(t_tab *tab, t_file *file);
+void	free_error_2(t_file *file, int i);
+void	free_error_3(t_tab *tab, int i);
+void	free_error_4(t_tab *tab);
 void	print_line_error(t_file *file);
 void 	print_error(t_file *file);
+void	print_error2(t_file *file);
+void	print_error3(t_file *file);
 int 	file_check(t_file *file, t_header *head, char *file_name);
 int		ft_atoi_base(char *str, char *base);
 int  	init_param(t_tab *tab);
@@ -129,6 +147,8 @@ int 	check_label(t_tab *tab, char *str);
 void	swap_4(unsigned int *nb);
 void	swap_2(unsigned short int *nb);
 char	*gettohexa(int n);
+int		check_errors(char *str, char *base);
+int		get_nb(char c, char *base);
 t_op	get_op_by_name(t_file *file, char *name);
 
 /* WRITE FUNCTIONS
@@ -145,7 +165,7 @@ int		get_label_pos(t_tab *tab, t_file *file);
 void	convert_int(unsigned char **str, int nb);
 void    write_binary_int(int nb, int fd);
 int		get_dir_pos(t_tab *tab, t_file *file);
-int		write_dir_int(int n_param, t_file *file, t_tab *tab, int actual_inst);
+int		write_dir_int(int n, t_file *file, t_tab *tab, int actual_inst);
 int		write_short(int n_param, t_file *file, t_tab *tab, int actual_inst);
 int		write_reg_dir_ind(t_file *file, t_tab *tab, int actual_inst);
 void	stock_reg_dir(t_tab *tab, t_file *file, int n_param, int actual_inst);
@@ -153,8 +173,8 @@ int		write_param(t_file *file, t_tab *tab, int actual_inst);
 void	param_fill(t_tab *tab, t_file *file);
 void	param_fill_dir(t_tab *tab, t_file *file);
 void	param_fill_dir2(t_tab *tab, t_file *file);
-void	write_dir_int_lab(int n_param, t_file *file, t_tab *tab, int actual_inst);
-void	write_dir_short_lab(int n_param, t_file *file, t_tab *tab, int actual_inst);
+void	write_dir_int_lab(int n, t_file *file, t_tab *tab, int actual_inst);
+void	write_dir_short_lab(int n, t_file *file, t_tab *tab, int act_inst);
 int		write_header(t_header *head, int fd, t_file *file);
 
 

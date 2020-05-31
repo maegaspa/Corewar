@@ -1,34 +1,34 @@
-/*# **************************************************************************** #*/
-/*#                                                                              #*/
-/*#                                                         :::      ::::::::    #*/
-/*#    bite                                               :+:      :+:    :+:    #*/
-/*#                                                     +:+ +:+         +:+      #*/
-/*#    By: maegaspa <marvin@42.fr>                    +#+  +:+       +#+         #*/
-/*#                                                 +#+#+#+#+#+   +#+            #*/
-/*#    Created: 2020/03/06 21:57:36 by maegaspa          #+#    #+#              #*/
-/*#    Updated: 2020/03/06 21:58:16 by maegaspa         ###   ########lyon.fr    #*/
-/*#                                                                              #*/
-/*# **************************************************************************** #*/
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   create_cor.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: maegaspa <maegaspa@student.42lyon.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/05/22 17:08:27 by maegaspa          #+#    #+#             */
+/*   Updated: 2020/05/22 17:10:27 by maegaspa         ###   ########lyon.fr   */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../includes/asm.h"
 
 void	param_fill_dir2(t_tab *tab, t_file *file)
 {
 	tab->tabyte[file->j] = -4;
-    tab->tabyte[file->j + 1] = -4;
-    tab->tabyte[file->j + 2] = -4;
-    tab->tabyte[file->j + 3] = -4;
-    if (ft_strstr(tab->info_ins[file->i].parameter[file->n_param], file->tmp))
-    {
-    	tab->tabyte[file->j] = 5;
-        tab->tabyte[file->j + 1] = 5;
-        tab->tabyte[file->j + 2] = 5;
-        tab->tabyte[file->j + 3] = 5;
-    }
-    file->j += 4;
+	tab->tabyte[file->j + 1] = -4;
+	tab->tabyte[file->j + 2] = -4;
+	tab->tabyte[file->j + 3] = -4;
+	if (ft_strstr(tab->info_ins[file->i].parameter[file->n_param], file->tmp))
+	{
+		tab->tabyte[file->j] = 5;
+		tab->tabyte[file->j + 1] = 5;
+		tab->tabyte[file->j + 2] = 5;
+		tab->tabyte[file->j + 3] = 5;
+	}
+	file->j += 4;
 }
 
-int		write_header(t_header *head, int fd, t_file *file) //GESTION ERREUR EN +
+int		write_header(t_header *head, int fd, t_file *file)
 {
 	write_binary_int(head->magic, fd);
 	write(fd, head->prog_name, PROG_NAME_LENGTH);
@@ -67,7 +67,8 @@ int		create_cor(t_header *head, t_file *file, t_tab *tab)
 		return (file->error);
 	if ((file->error = get_dir_pos(tab, file) < 1))
 		return (file->error);
-	if ((file->fd = open(file->file_name, O_CREAT | O_WRONLY | O_TRUNC, 0600)) < 0)
+	if ((file->fd = open(file->file_name, O_CREAT |
+		O_WRONLY | O_TRUNC, 0600)) < 0)
 		return (ERROR_OPEN);
 	if (write_header(head, file->fd, file) != 1)
 		return (ERROR_WRITE);
@@ -78,16 +79,14 @@ int		create_cor(t_header *head, t_file *file, t_tab *tab)
 		if ((file->error = write_param(file, tab, i)) < 1)
 			return (file->error);
 		if ((file->error = write_reg_dir_ind(file, tab, i) < 1))
-		    return (file->error);
+			return (file->error);
 	}
 	return (SUCCESS);
 }
 
-int 	convertion(t_header *head, t_file *file, t_tab *tab)
+int		convertion(t_header *head, t_file *file, t_tab *tab)
 {
 	if ((file->error = create_cor(head, file, tab)) < 1)
 		return (file->error);
 	return (SUCCESS);
 }
-
-

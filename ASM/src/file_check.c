@@ -1,9 +1,20 @@
-#include "../includes/asm.h"
-#include <stdio.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   file_check.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: maegaspa <maegaspa@student.42lyon.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/05/22 17:08:44 by maegaspa          #+#    #+#             */
+/*   Updated: 2020/05/22 17:10:30 by maegaspa         ###   ########lyon.fr   */
+/*                                                                            */
+/* ************************************************************************** */
 
-int 	check_file_name(t_file *file, char *file_name)
+#include "../includes/asm.h"
+
+int		check_file_name(t_file *file, char *file_name)
 {
-	int 	len;
+	int		len;
 
 	len = ft_strlen(file_name);
 	if (!(file_name[len - 1] == 's' && file_name[len - 2] == '.'))
@@ -16,6 +27,26 @@ int 	check_file_name(t_file *file, char *file_name)
 	return (SUCCESS);
 }
 
+int		init_file_2(t_file *file, t_header *head)
+{
+	if (is_name_or_comment(file->file[file->count], 1))
+	{
+		if ((file->error = true_syntaxe_info(head, file->file[file->count],
+						ft_strlen(NAME_CMD_STRING), 1)) < 1)
+			return (file->error);
+		file->ligne_name = file->count;
+		file->name++;
+	}
+	if (is_name_or_comment(file->file[file->count], 2))
+	{
+		if ((file->error = true_syntaxe_info(head, file->file[file->count],
+						ft_strlen(COMMENT_CMD_STRING), 2)) < 1)
+			return (file->error);
+		file->ligne_comment = file->count;
+		file->comment++;
+	}
+	return (SUCCESS);
+}
 
 int		init_file(t_file *file, t_header *head, char *file_name)
 {
@@ -25,27 +56,14 @@ int		init_file(t_file *file, t_header *head, char *file_name)
 	while (file->file[++file->count])
 	{
 		file->ligne_error = file->count;
-		if (is_name_or_comment(file->file[file->count], 1))
-		{
-			if ((file->error = true_syntaxe_info(head, file->file[file->count], ft_strlen(NAME_CMD_STRING), 1)) < 1)
-				return (file->error);
-			file->ligne_name = file->count;
-			file->name++;
-		}
-		if (is_name_or_comment(file->file[file->count], 2))
-		{
-			if ((file->error = true_syntaxe_info(head, file->file[file->count], ft_strlen(COMMENT_CMD_STRING), 2)) < 1)
-				return (file->error);
-			file->ligne_comment = file->count;
-			file->comment++;
-		}
+		init_file_2(file, head);
 	}
 	if (file->name != 1 || file->comment != 1)
 		return (ERROR_INFO);
 	return (SUCCESS);
 }
 
-int 	file_check(t_file *file, t_header *head, char *file_name)
+int		file_check(t_file *file, t_header *head, char *file_name)
 {
 	if ((check_file_name(file, file_name)) < 1)
 		return (ERROR_DOT_S);

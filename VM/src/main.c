@@ -1,111 +1,73 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hmichel <hmichel@student.le-101.fr>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/02/18 17:21:56 by seanseau          #+#    #+#             */
+/*   Updated: 2020/05/27 00:36:41 by hmichel          ###   ########lyon.fr   */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/corewar.h"
 #include <stdio.h>
 
-int 	init_usage(t_parse_file *file)
-{
-	file->i = 0;
-	file->dump = -1;
-	file->long_dump = -1;
-	file->n = 0;
-	file->nb_player = 0;
-	file->rk_player = 1;
-	if (!(file->file_name = malloc(sizeof(char*) * MAX_PLAYERS + 1)))
-		return (ERROR_MALLOC);
-	if (!(file->rank_player = malloc(sizeof(int) * MAX_PLAYERS)))
-		return (ERROR_MALLOC);
-	return (SUCCESS);
-}
-
-int 	flag_is_dump(t_parse_file *file, int ac, char **av)
-{
-	if (file->i + 1 < ac && (file->dump == -1) && (!ft_strcmp("-dump", av[file->i]) || !ft_strcmp("-d", av[file->i])))
-	{
-		file->dump = ft_atoi(av[file->i + 1]);
-		if (file->i + 1 < ac && (file->dump > 0 || (file->dump == 0 && !ft_strcmp("0", av[file->i + 1]))))
-			file->i += 2;
-		else
-			return (ERROR_USAGE);
-	}
-	else if (file->i + 1 < ac && (file->long_dump == -1) && (!ft_strcmp("-dump-long", av[file->i]) || !ft_strcmp("-dl", av[file->i])))
-	{
-		file->long_dump = ft_atoi(av[file->i + 1]);
-		if (file->i + 1 < ac && (file->long_dump > 0 || (file->long_dump == 0 && !ft_strcmp("0", av[file->i + 1]))))
-			file->i += 2;
-		else
-			return (ERROR_USAGE);
-	}
-	return (SUCCESS);
-}
-
-int 	flag_is_n(t_parse_file *file, int ac, char **av)
-{
-	file->n = ft_atoi(av[file->i + 1]);
-	if ((file->i + 1 < ac && (file->n > 0 || (file->n == 0 && !ft_strcmp("0", av[file->i + 1])))) && (file->i + 2 < ac && ((av[file->i + 2][ft_strlen(av[file->i + 2]) - 4] == '.') && (av[file->i + 2][ft_strlen(av[file->i + 2]) - 3] == 'c') && (av[file->i + 2][ft_strlen(av[file->i + 2]) - 2] == 'o') && (av[file->i + 2][ft_strlen(av[file->i + 2]) - 1] == 'r'))))
-	{
-		file->file_name[file->nb_player] = ft_strdup(av[file->i + 2]);
-		file->rank_player[file->nb_player] = file->rk_player;
-		if (MAX_PLAYERS && file->rk_player >= file->n)
-		{
-			file->j = -1;
-			while (++file->j < file->nb_player)
-				if (file->rank_player[file->j] == file->n)
-					ft_swap(&file->rank_player[file->j], &file->rank_player[file->nb_player]);
-			file->rk_player++;
-		}
-		else if (MAX_PLAYERS && file->rk_player < file->n)
-			file->rank_player[file->nb_player] = file->n;
-		file->nb_player++;
-		file->i += 2;
-	}
-	else
-		return (ERROR_USAGE);
-	return (SUCCESS);
-}
-
-int 	check_argument(t_parse_file *file, int ac, char **av)
-{
-	if ((file->error = init_usage(file)) < 0)
-		return (file->error);
-	while (++file->i < ac)
-	{
-		printf("%s\n", av[file->i]);
-		if ((file->error = flag_is_dump(file, ac, av)) < 0)
-			return (file->error);
-		else if (file->i + 1 < ac && (!ft_strcmp("-n", av[file->i]) && file->nb_player <= MAX_PLAYERS))
-		{
-			if ((file->error = flag_is_n(file, ac, av)) < 0)
-				return (file->error);
-		}
-		else if (file->nb_player < MAX_PLAYERS && ((av[file->i][ft_strlen(av[file->i]) - 4] == '.') && (av[file->i][ft_strlen(av[file->i]) - 3] == 'c') && (av[file->i][ft_strlen(av[file->i]) - 2] == 'o') && (av[file->i][ft_strlen(av[file->i]) - 1] == 'r')))
-		{
-			file->file_name[file->nb_player] = ft_strdup(av[file->i]);
-			file->rank_player[file->nb_player] = file->rk_player;
-			file->rk_player++;
-			file->nb_player++;
-		}
-		else
-			return (ERROR_USAGE);
-	}
-	/*file->i = -1;
-	while (++file->i < file->nb_player)
-	{
-
-	}*/
-	file->i = -1;
-	while (++file->i < file->nb_player)
-		printf("[%s]->[%d] ", file->file_name[file->i], file->rank_player[file->i]);
-	return (SUCCESS);
-}
+//t_op		g_op_tab[16] =
+//{
+//	{"live", 1, {T_DIR}, 1, 10, "alive", 0, 0},
+//	{"ld", 2, {T_DIR | T_IND, T_REG}, 2, 5, "load", 1, 0},
+//	{"st", 2, {T_REG, T_IND | T_REG}, 3, 5, "store", 1, 0},
+//	{"add", 3, {T_REG, T_REG, T_REG}, 4, 10, "addition", 1, 0},
+//	{"sub", 3, {T_REG, T_REG, T_REG}, 5, 10, "soustraction", 1, 0},
+//	{"and", 3, {T_REG | T_DIR | T_IND, T_REG | T_IND | T_DIR, T_REG}, 6, 6,
+//		"et (and  r1, r2, r3   r1&r2 -> r3", 1, 0},
+//	{"or", 3, {T_REG | T_IND | T_DIR, T_REG | T_IND | T_DIR, T_REG}, 7, 6,
+//		"ou  (or   r1, r2, r3   r1 | r2 -> r3", 1, 0},
+//	{"xor", 3, {T_REG | T_IND | T_DIR, T_REG | T_IND | T_DIR, T_REG}, 8, 6,
+//		"ou (xor  r1, r2, r3   r1^r2 -> r3", 1, 0},
+//	{"zjmp", 1, {T_DIR}, 9, 20, "jump if zero", 0, 1},
+//	{"ldi", 3, {T_REG | T_DIR | T_IND, T_DIR | T_REG, T_REG}, 10, 25,
+//		"load index", 1, 1},
+//	{"sti", 3, {T_REG, T_REG | T_DIR | T_IND, T_DIR | T_REG}, 11, 25,
+//		"store index", 1, 1},
+//	{"fork", 1, {T_DIR}, 12, 800, "fork", 0, 1},
+//	{"lld", 2, {T_DIR | T_IND, T_REG}, 13, 10, "long load", 1, 0},
+//	{"lldi", 3, {T_REG | T_DIR | T_IND, T_DIR | T_REG, T_REG}, 14, 50,
+//		"long load index", 1, 1},
+//	{"lfork", 1, {T_DIR}, 15, 1000, "long fork", 0, 1},
+//	{"aff", 1, {T_REG}, 16, 2, "aff", 1, 0},
+//};
 
 int 	main(int ac, char **av)
 {
-	t_parse_file file;
+	t_parse_file	file;
+	t_war			war;
+	t_header		head;
 
-	if (ac > 1 && (file.error = check_argument(&file, ac, av)) < 0)
+	if (ac >= 1 && (file.error = check_argument(&file, ac, av)) < 0)
 	{
-		printf("ERROR\n");
+		print_error(file.error);
 		return (file.error);
 	}
+	war.visu = 0;
+	if ((file.error = read_and_place_players(&file, &war, &head)) < 0)
+	{
+		print_error(file.error);
+		return (file.error);
+	}
+	ft_init_war(file, &war);
+//	if (war.visu == 1)
+//    {
+//    	if (ft_game_visu(&war, &file) == 0)//A FAIRE: retour erreur
+//    		return (0);
+//    }
+//	else
+	if (ft_game(&war, &file) == 0)//A FAIRE: retour erreur
+		return (0);
+//	print_arena(&war);
+	//end game (free/close)
+	//free_zob
 	//printf("ERROR\n");
 	return (0);
 }

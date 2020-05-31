@@ -1,4 +1,4 @@
-# **************************************************************************** #
+#**************************************************************************** #
 #                                                           LE - /             #
 #                                                               /              #
 #    Makefile                                         .::    .:/ .      .::    #
@@ -6,7 +6,7 @@
 #    By: cgarrot <marvin@le-101.fr>                 +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2018/10/10 19:59:22 by cgarrot      #+#   ##    ##    #+#        #
-#    Updated: 2019/12/28 10:35:03 by seanseau    ###    #+. /#+    ###.fr      #
+#    Updated: 2020/04/03 19:01:26 by maegaspa         ###   ########lyon.fr    #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -16,82 +16,82 @@
 NAME = libft.a
 CC = gcc
 FLAGS = -Wall -Wextra -Werror
-INC = libft.h
+INC = inc/libft.h
+HEADER = include
 
 #------------------------------------FILE--------------------------------------#
 
-FILES = ft_atoi\
-		ft_bzero\
-		ft_isalnum\
-		ft_isalpha\
-		ft_isascii\
-		ft_isdigit\
-		ft_isprint\
-		ft_itoa\
-		ft_memalloc\
-		ft_memccpy\
-		ft_memchr\
-		ft_memcmp\
-		ft_memcpy\
-		ft_memdel\
-		ft_memmove\
-		ft_memset\
-		ft_putchar\
-		ft_putchar_fd\
-		ft_putendl\
-		ft_putendl_fd\
-		ft_putnbr\
-		ft_putnbr_fd\
-		ft_putstr\
-		ft_putstr_fd\
-		ft_strcat\
-		ft_strchr\
-		ft_strclr\
-		ft_strcmp\
-		ft_strcpy\
-		ft_strdel\
-		ft_strdup\
-		ft_strequ\
-		ft_striter\
-		ft_striteri\
-		ft_strjoin\
-		ft_strlcat\
-		ft_strlen\
-		ft_strmap\
-		ft_strmapi\
-		ft_strncat\
-		ft_strncmp\
-		ft_strncpy\
-		ft_strnequ\
-		ft_strnew\
-		ft_strnstr\
-		ft_strrchr\
-		ft_strsplit\
-		ft_strstr\
-		ft_strsub\
-		ft_strtrim\
-		ft_tolower\
-		ft_toupper\
-		ft_lstnew\
-		ft_lstdelone\
-		ft_lstdel\
-		ft_lstadd\
-		ft_lstiter\
-		ft_lstmap\
-		ft_strndup\
-		ft_swap\
-		ft_lltoa\
-		ft_ulltoa\
-		ft_utoa\
-		ft_uhhtoa\
-		ft_uhtoa\
-		ft_htoa\
-		ft_hhtoa\
-		ft_strjoinfree\
-		ft_strsubfree\
-		ft_ftoa\
-		get_next_line\
-		ft_intcpy\
+FILES = lib/ft_atoi\
+		lib/ft_bzero\
+		lib/ft_isalnum\
+		lib/ft_isalpha\
+		lib/ft_isascii\
+		lib/ft_isdigit\
+		lib/ft_isprint\
+		lib/ft_itoa\
+		lib/ft_memalloc\
+		lib/ft_memccpy\
+		lib/ft_memchr\
+		lib/ft_memcmp\
+		lib/ft_memcpy\
+		lib/ft_memdel\
+		lib/ft_memmove\
+		lib/ft_memset\
+		lib/ft_putchar\
+		lib/ft_putchar_fd\
+		lib/ft_putendl\
+		lib/ft_putendl_fd\
+		lib/ft_putnbr\
+		lib/ft_putnbr_fd\
+		lib/ft_putstr\
+		lib/ft_putstr_fd\
+		lib/ft_strcat\
+		lib/ft_strchr\
+		lib/ft_strclr\
+		lib/ft_strcmp\
+		lib/ft_strcpy\
+		lib/ft_strdel\
+		lib/ft_strdup\
+		lib/ft_strequ\
+		lib/ft_striter\
+		lib/ft_striteri\
+		lib/ft_strjoin\
+		lib/ft_strlcat\
+		lib/ft_strlen\
+		lib/ft_strmap\
+		lib/ft_strmapi\
+		lib/ft_strncat\
+		lib/ft_strncmp\
+		lib/ft_strncpy\
+		lib/ft_strnequ\
+		lib/ft_strnew\
+		lib/ft_strnstr\
+		lib/ft_strrchr\
+		lib/ft_strsplit\
+		lib/ft_strstr\
+		lib/ft_strsub\
+		lib/ft_strtrim\
+		lib/ft_tolower\
+		lib/ft_toupper\
+		lib/ft_lstnew\
+		lib/ft_lstdelone\
+		lib/ft_lstdel\
+		lib/ft_lstadd\
+		lib/ft_lstiter\
+		lib/ft_lstmap\
+		lib/ft_strndup\
+		lib/ft_swap\
+		lib/ft_lltoa\
+		lib/ft_ulltoa\
+		lib/ft_utoa\
+		lib/ft_uhhtoa\
+		lib/ft_uhtoa\
+		lib/ft_htoa\
+		lib/ft_hhtoa\
+		lib/ft_strjoinfree\
+		lib/ft_strsubfree\
+		lib/get_next_line\
+		lib/ft_intcpy\
 
 #----------------------------------COLOR---------------------------------------#
 
@@ -162,9 +162,10 @@ $(NAME): $(OBJ)
 	@printf $(RED)"|_/ \n"
 	@printf $(W)"          \_/__\_/                                            \_/__\_/ \n"
 	@ar rcs $(NAME) $(OBJ)
+	@ranlib $(NAME)
 
-%.o: %.c $(INC)
-	@$(CC) $(FLAGS) -o $@ -c $< -I $(INC)
+object/%.o: src/%.c $(HEADER)
+	@$(CC) $(FLAGS) -I $(HEADER) -o $@ -c $<
 
 clean:
 	@echo "\033[1m|---------------------------------|\033[0m"
