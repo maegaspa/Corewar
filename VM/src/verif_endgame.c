@@ -39,9 +39,9 @@ void	delete_chariot(t_war *war)
             if (war->verbose[1])
             	printf("Process %d hasn't lived for %d cycles (CTD %d)\n",
             	delete->index + 1, war->cycles - delete->last_live, war->cycle_to_die);
-//            ft_memdel((void **)&delete);
+            ft_memdel((void **)&delete);
     	}
-    	else
+    	else//if (war->nb_chariot)
         {
         	previous = current;
         	current = current->next;

@@ -49,18 +49,31 @@
 	return (SUCCESS);
 }*/
 
-int		end_game(t_war *war) //il faudra surement rejouer un tour
+int		end_game(t_war *war)
 {
-	if (war->begin == NULL || (war->cycle_to_die <= 0))
+	if (war->nb_chariot == 0)
 	{
-		if (war->cycle_to_die <= 0 && war->verbose[3] == 1)
-			printf("It is now cycle %d\n", war->cycles + 1);
-		delete_chariot(war);
-		if (war->verbose[5] == 1)
+		if (war->verbose[5] == 1 && war->visu != 1)
 			printf("Contestant %d, \"%s\", has won !\n", war->lastlive, war->player[war->lastlive - 1].header.prog_name);
-//		else
-//			printf("Contestant %d, \"%s\", has won !\n", war->lastlive, war->player[war->lastlive - 1].header.prog_name);
-		//war->cycles++;
+        else
+        {
+        	mvwprintw(war->visual.keys_win, 12, 2, "Contestant %d, \"%s\", has won !", war->lastlive, war->player[war->lastlive - 1].header.prog_name);
+        	wrefresh(war->visual.keys_win);
+        }
+		return (FAILURE);
+	}
+	if (war->cycle_to_die <= 0)
+	{
+		if (war->verbose[3] == 1)
+    		printf("It is now cycle %d\n", war->cycles + 1);
+    	delete_chariot(war);
+		if (war->verbose[5] == 1 && war->visu != 1)
+        	printf("Contestant %d, \"%s\", has won !\n", war->lastlive, war->player[war->lastlive - 1].header.prog_name);
+		else
+		{
+			mvwprintw(war->visual.keys_win, 12, 2, "Contestant %d, \"%s\", has won !", war->lastlive, war->player[war->lastlive - 1].header.prog_name);
+			wrefresh(war->visual.keys_win);
+		}
 		return (FAILURE);
 	}
 	return (SUCCESS);
@@ -68,28 +81,22 @@ int		end_game(t_war *war) //il faudra surement rejouer un tour
 
 int			check_cycle(t_war *war)
 {
-	//if (vm->cycles_to_die == vm->cycles_after_check
-    //			|| vm->cycles_to_die <= 0)
-	if (war->cycles - war->cycle_last_check >= war->cycle_to_die || war->cycle_to_die <= 0)
+	delete_chariot(war);
+	war->cycles_btw_check = 0;
+	if (!end_game(war))
+        return (FAILURE);
+	//printf("war->nb_lives = %d ET [%d]\n", war->nb_lives, (war->begin)->live);
+	if (war->nb_lives >= NBR_LIVE || war->check_cycles_to_die >= MAX_CHECKS)
 	{
-		delete_chariot(war);
-		war->cycle_last_check = war->cycles;
+		war->cycle_to_die -= CYCLE_DELTA;
+		if (war->verbose[3] == 1)
+			printf("Cycle to die is now %d\n", war->cycle_to_die);
 		if (!end_game(war))
-        	return (FAILURE);
-		//printf("war->nb_lives = %d ET [%d]\n", war->nb_lives, (war->begin)->live);
-		if (war->nb_lives >= NBR_LIVE || war->check_cycles_to_die >= MAX_CHECKS)
-		{
-			war->cycle_to_die -= CYCLE_DELTA;
-			if (war->verbose[3] == 1)
-				printf("Cycle to die is now %d\n", war->cycle_to_die);
-			if (!(end_game(war) == SUCCESS))
-				return (FAILURE);
-			war->check_cycles_to_die = 1;
-		}
-		else
-			war->check_cycles_to_die++;
-		war->nb_lives = 0;
+			return (FAILURE);
+		war->check_cycles_to_die = 1;
 	}
-	war->cycles++;
+	else
+		war->check_cycles_to_die++;
+	war->nb_lives = 0;
 	return (SUCCESS);
 }

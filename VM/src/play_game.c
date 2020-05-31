@@ -87,39 +87,6 @@ int	get_all_param(t_chariot *chariot, t_war *war, int ope)
 	//printf("2tmpc = %d\n", tmpc);
 	return (tmpc);
 }
-/*
-int			is_conform2(char ocp, int param, int ope)
-{
-//	if (ocp == 0)
-//		return (0);
-	if (ocp == 1 && (0x01 & g_op_tab[ope].params_type[param]))
-		return (REG_CODE);
-	if (ocp == 2 && (0x02 & g_op_tab[ope].params_type[param]))
-		return (DIR_CODE);
-	if (ocp == 3 && (0x04 & g_op_tab[ope].params_type[param]))
-		return (IND_CODE);
-	return (0);
-}
-
-int		get_bin_ocp(t_chariot *chariot, t_war *war)
-{
-	unsigned char	ocp;
-	int				i;
-
-	i = -1;
-    while (++i < 3)
-		war->rtype[i] = -1;
-	ocp = war->arena[calc_addr(chariot->start_pos + chariot->pc + 1)];
-    if (!(war->rtype[0] = is_conform2((ocp >> 6), 0, chariot->ope - 1)))
-    	return (FAILURE);
-    if (g_op_tab[chariot->ope - 1].nb_params >= 2)
-    	if (!(war->rtype[1] = is_conform2(((ocp & 0x30) >> 4), 1, chariot->ope - 1)))
-    		return (FAILURE);
-    if (g_op_tab[chariot->ope - 1].nb_params == 3)
-    	if (!(war->rtype[2] = is_conform2(((ocp & 0x0C) >> 2), 2, chariot->ope - 1)))
-    		return (FAILURE);
-    return (SUCCESS);
-}*/
 
 int		ft_game(t_war *war, t_parse_file *file)
 {
@@ -137,30 +104,32 @@ int		ft_game(t_war *war, t_parse_file *file)
 	if ((error = ft_start_chariot(war, &chariot)) <= 0)
 		return (error);
 	war->begin = chariot;
-	//ft_print_war(war);
 	war->cycle_last_check = 0;//war->cycles;
 	while (COREWAR)
 	{
-		if (war->cycles && (war->cycles - 1 == file->cycles|| file->dump == war->cycles - 1 || file->long_dump == war->cycles - 1))
-		{
-			i = -1;
-			while (++i < 6)
-				war->verbose[i] = 0;
-		}
+		if (file->dump == war->cycles || file->long_dump == war->cycles)
+			print_arena(war, file);
+		if (war->cycles  == file->cycles || file->dump == war->cycles || file->long_dump == war->cycles)
+        {
+        	i = -1;
+        	while (++i < 6)
+        		war->verbose[i] = 0;
+        }
+		war->cycles++;
+        war->cycles_btw_check++;
 		if (war->cycles && war->verbose[3] == 1)
         	printf("It is now cycle %d\n", war->cycles);
-        i = war->nb_chariot;
-       // printf("war->nb_chariot = %d\n", war->nb_chariot);
-		while (--i >= 0)//(chariot) //(++i < war->nb_chariot)
+		chariot = war->begin;
+		while (chariot)
 		{
 			ft_exec_opp(chariot, war, opp_tab);
 			chariot = chariot->next;
 		}
-		if (file->dump == war->cycles || file->long_dump == war->cycles)
-        	print_arena(war, file);
-		chariot = war->begin;
-		if (check_cycle(war) == FAILURE)
-			break ;
+		while (war->visu == 1)
+			get_keys(war);
+		if (war->cycle_to_die == war->cycles_btw_check || war->cycle_to_die <= 0)
+			if (check_cycle(war) == FAILURE)
+				break ;
 	}
 	return (SUCCESS);
 }

@@ -12,25 +12,26 @@
 
 #include "../includes/corewar.h"
 
-void	cycle_keys(t_war *war, int c)
+/*void	cycle_keys(t_war *war, int c)
 {
 	int	temp_cursor;
-
 	temp_cursor = war->visual.arena_cursor;
 	if (war->visual.pause == 1)
 	{
-		if (c == 'a' && temp_cursor > 0)
+		if (c == 97 && temp_cursor > 0)
 		{
 			temp_cursor--;
-			color_arena(war, -1, war->visual.arena_win, war->visual.arena_list[temp_cursor]);
+			refresh_arena(war, temp_cursor);
+			print_cursor(war, temp_cursor);
 		}
-		if (c == 'd' && temp_cursor < 100)
+		if (c == 100 && temp_cursor < 100)
 		{
 			temp_cursor++;
-			color_arena(war, -1, war->visual.arena_win, war->visual.arena_list[temp_cursor]);
+			refresh_arena(war, temp_cursor);
+			print_cursor(war, temp_cursor);
 		}
 	}
-}
+}*/
 
 void	sleep_keys(t_war *war, int c)
 {
@@ -49,12 +50,17 @@ void	get_keys(t_war *war)
 {
 	int c;
 
-
 	c = wgetch(war->visual.infos_win);
+
 	if (c == ' ')
-		war->visual.pause = -war->visual.pause;
+		war->visual.pause = war->visual.pause * -1;
 	if (c == '-' || c == '+')
 		sleep_keys(war, c);
-	if (c == 'a' || c == 'd')
-		cycle_keys(war, c);
+	if (c == 27)
+	{
+		endwin();
+		exit(0);
+	}
+//	if (c == 97 || c == 100)
+//		cycle_keys(war, c);
 }

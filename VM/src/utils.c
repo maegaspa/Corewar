@@ -186,6 +186,8 @@ void			ft_init_war(t_parse_file file, t_war *war)
 	war->i_ocp = 0;
 	war->cycles = 0;
 	war->back_pc = 0;
+	war->visu = file.visu;
+	war->cycles_btw_check = 0;
 	war->id_chariot = file.nb_player;
 	war->nb_player = file.nb_player;
 	//printf("nbplayer = %d\n", file.nb_player);

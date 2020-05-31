@@ -24,8 +24,8 @@
 # include <string.h>
 # include <errno.h>
 # include <unistd.h>
-//# include <curses.h>
-//# include <ncurses.h>
+# include <curses.h>
+# include <ncurses.h>
 
 # define C_POS (chariot->pc + chariot->start_pos)
 # define REG_TAB (chariot->registres)
@@ -87,6 +87,7 @@ typedef struct			s_chariot
 	int					wait;
 	int					start_pos;
 	int					ope;
+	int					fork;
 	int					registres[REG_NUMBER]; //char?
 	int					index;
 	int					last_live;
@@ -96,8 +97,8 @@ typedef struct			s_chariot
 
 	struct s_chariot	*next;
 }						t_chariot;
-/*
-typedef struct			visual//visu
+
+typedef struct			s_visual//visu
 {
 	WINDOW				*arena_win;
 	WINDOW				*infos_win;
@@ -108,7 +109,7 @@ typedef struct			visual//visu
 	int					sleeptime;
 	int					process_nb;
 }						t_visual;
-*/
+
 typedef struct			s_war
 {
 	int					i_ocp;
@@ -133,14 +134,14 @@ typedef struct			s_war
 	int					jump;
 	char				*ocxp;
 	int 				verbose[6];
-	int					actual_cycles;//new
+	int					cycles_btw_check;
 	int					cycle_to_die;//new
 	int					check_cycles_to_die;//new
 	int					cycle_last_check;
 	int					nb_lives; //new
 	int					next_check; //new
 	t_chariot			*begin;
-//	t_visual			visual;//visu lol
+	t_visual			visual;//visu lol
 }						t_war;
 
 typedef int			(*t_opp)(t_war *war, t_chariot *proc);
@@ -236,13 +237,16 @@ void 		print_error(int error);
 
 /*
 ** tous les visu.c
-*//*
+*/
+void			print_cursor(t_war *war);
+void			refresh_arena(t_war *war);
 int			visu_body(t_war *war);
 int			update_visu(t_war *war);
 void		color_arena(t_war *war, int p, WINDOW *arena_win, char *arena);
 void		get_keys(t_war *war);
 void		get_valid_name(t_war *war);
-*/
+
+
 /*
 ** verif_endgame.c
 */

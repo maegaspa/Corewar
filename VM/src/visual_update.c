@@ -18,49 +18,35 @@ void	print_cursor(t_war *war)
 	t_chariot	*chariot;
 
 	war->visual.process_nb = 0;
-	//chariot = war->begin;
 	chariot = war->begin;
 	while (chariot)
 	{
-		if (chariot->ope != -1 && chariot->wait != 0)
-		{
-			if (chariot->prev_cursor != -1)
-			{
-				wattron(war->visual.arena_win, COLOR_PAIR(chariot->prev_color));
-				mvwprintw(war->visual.arena_win, (chariot->prev_cursor / 64) + 1, ((chariot->prev_cursor % 64) * 3) + 2, "%02x", (unsigned char)war->arena[chariot->prev_cursor]);
-				wattroff(war->visual.arena_win, COLOR_PAIR(chariot->prev_color));
-			}
-			wattron(war->visual.arena_win, COLOR_PAIR(war->nb_player - chariot->index) | A_STANDOUT);
-			pos = chariot->start_pos + chariot->pc;
-			mvwprintw(war->visual.arena_win, (pos / 64) + 1, ((pos % 64) * 3) + 2, "%02x", (unsigned char)war->arena[pos]);
-			wattroff(war->visual.arena_win, COLOR_PAIR(war->nb_player - chariot->index) | A_STANDOUT);
-			chariot->prev_cursor = pos;
-			chariot->prev_color = (mvwinch(war->visual.arena_win, (pos / 64) + 1, ((pos % 64) * 3) + 2) & A_COLOR) / 256;
-		}
+		pos = chariot->start_pos + chariot->pc;
+		wattron(war->visual.arena_win, COLOR_PAIR(chariot->player));
+		mvwprintw(war->visual.arena_win, (pos / 64) + 1,
+		((pos % 64) * 3) + 2, "%02x", (unsigned char)war->arena[pos]);
+		wattroff(war->visual.arena_win, COLOR_PAIR(chariot->player));
+		chariot->prev_cursor = pos;
 		war->visual.process_nb++;
 		chariot = chariot->next;
 	}
-	//free(zob);
 }
 
 void	infos_print(t_war *war)
 {
 	mvwprintw(war->visual.infos_win, 4, 40, "%d", war->cycles);
 	mvwprintw(war->visual.infos_win, 6, 40, "%d", war->visual.process_nb);
-	mvwprintw(war->visual.infos_win, 30, 40, "%d", war->to_die);
-
-
-	//REVOIR LES CYCLES/SECONDES A LA FIN
+	mvwprintw(war->visual.infos_win, 30, 40, "%d", war->cycle_to_die);
 	if (war->visual.sleeptime > 1000)
-		mvwprintw(war->visual.infos_win, 2, 40, "%d ", 1000000 / war->visual.sleeptime);
+		mvwprintw(war->visual.infos_win, 2, 40, "%d ",
+				1000000 / war->visual.sleeptime);
 	else
 		mvwprintw(war->visual.infos_win, 2, 40, "300");
 }
 
-void	arena_update(t_war *war)
+/*void	arena_update(t_war *war)
 {
 	int i;
-
 	i = 0;
 	if (war->cycles < 100)
 	{
@@ -70,31 +56,58 @@ void	arena_update(t_war *war)
 	else
 	{
 		while (++i < 99)
-			ft_memcpy(war->visual.arena_list[i - 1], war->visual.arena_list[i], MEM_SIZE);
+			ft_memcpy(war->visual.arena_list[i - 1],
+			war->visual.arena_list[i], MEM_SIZE);
 		ft_memcpy(war->visual.arena_list[99], war->arena, MEM_SIZE);
 	}
+}*/
+
+void	refresh_arena(t_war *war)
+{
+	int i;
+	int line;
+	int col;
+
+	i = 0;
+	line = 1;
+	col = 2;
+	wattron(war->visual.arena_win, COLOR_PAIR(6));
+	while (i < MEM_SIZE)
+	{
+		mvwprintw(war->visual.arena_win, line, col, "%02x",
+				(unsigned char)war->arena[i]);
+		col = col + 3;
+		if (col >= 194)
+		{
+			col = 2;
+			line++;
+		}
+		i++;
+	}
+	wattroff(war->visual.arena_win, COLOR_PAIR(6));
 }
 
 int		update_visu(t_war *war)
 {
-
+	if (war->visu != 1)
+		return (SUCCESS);
 	cbreak();
 	nodelay(war->visual.infos_win, 1);
 	get_keys(war);
-	arena_update(war);
+//	arena_update(war);
 	if (war->visual.pause == -1)
 	{
-		usleep(war->visual.sleeptime);
+		if (war->cycles != 0)
+			usleep(war->visual.sleeptime);
 		wrefresh(war->visual.infos_win);
+		refresh_arena(war);
 		print_cursor(war);
-
 		infos_print(war);
-
 		wrefresh(war->visual.infos_win);
 		wrefresh(war->visual.arena_win);
 		return (SUCCESS);
 	}
-//	wrefresh(war->visual.infos_win);
 //	wrefresh(war->visual.arena_win);
+//	wrefresh(war->visual.infos_win);
 	return (-1);
-}//NEED UNE FONCTION QUI RECOLORE QUAND FINIT UNE INSTRUCTION ; UN COMPTE EN TEMPS REEL DES CYCLES/TO_DIE/NBR_LIVE/MAX_CHECKS ; CURSOR SUR REPLAY ? ; A LA FIN REWORK CYCLE/S
+}

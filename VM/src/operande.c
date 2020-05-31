@@ -21,7 +21,7 @@ int			ft_get_op(t_war *war, t_chariot *chariot)
 	pos = calc_addr(chariot->start_pos + chariot->pc);
 	if (war->arena[pos] > 16 || war->arena[pos] <= 0)
 	{
-		chariot->pc++;
+		chariot->pc = calc_addr(chariot->pc + 1);
 		return (0);
 	}
 	else
@@ -129,8 +129,9 @@ void		ft_exec_opp(t_chariot *chariot, t_war *war, t_opp *opp_tab)
         }
 		chariot->ope = -1;
 	}
-	if (ft_get_op(war, chariot) == 1) //&& chariot->ope >= 1) //on tcheck si on lit une nouvelle operande, si oui on init "wait"
+	if (!chariot->fork && ft_get_op(war, chariot) == 1) //&& chariot->ope >= 1) //on tcheck si on lit une nouvelle operande, si oui on init "wait"
     	chariot->wait = war->op_cycle[chariot->ope - 1];
+    chariot->fork = 0;
 }
 
 int 	calc_addr(int addr)

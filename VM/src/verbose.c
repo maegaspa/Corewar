@@ -70,7 +70,7 @@ void		verbose_ind(t_war *war, t_chariot *chariot, int i)
     		(chariot->ope == 10 && war->rtype[i] == 3))
     	printf("%d", ft_load(war, 4, calc_addr(chariot->pc + war->param[i] % IDX_MOD)));
 	else if (war->rtype[i] == 3 && chariot->ope >= 6 && chariot->ope <= 8)
-		printf("%d", ft_load(war, 4, calc_addr(chariot->pc + war->param[i])));
+		printf("%d", ft_load(war, 4, calc_addr(chariot->pc + war->param[i] % IDX_MOD)));
     else
     	printf("%d", war->param[i]);
 }

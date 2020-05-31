@@ -76,25 +76,22 @@ void	keys_printer(WINDOW *keys_win)
 	mvwprintw(keys_win, 5, 4, "CHANGE SPEED : \t\t[+]\t\t[-]");
 	mvwprintw(keys_win, 6, 31, "FASTER          SLOWER");
 	mvwprintw(keys_win, 8, 7, "---------------------------------------------");
-	mvwprintw(keys_win, 10, 4, "ONCE PAUSED");
-	mvwprintw(keys_win, 12, 4, "CHECK PREVIOUS CYCLES : \t[a]\t\t[d]");
-	mvwprintw(keys_win, 13, 31, "PREVIOUS         NEXT");
 	mvwprintw(keys_win, 18, 7, "---------------------------------------------");
 }
 
 void	init_windows(t_war *war)
 {
 	start_color();
-	init_pair(1, COLOR_GREEN, COLOR_BLACK);
-	init_pair(2, COLOR_YELLOW, COLOR_BLACK);
-	init_pair(3, COLOR_RED, COLOR_BLACK);
-	init_pair(4, COLOR_BLUE, COLOR_BLACK);
+	init_pair(1, COLOR_WHITE, COLOR_GREEN);
+	init_pair(2, COLOR_WHITE, COLOR_YELLOW);
+	init_pair(3, COLOR_WHITE, COLOR_RED);
+	init_pair(4, COLOR_WHITE, COLOR_BLUE);
+	init_pair(5, COLOR_BLACK, COLOR_WHITE);
+	init_pair(6, COLOR_WHITE, COLOR_BLACK);
 	war->visual.process_nb = war->nb_player;
 	war->visual.arena_cursor = 0;
 	war->visual.arena_win = newwin(66, 196, 0, 0);
 	box(war->visual.arena_win, 0, 0);
-
-
 	color_arena(war, -1, war->visual.arena_win, war->arena);
 	war->visual.infos_win = newwin(40, 60, 0, 200);
 	box(war->visual.infos_win, 0, 0);

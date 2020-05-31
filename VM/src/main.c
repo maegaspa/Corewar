@@ -50,7 +50,7 @@ int 	main(int ac, char **av)
 		print_error(file.error);
 		return (file.error);
 	}
-	war.visu = 0;
+	//war.visu = 0;
 	if ((file.error = read_and_place_players(&file, &war, &head)) < 0)
 	{
 		print_error(file.error);

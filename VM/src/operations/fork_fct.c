@@ -35,6 +35,7 @@ static	t_chariot *ft_fork_chariot(t_chariot *chariot, short param, t_war *war)
 	war->id_chariot++;
 	new->player = chariot->player;
 	new->start_pos = 0;
+	new->fork = 0;
 	new->last_live = chariot->last_live;
 	new->prev_color = chariot->player;
 	new->ope = -1; // <=> ope non conforme
@@ -59,7 +60,10 @@ int			fork_fct(t_war *war, t_chariot *chariot)
 	add_cursor(&(war->begin), tmp_char);
 	//printf("chariot = %p\n", chariot);
 	//war->begin = tmp_char;
-	if (ft_get_op(war, war->begin) == 1)
-    	(war->begin)->wait = war->op_cycle[(war->begin)->ope - 1];
+	if (ft_get_op(war, war->begin) == 1) //faire le jump si get op marche pas
+	{
+		(war->begin)->fork = 1;
+		(war->begin)->wait = war->op_cycle[(war->begin)->ope - 1];
+	}
 	return (0);
 }
