@@ -82,7 +82,7 @@ void		print_info_players(t_war *war, t_parse_file *file)
 		j = -1;
 		while (++j < file->nb_player)
 			if (i == file->rank_player[j] - 1)
-				printf("- Player [%d] : weighing %d, \"%s\", \"%s\"\n", file->rank_player[j], war->player[j].header.prog_size, war->player[j].header.prog_name, war->player[j].header.comment);
+				printf("* Player %d, weighing %d bytes, \"%s\" (\"%s\") !\n", file->rank_player[j], war->player[j].header.prog_size, war->player[j].header.prog_name, war->player[j].header.comment);
 	}
 }
 
@@ -98,6 +98,7 @@ int			read_and_place_players(t_parse_file *file, t_war *war, t_header *head)
 	while (++act_player < file->nb_player)
 		if ((file->error = get_new_player(war, file, head, act_player)) < 1)
 			return (file->error);//recupere les infos player + le place dans l'arena
+	printf("Introducing contestants...\n");
 	print_info_players(war, file);//print vitef des differents players
 //	print_arena(war);
 	return (SUCCESS);

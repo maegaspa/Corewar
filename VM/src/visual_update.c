@@ -21,7 +21,7 @@ void	print_cursor(t_war *war)
 	chariot = war->begin;
 	while (chariot)
 	{
-		pos = chariot->start_pos + chariot->pc;
+		pos = (chariot->start_pos + chariot->pc) % MEM_SIZE;
 		wattron(war->visual.arena_win, COLOR_PAIR(chariot->player));
 		mvwprintw(war->visual.arena_win, (pos / 64) + 1,
 		((pos % 64) * 3) + 2, "%02x", (unsigned char)war->arena[pos]);

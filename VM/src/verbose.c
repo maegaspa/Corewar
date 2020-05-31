@@ -65,16 +65,14 @@ void		verbose_ind(t_war *war, t_chariot *chariot, int i)
 //		printf("addr dans ind = %d\n", chariot->addr);
     	printf("%d",  ft_load(war, 4, calc_addr(chariot->pc + chariot->start_pos + (war->param[0] % IDX_MOD))));
     }
-    else if (chariot->ope == 13)
+    else if ((chariot->ope == 13) || (chariot->ope == 14 && war->rtype[i] == 3) ||
+    		(chariot->ope == 11 && war->rtype[i] == 3) ||
+    		(chariot->ope == 10 && war->rtype[i] == 3))
     	printf("%d", ft_load(war, 4, calc_addr(chariot->pc + war->param[i] % IDX_MOD)));
-    else if (chariot->ope == 11 && war->rtype[i] == 3)
-    	printf("%d", ft_load(war, 4, calc_addr(chariot->pc + war->param[i] % IDX_MOD)));
-    else if (chariot->ope == 6 && war->rtype[i] == 3)
-    	printf("%d", ft_load(war, 4, calc_addr(chariot->pc + war->param[i] % IDX_MOD)));
-    else if (chariot->ope == 14 && war->rtype[i] == 3)
-    	printf("%d", ft_load(war, 4, calc_addr(chariot->pc + war->param[i] % IDX_MOD)));
+	else if (war->rtype[i] == 3 && chariot->ope >= 6 && chariot->ope <= 8)
+		printf("%d", ft_load(war, 4, calc_addr(chariot->pc + war->param[i])));
     else
-    	printf("%d", (short)war->param[i]);
+    	printf("%d", war->param[i]);
 }
 
 void		verbose_dir(t_war *war, t_chariot *chariot, int i)

@@ -18,7 +18,7 @@ t_chariot		*ft_creat_chariot(int index, int pc, int start_pos, int player)
 //	int			i;
 //
 //	i = 1;
-	if (!(new = (t_chariot*)malloc(sizeof(t_chariot))))
+	if (!(new = (t_chariot *)ft_memalloc(sizeof(t_chariot))))
 		return (NULL);
 	new->pc = pc;
 	new->live = 0;

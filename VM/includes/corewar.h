@@ -27,6 +27,10 @@
 # include <curses.h>
 # include <ncurses.h>
 
+# define C_POS (chariot->pc + chariot->start_pos)
+# define REG_TAB (chariot->registres)
+# define COREWAR 21499276478801162
+
 # define ERROR_MALLOC -1
 # define ERROR_NB_PLAYER -2
 # define ERROR_USAGE -3
@@ -43,8 +47,6 @@
 # define T_DIR_TWO 2
 # define T_DIR_FOUR 4
 
-# define C_POS (chariot->pc + chariot->start_pos)
-
 typedef struct 			s_parse_file
 {
 	int					error;
@@ -55,7 +57,7 @@ typedef struct 			s_parse_file
 	int 				sv;
 	int 				cycles;
 	int 				verbose[6];
-	int					*rank_player;
+	int					rank_player[MAX_PLAYERS];
 	int					nb_player;
 	int					rk_player;
 	char				**file_name;
@@ -87,7 +89,6 @@ typedef struct			s_chariot
 	int					ope;
 	int					registres[REG_NUMBER]; //char?
 	int					index;
-	int 				addr;
 	int					last_live;
 	int					prev_cursor;
     int					player;//pour visu
@@ -112,6 +113,7 @@ typedef struct			s_war
 {
 	int					i_ocp;
 	int					nb_chariot;
+	int					id_chariot;
 	int					back_pc;
 	int					visu;
 	struct				s_player *player;
@@ -235,8 +237,8 @@ void 		print_error(int error);
 /*
 ** tous les visu.c
 */
-void			print_cursor(t_war *war);
 void			refresh_arena(t_war *war);
+void			print_cursor(t_war *war);
 int			visu_body(t_war *war);
 int			update_visu(t_war *war);
 void		color_arena(t_war *war, int p, WINDOW *arena_win, char *arena);
@@ -247,10 +249,15 @@ void		get_valid_name(t_war *war);
 ** verif_endgame.c
 */
 int		verif_endgame(t_war *war, t_chariot *chariot);
-int		check_cycle(t_war *war, t_chariot *chariot);
+int		check_cycle(t_war *war);
 int		v_alive_chariot(t_chariot *chariot, t_war *war);
 void	reset_lives_chariot(t_war *war);
 void	verbose(t_war *war, t_chariot *chariot);
 int		ft_load(t_war *war, int size, int adress);
+void	delete_chariot(t_war *war);
+/*
+** jump.c
+*/
+int		ft_jump(t_war *war, t_chariot *chariot);
 
 #endif

@@ -14,6 +14,7 @@
 
 int			zjmp_fct(t_war *war, t_chariot *chariot)
 {
+//	printf("zjmp carry = %d\n", chariot->carry);
 	if (chariot->carry == 1)
 	{
 		war->back_pc = 1;

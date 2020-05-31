@@ -122,10 +122,11 @@ int 			print_arena(t_war *war, t_parse_file *file)
 		dump = 32;
 	else
 		return (FAILURE);
-	printf("\n");
 	while (++i < MEM_SIZE)
 	{
-		if (count_bytes == 0)
+		if (i == 0)
+        	printf("0x%04x : ", bytes);
+		if (count_bytes == 0 && i)
 			printf("%#06x : ", bytes);
 		printf("%02x ", (unsigned char)war->arena[i]);
 		count_bytes++;
@@ -188,6 +189,7 @@ void			ft_init_war(t_parse_file file, t_war *war)
 	war->i_ocp = 0;
 	war->cycles = 0;
 	war->back_pc = 0;
+	war->id_chariot = file.nb_player;
 	war->nb_player = file.nb_player;
 	//printf("nbplayer = %d\n", file.nb_player);
 	war->nb_chariot = war->nb_player;
@@ -197,9 +199,8 @@ void			ft_init_war(t_parse_file file, t_war *war)
 	war->nb_lives = 0; //new
 	war->next_check = CYCLE_TO_DIE;
 	war->cycle_to_die = CYCLE_TO_DIE;
-	war->actual_cycles = 0; //new
 	war->check_cycles_to_die = 1; //new
-	ft_init_op_cycle(war); // a vpor si bien init dans parser
+	ft_init_op_cycle(war);
 }
 
 void        print_verbose_16(t_war *war, t_chariot *chariot, int size)

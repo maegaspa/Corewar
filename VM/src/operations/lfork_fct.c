@@ -15,9 +15,9 @@
 static	t_chariot *ft_lfork_chariot(t_chariot *chariot, int param, t_war *war)
 {
 	t_chariot	*new;
-//	int			i;
-//
-//	i = -1;
+	int			i;
+
+	i = -1;
 	if (!(new = (t_chariot*)malloc(sizeof(t_chariot))))
 		return (NULL);
 	//printf("nb_chariot = %d\n", war->nb_chariot);
@@ -26,15 +26,15 @@ static	t_chariot *ft_lfork_chariot(t_chariot *chariot, int param, t_war *war)
 	new->live = chariot->live; //a check, sujet dit de garder le meme last_live, on a fait differament
 	new->carry = chariot->carry;
 	new->wait = 0;
-	new->index = war->nb_chariot - 1;
+	new->index = war->id_chariot;
+	war->id_chariot++;
 	new->player = chariot->player;
 	new->start_pos = 0;
 	new->last_live = chariot->last_live;
 	new->prev_color = chariot->player;
 	new->ope = -1; // <=> ope non conforme
-	new->registres[0] = new->player * -1;
-//	while (++i < REG_NUMBER)
-//		new->registres[i] = chariot->registres[i];
+	while (++i < REG_NUMBER)
+		new->registres[i] = chariot->registres[i];
 	new->next = war->begin;
 	return (new);
 }

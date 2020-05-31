@@ -83,11 +83,11 @@ int	get_all_param(t_chariot *chariot, t_war *war, int ope)
 //			printf("DANS IND = %d\n", get_2_val(war, chariot, tmpc) );
 		}
 	}
-	//printf("new war->param[0] =  %d | param[1] = %d | param[2] = %d\n", war->param[0], war->param[1], war->param[2]);
+//	printf("new war->param[0] =  %d | param[1] = %d | param[2] = %d\n", war->param[0], war->param[1], war->param[2]);
 	//printf("2tmpc = %d\n", tmpc);
 	return (tmpc);
 }
-
+/*
 int			is_conform2(char ocp, int param, int ope)
 {
 //	if (ocp == 0)
@@ -119,7 +119,7 @@ int		get_bin_ocp(t_chariot *chariot, t_war *war)
     	if (!(war->rtype[2] = is_conform2(((ocp & 0x0C) >> 2), 2, chariot->ope - 1)))
     		return (FAILURE);
     return (SUCCESS);
-}
+}*/
 
 int		ft_game(t_war *war, t_parse_file *file)
 {
@@ -129,10 +129,9 @@ int		ft_game(t_war *war, t_parse_file *file)
 	int 			i;
 
 	init_tab(opp_tab);
-	war->aff = file->a;
+	//ft_init_war(file, war);
 	if (war->visu == 1)
 		visu_body(war);
-	//ft_init_war(file, war);
 	war->aff = file->a;
 	i = -1;
 	while (++i < 6)
@@ -142,26 +141,30 @@ int		ft_game(t_war *war, t_parse_file *file)
 	war->begin = chariot;
 	//ft_print_war(war);
 	war->cycle_last_check = 0;//war->cycles;
-	while (check_cycle(war, chariot) == SUCCESS)
+	while (COREWAR)
 	{
-		if (war->cycles == file->cycles + 1)
+		if (war->cycles && (war->cycles - 1 == file->cycles|| file->dump == war->cycles - 1 || file->long_dump == war->cycles - 1))
 		{
 			i = -1;
 			while (++i < 6)
 				war->verbose[i] = 0;
 		}
-		while (chariot)
+		if (war->cycles && war->verbose[3] == 1)
+        	printf("It is now cycle %d\n", war->cycles);
+        i = war->nb_chariot;
+       // printf("war->nb_chariot = %d\n", war->nb_chariot);
+		while (--i >= 0 && war->visual.pause == -1)//(chariot) //(++i < war->nb_chariot)
 		{
 			ft_exec_opp(chariot, war, opp_tab);
 			chariot = chariot->next;
 		}
+		if (file->dump == war->cycles || file->long_dump == war->cycles)
+	        	print_arena(war, file);
 		chariot = war->begin;
-		if (war->verbose[3] == 1)
-           	printf("It is now cycle [%d]\n", war->cycles);
-        if (file->dump == war->cycles || file->long_dump == war->cycles)
-			print_arena(war, file);
+		if (check_cycle(war) == FAILURE)
+			break ;
 	}
-	while (war->visu == 1)
+	while(war->visu == 1)
 		get_keys(war);
 	return (SUCCESS);
 }

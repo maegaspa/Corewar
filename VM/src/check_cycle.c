@@ -53,13 +53,18 @@ int		end_game(t_war *war) //il faudra surement rejouer un tour
 {
 	if (war->begin == NULL || (war->cycle_to_die <= 0))
 	{
-		if (war->visu != 1)
-			printf("Contestant %d, \"%s\", has won !\n", war->lastlive, war->player[war->lastlive - 1].header.prog_name);
-		else
+		if (war->cycle_to_die <= 0 && war->verbose[3] == 1)
+			printf("It is now cycle %d\n", war->cycles + 1);
+		delete_chariot(war);
+		if (war->verbose[5] == 1)
 		{
-			
-			mvwprintw(war->visual.keys_win, 12, 2, "Contestant %d, \"%s\", has won !", war->lastlive, war->player[war->lastlive - 1].header.prog_name);
-			wrefresh(war->visual.keys_win);
+			if (war->visu != 1)
+				printf("Contestant %d, \"%s\", has won !\n", war->lastlive, war->player[war->lastlive - 1].header.prog_name);
+			else
+			{
+				mvwprintw(war->visual.keys_win, 10, 4, "Contestant %d, \"%s\", has won !", war->lastlive, war->player[war->lastlive - 1].header.prog_name);
+				wrefresh(war->visual.keys_win);
+			}
 		}
 //		else
 //			printf("Contestant %d, \"%s\", has won !\n", war->lastlive, war->player[war->lastlive - 1].header.prog_name);
@@ -69,20 +74,22 @@ int		end_game(t_war *war) //il faudra surement rejouer un tour
 	return (SUCCESS);
 }
 
-int			check_cycle(t_war *war, t_chariot *chariot)
+int			check_cycle(t_war *war)
 {
-	if (war->cycles - war->cycle_last_check >= war->cycle_to_die)
+	//if (vm->cycles_to_die == vm->cycles_after_check
+    //			|| vm->cycles_to_die <= 0)
+	if (war->cycles - war->cycle_last_check >= war->cycle_to_die || war->cycle_to_die <= 0)
 	{
+		delete_chariot(war);
 		war->cycle_last_check = war->cycles;
-		v_alive_chariot(chariot, war);
-		reset_lives_chariot(war);
-		if (!(end_game(war) == SUCCESS))
+		if (!end_game(war))
         	return (FAILURE);
 		//printf("war->nb_lives = %d ET [%d]\n", war->nb_lives, (war->begin)->live);
 		if (war->nb_lives >= NBR_LIVE || war->check_cycles_to_die >= MAX_CHECKS)
 		{
 			war->cycle_to_die -= CYCLE_DELTA;
-			//printf("CTD = %d\n", war->cycle_to_die);
+			if (war->verbose[3] == 1)
+				printf("Cycle to die is now %d\n", war->cycle_to_die);
 			if (!(end_game(war) == SUCCESS))
 				return (FAILURE);
 			war->check_cycles_to_die = 1;
@@ -91,6 +98,8 @@ int			check_cycle(t_war *war, t_chariot *chariot)
 			war->check_cycles_to_die++;
 		war->nb_lives = 0;
 	}
+	mvwprintw(war->visual.infos_win, 4, 10, "on passe la %d", war->cycles);
+	wrefresh(war->visual.infos_win);
 	if (update_visu(war) != -1)
 		war->cycles++;
 	return (SUCCESS);

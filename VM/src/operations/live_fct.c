@@ -20,7 +20,6 @@ int			live_fct(t_war *war, t_chariot *chariot)
 //	printf("id_player = %d\n", id_player);
 //	printf("chariot fait live\n");
 	chariot->live += 1;
-	chariot->last_live = war->cycles;
 	war->nb_lives += 1;
 	if (war->verbose[2] == 1)
 		printf("P %4d | live %d\n", (chariot->index + 1), id_player);

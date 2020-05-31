@@ -41,9 +41,11 @@ int 	init_usage(t_parse_file *file)
 	file->a = -1;
 	while (++i < 6)
     	file->verbose[i] = 0;
+    file->verbose[5] = 1;
+    i = -1;
+    while (++i < MAX_PLAYERS)
+        	file->rank_player[i] = 0;
 	if (!(file->file_name = malloc(sizeof(char*) * MAX_PLAYERS + 1)))
-		return (ERROR_MALLOC);
-	if (!(file->rank_player = malloc(sizeof(int) * MAX_PLAYERS)))
 		return (ERROR_MALLOC);
 	return (SUCCESS);
 }

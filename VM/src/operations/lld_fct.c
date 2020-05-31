@@ -17,7 +17,6 @@ int			lld_fct(t_war *war, t_chariot *chariot)
 	int		cell_load;
 
 	verbose(war, chariot);
-	chariot->addr = calc_addr(chariot->start_pos + chariot->pc);
 	if (war->param[1] >= 0 && war->param[1] < 16)
 	{
 		if (war->rtype[0] == DIR_CODE)
@@ -28,7 +27,7 @@ int			lld_fct(t_war *war, t_chariot *chariot)
 			chariot->registres[war->param[1] - 1] = cell_load;//ft_load(war, 4, cell_load);
 		}
 	}
-	if (war->param[0] == 0)
+	if (chariot->registres[war->param[1] - 1] == 0)
 		chariot->carry = 1;
 	else
 		chariot->carry = 0;
