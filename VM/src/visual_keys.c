@@ -34,6 +34,19 @@
 	}
 }*/
 
+void	free_zob(t_war *war)
+{
+	int i;
+
+	i = 0;
+	while (i < 100)
+	{
+		free(war->visual.arena_list[i]);
+		i++;
+	}
+	free(war->visual.arena_list);
+}
+
 void	sleep_keys(t_war *war, int c)
 {
 	if (c == '-' && war->visual.sleeptime < 1000000)
@@ -59,6 +72,7 @@ void	get_keys(t_war *war)
 		sleep_keys(war, c);
 	if (c == 27)
 	{
+		free_zob(war);
 		endwin();
 		exit(0);
 	}

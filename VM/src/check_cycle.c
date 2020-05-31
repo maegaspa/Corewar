@@ -98,8 +98,6 @@ int			check_cycle(t_war *war)
 			war->check_cycles_to_die++;
 		war->nb_lives = 0;
 	}
-	mvwprintw(war->visual.infos_win, 4, 10, "on passe la %d", war->cycles);
-	wrefresh(war->visual.infos_win);
 	if (update_visu(war) != -1)
 		war->cycles++;
 	return (SUCCESS);

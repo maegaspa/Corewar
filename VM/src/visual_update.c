@@ -44,7 +44,7 @@ void	infos_print(t_war *war)
 		mvwprintw(war->visual.infos_win, 2, 40, "300");
 }
 
-/*void	arena_update(t_war *war)
+void	arena_update(t_war *war)
 {
 	int i;
 
@@ -61,7 +61,7 @@ void	infos_print(t_war *war)
 			war->visual.arena_list[i], MEM_SIZE);
 		ft_memcpy(war->visual.arena_list[99], war->arena, MEM_SIZE);
 	}
-}*/
+}
 
 void	refresh_arena(t_war *war)
 {
@@ -95,8 +95,9 @@ int		update_visu(t_war *war)
 	cbreak();
 	nodelay(war->visual.infos_win, 1);
 	get_keys(war);
-//	arena_update(war);
-	if (war->visual.pause == -1)
+	if (war->visual.pause != -1)
+		arena_update(war);
+	else
 	{
 		if (war->cycles != 0)
 			usleep(war->visual.sleeptime);
