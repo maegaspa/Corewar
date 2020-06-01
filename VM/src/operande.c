@@ -12,6 +12,35 @@
 
 #include "../includes/corewar.h"
 
+int 			print_arena2(t_war *war)
+{
+	int i;
+	int count_bytes;
+	int dump;
+	unsigned int bytes;
+
+	i = -1;
+	count_bytes = 0;
+	dump = 32;
+	bytes = 0;
+	while (++i < MEM_SIZE)
+	{
+		if (i == 0)
+        	printf("0x%04x : ", bytes);
+		if (count_bytes == 0 && i)
+			printf("%#06x : ", bytes);
+		printf("%02x ", (unsigned char)war->arena[i]);
+		count_bytes++;
+		if (count_bytes == dump)
+		{
+			printf("\n");
+			count_bytes = 0;
+			bytes += dump;
+		}
+	}
+	return (SUCCESS);
+}
+
 int			ft_get_op(t_war *war, t_chariot *chariot)
 {
 	int		pos;
@@ -19,8 +48,15 @@ int			ft_get_op(t_war *war, t_chariot *chariot)
 	if (chariot->ope != -1)
 		return (0);
 	pos = calc_addr(chariot->start_pos + chariot->pc);
+	// if (chariot->index + 1 == 75)
+	// {
+	// 	printf("pc = [%d], %02x %02x %02x\n", chariot->pc, (unsigned char)war->arena[chariot->pc - 1], (unsigned char)war->arena[chariot->pc], (unsigned char)war->arena[chariot->pc + 1]);
+	// 	print_arena2(war);
+	// }
 	if (war->arena[pos] > 16 || war->arena[pos] <= 0)
 	{
+		// if (chariot->index + 1 == 75)
+		// 	printf("pc = [%d], %02x\n", chariot->pc, (unsigned char)war->arena[chariot->pc]);
 		chariot->pc = calc_addr(chariot->pc + 1);
 		return (0);
 	}
@@ -101,12 +137,13 @@ void		ft_exec_opp(t_chariot *chariot, t_war *war, t_opp *opp_tab)
 		{
 			get_all_param(chariot, war, chariot->ope - 1);
 			opp_tab[chariot->ope - 1](war, chariot);
-			if (chariot->ope != 3 && war->back_pc == 0)
+			if (war->back_pc == 0)
 				print_verbose_16(war, chariot, jump);
 			if (war->back_pc == 0)
 				chariot->pc = calc_addr(chariot->pc + jump);
+			 war->back_pc = 0;
 		}
-		else
+		else //if ((unsigned char)war->arena[chariot->pc] != 0)
         {
             print_verbose_16(war, chariot, jump);
             chariot->pc = calc_addr(chariot->pc + jump);
@@ -114,9 +151,9 @@ void		ft_exec_opp(t_chariot *chariot, t_war *war, t_opp *opp_tab)
         }
 		chariot->ope = -1;
 	}
-	if (!error && war->back_pc == 0 && ft_get_op(war, chariot) == 1)
-    	chariot->wait = war->op_cycle[chariot->ope - 1];
-    war->back_pc = 0;
+	//printf("war->back_pc %d\n", war->back_pc);
+	// if (/*!error && war->back_pc == 0 &&*/ ft_get_op(war, chariot) == 1)
+ //    	chariot->wait = war->op_cycle[chariot->ope - 1];
 }
 
 int 	calc_addr(int addr)

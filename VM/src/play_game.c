@@ -109,6 +109,13 @@ int		ft_game(t_war *war, t_parse_file *file)
 			ft_exec_opp(chariot, war, opp_tab);
 			chariot = chariot->next;
 		}
+		chariot = war->begin;
+		while (chariot && war->visual.pause != 1)
+		{
+			if (ft_get_op(war, chariot) == 1)
+    			chariot->wait = war->op_cycle[chariot->ope - 1];
+			chariot = chariot->next;
+		}
 		if (war->cycle_to_die == war->cycles_btw_check || war->cycle_to_die <= 0)
 			if (check_cycle(war) == FAILURE)
 				break ;

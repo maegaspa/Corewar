@@ -55,7 +55,7 @@ int			lfork_fct(t_war *war, t_chariot *chariot)
 	if (!(tmp_char = ft_lfork_chariot(chariot, war->param[0], war)))
 		return (ERROR_MALLOC);
 	add_cursor(&(war->begin), tmp_char);
-	if (ft_get_op(war, war->begin) == 1)
-    	(war->begin)->wait = war->op_cycle[(war->begin)->ope - 1];
+	// if (ft_get_op(war, war->begin) == 1)
+ //    	(war->begin)->wait = war->op_cycle[(war->begin)->ope - 1];
 	return (0);
 }
