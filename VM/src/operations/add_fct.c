@@ -14,15 +14,20 @@
 
 int			add_fct(t_war *war, t_chariot *chariot)
 {
+	int r1;
+	int r2;
+
 	verbose(war, chariot);
-	if (war->rtype[0] == REG_CODE && war->rtype[1] == REG_CODE && war->rtype[2] == REG_CODE)
+	if (war->rtype[0] == REG_CODE && war->rtype[1] == REG_CODE &&
+		war->rtype[2] == REG_CODE)
 	{
-		if ((chariot->registres[war->param[0] - 1] + chariot->registres[war->param[1] - 1]) == 0)
+		r1 = chariot->registres[war->param[0] - 1];
+		r2 = chariot->registres[war->param[1] - 1];
+		if ((r1 + r2) == 0)
 			chariot->carry = 1;
 		else
 			chariot->carry = 0;
-		chariot->registres[war->param[2] - 1] = chariot->registres[war->param[0] - 1] + chariot->registres[war->param[1] - 1];
+		chariot->registres[war->param[2] - 1] = r1 + r2;
 	}
-	printf("DANS ADD chariot->carry = %d\n", chariot->carry);
 	return (0);
 }

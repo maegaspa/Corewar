@@ -37,23 +37,3 @@ t_op		g_op_tab[16] =
 	{"lfork", 1, {T_DIR}, 15, 1000, "long fork", 0, 1},
 	{"aff", 1, {T_REG}, 16, 2, "aff", 1, 0},
 };
-
-//void		set_op_tab(t_file *file)
-//{
-//	int	i;
-//
-//	i = -1;
-//	while (++i < 17)
-//		file->op[i] = op_tab[i];
-//}
-//
-//t_op		get_op_by_name(t_file *file, char *name)
-//{
-//	int i;
-//
-//	i = -1;
-//	while (++i < 17)
-//		if (!ft_strcmp(file->op[i].name, name))
-//			return (file->op[i]);
-//	return ((t_op){"", -1, "", -1, -1, "", -1, -1});
-//}

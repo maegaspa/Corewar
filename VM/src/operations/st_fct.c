@@ -12,64 +12,72 @@
 
 #include "../../includes/corewar.h"
 
+int			bytecode_to_int(t_war *war, int addr, int size)
+{
+	int		result;
+	int		sign;
+	int			i;
+
+	result = 0;
+	sign = (war->arena[calc_addr(addr)] & 0x80);
+	i = 0;
+	while (size)
+	{
+		if (sign)
+			result += ((war->arena[calc_addr(addr + size - 1)] ^ 0xFF) << (i++ * 8));
+		else
+			result += (war->arena[calc_addr(addr + size - 1)] << (i++ * 8));
+		size--;
+	}
+	if (sign)
+		result = ~(result);
+	return (result);
+}
+
+void		int_to_bytecode(t_war *war, int addr, int value, int size)
+{
+	char i;
+
+	i = 0;
+	while (size)
+	{
+		war->arena[calc_addr(addr + size - 1)] = (unsigned char)((value >> i) & 0xFF);
+		i += 8;
+		size--;
+	}
+}
+
+unsigned char		*itoo(int nb)
+{
+	unsigned char	*tab;
+
+	tab = malloc(sizeof(unsigned char) * 4);
+	tab[0] = (nb & 0xFF000000) >> 24;
+	tab[1] = (nb & 0xFF0000) >> 16;
+	tab[2] = (nb & 0xFF00) >> 8;
+	tab[3] = (nb & 0xFF);
+	return (tab);
+}
+
 int			st_fct(t_war *war, t_chariot *chariot)
 {
+	unsigned int val;
+	unsigned char *tab;
+	int i;
+
+	i = -1;
 	verbose(war, chariot);
 	if (war->rtype[1] == REG_CODE)
 	{
 		print_verbose_16(war, chariot, war->jump);
-		chariot->registres[war->param[1] - 1] = chariot->registres[war->param[0] - 1];//war->param[1];
+		chariot->registres[war->param[1] - 1] = chariot->registres[war->param[0] - 1];
+
 	}
 	else
 	{
-		write_on_arena(war, chariot->registres[war->param[0] - 1], calc_addr(chariot->pc + chariot->start_pos + (war->param[1] % IDX_MOD)), 4);
-		//printf("chariot->registres[war->param[0]] = %d\n", chariot->registres[war->param[0] - 1]);
+		val = chariot->registres[war->param[0] - 1];
+		write_on_arena(war, val, calc_addr(C_POS + (war->param[1] % IDX_MOD)), 4);
 		print_verbose_16(war, chariot, war->jump);
 	}
 	return (0);
 }
-/*
-int			st_fct(t_war *war, t_chariot *chariot)
-{
-	int i;
-	int param;
-	int r;
-
-	i = 3;
-	get_bin_ocp(chariot, war);
-	if (war->rtype[1] == IND_CODE)
-	{
-		r = war->arena[calc_addr(chariot->addr + 2)];
-		param = get_2_val(war, chariot, i);
-		if (war->verbose[2] == 1 && r > 0 && r <= 16)
-        	printf("P %4d | st r%d %hd\n", (chariot->index + 1), (unsigned char)war->arena[calc_addr(chariot->addr + 2)], param);
-        if (r > 16 || r <= 0)
-        {
-        	print_verbose_16(war, chariot, 5);
-        	return (FAILURE);
-        }
-        else
-        {
-      		write_on_arena(war, chariot->registres[(unsigned char)war->arena[calc_addr(chariot->addr + 2)] - 1], (chariot->addr) + (param % IDX_MOD), 4);
-        	print_verbose_16(war, chariot, 5);
-		}
-//		write_on_arena(war, chariot->registres[(unsigned char)war->arena[calc_addr(chariot->addr + 2)] - 1], calc_addr((chariot->addr) + (param % IDX_MOD)), 4); //essayer en remettant start + pc?
-	}
-	else
-	{
-	 	r = war->arena[calc_addr(chariot->addr + 2)];
-		if (war->verbose[2] == 1 && r > 0 && r <= 16)
-        	printf("P %4d | st r%d %d\n", (chariot->index + 1), (unsigned char)war->arena[calc_addr(chariot->addr + 2)], (unsigned char)war->arena[calc_addr(chariot->addr + 3)]);
-        if (r > 16 || r <= 0)
-        {
-        	print_verbose_16(war, chariot, 4);
-        	return (FAILURE);
-		}
-		else
-		{
-			print_verbose_16(war, chariot, 4);
-			chariot->registres[(unsigned char)war->arena[calc_addr(chariot->addr + 3)] - 1] = chariot->registres[(unsigned char)war->arena[calc_addr(chariot->addr + 2)] - 1];
-		}
-	}
-	return (0);
-}*/

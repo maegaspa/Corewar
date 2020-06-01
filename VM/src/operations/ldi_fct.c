@@ -18,7 +18,7 @@ void 		ldi_verbose(t_war *war, t_chariot *chariot, int p1, int p2)
 
 	res = p1 + p2;
 	if (war->verbose[2] == 1)
-		printf("       | -> load to %d + %d = %d (with pc and mod %d)\n", p1, p2, res, chariot->pc + res % IDX_MOD);
+		printf("       | -> load from %d + %d = %d (with pc and mod %d)\n", p1, p2, res, C_POS + res % IDX_MOD);
 }
 
 int			ldi_fct(t_war *war, t_chariot *chariot)
@@ -33,7 +33,6 @@ int			ldi_fct(t_war *war, t_chariot *chariot)
 	{
 		ldi_verbose(war, chariot, ft_load(war, 4, calc_addr(C_POS + war->param[0] % IDX_MOD)), war->param[1]);
 		chariot->registres[war->param[2] - 1] = ft_load(war, 4, (ft_load(war, 4, calc_addr(C_POS + war->param[0] % IDX_MOD)) + war->param[1]) % IDX_MOD + chariot->pc);
-		//ldi_verbose(war, chariot, war->param[1] % IDX_MOD, war->param[2]);
 	}
 	else if (war->rtype[0] == IND_CODE && war->rtype[1] == REG_CODE)
 	{
@@ -42,7 +41,6 @@ int			ldi_fct(t_war *war, t_chariot *chariot)
 	}
 	else if (war->rtype[0] != REG_CODE && war->rtype[1] == REG_CODE)
 	{
-		printf("gayyyyy\n");
 		ldi_verbose(war, chariot, war->param[0], chariot->registres[war->param[1] - 1]);
 		chariot->registres[war->param[2] - 1] = ft_load(war, 4, calc_addr(C_POS + ((war->param[0] + chariot->registres[war->param[1] - 1]) % IDX_MOD)));
 	}

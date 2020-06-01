@@ -29,13 +29,9 @@ int		ft_load(t_war *war, int size, int adress)
 	else
 	{
 		param = ((unsigned char)war->arena[adress] << 24);
-//		printf("p1 = %x\n", (unsigned char)war->arena[adress]);
 		param += ((unsigned char)war->arena[calc_addr(adress + 1)] << 16);
-//		printf("p2 = %x\n", (unsigned char)war->arena[calc_addr(adress + 1)]);
 		param += ((unsigned char)war->arena[calc_addr(adress + 2)] << 8);
-		//printf("p3 = %x\n", (unsigned char)war->arena[calc_addr(adress + 2)]);
 		param += ((unsigned char)war->arena[calc_addr(adress + 3)]);
-		//printf("p4 = %x\n", (unsigned char)war->arena[calc_addr(adress + 3)]);
 	}
 	return (param);
 }
@@ -61,10 +57,7 @@ void		verbose_reg(t_war *war, t_chariot *chariot, int i)
 void		verbose_ind(t_war *war, t_chariot *chariot, int i)
 {
 	if (chariot->ope == 2)
-	{
-//		printf("addr dans ind = %d\n", chariot->addr);
     	printf("%d",  ft_load(war, 4, calc_addr(chariot->pc + chariot->start_pos + (war->param[0] % IDX_MOD))));
-    }
     else if ((chariot->ope == 13) || (chariot->ope == 14 && war->rtype[i] == 3) ||
     		(chariot->ope == 11 && war->rtype[i] == 3) ||
     		(chariot->ope == 10 && war->rtype[i] == 3))

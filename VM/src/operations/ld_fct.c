@@ -22,7 +22,7 @@ int   get_4_val(t_war *war, t_chariot *chariot, int i)
 	while (i < tmp + 4)
 	{
 		res = res << 8;
-		res = res + (unsigned char)war->arena[calc_addr(chariot->pc + chariot->start_pos + i)];
+		res = res + (unsigned char)war->arena[calc_addr(C_POS + i)];
 		i++;
 	}
 	return (res);
@@ -39,14 +39,14 @@ int			ld_fct(t_war *war, t_chariot *chariot)
 			chariot->registres[war->param[1] - 1] = war->param[0];
 		else
 		{
-			cell_load = ft_load(war, 4, calc_addr(chariot->pc + chariot->start_pos + (war->param[0] % IDX_MOD)));
-			chariot->registres[war->param[1] - 1] = cell_load;//ft_load(war, 4, cell_load);
+			cell_load = ft_load(war, 4,
+				calc_addr(C_POS + (war->param[0] % IDX_MOD)));
+			chariot->registres[war->param[1] - 1] = cell_load;
 		}
 	}
 	if (chariot->registres[war->param[1] - 1] == 0)
 		chariot->carry = 1;
 	else
 		chariot->carry = 0;
-//	printf("dans ld le reg[2] = %d\n", chariot->registres[1]);
 	return (0);
 }

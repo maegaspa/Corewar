@@ -87,7 +87,6 @@ typedef struct			s_chariot
 	int					wait;
 	int					start_pos;
 	int					ope;
-	int					fork;
 	int					registres[REG_NUMBER]; //char?
 	int					index;
 	int					last_live;

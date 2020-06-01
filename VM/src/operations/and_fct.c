@@ -14,12 +14,10 @@
 
 static void     verif_carry_and(t_chariot *chariot, int p1, int p2)
 {
-//	printf("p1 = [%d] et p2 = [%d]\n", p1, p2);
 	if ((p1 & p2) == 0)
 		chariot->carry = 1;
 	else
 		chariot->carry = 0;
-//	printf("dans and carry = %d\n", chariot->carry);
 }
 
 static int		and_ind_bis(t_war *war, t_chariot *chariot)
@@ -41,10 +39,10 @@ static int		and_ind(t_war *war, t_chariot *chariot)
 {
 	if (war->rtype[0] == IND_CODE && war->rtype[1] == DIR_CODE)
 	{
-//		printf("ET ICI C GOOD et param1 = %d / param2 = %d / param3 = %d ?\n", ft_load(war, 4, calc_addr(chariot->pc + war->param[0] % IDX_MOD)),  war->param[1],  war->param[2]);
-		REG_TAB[war->param[2] - 1] = ft_load(war, 4, calc_addr(chariot->pc + war->param[0] % IDX_MOD)) & war->param[1];
+		REG_TAB[war->param[2] - 1] = ft_load(war, 4,
+			calc_addr(chariot->pc + war->param[0] % IDX_MOD)) & war->param[1];
 		verif_carry_and(chariot, ft_load(war, 4,
-					calc_addr(chariot->pc + war->param[0] % IDX_MOD)), war->param[1]);
+				calc_addr(chariot->pc + war->param[0] % IDX_MOD)), war->param[1]);
 		return (SUCCESS);
 	}
 	else if (war->rtype[0] == IND_CODE && war->rtype[1] == IND_CODE)
@@ -54,7 +52,7 @@ static int		and_ind(t_war *war, t_chariot *chariot)
 			ft_load(war, 4, calc_addr(chariot->pc + war->param[1] % IDX_MOD));
 		verif_carry_and(chariot, ft_load(war, 4,
 					calc_addr(chariot->pc + war->param[0]  % IDX_MOD)),
-				ft_load(war, 4, calc_addr(chariot->pc + war->param[1] % IDX_MOD)));
+			ft_load(war, 4, calc_addr(chariot->pc + war->param[1] % IDX_MOD)));
 		return (SUCCESS);
 	}
 	else if (and_ind_bis(war, chariot))
@@ -69,7 +67,7 @@ static int		and_reg(t_war *war, t_chariot *chariot)
 		REG_TAB[war->param[2] - 1] = REG_TAB[war->param[0] - 1] &
 			ft_load(war, 4, calc_addr(chariot->pc + war->param[1] % IDX_MOD));
 		verif_carry_and(chariot, REG_TAB[war->param[0] - 1],
-				ft_load(war, 4, calc_addr(chariot->pc + war->param[1] % IDX_MOD)));
+			ft_load(war, 4, calc_addr(chariot->pc + war->param[1] % IDX_MOD)));
 		return (SUCCESS);
 	}
 	else if (war->rtype[0] == REG_CODE && war->rtype[1] == DIR_CODE)
@@ -96,7 +94,7 @@ static int		and_dir(t_war *war, t_chariot *chariot)
 		REG_TAB[war->param[2] - 1] = war->param[0] &
 			ft_load(war, 4, calc_addr(chariot->pc + war->param[1] % IDX_MOD));
 		verif_carry_and(chariot, war->param[0],
-				ft_load(war, 4, calc_addr(chariot->pc + war->param[1] % IDX_MOD)));
+			ft_load(war, 4, calc_addr(chariot->pc + war->param[1] % IDX_MOD)));
 		return (SUCCESS);
 	}
 	else if (war->rtype[0] == DIR_CODE && war->rtype[1] == REG_CODE)

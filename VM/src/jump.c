@@ -14,7 +14,6 @@
 
 int		calc_jump(unsigned char ocp, t_chariot *chariot)
 {
-	//printf ("ocp in calc_jump = %d\n", ocp);
 	if (ocp == 0)
 		return (0);
 	if (ocp == 1)
@@ -44,17 +43,10 @@ int		ft_jump(t_war *war, t_chariot *chariot)
 	}
 	if (chariot->ope == 12 || chariot->ope == 15 || chariot->ope == 9)
 		return (3);
-//	printf(" [1] jump += %d\n", calc_jump((ocp >> 6), chariot));
 	jump += calc_jump((ocp >> 6), chariot);
 	if (g_op_tab[chariot->ope - 1].nb_params >= 2)
-	{
-//		printf(" [2] jump += %d\n", calc_jump(((ocp & 0x30) >> 4), chariot));
 		jump += calc_jump(((ocp & 0x30) >> 4), chariot);
-	}
 	if (g_op_tab[chariot->ope - 1].nb_params == 3)
-	{
-//		printf(" [3] jump += %d\n", calc_jump(((ocp & 0x0C) >> 2), chariot));
 		jump += calc_jump(((ocp & 0x0C) >> 2), chariot);
-	}
 	return (jump);
 }

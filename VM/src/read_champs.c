@@ -15,24 +15,21 @@
 
 int				get_player_data(t_header *header, t_war *war, int player_nb)
 {
-	header->magic = u_int_reverse_octet(header->magic);//inverse les octets 4 et 1
+	header->magic = u_int_reverse_octet(header->magic);
 	if (header->magic != COREWAR_EXEC_MAGIC)
 		return (ERROR_MAGIC);
 	header->prog_size = u_int_reverse_octet(header->prog_size);
 	if (header->prog_size > CHAMP_MAX_SIZE)
 		return (ERROR_CHAMP_SIZE);
-//	if (ft_strlen(header->prog_name) != PROG_NAME_LENGTH)
-//		return (ERROR_NAME);
-//	if (ft_strlen(header->comment) != COMMENT_LENGTH)
-//		return (ERROR_COMMENT);
 	war->player[player_nb].header = *header;
 	return (SUCCESS);
 }
 
-int 			add_player_to_arena(t_war *war, int player_nb, char *file_buff, t_header *header)
+int 			add_player_to_arena(t_war *war, int player_nb,
+	char *file_buff, t_header *header)
 {
-	ft_memcpy(&war->arena[war->player[player_nb].pos_arena], &file_buff[sizeof(*header)], war->player[player_nb].header.prog_size);
-	//check la si la size est la meme que prog_size
+	ft_memcpy(&war->arena[war->player[player_nb].pos_arena],
+		&file_buff[sizeof(*header)], war->player[player_nb].header.prog_size);
 	return (SUCCESS);
 }
 
@@ -41,7 +38,6 @@ int				get_new_player(t_war *war, t_parse_file *file, t_header *header,
 {
 	char buff[MEM_SIZE + 1];
 
-	//buff[MEM_SIZE] = '\0';
 	ft_bzero(&buff, MEM_SIZE);
 	if (!(war->player[nb].file_name = ft_strdup(file->file_name[nb])))
 		return (ERROR_MALLOC);
@@ -91,15 +87,14 @@ int			read_and_place_players(t_parse_file *file, t_war *war, t_header *head)
 	int		act_player;
 
 	act_player = -1;
-	if (!(war->player = malloc(sizeof(t_player) * file->nb_player)))//alloue le nb de joueurs precise
+	if (!(war->player = malloc(sizeof(t_player) * file->nb_player)))
 		return (ERROR_MALLOC);
-	file->arena_segment = MEM_SIZE / file->nb_player;//valeur du segment de l'arena entre chaque player
+	file->arena_segment = MEM_SIZE / file->nb_player;
 	ft_bzero(war->arena, MEM_SIZE);
 	while (++act_player < file->nb_player)
 		if ((file->error = get_new_player(war, file, head, act_player)) < 1)
-			return (file->error);//recupere les infos player + le place dans l'arena
+			return (file->error);
 	printf("Introducing contestants...\n");
-	print_info_players(war, file);//print vitef des differents players
-//	print_arena(war);
+	print_info_players(war, file);
 	return (SUCCESS);
 }

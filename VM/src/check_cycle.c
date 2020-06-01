@@ -11,51 +11,15 @@
 /* ************************************************************************** */
 
 #include "../includes/corewar.h"
-//ini next_check a 1536
-//compter live au chariot meme quand l'ope live s'execute pas normalement
-/*int			check_cycle(t_war *war, t_chariot *chariot)
-{
-	if (war->cycles < war->next_check)
-	{
-		war->cycles++;
-		return (SUCCESS);
-	}
-	else
-	{
-		v_alive_chariot(chariot, war);
-		if (war->nb_lives < NBR_LIVE && war->check_cycles_to_die < MAX_CHECKS)
-		{
-			war->check_cycles_to_die++;
-			war->next_check += war->cycle_to_die;
-		}
-		else
-		{
-			war->check_cycles_to_die = 0;
-			war->cycle_to_die -= CYCLE_DELTA;
-			if (war->begin == NULL || (war->cycle_to_die <= 0))
-			{
-				if (war->verbose[3] == 1)
-					printf("It is now cycle [%d]\n", war->cycles);//on observe last live pour le vainqueur
-				printf("Contestant %d, \"%s\", has won !\n", war->lastlive, war->player[war->lastlive - 1].header.prog_name);
-				war->cycles++;
-				return (FAILURE);
-			}
-			war->next_check += war->cycle_to_die;
-			war->nb_lives = 0;
-			reset_lives_chariot(war);
-		}
-		war->cycles++;
-	}
-	return (SUCCESS);
-}*/
 
 int		end_game(t_war *war)
 {
 	if (war->nb_chariot == 0)
 	{
 		if (war->verbose[5] == 1 && war->visu != 1)
-			printf("Contestant %d, \"%s\", has won !\n", war->lastlive, war->player[war->lastlive - 1].header.prog_name);
-        else
+			printf("Contestant %d, \"%s\", has won !\n", war->lastlive,
+				war->player[war->lastlive - 1].header.prog_name);
+        else if (war->visu)
         {
         	mvwprintw(war->visual.keys_win, 12, 2, "Contestant %d, \"%s\", has won !", war->lastlive, war->player[war->lastlive - 1].header.prog_name);
         	wrefresh(war->visual.keys_win);
@@ -64,12 +28,13 @@ int		end_game(t_war *war)
 	}
 	if (war->cycle_to_die <= 0)
 	{
+		war->cycles++;
 		if (war->verbose[3] == 1)
-    		printf("It is now cycle %d\n", war->cycles + 1);
+    		printf("It is now cycle %d\n", war->cycles);
     	delete_chariot(war);
 		if (war->verbose[5] == 1 && war->visu != 1)
         	printf("Contestant %d, \"%s\", has won !\n", war->lastlive, war->player[war->lastlive - 1].header.prog_name);
-		else
+		else if (war->visu)
 		{
 			mvwprintw(war->visual.keys_win, 12, 2, "Contestant %d, \"%s\", has won !", war->lastlive, war->player[war->lastlive - 1].header.prog_name);
 			wrefresh(war->visual.keys_win);
@@ -85,7 +50,6 @@ int			check_cycle(t_war *war)
 	war->cycles_btw_check = 0;
 	if (!end_game(war))
         return (FAILURE);
-	//printf("war->nb_lives = %d ET [%d]\n", war->nb_lives, (war->begin)->live);
 	if (war->nb_lives >= NBR_LIVE || war->check_cycles_to_die >= MAX_CHECKS)
 	{
 		war->cycle_to_die -= CYCLE_DELTA;

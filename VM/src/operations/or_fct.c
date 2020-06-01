@@ -45,7 +45,7 @@ static int		or_ind(t_war *war, t_chariot *chariot)
 			ft_load(war, 4, calc_addr(chariot->pc + war->param[0] % IDX_MOD)) |
 			war->param[1];
 		verif_carry_or(chariot, ft_load(war, 4,
-					calc_addr(chariot->pc + war->param[0] % IDX_MOD)), war->param[1]);
+				calc_addr(chariot->pc + war->param[0] % IDX_MOD)), war->param[1]);
 		return (SUCCESS);
 	}
 	else if (war->rtype[0] == IND_CODE && war->rtype[1] == IND_CODE)
@@ -54,8 +54,8 @@ static int		or_ind(t_war *war, t_chariot *chariot)
 			ft_load(war, 4, calc_addr(chariot->pc + war->param[0] % IDX_MOD)) |
 			ft_load(war, 4, calc_addr(chariot->pc + war->param[1] % IDX_MOD));
 		verif_carry_or(chariot, ft_load(war, 4,
-					calc_addr(chariot->pc + war->param[0] % IDX_MOD)),
-				ft_load(war, 4, calc_addr(chariot->pc + war->param[1] % IDX_MOD)));
+				calc_addr(chariot->pc + war->param[0] % IDX_MOD)),
+			ft_load(war, 4, calc_addr(chariot->pc + war->param[1] % IDX_MOD)));
 		return (SUCCESS);
 	}
 	else if (or_ind_bis(war, chariot))
@@ -70,7 +70,7 @@ static int		or_reg(t_war *war, t_chariot *chariot)
 		REG_TAB[war->param[2] - 1] = REG_TAB[war->param[0] - 1] |
 			ft_load(war, 4, calc_addr(chariot->pc + war->param[1] % IDX_MOD));
 		verif_carry_or(chariot, REG_TAB[war->param[0] - 1],
-				ft_load(war, 4, calc_addr(chariot->pc + war->param[1] % IDX_MOD)));
+			ft_load(war, 4, calc_addr(chariot->pc + war->param[1] % IDX_MOD)));
 		return (SUCCESS);
 	}
 	else if (war->rtype[0] == REG_CODE && war->rtype[1] == DIR_CODE)
@@ -97,7 +97,7 @@ static int		or_dir(t_war *war, t_chariot *chariot)
 		REG_TAB[war->param[2] - 1] = war->param[0] |
 			ft_load(war, 4, calc_addr(chariot->pc + war->param[1] % IDX_MOD));
 		verif_carry_or(chariot, war->param[0],
-				ft_load(war, 4, calc_addr(chariot->pc + war->param[1] % IDX_MOD)));
+			ft_load(war, 4, calc_addr(chariot->pc + war->param[1] % IDX_MOD)));
 		return (SUCCESS);
 	}
 	else if (war->rtype[0] == DIR_CODE && war->rtype[1] == REG_CODE)

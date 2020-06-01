@@ -61,7 +61,7 @@ int			is_conform(unsigned char ocp, t_chariot *chariot, t_war *war) //return 1 s
 	return (FAILURE);
 }
 
-int			ft_tcheck_ocp(t_chariot *chariot, t_war *war)//retourne 1 si on fait l'ope, 0 sinon et rempli rtype
+int			ft_tcheck_ocp(t_chariot *chariot, t_war *war)
 {
 	unsigned char		ocp;
 	int					i;
@@ -70,68 +70,53 @@ int			ft_tcheck_ocp(t_chariot *chariot, t_war *war)//retourne 1 si on fait l'ope
 	while (++i < 3)
 		war->rtype[i] = 0;
 	war->i_ocp = 0;
-	if (g_op_tab[chariot->ope - 1].acb == 0) //live, fork, lfork, zjmp
+	if (g_op_tab[chariot->ope - 1].acb == 0)
 		return (SUCCESS);
 	war->jump = 2;
 	ocp = (unsigned char)war->arena[calc_addr(chariot->start_pos + chariot->pc + 1)];
-	//printf("ocp = %d\n", ocp);
 	if (!is_conform((ocp >> 6), chariot, war))
-	{
-//		printf("1er param pas conforme\n");
 		return (FAILURE);
-	}
 	if (g_op_tab[chariot->ope - 1].nb_params >= 2)
 		if (!is_conform(((ocp & 0x30) >> 4), chariot, war))
-		{
-//			printf("2eme param pas conforme\n");
 			return (FAILURE);
-		}
 	if (g_op_tab[chariot->ope - 1].nb_params == 3)
 		if (!is_conform(((ocp & 0x0C) >> 2), chariot, war))
-		{
-//			printf("3em param pas conforme\n");
 			return (FAILURE);
-		}
-//	printf("TCHECK OCP war->rtype[0] = [%d] | war->rtype[1] =  [%d] |  war->rtype[2] =  [%d]\n", war->rtype[0], war->rtype[1], war->rtype[2]);
-//	printf("OPE va s'exec\n");
 	return (SUCCESS);
 }
 
 void		ft_exec_opp(t_chariot *chariot, t_war *war, t_opp *opp_tab)
 {
 	int		jump;
+	int		error;
 
+	error = 0;
 	jump = -1;
-	//printf("chariot = %p\n", chariot);
 	if (chariot->wait > 0)
 		chariot->wait--;
 	if ((chariot->wait == 0) && chariot->ope > 0)
 	{
 		jump = ft_jump(war, chariot);
-//		printf("jump = %d\n", jump);
 		if (ft_tcheck_ocp(chariot, war))
 		{
-//			printf("GAY\n");
 			get_all_param(chariot, war, chariot->ope - 1);
 			opp_tab[chariot->ope - 1](war, chariot);
 			if (chariot->ope != 3 && war->back_pc == 0)
 				print_verbose_16(war, chariot, jump);
-			if (war->back_pc == 0) //zjmp
+			if (war->back_pc == 0)
 				chariot->pc = calc_addr(chariot->pc + jump);
-			war->back_pc = 0;
 		}
 		else
         {
-//        	printf("jump = %d\n", jump);
             print_verbose_16(war, chariot, jump);
             chariot->pc = calc_addr(chariot->pc + jump);
-//        	printf("ope = %d et pos = %d\n", chariot->ope, calc_addr(chariot->start_pos + chariot->pc));
+            error = 1;
         }
 		chariot->ope = -1;
 	}
-	if (!chariot->fork && ft_get_op(war, chariot) == 1) //&& chariot->ope >= 1) //on tcheck si on lit une nouvelle operande, si oui on init "wait"
+	if (!error && war->back_pc == 0 && ft_get_op(war, chariot) == 1)
     	chariot->wait = war->op_cycle[chariot->ope - 1];
-    chariot->fork = 0;
+    war->back_pc = 0;
 }
 
 int 	calc_addr(int addr)

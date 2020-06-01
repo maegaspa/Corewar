@@ -24,14 +24,12 @@ t_chariot		*ft_creat_chariot(int index, int pc, int start_pos, int player)
 	new->live = 0;
 	new->carry = 0;
 	new->wait = 0;
-	new->fork = 0;
 	new->index = index;
 	new->player = player;
 	new->start_pos = start_pos;
 	new->prev_color = player;
-	new->ope = -1; // <=> ope non conforme
+	new->ope = -1;
 	new->registres[0] = player * -1;
-	//new->registres[1] = player * -1;
 	while (++i < REG_NUMBER)
 		new->registres[i] = 0;
 	new->next = NULL;
@@ -43,7 +41,7 @@ int			ft_start_chariot(t_war *war, t_chariot **begin)
 	int			i;
 	t_chariot	*temp;
 
-	i = war->nb_player - 1;
+	i = 0;
 	if (!war->nb_player)
 		return (ERROR_NB_PLAYER);
 	if (!(temp = ft_creat_chariot(0, 0, war->player[i].pos_arena, i + 1)))
@@ -51,13 +49,14 @@ int			ft_start_chariot(t_war *war, t_chariot **begin)
 	if (ft_get_op(war, temp) == 1)
 		temp->wait = war->op_cycle[temp->ope - 1];
 	*begin = temp;
-	while (--i >= 0)
+	while (++i < war->nb_player)
 	{
-		if (!(temp->next = ft_creat_chariot(temp->index + 1, 0, war->player[i].pos_arena, i + 1)))
+		if (!(temp = ft_creat_chariot(temp->index + 1, 0, war->player[i].pos_arena, i + 1)))
 			return (ERROR_MALLOC);
 		if (ft_get_op(war, temp) == 1)
 			temp->wait = war->op_cycle[temp->ope - 1];
-		temp = temp->next;
+		temp->next = *begin;
+		*begin = temp;
 	}
 	return (SUCCESS);
 }

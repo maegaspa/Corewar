@@ -103,7 +103,6 @@ int 	flag_is_verbose(t_parse_file *file, int ac, char **av)
 	int 	j;
 
 	file->sv = ft_atoi(av[file->i + 1]);
-//	ft_bzero(&file->verbose, 5);
 	j = 1;
 	i = 0;
 	if ((file->sv < 32) && (file->i + 1 < ac && (file->sv > 0 || (file->sv == 0 && !ft_strcmp("0", av[file->i + 1])))))

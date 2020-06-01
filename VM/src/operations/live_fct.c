@@ -17,8 +17,6 @@ int			live_fct(t_war *war, t_chariot *chariot)
 	int		id_player;
 
 	id_player = war->param[0];
-//	printf("id_player = %d\n", id_player);
-//	printf("chariot fait live\n");
 	chariot->live += 1;
 	war->nb_lives += 1;
 	if (war->verbose[2] == 1)
@@ -28,7 +26,8 @@ int			live_fct(t_war *war, t_chariot *chariot)
 		id_player = -id_player;
 		war->lastlive = id_player;
 		if (war->verbose[4] == 1)
-        	printf("Player %d (%s) is said to be alive\n", id_player, war->player[id_player - 1].header.prog_name);
+        	printf("Player %d (%s) is said to be alive\n",
+        	id_player, war->player[id_player - 1].header.prog_name);
 	}
 	return (0);
 }

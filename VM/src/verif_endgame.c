@@ -24,7 +24,6 @@ void	delete_chariot(t_war *war)
     t_chariot *delete;
     t_chariot *current;
 
-//	printf("del\n");
     previous = NULL;
     current = war->begin;
     while (current)
@@ -41,7 +40,7 @@ void	delete_chariot(t_war *war)
             	delete->index + 1, war->cycles - delete->last_live, war->cycle_to_die);
             ft_memdel((void **)&delete);
     	}
-    	else//if (war->nb_chariot)
+    	else
         {
         	previous = current;
         	current = current->next;
@@ -53,7 +52,6 @@ void	reset_lives_chariot(t_war *war)
 {
 	t_chariot *temp;
 
-	//war->nb_lives = 0;
 	temp = war->begin;
 	while (temp)
 	{

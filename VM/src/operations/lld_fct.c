@@ -23,8 +23,8 @@ int			lld_fct(t_war *war, t_chariot *chariot)
 			chariot->registres[war->param[1] - 1] = war->param[0];
 		else
 		{
-			cell_load = ft_load(war, 4, calc_addr(chariot->pc + chariot->start_pos + war->param[0]));
-			chariot->registres[war->param[1] - 1] = cell_load;//ft_load(war, 4, cell_load);
+			cell_load = ft_load(war, 4, calc_addr(C_POS + war->param[0]));
+			chariot->registres[war->param[1] - 1] = cell_load;
 		}
 	}
 	if (chariot->registres[war->param[1] - 1] == 0)
