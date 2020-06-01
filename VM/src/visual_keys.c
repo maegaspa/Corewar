@@ -57,46 +57,6 @@ void	refresh_arena_temp(t_war *war, int temp)
 	wattroff(war->visual.arena_win, COLOR_PAIR(6));
 }
 
-void	cycle_keys(t_war *war, int c)
-{
-	int	temp_cursor;
-
-	temp_cursor = war->visual.arena_cursor;
-	if (war->visual.pause == 1)
-	{
-		if (c == 97 && temp_cursor > 0)
-		{
-			war->visual.arena_cursor--;
-			mvwprintw(war->visual.keys_win, 12, 4, "cursor : %d", temp_cursor);
-			refresh_arena_temp(war, temp_cursor);
-			print_cursor_temp(war, temp_cursor);
-		}
-		if (c == 100 && temp_cursor < 100)
-		{
-			war->visual.arena_cursor++;
-			mvwprintw(war->visual.keys_win, 12, 4, "cursor : %d", temp_cursor);
-			refresh_arena_temp(war, temp_cursor);
-			print_cursor_temp(war, temp_cursor);
-		}
-	}
-	wrefresh(war->visual.arena_win);
-	wrefresh(war->visual.infos_win);
-	wrefresh(war->visual.keys_win);
-}
-
-void	free_zob(t_war *war)
-{
-	int i;
-
-	i = 0;
-	while (i < 100)
-	{
-		free(war->visual.arena_list[i]);
-		i++;
-	}
-	free(war->visual.arena_list);
-}
-
 void	sleep_keys(t_war *war, int c)
 {
 	if (c == '-' && war->visual.sleeptime < 1000000)
@@ -108,6 +68,14 @@ void	sleep_keys(t_war *war, int c)
 		war->visual.sleeptime /= 10;
 	if (war->visual.sleeptime == 1000)
 		war->visual.sleeptime = 1;
+
+	//print
+	if (war->visual.sleeptime > 1000)
+		mvwprintw(war->visual.infos_win, 2, 20, "%d ",
+				1000000 / war->visual.sleeptime);
+	else
+		mvwprintw(war->visual.infos_win, 2, 20, "300");
+	wrefresh(war->visual.infos_win);
 }
 
 void	get_keys(t_war *war)
@@ -117,15 +85,27 @@ void	get_keys(t_war *war)
 	c = wgetch(war->visual.infos_win);
 
 	if (c == ' ')
+	{
 		war->visual.pause = war->visual.pause * -1;
+		if (war->visual.pause == -1)
+		{
+			wattron(war->visual.keys_win, COLOR_PAIR(1));
+			mvwprintw(war->visual.keys_win, 2, 36, "[SPACE BAR]");
+			wattroff(war->visual.keys_win, COLOR_PAIR(1));
+		}
+		else
+		{
+			wattron(war->visual.keys_win, COLOR_PAIR(3));
+			mvwprintw(war->visual.keys_win, 2, 36, "[SPACE BAR]");
+			wattroff(war->visual.keys_win, COLOR_PAIR(3));
+		}
+		wrefresh(war->visual.keys_win);
+	}
 	if (c == '-' || c == '+')
 		sleep_keys(war, c);
 	if (c == 27)
 	{
-		free_zob(war);
 		endwin();
 		exit(0);
 	}
-	if (c == 97 || c == 100)
-		cycle_keys(war, c);
 }

@@ -50,9 +50,9 @@ void	infos_printer(WINDOW *infos_win, t_war *war)
 	pos = 0;
 	i = 0;
 	war->visual.sleeptime = 1000000;
-	mvwprintw(infos_win, 2, 4, "Actual speed : \t\t\t1");
-	mvwprintw(infos_win, 2, 46, "Cycle(s)/s");
-	mvwprintw(infos_win, 4, 4, "Cycle : \t\t\t\t0");
+	mvwprintw(infos_win, 2, 4, "Actual speed :  1");
+	mvwprintw(infos_win, 2, 26, "Cycle(s)/s");
+	mvwprintw(infos_win, 4, 4, "Cycle :");
 	mvwprintw(infos_win, 6, 4, "Processes : \t\t\t%d", war->visual.process_nb);
 	while (++i <= war->nb_player)
 	{
@@ -61,13 +61,11 @@ void	infos_printer(WINDOW *infos_win, t_war *war)
 		wattron(infos_win, COLOR_PAIR(i));
 		mvwprintw(infos_win, pos, 18, war->player[i - 1].real_name);
 		wattroff(infos_win, COLOR_PAIR(i));
-		mvwprintw(infos_win, pos + 1, 6, "Last live : \t\t\t0");
-		mvwprintw(infos_win, pos + 2, 6, "Lives in current period : \t0");
 	}
-	mvwprintw(infos_win, 30, 4, "Cycle to die : \t\t\t%d", CYCLE_TO_DIE);
-	mvwprintw(infos_win, 32, 4, "Cycle delta : \t\t\t%d", CYCLE_DELTA);
-	mvwprintw(infos_win, 34, 4, "NB_LIVE : \t\t\t\t%d", NBR_LIVE);
-	mvwprintw(infos_win, 36, 4, "MAX CHECKS : \t\t\t%d", MAX_CHECKS);
+	mvwprintw(infos_win, 30, 4, "Cycle to die : \t%d", CYCLE_TO_DIE);
+	mvwprintw(infos_win, 32, 4, "Cycle delta : \t%d", CYCLE_DELTA);
+	mvwprintw(infos_win, 34, 4, "NB_LIVE : \t\t%d", NBR_LIVE);
+	mvwprintw(infos_win, 36, 4, "MAX CHECKS : \t%d", MAX_CHECKS);
 }
 
 void	keys_printer(WINDOW *keys_win)
@@ -101,24 +99,6 @@ void	init_windows(t_war *war)
 	keys_printer(war->visual.keys_win);
 }
 
-int		init_arena_list(t_war *war)
-{
-	int i;
-
-	i = 0;
-	if (!(war->visual.arena_list = malloc(sizeof(char *) * 100)))
-		return (FAILURE);
-	while (i < 100)
-	{
-		if (!(war->visual.arena_list[i] = malloc(sizeof(char) * MEM_SIZE)))
-			return (FAILURE);
-		ft_bzero(war->visual.arena_list[i], MEM_SIZE);
-		i++;
-	}
-	ft_memcpy(war->visual.arena_list[0], war->arena, MEM_SIZE);
-	return (SUCCESS);
-}
-
 int		visu_body(t_war *war)
 {
 	initscr();
@@ -128,8 +108,6 @@ int		visu_body(t_war *war)
 	curs_set(0);
 	get_valid_name(war);
 	init_windows(war);
-	if (!(init_arena_list(war)))
-		return (FAILURE);
 	wrefresh(war->visual.infos_win);
 	wrefresh(war->visual.arena_win);
 	wrefresh(war->visual.keys_win);

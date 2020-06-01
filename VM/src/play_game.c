@@ -29,15 +29,15 @@ int	get_all_param(t_chariot *chariot, t_war *war, int ope)
 	while (++i < g_op_tab[ope].nb_params)
 		war->param[i] = 0;
 	if (chariot->ope == 1)
-    {
-    	war->param[0] = get_4_val(war, chariot, 1);
-    	return (5);
-    }
-    if (chariot->ope == 12 || chariot->ope == 15 || chariot->ope == 9)
-    {
-    	war->param[0] = get_2_val(war, chariot, 1);
-    	return (3);
-    }
+	{
+		war->param[0] = get_4_val(war, chariot, 1);
+		return (5);
+	}
+	if (chariot->ope == 12 || chariot->ope == 15 || chariot->ope == 9)
+	{
+		war->param[0] = get_2_val(war, chariot, 1);
+		return (3);
+	}
 	i = -1;
 	while (++i < g_op_tab[ope].nb_params)
 	{
@@ -77,6 +77,8 @@ int		ft_game(t_war *war, t_parse_file *file)
 
 	init_tab(opp_tab);
 	war->aff = file->a;
+	if (war->visu == 1)
+		visu_body(war);
 	i = -1;
 	while (++i < 6)
 		war->verbose[i] = file->verbose[i];
@@ -89,26 +91,29 @@ int		ft_game(t_war *war, t_parse_file *file)
 		if (file->dump == war->cycles || file->long_dump == war->cycles)
 			print_arena(war, file);
 		if (war->cycles  == file->cycles || file->dump == war->cycles || file->long_dump == war->cycles)
-        {
-        	i = -1;
-        	while (++i < 6)
-        		war->verbose[i] = 0;
-        }
-		war->cycles++;
-        war->cycles_btw_check++;
+		{
+			i = -1;
+			while (++i < 6)
+				war->verbose[i] = 0;
+		}
+		if (update_visu(war) != -1)
+		{
+			war->cycles++;
+			war->cycles_btw_check++;
+		}
 		if (war->cycles && war->verbose[3] == 1)
-        	printf("It is now cycle %d\n", war->cycles);
+			printf("It is now cycle %d\n", war->cycles);
 		chariot = war->begin;
-		while (chariot)
+		while (chariot && war->visual.pause != 1)
 		{
 			ft_exec_opp(chariot, war, opp_tab);
 			chariot = chariot->next;
 		}
-		while (war->visu == 1)
-			get_keys(war);
 		if (war->cycle_to_die == war->cycles_btw_check || war->cycle_to_die <= 0)
 			if (check_cycle(war) == FAILURE)
 				break ;
 	}
+	while (war->visu == 1)
+		get_keys(war);
 	return (SUCCESS);
 }
