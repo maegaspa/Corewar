@@ -13,9 +13,9 @@
 #include "../includes/corewar.h"
 #include <stdio.h>
 
-int 	main(int ac, char **av)
+int	main(int ac, char **av)
 {
-	t_parse_file	file;
+	t_parse_file		file;
 	t_war			war;
 	t_header		head;
 

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/corewar.h"
+#include "../../includes/corewar.h"
 #include <curses.h>
 
 void	color_arena(t_war *war, int p, WINDOW *arena_win, char *arena)

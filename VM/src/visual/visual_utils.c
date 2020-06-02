@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/corewar.h"
+#include "../../includes/corewar.h"
 
 void			get_valid_name(t_war *war)
 {
