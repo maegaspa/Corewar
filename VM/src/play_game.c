@@ -84,8 +84,8 @@ int		ft_game(t_war *war, t_parse_file *file)
 		war->verbose[i] = file->verbose[i];
 	if ((error = ft_start_chariot(war, &chariot)) <= 0)
 		return (error);
-	war->begin = chariot;
-	war->cycle_last_check = 0;
+	war->begin = chariot;//a enlever wallah
+	war->cycle_last_check = 0;//a enlever wallah
 	while (COREWAR)
 	{
 		if (file->dump == war->cycles || file->long_dump == war->cycles)
@@ -107,13 +107,6 @@ int		ft_game(t_war *war, t_parse_file *file)
 		while (chariot && war->visual.pause != 1)
 		{
 			ft_exec_opp(chariot, war, opp_tab);
-			chariot = chariot->next;
-		}
-		chariot = war->begin;
-		while (chariot && war->visual.pause != 1)
-		{
-			if (ft_get_op(war, chariot) == 1)
-    			chariot->wait = war->op_cycle[chariot->ope - 1];
 			chariot = chariot->next;
 		}
 		if (war->cycle_to_die == war->cycles_btw_check || war->cycle_to_die <= 0)

@@ -33,7 +33,7 @@ int			ld_fct(t_war *war, t_chariot *chariot)
 	int		cell_load;
 
 	verbose(war, chariot);
-	if (war->param[1] >= 0 && war->param[1] < 16)
+	if (war->param[1] > 0 && war->param[1] <= 16)
 	{
 		if (war->rtype[0] == DIR_CODE)
 			chariot->registres[war->param[1] - 1] = war->param[0];

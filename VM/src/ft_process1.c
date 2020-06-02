@@ -46,15 +46,11 @@ int			ft_start_chariot(t_war *war, t_chariot **begin)
 		return (ERROR_NB_PLAYER);
 	if (!(temp = ft_creat_chariot(0, 0, war->player[i].pos_arena, i + 1)))
 		return (ERROR_MALLOC);
-	if (ft_get_op(war, temp) == 1)
-		temp->wait = war->op_cycle[temp->ope - 1];
 	*begin = temp;
 	while (++i < war->nb_player)
 	{
 		if (!(temp = ft_creat_chariot(temp->index + 1, 0, war->player[i].pos_arena, i + 1)))
 			return (ERROR_MALLOC);
-		if (ft_get_op(war, temp) == 1)
-			temp->wait = war->op_cycle[temp->ope - 1];
 		temp->next = *begin;
 		*begin = temp;
 	}

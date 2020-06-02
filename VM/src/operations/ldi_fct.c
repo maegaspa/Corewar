@@ -32,12 +32,12 @@ int			ldi_fct(t_war *war, t_chariot *chariot)
 	else if (war->rtype[0] == IND_CODE && war->rtype[1] == DIR_CODE)
 	{
 		ldi_verbose(war, chariot, ft_load(war, 4, calc_addr(C_POS + war->param[0] % IDX_MOD)), war->param[1]);
-		chariot->registres[war->param[2] - 1] = ft_load(war, 4, (ft_load(war, 4, calc_addr(C_POS + war->param[0] % IDX_MOD)) + war->param[1]) % IDX_MOD + chariot->pc);
+		chariot->registres[war->param[2] - 1] = ft_load(war, 4, (ft_load(war, 4, calc_addr(C_POS + war->param[0] % IDX_MOD)) + war->param[1]) % IDX_MOD + C_POS);
 	}
 	else if (war->rtype[0] == IND_CODE && war->rtype[1] == REG_CODE)
 	{
 		ldi_verbose(war, chariot, ft_load(war, 4, calc_addr(C_POS + war->param[0] % IDX_MOD)), chariot->registres[war->param[1] - 1]);
-		chariot->registres[war->param[2] - 1] = ft_load(war, 4, (ft_load(war, 4, calc_addr(C_POS + war->param[0] % IDX_MOD)) + chariot->registres[war->param[1] - 1]) % IDX_MOD + chariot->pc);
+		chariot->registres[war->param[2] - 1] = ft_load(war, 4, (ft_load(war, 4, calc_addr(C_POS + war->param[0] % IDX_MOD)) + chariot->registres[war->param[1] - 1]) % IDX_MOD + C_POS);
 	}
 	else if (war->rtype[0] != REG_CODE && war->rtype[1] == REG_CODE)
 	{
