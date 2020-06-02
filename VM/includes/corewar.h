@@ -281,4 +281,11 @@ void	delete_chariot(t_war *war);
 */
 int		ft_jump(t_war *war, t_chariot *chariot);
 
+/*
+** binary_op_carry.c
+*/
+void	verif_carry_and(t_chariot *chariot, int p1, int p2);
+void	verif_carry_or(t_chariot *chariot, int p1, int p2);
+void	verif_carry_xor(t_chariot *chariot, int p1, int p2);
+
 #endif

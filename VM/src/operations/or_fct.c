@@ -12,16 +12,6 @@
 
 #include "../../includes/corewar.h"
 
-static void     verif_carry_or(t_chariot *chariot, int p1, int p2)
-{
-//	printf("p1 = [%d] et p2 = [%d]\n", p1, p2);
-	if ((p1 | p2) == 0)
-		chariot->carry = 1;
-	else
-		chariot->carry = 0;
-//	printf("dans or carry = %d\n", chariot->carry);
-}
-
 static int		or_ind_bis(t_war *war, t_chariot *chariot)
 {
 	if (war->rtype[0] == IND_CODE && war->rtype[1] == REG_CODE)
@@ -115,7 +105,7 @@ static int		or_dir(t_war *war, t_chariot *chariot)
 	return (FAILURE);
 }
 
-int			or_fct(t_war *war, t_chariot *chariot)
+int				or_fct(t_war *war, t_chariot *chariot)
 {
 	verbose(war, chariot);
 	if (or_dir(war, chariot))

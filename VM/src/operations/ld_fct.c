@@ -12,10 +12,10 @@
 
 #include "../../includes/corewar.h"
 
-int   get_4_val(t_war *war, t_chariot *chariot, int i)
+int	get_4_val(t_war *war, t_chariot *chariot, int i)
 {
-	unsigned int  res;
-	int       tmp;
+	int				tmp;
+	unsigned int	res;
 
 	res = 0;
 	tmp = i;
@@ -28,7 +28,7 @@ int   get_4_val(t_war *war, t_chariot *chariot, int i)
 	return (res);
 }
 
-int			ld_fct(t_war *war, t_chariot *chariot)
+int	ld_fct(t_war *war, t_chariot *chariot)
 {
 	int		cell_load;
 

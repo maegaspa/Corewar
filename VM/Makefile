@@ -42,6 +42,7 @@ FILES = src/main\
 		src/operations/lldi_fct\
 		src/operations/lfork_fct\
 		src/operations/aff_fct\
+		src/operations/binary_op_carry\
 		src/visual/visual_body\
 		src/visual/visual_keys\
 		src/visual/visual_update\

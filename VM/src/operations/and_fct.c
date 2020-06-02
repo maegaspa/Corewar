@@ -12,14 +12,6 @@
 
 #include "../../includes/corewar.h"
 
-static void     verif_carry_and(t_chariot *chariot, int p1, int p2)
-{
-	if ((p1 & p2) == 0)
-		chariot->carry = 1;
-	else
-		chariot->carry = 0;
-}
-
 static int		and_ind_bis(t_war *war, t_chariot *chariot)
 {
 	if (war->rtype[0] == IND_CODE && war->rtype[1] == REG_CODE)
@@ -51,7 +43,7 @@ static int		and_ind(t_war *war, t_chariot *chariot)
 			ft_load(war, 4, calc_addr(C_POS + war->param[0] % IDX_MOD)) &
 			ft_load(war, 4, calc_addr(C_POS + war->param[1] % IDX_MOD));
 		verif_carry_and(chariot, ft_load(war, 4,
-					calc_addr(C_POS + war->param[0]  % IDX_MOD)),
+			calc_addr(C_POS + war->param[0] % IDX_MOD)),
 			ft_load(war, 4, calc_addr(C_POS + war->param[1] % IDX_MOD)));
 		return (SUCCESS);
 	}
@@ -112,7 +104,7 @@ static int		and_dir(t_war *war, t_chariot *chariot)
 	return (FAILURE);
 }
 
-int			and_fct(t_war *war, t_chariot *chariot)
+int				and_fct(t_war *war, t_chariot *chariot)
 {
 	verbose(war, chariot);
 	if (and_dir(war, chariot))

@@ -12,14 +12,6 @@
 
 #include "../../includes/corewar.h"
 
-static void     verif_carry_xor(t_chariot *chariot, int p1, int p2)
-{
-	if ((p1 ^ p2) == 0)
-		chariot->carry = 1;
-	else
-		chariot->carry = 0;
-}
-
 static int		xor_ind_bis(t_war *war, t_chariot *chariot)
 {
 	if (war->rtype[0] == IND_CODE && war->rtype[1] == REG_CODE)
@@ -113,7 +105,7 @@ static int		xor_dir(t_war *war, t_chariot *chariot)
 	return (FAILURE);
 }
 
-int			xor_fct(t_war *war, t_chariot *chariot)
+int				xor_fct(t_war *war, t_chariot *chariot)
 {
 	verbose(war, chariot);
 	if (xor_dir(war, chariot))

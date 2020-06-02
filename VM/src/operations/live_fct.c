@@ -21,14 +21,13 @@ int			live_fct(t_war *war, t_chariot *chariot)
 	war->nb_lives += 1;
 	if (war->verbose[2] == 1)
 		printf("P %4d | live %d\n", (chariot->index + 1), id_player);
-    if (id_player < 0 && id_player >= -(war->nb_player))
+	if (id_player < 0 && id_player >= -(war->nb_player))
 	{
 		id_player = -id_player;
 		war->lastlive = id_player;
 		if (war->verbose[4] == 1)
-        	printf("Player %d (%s) is said to be alive\n",
-        	id_player, war->player[id_player - 1].header.prog_name);
+			printf("Player %d (%s) is said to be alive\n",
+			id_player, war->player[id_player - 1].header.prog_name);
 	}
 	return (0);
 }
-

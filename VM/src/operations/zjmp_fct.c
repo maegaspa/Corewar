@@ -26,8 +26,11 @@ int			zjmp_fct(t_war *war, t_chariot *chariot)
 	else
 	{
 		war->back_pc = 0;
-		 if (war->verbose[2] == 1)
-		 	printf("P %4d | zjmp %d FAILED\n", (chariot->index + 1), war->param[0]);
- 	}
- 	return (SUCCESS);
+		if (war->verbose[2] == 1)
+		{
+			printf("P %4d | zjmp %d FAILED\n", (chariot->index + 1),
+				war->param[0]);
+		}
+	}
+	return (SUCCESS);
 }

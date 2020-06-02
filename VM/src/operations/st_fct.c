@@ -14,18 +14,20 @@
 
 int			st_fct(t_war *war, t_chariot *chariot)
 {
-	unsigned int val;
-	unsigned char *tab;
-	int i;
+	unsigned int	val;
+	unsigned char	*tab;
+	int				i;
 
 	i = -1;
 	verbose(war, chariot);
 	if (war->rtype[1] == REG_CODE)
-		chariot->registres[war->param[1] - 1] = chariot->registres[war->param[0] - 1];
+		chariot->registres[war->param[1] - 1] =
+			chariot->registres[war->param[0] - 1];
 	else
 	{
 		val = chariot->registres[war->param[0] - 1];
-		write_on_arena(war, val, calc_addr(C_POS + (war->param[1] % IDX_MOD)), 4);
+		write_on_arena(war, val,
+			calc_addr(C_POS + (war->param[1] % IDX_MOD)), 4);
 	}
 	return (0);
 }

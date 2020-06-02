@@ -12,14 +12,14 @@
 
 #include "../../includes/corewar.h"
 
-static void	add_cursor(t_chariot **begin, t_chariot *new)
+static void			add_cursor(t_chariot **begin, t_chariot *new)
 {
 	if (new)
 		new->next = *begin;
 	*begin = new;
 }
 
-static		t_chariot *ft_fork_chariot(t_chariot *chariot, int param, t_war *war)
+static t_chariot	*ft_fork_chariot(t_chariot *chariot, int param, t_war *war)
 {
 	t_chariot	*new;
 	int			i;
@@ -44,13 +44,13 @@ static		t_chariot *ft_fork_chariot(t_chariot *chariot, int param, t_war *war)
 	return (new);
 }
 
-int			fork_fct(t_war *war, t_chariot *chariot)
+int					fork_fct(t_war *war, t_chariot *chariot)
 {
 	t_chariot *tmp_char;
 
 	if (war->verbose[2] == 1)
-        printf("P %4d | fork %d (%d)\n", (chariot->index + 1),
-        (short)war->param[0], C_POS + (war->param[0] % IDX_MOD));
+		printf("P %4d | fork %d (%d)\n", (chariot->index + 1),
+				(short)war->param[0], C_POS + (war->param[0] % IDX_MOD));
 	war->nb_chariot++;
 	if (!(tmp_char = ft_fork_chariot(chariot, war->param[0], war)))
 		return (ERROR_MALLOC);
