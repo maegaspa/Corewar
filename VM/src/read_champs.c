@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "../includes/corewar.h"
-#include <stdio.h>
 
 int				get_player_data(t_header *header, t_war *war, int player_nb)
 {
@@ -78,7 +77,9 @@ void		print_info_players(t_war *war, t_parse_file *file)
 		j = -1;
 		while (++j < file->nb_player)
 			if (i == file->rank_player[j] - 1)
-				printf("* Player %d, weighing %d bytes, \"%s\" (\"%s\") !\n", file->rank_player[j], war->player[j].header.prog_size, war->player[j].header.prog_name, war->player[j].header.comment);
+				printf("* Player %d, weighing %d bytes, \"%s\" (\"%s\") !\n",
+				file->rank_player[j], war->player[j].header.prog_size,
+				war->player[j].header.prog_name, war->player[j].header.comment);
 	}
 }
 
