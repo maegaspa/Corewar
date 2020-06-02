@@ -15,7 +15,7 @@ FILES = src/main\
 		src/play_game\
 		src/operande\
 		src/debug\
-		src/parser\
+		src/parse_usage\
 		src/ft_process1\
 		src/error\
 		src/jump\
@@ -23,6 +23,9 @@ FILES = src/main\
 		src/check_cycle\
 		src/op\
 		src/verbose\
+		src/parse_flag\
+		src/init\
+		src/utils_flag\
 		src/operations/live_fct\
 		src/operations/ld_fct\
 		src/operations/st_fct\

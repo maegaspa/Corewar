@@ -17,24 +17,24 @@ int		calc_jump(unsigned char ocp, t_chariot *chariot)
 	if (ocp == 0)
 		return (0);
 	if (ocp == 1)
-    	return (1);
-    if (ocp == 2)
-    {
-    	if (g_op_tab[chariot->ope - 1].label_size)
-        	return (T_DIR_TWO);
-        return (T_DIR_FOUR);
-    }
-    if (ocp == 3)
-    	return (2);
-    return (-1);
+		return (1);
+	if (ocp == 2)
+	{
+		if (g_op_tab[chariot->ope - 1].label_size)
+			return (T_DIR_TWO);
+		return (T_DIR_FOUR);
+	}
+	if (ocp == 3)
+		return (2);
+	return (-1);
 }
 
 int		ft_jump(t_war *war, t_chariot *chariot)
 {
 	unsigned char	ocp;
-	int		jump;
+	int				jump;
 
-	ocp = (unsigned char)war->arena[calc_addr(chariot->start_pos + chariot->pc + 1)];
+	ocp = (unsigned char)war->arena[calc_addr(C_POS + 1)];
 	jump = 2;
 	if (chariot->ope == 1)
 	{

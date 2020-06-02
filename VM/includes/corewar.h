@@ -186,9 +186,29 @@ int					ft_start_chariot(t_war *war, t_chariot **begin);
 t_chariot			*ft_creat_chariot(int index, int pc, int start_pos, int player);
 
 /*
-** parser.c
+** parse_usage.c
 */
 int					check_argument(t_parse_file *file, int ac, char **av);
+int					check_flag(t_parse_file *file, int ac, char **av);
+
+/*
+** parse_flag.c
+*/
+int					flag_is_dump(t_parse_file *file, int ac, char **av);
+int					flag_is_n(t_parse_file *file, int ac, char **av);
+int					flag_is_cycles(t_parse_file *file, int ac, char **av);
+int					flag_is_verbose(t_parse_file *file, int ac, char **av);
+
+/*
+** utils_flags.c
+*/
+void				check_n_verbose(t_parse_file *file);
+int					is_file_cor(t_parse_file *file, int ac, char **av, int i);
+
+/*
+** init.c
+*/
+int					init_usage(t_parse_file *file);
 
 /*
 ** operande.c
