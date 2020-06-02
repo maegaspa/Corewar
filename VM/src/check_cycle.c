@@ -12,7 +12,7 @@
 
 #include "../includes/corewar.h"
 
-int		end_game(t_war *war)
+static int		no_chariot(t_war *war)
 {
 	if (war->nb_chariot == 0)
 	{
@@ -20,25 +20,37 @@ int		end_game(t_war *war)
 			printf("Cycle to die is now %d\n", war->cycle_to_die - CYCLE_DELTA);
 		if (war->visu != 1)
 			printf("Contestant %d, \"%s\", has won !\n", war->lastlive,
+					war->player[war->lastlive - 1].header.prog_name);
+		else if (war->visu)
+		{
+			mvwprintw(war->visual.keys_win, 12, 2,
+				"Contestant %d, \"%s\", has won !", war->lastlive,
 				war->player[war->lastlive - 1].header.prog_name);
-        else if (war->visu)
-        {
-        	mvwprintw(war->visual.keys_win, 12, 2, "Contestant %d, \"%s\", has won !", war->lastlive, war->player[war->lastlive - 1].header.prog_name);
-        	wrefresh(war->visual.keys_win);
-        }
+			wrefresh(war->visual.keys_win);
+		}
 		return (FAILURE);
 	}
+	return (SUCCESS);
+}
+
+static int		end_game(t_war *war)
+{
+	if (!no_chariot(war))
+		return (FAILURE);
 	if (war->cycle_to_die <= 0)
 	{
 		war->cycles++;
 		if (war->verbose[3] == 1)
-    		printf("It is now cycle %d\n", war->cycles);
-    	delete_chariot(war);
+			printf("It is now cycle %d\n", war->cycles);
+		delete_chariot(war);
 		if (war->visu != 1)
-        	printf("Contestant %d, \"%s\", has won !\n", war->lastlive, war->player[war->lastlive - 1].header.prog_name);
+			printf("Contestant %d, \"%s\", has won !\n",
+				war->lastlive, war->player[war->lastlive - 1].header.prog_name);
 		else if (war->visu)
 		{
-			mvwprintw(war->visual.keys_win, 12, 2, "Contestant %d, \"%s\", has won !", war->lastlive, war->player[war->lastlive - 1].header.prog_name);
+			mvwprintw(war->visual.keys_win, 12, 2,
+				"Contestant %d, \"%s\", has won !", war->lastlive,
+				war->player[war->lastlive - 1].header.prog_name);
 			wrefresh(war->visual.keys_win);
 		}
 		return (FAILURE);
@@ -51,14 +63,12 @@ int			check_cycle(t_war *war)
 	delete_chariot(war);
 	war->cycles_btw_check = 0;
 	if (!end_game(war))
-        return (FAILURE);
+		return (FAILURE);
 	if (war->nb_lives >= NBR_LIVE || war->check_cycles_to_die >= MAX_CHECKS)
 	{
 		war->cycle_to_die -= CYCLE_DELTA;
 		if (war->verbose[3] == 1)
 			printf("Cycle to die is now %d\n", war->cycle_to_die);
-//		if (!end_game(war))
-//			return (FAILURE);
 		war->check_cycles_to_die = 1;
 	}
 	else
