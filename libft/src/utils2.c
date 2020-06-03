@@ -1,14 +1,13 @@
 /* ************************************************************************** */
-/*                                                          LE - /            */
-/*                                                              /             */
-/*   utils2.c                                         .::    .:/ .      .::   */
-/*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: cgarrot <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
-/*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2019/04/11 16:30:47 by cgarrot      #+#   ##    ##    #+#       */
-/*   Updated: 2019/05/05 17:45:45 by cgarrot     ###    #+. /#+    ###.fr     */
-/*                                                         /                  */
-/*                                                        /                   */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils2.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hmichel <hmichel@student.le-101.fr>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/02/18 17:21:42 by seanseau          #+#    #+#             */
+/*   Updated: 2020/05/28 03:59:06 by hmichel          ###   ########lyon.fr   */
+/*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
@@ -27,7 +26,7 @@ char	*ft_strcapitalize(char *str)
 	return (str);
 }
 
-char		*ft_strrev(char *str)
+char	*ft_strrev(char *str)
 {
 	int		i;
 	int		j;

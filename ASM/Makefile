@@ -16,6 +16,8 @@ FILES = src/error\
 		src/init\
 		src/lexer\
 		src/main\
+		src/check_lex\
+		src/check_syn_file\
 		src/op\
 		src/utils\
 		src/utils2\
@@ -50,6 +52,52 @@ OBJ = $(addsuffix .o , $(FILES))
 all: $(NAME)
 
 $(NAME): $(OBJ)
+	@printf $(RED)"                                                                      ___ \n"
+	@printf "                                _____________________________________ //  \n"
+	@printf "                              / /-----------|  |----------| |--------- \ \n"
+	@printf "                            / /             |  |          | |           \ \n"
+	@printf "                          / /               |  |          | |           | \n"
+	@printf "               _________/ /                 |  |          | |           | \n"
+	@printf "      _______"
+	@printf $(YELLOW)"("
+	@printf $(RED)"|___________\_________________|  |----------===============\          "
+	@printf $(W)"(@)\n"
+	@printf $(RED)"    /                  |                 (=) |           (=)|            "
+	@printf $(YELLOW)"/\ "
+	@printf $(RED)"       "
+	@printf $(W)"(@) (@)\n"
+	@printf $(RED)"  /                   | "
+	@printf $(PURPLE)"cgarrot && maegaspa"
+	@printf $(RED)" |                |           "
+	@printf $(YELLOW)"\/"
+	@printf $(RED)"\     "
+	@printf $(W)"(@) (@)\n"
+	@printf $(RED)" /"
+	@printf $(YELLOW)"<>"
+	@printf $(RED)"      ________    | "
+	@printf $(PURPLE)"hmichel && seaseau"
+	@printf $(RED)"  |    "
+	@printf $(PURPLE)"corewar"
+	@printf $(RED)"     |________      \     "
+	@printf $(W)"(@)\n"
+	@printf $(RED)" |      /  "
+	@printf $(W)"______"
+	@printf $(RED)"  \   |  <==================|===========>  /  "
+	@printf $(W)"______"
+	@printf $(RED)"  \   -/   "
+	@printf $(W)"(@)\n"
+	@printf $(RED)" |)    |  "
+	@printf $(W)"/ \  / \ "
+	@printf $(RED)" |__|_____________________|_____________|  "
+	@printf $(W)"/ \  / \ "
+	@printf $(RED)" | [ "
+	@printf $(W)"(@)\n"
+	@printf $(RED)" \____ | "
+	@printf $(W)"|   ()   | "
+	@printf $(RED)"|______________________________________| "
+	@printf $(W)"|   ()   | "
+	@printf $(RED)"|_/ \n"
+	@printf $(W)"          \_/__\_/                                            \_/__\_/ \n"
 	@make -C ../libft/
 	@$(CC) $(FLAGS) $(SRC) -L. ../libft/libftprintf.a -o $(NAME)
 
@@ -58,10 +106,17 @@ object/%.o: src/%.c $(HEADER)
 	@$(CC) $(FLAGS) -I $(HEADER) -o $@ -c $<
 
 clean:
+	@echo "\033[1m|---------------------------------|\033[0m"
+	@echo "\033[1m|-------Supprimer les OBJECT------|\033[0m"
+	@echo "\033[1m|---------------------------------|\033[0m"
 	@rm -f $(OBJ)
 	@make clean -C ../libft/
 
 fclean: clean
+	@echo "\n"
+	@echo "\033[1m|---------------------------------------|\033[0m"
+	@echo "\033[1m|-------Supprimer la libftprintf.a------|\033[0m"
+	@echo "\033[1m|---------------------------------------|\033[0m"
 	@rm -f $(NAME)
 	@make fclean -C ../libft/
 

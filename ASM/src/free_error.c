@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: maegaspa <maegaspa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/05/22 17:44:50 by maegaspa          #+#    #+#             */
-/*   Updated: 2020/05/22 17:44:50 by maegaspa         ###   ########lyon.fr   */
+/*   Created: 2020/02/18 17:21:56 by seanseau          #+#    #+#             */
+/*   Updated: 2020/05/22 17:10:33 by maegaspa         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,8 @@ void	free_error_3(t_tab *tab, int i)
 		}
 		if (tab->info_ins[i].instruction &&
 				(tab->info_ins[i].param[j].type_param != T_REG
-				 && tab->info_ins[i].param[j].type_param != T_IND
-				 && tab->info_ins[i].param[j].type_param != T_DIR))
+				&& tab->info_ins[i].param[j].type_param != T_IND
+				&& tab->info_ins[i].param[j].type_param != T_DIR))
 			break ;
 	}
 	while (++j < tab->info_ins[i].nb_parameter)
@@ -89,7 +89,7 @@ void	free_error_4(t_tab *tab)
 		free(tab->r_pos);
 }
 
-void				free_split(t_file *file)
+void	free_split(t_file *file)
 {
 	int	i;
 

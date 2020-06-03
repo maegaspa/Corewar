@@ -12,47 +12,6 @@
 
 #include "../includes/asm.h"
 
-char		*gettohexa(int n)
-{
-	int temp;
-	int tmp;
-	int len;
-	int i;
-	int neg;
-	char *hex;
-
-	i = 0;
-	len = 0;
-	neg = 0;
-	if (n < 0)
-	{
-		n = -n;
-		neg = 1;
-	}
-	tmp = n;
-	while (tmp /= 10)
-		len++;
-	if (!(hex = ft_strnew(len + neg)))
-		return (NULL);
-	while(n != 0) 
-	{
-		temp = n % 16; 
-		if (temp < 10) 
-		{ 
-			hex[i] = temp + 48; 
-			i++; 
-		} 
-		else
-		{
-			hex[i] = temp + 87; 
-			i++; 
-		} 
-		n = n/16; 
-	}
-	hex[i] = '\0';
-	return (ft_strrev(hex));
-}
-
 int			get_base_length(char *base)
 {
 	int	base_length;
