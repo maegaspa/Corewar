@@ -250,12 +250,6 @@ int				get_hexa(unsigned char *str, int pc, int lenght);
 int				print_in_arena(t_war *war, t_chariot *prc, int src, int dst);
 
 /*
-** debug.c
-*/
-void		ft_print_chariot(t_chariot *chariot, int reg);
-void		ft_print_war(t_war *war);
-
-/*
 ** error.c
 */
 void 		print_error(int error);
