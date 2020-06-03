@@ -3,7 +3,7 @@
 NAME = corewar
 CC = gcc
 DEBUG = -g -fsanitize=address
-FLAGS = -Wall -Wextra -g
+FLAGS = -Wall -Wextra -Werror
 INC = include/corewar.h
 HEADER = include
 
