@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmichel <hmichel@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/03 16:45:55 by hmichel           #+#    #+#             */
-/*   Updated: 2020/06/03 16:45:55 by hmichel          ###   ########lyon.fr   */
+/*   Created: 2020/02/25 21:49:44 by hmichel           #+#    #+#             */
+/*   Updated: 2020/05/28 03:00:44 by hmichel          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static int		end_game(t_war *war)
 	return (SUCCESS);
 }
 
-int			check_cycle(t_war *war)
+int				check_cycle(t_war *war)
 {
 	delete_chariot(war);
 	war->cycles_btw_check = 0;
