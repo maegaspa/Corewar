@@ -11,7 +11,35 @@
 /* ************************************************************************** */
 
 #include "../includes/corewar.h"
-#include <stdio.h>
+
+void	free_all(t_war *war, t_parse_file *file)
+{
+	int i;
+
+	i = -1;
+	if (file->nb_player > 0)
+	{
+		while (++i < file->nb_player)
+			ft_strdel(&(file->file_name[i]));
+		free(file->file_name);
+		if (war->nb_player > 0)
+    	{
+    		i = -1;
+    		while (++i < war->nb_player)
+    			ft_strdel(&war->player[i].file_name);
+    		free(war->player);
+    	}
+	}
+	else if (file->nb_player == 0)
+		free(file->file_name);
+}
+
+int		free_return_print(int error, t_war *war, t_parse_file *file)
+{
+	print_error(error);
+	free_all(war, file);
+	return (error);
+}
 
 int	main(int ac, char **av)
 {
@@ -20,17 +48,11 @@ int	main(int ac, char **av)
 	t_header		head;
 
 	if (ac >= 1 && (file.error = check_argument(&file, ac, av)) < 0)
-	{
-		print_error(file.error);
-		return (file.error);
-	}
+		return (free_return_print(file.error, &war, &file));
 	if ((file.error = read_and_place_players(&file, &war, &head)) < 0)
-	{
-		print_error(file.error);
-		return (file.error);
-	}
+		return (free_return_print(file.error, &war, &file));
 	ft_init_war(file, &war);
-	if (ft_game(&war, &file) == 0)//A FAIRE: retour erreur
-		return (0);
-	return (0);
+	if ((file.error = ft_game(&war, &file)) < 0)
+    	return (free_return_print(file.error, &war, &file));
+	return (free_return_print(file.error, &war, &file));
 }

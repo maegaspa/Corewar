@@ -42,12 +42,10 @@ void	print_error(int error)
 		ft_putstr_fd("ERROR: Max players is 4\n", 2);
 	if (error == ERROR_USAGE)
 		print_usage();
-	if (error == ERROR_NB_PLAYER)
-		ft_putstr_fd("ERROR: Max players is 4\n", 2);
 	if (error == ERROR_MAGIC)
 		ft_putstr_fd("ERROR: Wrong Magic number\n", 2);
 	if (error == ERROR_CHAMP_SIZE)
-		ft_putstr_fd("ERROR: Wrong prog_size (too big)\n", 2);
+		ft_putstr_fd("ERROR: Wrong prog_size (too big, MAX = 682 bytes)\n", 2);
 	if (error == ERROR_OPEN)
 		ft_putstr_fd("ERROR: Can't open file\n", 2);
 	if (error == ERROR_READ)
