@@ -16,8 +16,6 @@ static int		no_chariot(t_war *war)
 {
 	if (war->nb_chariot == 0)
 	{
-//		if (war->verbose[3] == 1)
-//			printf("Cycle to die is now %d\n", war->cycle_to_die - CYCLE_DELTA);
 		if (war->visu != 1)
 			printf("Contestant %d, \"%s\", has won !\n", war->lastlive,
 					war->player[war->lastlive - 1].header.prog_name);
@@ -42,7 +40,7 @@ static int		end_game(t_war *war)
 		war->cycles++;
 		if (war->verbose[3] == 1)
 			printf("It is now cycle %d\n", war->cycles);
-		delete_chariot(war);
+		delete_chariot(war, war->begin);
 		if (war->visu != 1)
 			printf("Contestant %d, \"%s\", has won !\n",
 				war->lastlive, war->player[war->lastlive - 1].header.prog_name);
@@ -60,7 +58,7 @@ static int		end_game(t_war *war)
 
 int				check_cycle(t_war *war)
 {
-	delete_chariot(war);
+	delete_chariot(war, war->begin);
 	war->cycles_btw_check = 0;
 	if (!end_game(war))
 		return (FAILURE);

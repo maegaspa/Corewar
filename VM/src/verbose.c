@@ -5,14 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmichel <hmichel@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/03 16:52:40 by hmichel           #+#    #+#             */
-/*   Updated: 2020/06/03 16:52:40 by hmichel          ###   ########lyon.fr   */
+/*   Created: 2020/02/25 21:49:44 by hmichel           #+#    #+#             */
+/*   Updated: 2020/05/28 03:00:44 by hmichel          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/corewar.h"
 
-int		ft_load(t_war *war, int size, int adress)
+int			ft_load(t_war *war, int size, int adress)
 {
 	int		param;
 
@@ -39,7 +39,7 @@ int		ft_load(t_war *war, int size, int adress)
 void		verbose_reg(t_war *war, t_chariot *chariot, int i)
 {
 	if (i == 0 && (chariot->ope == 3 || chariot->ope == 4 || chariot->ope == 5
-		||chariot->ope == 11 || chariot->ope == 16))
+		|| chariot->ope == 11 || chariot->ope == 16))
 		printf("r%d", war->param[i]);
 	else if (i == 1 && (chariot->ope == 2 || chariot->ope == 4 ||
 				chariot->ope == 5 || chariot->ope == 13))
@@ -57,13 +57,16 @@ void		verbose_reg(t_war *war, t_chariot *chariot, int i)
 void		verbose_ind(t_war *war, t_chariot *chariot, int i)
 {
 	if (chariot->ope == 2)
-		printf("%d",  ft_load(war, 4, calc_addr(C_POS + (war->param[0] % IDX_MOD))));
-	else if ((chariot->ope == 13) || (chariot->ope == 14 && war->rtype[i] == 3) ||
-			(chariot->ope == 11 && war->rtype[i] == 3) ||
-			(chariot->ope == 10 && war->rtype[i] == 3))
-		printf("%d", ft_load(war, 4, calc_addr(C_POS + war->param[i] % IDX_MOD)));
+		printf("%d", ft_load(war, 4, calc_addr(C_POS +
+			(war->param[0] % IDX_MOD))));
+	else if ((chariot->ope == 13) || (chariot->ope == 14 && war->rtype[i] == 3)
+		|| (chariot->ope == 11 && war->rtype[i] == 3)
+		|| (chariot->ope == 10 && war->rtype[i] == 3))
+		printf("%d", ft_load(war, 4,
+			calc_addr(C_POS + war->param[i] % IDX_MOD)));
 	else if (war->rtype[i] == 3 && chariot->ope >= 6 && chariot->ope <= 8)
-		printf("%d", ft_load(war, 4, calc_addr(C_POS + war->param[i] % IDX_MOD)));
+		printf("%d", ft_load(war, 4,
+			calc_addr(C_POS + war->param[i] % IDX_MOD)));
 	else
 		printf("%d", war->param[i]);
 }
@@ -90,8 +93,9 @@ void		verbose(t_war *war, t_chariot *chariot)
 	i = -1;
 	if (war->verbose[2] == 1)
 	{
-		printf("P %4d | %s ", chariot->index + 1, g_op_tab[chariot->ope - 1].name);
-		while (++i <  g_op_tab[chariot->ope - 1].nb_params)
+		printf("P %4d | %s ", chariot->index + 1,
+			g_op_tab[chariot->ope - 1].name);
+		while (++i < g_op_tab[chariot->ope - 1].nb_params)
 		{
 			if (war->rtype[i] == REG_CODE)
 				verbose_reg(war, chariot, i);

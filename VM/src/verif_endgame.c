@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hmichel <hmichel@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/03 16:52:51 by hmichel           #+#    #+#             */
-/*   Updated: 2020/06/03 16:52:51 by hmichel          ###   ########lyon.fr   */
+/*   Created: 2020/02/25 21:49:44 by hmichel           #+#    #+#             */
+/*   Updated: 2020/05/28 03:00:44 by hmichel          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,12 @@ int		dead_chariot(t_war *war, t_chariot *chariot)
 			war->cycles - chariot->last_live >= war->cycle_to_die);
 }
 
-void	delete_chariot(t_war *war)
+void	delete_chariot(t_war *war, t_chariot *current)
 {
 	t_chariot *previous;
 	t_chariot *delete;
-	t_chariot *current;
 
 	previous = NULL;
-	current = war->begin;
 	while (current)
 	{
 		if (dead_chariot(war, (delete = current)) && war->nb_chariot--)
@@ -37,7 +35,7 @@ void	delete_chariot(t_war *war)
 				previous->next = current;
 			if (war->verbose[1])
 				printf("Process %d hasn't lived for %d cycles (CTD %d)\n",
-						delete->index + 1, war->cycles - delete->last_live, war->cycle_to_die);
+		delete->index + 1, war->cycles - delete->last_live, war->cycle_to_die);
 			ft_memdel((void **)&delete);
 		}
 		else

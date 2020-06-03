@@ -24,7 +24,8 @@ void	print_cursor_temp(t_war *war, int temp)
 		pos = (chariot->start_pos + chariot->pc) % MEM_SIZE;
 		wattron(war->visual.arena_win, COLOR_PAIR(chariot->player));
 		mvwprintw(war->visual.arena_win, (pos / 64) + 1,
-		((pos % 64) * 3) + 2, "%02x", (unsigned char)war->visual.arena_list[temp][pos]);
+			((pos % 64) * 3) + 2, "%02x",
+			(unsigned char)war->visual.arena_list[temp][pos]);
 		wattroff(war->visual.arena_win, COLOR_PAIR(chariot->player));
 		chariot->prev_cursor = pos;
 		war->visual.process_nb++;
@@ -63,13 +64,10 @@ void	sleep_keys(t_war *war, int c)
 		war->visual.sleeptime *= 10;
 	if (war->visual.sleeptime == 10)
 		war->visual.sleeptime = 10000;
-
 	if (c == '+' && war->visual.sleeptime > 1000)
 		war->visual.sleeptime /= 10;
 	if (war->visual.sleeptime == 1000)
 		war->visual.sleeptime = 1;
-
-	//print
 	if (war->visual.sleeptime > 1000)
 		mvwprintw(war->visual.infos_win, 2, 20, "%d ",
 				1000000 / war->visual.sleeptime);
@@ -78,29 +76,31 @@ void	sleep_keys(t_war *war, int c)
 	wrefresh(war->visual.infos_win);
 }
 
+void	fnct_pause(t_war *war)
+{
+	war->visual.pause = war->visual.pause * -1;
+	if (war->visual.pause == -1)
+	{
+		wattron(war->visual.keys_win, COLOR_PAIR(1));
+		mvwprintw(war->visual.keys_win, 2, 36, "[SPACE BAR]");
+		wattroff(war->visual.keys_win, COLOR_PAIR(1));
+	}
+	else
+	{
+		wattron(war->visual.keys_win, COLOR_PAIR(3));
+		mvwprintw(war->visual.keys_win, 2, 36, "[SPACE BAR]");
+		wattroff(war->visual.keys_win, COLOR_PAIR(3));
+	}
+	wrefresh(war->visual.keys_win);
+}
+
 void	get_keys(t_war *war)
 {
 	int c;
 
 	c = wgetch(war->visual.infos_win);
-
 	if (c == ' ')
-	{
-		war->visual.pause = war->visual.pause * -1;
-		if (war->visual.pause == -1)
-		{
-			wattron(war->visual.keys_win, COLOR_PAIR(1));
-			mvwprintw(war->visual.keys_win, 2, 36, "[SPACE BAR]");
-			wattroff(war->visual.keys_win, COLOR_PAIR(1));
-		}
-		else
-		{
-			wattron(war->visual.keys_win, COLOR_PAIR(3));
-			mvwprintw(war->visual.keys_win, 2, 36, "[SPACE BAR]");
-			wattroff(war->visual.keys_win, COLOR_PAIR(3));
-		}
-		wrefresh(war->visual.keys_win);
-	}
+		fnct_pause(war);
 	if (c == '-' || c == '+')
 		sleep_keys(war, c);
 	if (c == 27)

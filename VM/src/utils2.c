@@ -29,9 +29,8 @@ unsigned int	u_int_reverse_octet(unsigned int x)
 	return (rev);
 }
 
-int		get_val(t_war *war, t_chariot *chariot, int i)
+int				get_val(t_war *war, t_chariot *chariot, int i)
 {
 	return ((unsigned char)war->arena[calc_addr(chariot->start_pos +
 				chariot->pc + i)]);
 }
-
