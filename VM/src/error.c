@@ -31,7 +31,7 @@ void	print_usage(void)
 	ft_putstr_fd("(Params are NOT litteral ...)\n", 2);
 	ft_putstr_fd("\t\t\t- 8 : Show deaths\n", 2);
 	ft_putstr_fd("\t\t\t- 16 : Show PC movements (Except for jumps)\n", 2);
-	ft_putstr_fd("\t-n N champ :\n\t\tChange the order per N\n", 2);
+	ft_putstr_fd("\t-n number champ :\n\t\tChange the order per N\n", 2);
 }
 
 void	print_error(int error)
