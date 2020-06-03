@@ -49,7 +49,7 @@ int		check_argument(t_parse_file *file, int ac, char **av)
 		else if ((file->error = check_flag(file, ac, av)) < 0)
 			return (file->error);
 		else if (file->nb_player < MAX_PLAYERS &&
-			is_file_cor(file, ac, av, 0) == SUCCESS)
+			is_file_cor(file, av, 0) == SUCCESS)
 		{
 			file->file_name[file->nb_player] = ft_strdup(av[file->i]);
 			file->rank_player[file->nb_player] = file->rk_player;

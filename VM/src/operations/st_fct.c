@@ -15,10 +15,7 @@
 int			st_fct(t_war *war, t_chariot *chariot)
 {
 	unsigned int	val;
-	unsigned char	*tab;
-	int				i;
 
-	i = -1;
 	verbose(war, chariot);
 	if (war->rtype[1] == REG_CODE)
 		chariot->registres[war->param[1] - 1] =

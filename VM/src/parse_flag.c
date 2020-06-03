@@ -45,7 +45,7 @@ int		flag_is_n(t_parse_file *file, int ac, char **av)
 	file->n = ft_atoi(av[file->i + 1]);
 	if ((file->i + 1 < ac && (file->n > 0 || (file->n == 0 &&
 		!ft_strcmp("0", av[file->i + 1])))) && (file->i + 2 < ac &&
-		is_file_cor(file, ac, av, 2)))
+		is_file_cor(file, av, 2)))
 	{
 		file->file_name[file->nb_player] = ft_strdup(av[file->i + 2]);
 		file->rank_player[file->nb_player] = file->rk_player;

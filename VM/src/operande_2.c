@@ -12,14 +12,14 @@
 
 #include "../includes/corewar.h"
 
-void		is_conform_3(unsigned char ocp, t_war *war)
+void		is_conform_3(t_war *war)
 {
 	war->rtype[war->i_ocp] = IND_CODE;
 	war->jump += 2;
 	war->i_ocp++;
 }
 
-void		is_conform_2(unsigned char ocp, t_chariot *chariot, t_war *war)
+void		is_conform_2(t_chariot *chariot, t_war *war)
 {
 	war->rtype[war->i_ocp] = DIR_CODE;
 	war->i_ocp++;
@@ -29,7 +29,7 @@ void		is_conform_2(unsigned char ocp, t_chariot *chariot, t_war *war)
 		war->jump += T_DIR_FOUR;
 }
 
-void		is_conform_1(unsigned char ocp, t_war *war)
+void		is_conform_1(t_war *war)
 {
 	war->rtype[war->i_ocp] = REG_CODE;
 	war->jump += 1;
@@ -44,19 +44,19 @@ int			is_conform(unsigned char ocp, t_chariot *chariot, t_war *war)
 				get_val(war, chariot, war->jump) <= 16 && (0x01 &
 				g_op_tab[chariot->ope - 1].params_type[war->i_ocp]))
 	{
-		is_conform_1(ocp, war);
+		is_conform_1(war);
 		return (SUCCESS);
 	}
 	if (ocp == 2 && (0x02 &
 				g_op_tab[chariot->ope - 1].params_type[war->i_ocp]))
 	{
-		is_conform_2(ocp, chariot, war);
+		is_conform_2(chariot, war);
 		return (SUCCESS);
 	}
 	if (ocp == 3 && (0x04 &
 				g_op_tab[chariot->ope - 1].params_type[war->i_ocp]))
 	{
-		is_conform_3(ocp, war);
+		is_conform_3(war);
 		return (SUCCESS);
 	}
 	return (FAILURE);

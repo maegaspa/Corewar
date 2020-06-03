@@ -12,7 +12,7 @@
 
 #include "../includes/corewar.h"
 
-int		is_file_cor(t_parse_file *file, int ac, char **av, int i)
+int		is_file_cor(t_parse_file *file, char **av, int i)
 {
 	if (ft_strlen(av[file->i + i]) > 4)
 		if ((av[file->i + i][ft_strlen(av[file->i + i]) - 4] == '.') &&

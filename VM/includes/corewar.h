@@ -203,7 +203,7 @@ int					flag_is_verbose(t_parse_file *file, int ac, char **av);
 ** utils_flags.c
 */
 void				check_n_verbose(t_parse_file *file);
-int					is_file_cor(t_parse_file *file, int ac, char **av, int i);
+int					is_file_cor(t_parse_file *file, char **av, int i);
 
 /*
 ** init.c
