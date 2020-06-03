@@ -219,6 +219,12 @@ void				ft_exec_opp(t_chariot *chariot, t_war *war, t_opp *opp_tab);
 int 				calc_addr(int addr);
 
 /*
+** operande_2.c
+*/
+
+int				is_conform(unsigned char ocp , t_chariot *chariot, t_war *war);
+
+/*
 ** test_function_tab
 */
 

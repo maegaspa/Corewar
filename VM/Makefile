@@ -14,6 +14,7 @@ FILES = src/main\
 		src/utils\
 		src/play_game\
 		src/operande\
+		src/operande_2\
 		src/debug\
 		src/parse_usage\
 		src/ft_process1\
