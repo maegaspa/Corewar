@@ -23,12 +23,12 @@ void	free_all(t_war *war, t_parse_file *file)
 			ft_strdel(&(file->file_name[i]));
 		free(file->file_name);
 		if (war->nb_player > 0)
-    	{
-    		i = -1;
-    		while (++i < war->nb_player)
-    			ft_strdel(&war->player[i].file_name);
-    		free(war->player);
-    	}
+		{
+			i = -1;
+			while (++i < war->nb_player)
+				ft_strdel(&war->player[i].file_name);
+			free(war->player);
+		}
 	}
 	else if (file->nb_player == 0)
 		free(file->file_name);
@@ -41,9 +41,9 @@ int		free_return_print(int error, t_war *war, t_parse_file *file)
 	return (error);
 }
 
-int	main(int ac, char **av)
+int		main(int ac, char **av)
 {
-	t_parse_file		file;
+	t_parse_file	file;
 	t_war			war;
 	t_header		head;
 
@@ -53,6 +53,6 @@ int	main(int ac, char **av)
 		return (free_return_print(file.error, &war, &file));
 	ft_init_war(file, &war);
 	if ((file.error = ft_game(&war, &file)) < 0)
-    	return (free_return_print(file.error, &war, &file));
+		return (free_return_print(file.error, &war, &file));
 	return (free_return_print(file.error, &war, &file));
 }
