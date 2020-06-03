@@ -36,7 +36,7 @@ t_chariot		*ft_creat_chariot(int index, int pc, int start_pos, int player)
 	return (new);
 }
 
-int			ft_start_chariot(t_war *war, t_chariot **begin)
+int				ft_start_chariot(t_war *war, t_chariot **begin)
 {
 	int			i;
 	t_chariot	*temp;
@@ -49,11 +49,11 @@ int			ft_start_chariot(t_war *war, t_chariot **begin)
 	*begin = temp;
 	while (++i < war->nb_player)
 	{
-		if (!(temp = ft_creat_chariot(temp->index + 1, 0, war->player[i].pos_arena, i + 1)))
+		if (!(temp = ft_creat_chariot(temp->index + 1, 0,
+				war->player[i].pos_arena, i + 1)))
 			return (ERROR_MALLOC);
 		temp->next = *begin;
 		*begin = temp;
 	}
 	return (SUCCESS);
 }
-
