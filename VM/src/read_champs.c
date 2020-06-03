@@ -12,7 +12,7 @@
 
 #include "../includes/corewar.h"
 
-int				get_player_data(t_header *header, t_war *war, int player_nb)
+int			get_player_data(t_header *header, t_war *war, int player_nb)
 {
 	header->magic = u_int_reverse_octet(header->magic);
 	if (header->magic != COREWAR_EXEC_MAGIC)
@@ -24,7 +24,7 @@ int				get_player_data(t_header *header, t_war *war, int player_nb)
 	return (SUCCESS);
 }
 
-int 			add_player_to_arena(t_war *war, int player_nb,
+int			add_player_to_arena(t_war *war, int player_nb,
 	char *file_buff, t_header *header)
 {
 	ft_memcpy(&war->arena[war->player[player_nb].pos_arena],
@@ -32,7 +32,7 @@ int 			add_player_to_arena(t_war *war, int player_nb,
 	return (SUCCESS);
 }
 
-int				get_new_player(t_war *war, t_parse_file *file, t_header *header,
+int			get_new_player(t_war *war, t_parse_file *file, t_header *header,
 		int nb)
 {
 	char buff[MEM_SIZE + 1];
@@ -69,7 +69,7 @@ void		print_info_players(t_war *war, t_parse_file *file)
 		i = -1;
 		while (++i < file->nb_player)
 			if (max < file->rank_player[i])
-				max =  file->rank_player[i];
+				max = file->rank_player[i];
 	}
 	i = -1;
 	while (++i <= max + 1)
@@ -83,7 +83,8 @@ void		print_info_players(t_war *war, t_parse_file *file)
 	}
 }
 
-int			read_and_place_players(t_parse_file *file, t_war *war, t_header *head)
+int			read_and_place_players(t_parse_file *file, t_war *war,
+		t_header *head)
 {
 	int		act_player;
 

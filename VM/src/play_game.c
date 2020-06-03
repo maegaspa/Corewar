@@ -17,7 +17,7 @@ int		get_val(t_war *war, t_chariot *chariot, int i)
 	return ((unsigned char)war->arena[calc_addr(chariot->start_pos + chariot->pc + i)]);
 }
 
-int	get_all_param(t_chariot *chariot, t_war *war, int ope)
+int		get_all_param(t_chariot *chariot, t_war *war, int ope)
 {
 	int		i;
 	int 	tmpc;
