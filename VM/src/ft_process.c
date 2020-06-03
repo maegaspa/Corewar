@@ -12,7 +12,7 @@
 
 #include "../includes/corewar.h"
 
-t_chariot		*ft_creat_chariot(int index, int pc, int start_pos, int player)
+t_chariot	*ft_creat_chariot(int index, int pc, int start_pos, int player)
 {
 	t_chariot	*new;
 	int			i;
@@ -44,16 +44,17 @@ int			ft_start_chariot(t_war *war, t_chariot **begin, t_parse_file *file)
 	if (!war->nb_player)
 		return (ERROR_NB_PLAYER);
 	i = 0;
-	if (!(temp = ft_creat_chariot(0, 0, war->player[file->rank_player[i] - 1].pos_arena, file->rank_player[i])))
+	if (!(temp = ft_creat_chariot(0, 0,
+	war->player[file->rank_player[i] - 1].pos_arena, file->rank_player[i])))
 		return (ERROR_MALLOC);
 	*begin = temp;
 	while (++i < war->nb_player)
 	{
-		if (!(temp = ft_creat_chariot(temp->index + 1, 0, war->player[file->rank_player[i] - 1].pos_arena, file->rank_player[i])))
+		if (!(temp = ft_creat_chariot(temp->index + 1, 0, war->player
+			[file->rank_player[i] - 1].pos_arena, file->rank_player[i])))
 			return (ERROR_MALLOC);
 		temp->next = *begin;
 		*begin = temp;
 	}
 	return (SUCCESS);
 }
-

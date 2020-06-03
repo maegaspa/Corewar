@@ -82,7 +82,7 @@ int		ft_game(t_war *war, t_parse_file *file)
 	i = -1;
 	while (++i < 6)
 		war->verbose[i] = file->verbose[i];
-	if ((error = ft_start_chariot(war, &chariot)) <= 0)
+	if ((error = ft_start_chariot(war, &chariot, file)) <= 0)
 		return (error);
 	war->begin = chariot;//a enlever wallah
 	war->cycle_last_check = 0;//a enlever wallah

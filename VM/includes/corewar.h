@@ -180,9 +180,9 @@ int					get_all_param(t_chariot *chariot, t_war *war, int ope);
 int					get_val(t_war *war, t_chariot *chariot, int i);
 
 /*
-** ft_process1.c
+** ft_process.c
 */
-int					ft_start_chariot(t_war *war, t_chariot **begin);
+int					ft_start_chariot(t_war *war, t_chariot **begin, t_parse_file *file);
 t_chariot			*ft_creat_chariot(int index, int pc, int start_pos, int player);
 
 /*

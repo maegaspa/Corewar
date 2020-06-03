@@ -16,7 +16,7 @@ FILES = src/main\
 		src/operande\
 		src/operande_2\
 		src/parse_usage\
-		src/ft_process1\
+		src/ft_process\
 		src/error\
 		src/jump\
 		src/verif_endgame\
