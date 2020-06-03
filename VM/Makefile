@@ -3,13 +3,51 @@
 NAME = corewar
 CC = gcc
 DEBUG = -g -fsanitize=address
-FLAGS = -Wall -Wextra -Werror -g
+FLAGS = -Wall -Wextra -g
 INC = include/corewar.h
 HEADER = include
 
 #------------------------------------FILE--------------------------------------#
 
 FILES = src/main\
+		src/read_champs\
+		src/utils\
+		src/utils2\
+		src/play_game\
+		src/operande\
+		src/operande_2\
+		src/parse_usage\
+		src/ft_process\
+		src/error\
+		src/jump\
+		src/verif_endgame\
+		src/check_cycle\
+		src/op\
+		src/verbose\
+		src/parse_flag\
+		src/init\
+		src/utils_flag\
+		src/operations/live_fct\
+		src/operations/ld_fct\
+		src/operations/st_fct\
+		src/operations/add_fct\
+		src/operations/sub_fct\
+		src/operations/and_fct\
+		src/operations/or_fct\
+		src/operations/xor_fct\
+		src/operations/zjmp_fct\
+		src/operations/ldi_fct\
+		src/operations/sti_fct\
+		src/operations/fork_fct\
+		src/operations/lld_fct\
+		src/operations/lldi_fct\
+		src/operations/lfork_fct\
+		src/operations/aff_fct\
+		src/operations/binary_op_carry\
+		src/visual/visual_body\
+		src/visual/visual_keys\
+		src/visual/visual_update\
+		src/visual/visual_utils\
 
 #----------------------------------COLOR---------------------------------------#
 
@@ -35,71 +73,18 @@ OBJ = $(addsuffix .o , $(FILES))
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	@printf $(RED)"                                                                      ___ \n"
-	@printf "                                _____________________________________ //  \n"
-	@printf "                              / /-----------|  |----------| |--------- \ \n"
-	@printf "                            / /             |  |          | |           \ \n"
-	@printf "                          / /               |  |          | |           | \n"
-	@printf "               _________/ /                 |  |          | |           | \n"
-	@printf "      _______"
-	@printf $(YELLOW)"("
-	@printf $(RED)"|___________\_________________|  |----------===============\          "
-	@printf $(W)"(@)\n"
-	@printf $(RED)"    /                  |                 (=) |           (=)|            "
-	@printf $(YELLOW)"/\ "
-	@printf $(RED)"       "
-	@printf $(W)"(@) (@)\n"
-	@printf $(RED)"  /                   | "
-	@printf $(PURPLE)"cgarrot && maegaspa"
-	@printf $(RED)" |                |           "
-	@printf $(YELLOW)"\/"
-	@printf $(RED)"\     "
-	@printf $(W)"(@) (@)\n"
-	@printf $(RED)" /"
-	@printf $(YELLOW)"<>"
-	@printf $(RED)"      ________    | "
-	@printf $(PURPLE)"hmichel && seaseau"
-	@printf $(RED)"  |    "
-	@printf $(PURPLE)"corewar"
-	@printf $(RED)"     |________      \     "
-	@printf $(W)"(@)\n"
-	@printf $(RED)" |      /  "
-	@printf $(W)"______"
-	@printf $(RED)"  \   |  <==================|===========>  /  "
-	@printf $(W)"______"
-	@printf $(RED)"  \   -/   "
-	@printf $(W)"(@)\n"
-	@printf $(RED)" |)    |  "
-	@printf $(W)"/ \  / \ "
-	@printf $(RED)" |__|_____________________|_____________|  "
-	@printf $(W)"/ \  / \ "
-	@printf $(RED)" | [ "
-	@printf $(W)"(@)\n"
-	@printf $(RED)" \____ | "
-	@printf $(W)"|   ()   | "
-	@printf $(RED)"|______________________________________| "
-	@printf $(W)"|   ()   | "
-	@printf $(RED)"|_/ \n"
-	@printf $(W)"          \_/__\_/                                            \_/__\_/ \n"
 	@make -C ../libft/
-	@$(CC) $(FLAGS) $(SRC) -L. ../libft/libftprintf.a -o $(NAME)
+	@$(CC) $(FLAGS) $(SRC) -L. ../libft/libftprintf.a -lncurses -o $(NAME)
+	@chmod 111 $(NAME)
 
-
-object/%.o: src/%.c
+object/%.o: src/%.c $(HEADER)
 	@$(CC) $(FLAGS) -I $(HEADER) -o $@ -c $<
 
 clean:
-	@echo "\033[1m|---------------------------------|\033[0m"
-	@echo "\033[1m|-------Supprimer les OBJECT------|\033[0m"
-	@echo "\033[1m|---------------------------------|\033[0m"
 	@rm -f $(OBJ)
 	@make clean -C ../libft/
 
 fclean: clean
-	@echo "\n"
-	@echo "\033[1m|---------------------------------------|\033[0m"
-	@echo "\033[1m|-------Supprimer la libftprintf.a------|\033[0m"
-	@echo "\033[1m|---------------------------------------|\033[0m"
 	@rm -f $(NAME)
 	@make fclean -C ../libft/
 

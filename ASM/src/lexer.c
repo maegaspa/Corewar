@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   lexer.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: maegaspa <maegaspa@student.42lyon.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/05/22 17:09:06 by maegaspa          #+#    #+#             */
+/*   Updated: 2020/05/22 17:10:32 by maegaspa         ###   ########lyon.fr   */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/asm.h"
 #include <stdio.h>
 
@@ -6,12 +18,14 @@ int 		is_instruction_name(char *str, t_file *file, t_tab *tab)
 	int 	i;
 
 	i = -1;
-	while (++i < 17)
-		if (!ft_strcmp(file->op[i].name, str))
+	while (++i < 16)
+	{
+		if (str && !ft_strcmp(file->op[i].name, str))
 		{
 			tab->info_ins[file->cnt_tab].id_inst = file->op[i].id;
 			return (SUCCESS);
 		}
+	}
 	return (FAILURE);
 }
 

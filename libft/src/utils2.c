@@ -27,7 +27,7 @@ char	*ft_strcapitalize(char *str)
 	return (str);
 }
 
-char	*ft_strrev(char *str)
+char		*ft_strrev(char *str)
 {
 	int		i;
 	int		j;
