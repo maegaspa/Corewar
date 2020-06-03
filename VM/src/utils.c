@@ -32,14 +32,14 @@ void			print_arena_2(t_war *war, int dump)
 	while (++i < MEM_SIZE)
 	{
 		if (i == 0)
-			printf("0x%04x : ", bytes);
+			ft_printf("0x%04x : ", bytes);
 		if (count_bytes == 0 && i)
-			printf("%#06x : ", bytes);
-		printf("%02x ", (unsigned char)war->arena[i]);
+			ft_printf("%#06x : ", bytes);
+		ft_printf("%02x ", (unsigned char)war->arena[i]);
 		count_bytes++;
 		if (count_bytes == dump)
 		{
-			printf("\n");
+			ft_printf("\n");
 			count_bytes = 0;
 			bytes += dump;
 		}
@@ -69,15 +69,15 @@ void			print_verbose_16(t_war *war, t_chariot *chariot, int size)
 	{
 		i = 0;
 		war->status[chariot->player - 1] = calc_addr(C_POS);
-		printf("ADV %d (0x%04x -> %#06x) ", size,
+		ft_printf("ADV %d (0x%04x -> %#06x) ", size,
 			war->status[chariot->player - 1],
 			war->status[chariot->player - 1] + size);
 		while (i < size)
 		{
-			printf("%02x ", (unsigned char)war->arena[calc_addr(C_POS + i)]);
+			ft_printf("%02x ", (unsigned char)war->arena[calc_addr(C_POS + i)]);
 			i++;
 		}
-		printf("\n");
+		ft_printf("\n");
 	}
 }
 

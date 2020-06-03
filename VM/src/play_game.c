@@ -95,7 +95,7 @@ void	play_cycle(t_war *war, t_chariot *chariot, t_parse_file *file,
 		war->cycles_btw_check++;
 	}
 	if (war->cycles && war->verbose[3] == 1)
-		printf("It is now cycle %d\n", war->cycles);
+		ft_printf("It is now cycle %d\n", war->cycles);
 	chariot = war->begin;
 	while (chariot && war->visual.pause != 1)
 	{

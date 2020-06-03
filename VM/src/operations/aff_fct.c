@@ -20,6 +20,6 @@ int			aff_fct(t_war *war, t_chariot *chariot)
 	value = chariot->registres[value - 1];
 	value %= 256;
 	if (war->aff == 1)
-		printf("Aff: %c\n", value);
+		ft_printf("Aff: %c\n", value);
 	return (0);
 }

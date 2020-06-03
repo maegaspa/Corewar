@@ -34,7 +34,7 @@ void	delete_chariot(t_war *war, t_chariot *current)
 			if (previous)
 				previous->next = current;
 			if (war->verbose[1])
-				printf("Process %d hasn't lived for %d cycles (CTD %d)\n",
+				ft_printf("Process %d hasn't lived for %d cycles (CTD %d)\n",
 		delete->index + 1, war->cycles - delete->last_live, war->cycle_to_die);
 			ft_memdel((void **)&delete);
 		}

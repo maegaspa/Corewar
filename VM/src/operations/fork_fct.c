@@ -49,7 +49,7 @@ int					fork_fct(t_war *war, t_chariot *chariot)
 	t_chariot *tmp_char;
 
 	if (war->verbose[2] == 1)
-		printf("P %4d | fork %d (%d)\n", (chariot->index + 1),
+		ft_printf("P %4d | fork %d (%d)\n", (chariot->index + 1),
 				(short)war->param[0], C_POS + (war->param[0] % IDX_MOD));
 	war->nb_chariot++;
 	if (!(tmp_char = ft_fork_chariot(chariot, war->param[0], war)))
