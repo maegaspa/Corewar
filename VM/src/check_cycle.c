@@ -16,8 +16,8 @@ static int		no_chariot(t_war *war)
 {
 	if (war->nb_chariot == 0)
 	{
-		if (war->verbose[3] == 1 && war->cycle_to_die == -14)
-			printf("Cycle to die is now %d\n", war->cycle_to_die - CYCLE_DELTA);
+//		if (war->verbose[3] == 1)
+//			printf("Cycle to die is now %d\n", war->cycle_to_die - CYCLE_DELTA);
 		if (war->visu != 1)
 			printf("Contestant %d, \"%s\", has won !\n", war->lastlive,
 					war->player[war->lastlive - 1].header.prog_name);

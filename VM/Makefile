@@ -12,6 +12,7 @@ HEADER = include
 FILES = src/main\
 		src/read_champs\
 		src/utils\
+		src/utils2\
 		src/play_game\
 		src/operande\
 		src/operande_2\

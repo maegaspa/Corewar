@@ -12,7 +12,7 @@
 
 #include "../includes/corewar.h"
 
-int		nbr_inbase(char c, int base)
+int				nbr_inbase(char c, int base)
 {
 	if (base <= 10)
 		return (c >= '0' && c <= '9');
@@ -20,44 +20,19 @@ int		nbr_inbase(char c, int base)
 			(c >= 'a' && c <= ('a' + base - 10)));
 }
 
-unsigned int	u_int_reverse_octet(unsigned int x)
+void			print_arena_2(t_war *war, int dump)
 {
-	unsigned int rev;
+	int				i;
+	int				count_bytes;
+	int				bytes;
 
-	rev = x & 0xff000000;
-	rev = rev >> 8;
-	x = x << 8;
-	rev = rev | (x & 0xff000000);
-	rev = rev >> 8;
-	x = x << 8;
-	rev = rev | (x & 0xff000000);
-	rev = rev >> 8;
-	x = x << 8;
-	rev = rev | (x & 0xff000000);
-	return (rev);
-}
-
-int 			print_arena(t_war *war, t_parse_file *file)
-{
-	int i;
-	int count_bytes;
-	int dump;
-	unsigned int bytes;
-
-	i = -1;
 	count_bytes = 0;
-	dump = 64;
 	bytes = 0;
-	if (file->long_dump != -1)
-		dump = 64;
-	else if (file->dump != -1)
-		dump = 32;
-	else
-		return (FAILURE);
+	i = -1;
 	while (++i < MEM_SIZE)
 	{
 		if (i == 0)
-        	printf("0x%04x : ", bytes);
+			printf("0x%04x : ", bytes);
 		if (count_bytes == 0 && i)
 			printf("%#06x : ", bytes);
 		printf("%02x ", (unsigned char)war->arena[i]);
@@ -69,10 +44,24 @@ int 			print_arena(t_war *war, t_parse_file *file)
 			bytes += dump;
 		}
 	}
+}
+
+int				print_arena(t_war *war, t_parse_file *file)
+{
+	int				dump;
+
+	dump = 64;
+	if (file->long_dump != -1)
+		dump = 64;
+	else if (file->dump != -1)
+		dump = 32;
+	else
+		return (FAILURE);
+	print_arena_2(war, dump);
 	return (SUCCESS);
 }
 
-void        print_verbose_16(t_war *war, t_chariot *chariot, int size)
+void			print_verbose_16(t_war *war, t_chariot *chariot, int size)
 {
 	int i;
 
@@ -92,7 +81,7 @@ void        print_verbose_16(t_war *war, t_chariot *chariot, int size)
 	}
 }
 
-void		write_on_arena(t_war *war, int value, int start, int size)
+void			write_on_arena(t_war *war, int value, int start, int size)
 {
 	int				rest;
 	int				swap_size;

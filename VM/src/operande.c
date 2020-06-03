@@ -58,7 +58,7 @@ void		exec_jump(t_chariot *chariot, t_war *war, t_opp *opp_tab)
 		jump = ft_jump(war, chariot);
 		if (ft_tcheck_ocp(chariot, war))
 		{
-			get_all_param(chariot, war, chariot->ope - 1);
+			get_all_param(chariot, war);
 			opp_tab[chariot->ope - 1](war, chariot);
 		}
 		if (war->back_pc == 0)

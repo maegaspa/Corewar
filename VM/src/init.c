@@ -81,6 +81,12 @@ void			init_tab(t_opp *opp_tab)
 
 void			ft_init_war(t_parse_file file, t_war *war)
 {
+	int		i;
+
+	i = -1;
+	while (++i < 6)
+		war->verbose[i] = file.verbose[i];
+	war->aff = file.a;
 	war->i_ocp = 0;
 	war->cycles = 0;
 	war->back_pc = 0;

@@ -176,7 +176,7 @@ int 				ft_check_type(int d_type, int type);
 int					choose_ope(t_war *war, t_chariot *chariot);
 void				get_param(t_war *war, char *str);
 int					get_bin_ocp(t_chariot *chariot, t_war *war);
-int					get_all_param(t_chariot *chariot, t_war *war, int ope);
+int					get_all_param(t_chariot *chariot, t_war *war);
 int					get_val(t_war *war, t_chariot *chariot, int i);
 
 /*

@@ -38,8 +38,8 @@ int		ft_load(t_war *war, int size, int adress)
 
 void		verbose_reg(t_war *war, t_chariot *chariot, int i)
 {
-	if (i == 0 && (chariot->ope == 3 || chariot->ope == 4 || chariot->ope == 5 ||
-				chariot->ope == 11 || chariot->ope == 16))
+	if (i == 0 && (chariot->ope == 3 || chariot->ope == 4 || chariot->ope == 5
+		||chariot->ope == 11 || chariot->ope == 16))
 		printf("r%d", war->param[i]);
 	else if (i == 1 && (chariot->ope == 2 || chariot->ope == 4 ||
 				chariot->ope == 5 || chariot->ope == 13))
