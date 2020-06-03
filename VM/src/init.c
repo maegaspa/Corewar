@@ -12,7 +12,7 @@
 
 #include "../includes/corewar.h"
 
-int		init_usage(t_parse_file *file)
+int				init_usage(t_parse_file *file)
 {
 	int i;
 
@@ -58,7 +58,7 @@ void			ft_init_op_cycle(t_war *war)
 	war->op_cycle[15] = 2;
 }
 
-void	init_tab(t_opp *opp_tab)
+void			init_tab(t_opp *opp_tab)
 {
 	ft_bzero(opp_tab, 16);
 	opp_tab[0] = &live_fct;
@@ -81,7 +81,6 @@ void	init_tab(t_opp *opp_tab)
 
 void			ft_init_war(t_parse_file file, t_war *war)
 {
-
 	war->i_ocp = 0;
 	war->cycles = 0;
 	war->back_pc = 0;
