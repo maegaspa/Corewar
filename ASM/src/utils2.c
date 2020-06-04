@@ -5,10 +5,11 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: maegaspa <maegaspa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/18 17:21:56 by seanseau          #+#    #+#             */
-/*   Updated: 2020/05/22 17:10:33 by maegaspa         ###   ########lyon.fr   */
+/*   Created: 2020/05/22 17:09:21 by maegaspa          #+#    #+#             */
+/*   Updated: 2020/05/22 17:09:21 by maegaspa         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "../includes/asm.h"
 
@@ -39,7 +40,7 @@ void		*ft_realloc(void *old, size_t old_size, size_t new_size)
 	return (new);
 }
 
-char		**get_file(char *filename)
+char	**get_file(char *filename)
 {
 	char	**res;
 	int		i;
@@ -56,7 +57,7 @@ char		**get_file(char *filename)
 	return (res);
 }
 
-int			get_nb(char c, char *base)
+int	get_nb(char c, char *base)
 {
 	int	i;
 
