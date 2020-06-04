@@ -19,8 +19,8 @@ void		ldi_verbose(t_war *war, t_chariot *chariot, int p1, int p2)
 	res = p1 + p2;
 	if (war->verbose[2] == 1)
 	{
-		ft_printf("       | -> load from %d + %d = %d (with pc and mod %d)\n", p1,
-			p2, res, calc_addr(C_POS + res % IDX_MOD));
+		ft_printf("       | -> load from %d + %d = %d (with pc and mod %d)\n",
+		p1, p2, res, calc_addr(C_POS + res % IDX_MOD));
 	}
 }
 
