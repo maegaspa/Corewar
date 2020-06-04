@@ -59,7 +59,9 @@ int		is_label_or_instruction(t_tab *tab, t_file *file)
 	file->free_cnt = 0;
 	file->cnt_split = 0;
 	file->cnt_inst = 0;
-	file->split = ft_strsplitwsp(file->file[file->count], file);
+	tab->no_prob4 = 1;
+	if (ft_strlen(file->file[file->count]) > 0)
+		file->split = ft_strsplitwsp(file->file[file->count], file);
 	if (is_label(file->split[file->cnt_split]) == SUCCESS)
 	{
 		tab->info_ins[file->cnt_tab].label =

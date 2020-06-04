@@ -52,6 +52,9 @@ typedef struct	s_tab
 	int						*r_pos;
 	char					**label_name;
 	int						no_prob;
+	int						no_prob2;
+	int						no_prob3;
+	int						no_prob4;
 }				t_tab;
 
 typedef struct	s_file
@@ -130,9 +133,9 @@ int				is_label_or_instruction(t_tab *tab, t_file *file);
 int				check_param(t_tab *tab, t_file *file);
 char			**ft_strsplit2(char const *s);
 void			free_error(t_tab *tab, t_file *file);
-void			free_error_2(t_file *file, int i);
+void			free_error_2(t_tab *tab, int i);
 void			free_error_3(t_tab *tab, int i);
-void			free_error_4(t_tab *tab);
+void			free_error_4(t_tab *tab, t_file *file);
 void			print_line_error(t_file *file);
 void			print_error(t_file *file);
 void			print_error2(t_file *file);

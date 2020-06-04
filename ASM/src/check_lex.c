@@ -19,10 +19,13 @@ int			is_instruction_name(char *str, t_file *file, t_tab *tab)
 	i = -1;
 	while (++i < 16)
 	{
-		if (str && !ft_strcmp(file->op[i].name, str))
+		if (ft_strlen(str) == ft_strlen(file->op[i].name))
 		{
-			tab->info_ins[file->cnt_tab].id_inst = file->op[i].id;
-			return (SUCCESS);
+			if (str && !ft_strcmp(file->op[i].name, str))
+			{
+				tab->info_ins[file->cnt_tab].id_inst = file->op[i].id;
+				return (SUCCESS);
+			}
 		}
 	}
 	return (FAILURE);

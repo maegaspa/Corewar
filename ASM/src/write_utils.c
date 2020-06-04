@@ -42,6 +42,7 @@ int		get_label_init(t_tab *tab)
 		* tab->nb_instruction)))
 		return (ERROR_MALLOC);
 	i = -1;
+	tab->no_prob = 1;
 	while (++i < tab->nb_instruction)
 	{
 		if (!(tab->label_name[i] = (char *)malloc(sizeof(char) * 6)))

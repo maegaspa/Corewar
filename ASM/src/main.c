@@ -14,6 +14,7 @@
 
 int		check_file_int(t_tab *tab, t_file *file, int i)
 {
+	tab->no_prob2 = 1;
 	if (file->file[file->count][i] == COMMENT_CHAR)
 		file->count++;
 	else
@@ -100,6 +101,9 @@ int		main(int ac, char **av)
 
 	set_op_tab(&file);
 	tab.no_prob = 0;
+	tab.no_prob2 = 0;
+	tab.no_prob3 = 0;
+	tab.no_prob4 = 0;
 	if (ac != 2)
 	{
 		ft_putstr_fd("Usage: ./asm <file.s>\n", 2);
@@ -108,6 +112,7 @@ int		main(int ac, char **av)
 	if ((file.error = exec_process(&tab, &file, &head, av)) != SUCCESS)
 		return (file.error);
 	ft_printf("File [.cor] has been created\n");
+	tab.no_prob4 = 0;
 	free_error(&tab, &file);
 	return (SUCCESS);
 }

@@ -36,6 +36,7 @@ int		init_param(t_tab *tab)
 			tab->info_ins[i].param[j].type_param = -1;
 		}
 	}
+	tab->no_prob3 = 1;
 	return (SUCCESS);
 }
 
@@ -61,6 +62,7 @@ int		init_instruction_tab(t_tab *tab, t_file *file)
 
 	i = -1;
 	tab->nb_instruction = file->nb_instruction;
+	tab->no_prob2 = 1;
 	if (!(tab->info_ins = malloc(sizeof(t_instruction) * tab->nb_instruction)))
 		return (ERROR_MALLOC);
 	while (++i < tab->nb_instruction)
