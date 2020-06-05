@@ -44,7 +44,8 @@ int		get_label_init(t_tab *tab)
 	i = -1;
 	while (++i < tab->nb_instruction)
 	{
-		if (!(tab->label_name[i] = (char *)malloc(sizeof(char) * MAX_LABEL + 1)))
+		if (!(tab->label_name[i] =
+			(char *)malloc(sizeof(char) * MAX_LABEL + 1)))
 			return (ERROR_MALLOC);
 		ft_bzero(tab->label_name[i], MAX_LABEL);
 		tab->n_label[i] = 0;
