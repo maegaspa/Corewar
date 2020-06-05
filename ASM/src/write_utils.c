@@ -36,7 +36,7 @@ int		get_label_init(t_tab *tab)
 
 	i = -1;
 	ft_bzero(tab->tabyte, CHAMP_MAX_SIZE);
-	if (!(tab->n_label = (int *)malloc(sizeof(int) * tab->nb_instruction)))
+	if (!(tab->n_label = (int *)malloc(sizeof(int) * tab->nb_instruction + 1)))
 		return (ERROR_MALLOC);
 	if (!(tab->label_name = (char **)malloc(sizeof(char*)
 		* tab->nb_instruction)))
@@ -44,9 +44,9 @@ int		get_label_init(t_tab *tab)
 	i = -1;
 	while (++i < tab->nb_instruction)
 	{
-		if (!(tab->label_name[i] = (char *)malloc(sizeof(char) * 6)))
+		if (!(tab->label_name[i] = (char *)malloc(sizeof(char) * MAX_LABEL + 1)))
 			return (ERROR_MALLOC);
-		ft_bzero(tab->label_name[i], 6);
+		ft_bzero(tab->label_name[i], MAX_LABEL);
 		tab->n_label[i] = 0;
 	}
 	return (SUCCESS);

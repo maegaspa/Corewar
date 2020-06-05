@@ -27,10 +27,15 @@ int		ft_atoi(char const *str)
 		i++;
 	if (str[i] == '+')
 		i++;
-	if (str[i] == '-' && str[i - 1] != '+')
+	if (str[i] == '-')
 	{
-		neg = -1;
-		i++;
+		if (i > 0 && str[i - 1] == '+')
+			;
+		else
+		{
+			neg = -1;
+			i++;
+		}
 	}
 	while (str[i] >= '0' && str[i] <= '9')
 		nbr = nbr * 10 + str[i++] - '0';

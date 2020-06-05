@@ -58,11 +58,14 @@ int		get_label_pos(t_tab *tab, t_file *file)
 		return (file->error);
 	while (++file->i < tab->nb_instruction)
 	{
+		if (file->j > CHAMP_MAX_SIZE)
+			return (TOO_BIG);
 		file->n_param = -1;
 		if (tab->info_ins[file->i].id_inst > 0)
 			tab->tabyte[file->j++] = tab->info_ins[file->i].id_inst;
-		if (file->op[tab->info_ins[file->i].id_inst - 1].acb)
-			tab->tabyte[file->j++] = -3;
+		if (tab->info_ins[file->i].id_inst > 0)
+			if (file->op[tab->info_ins[file->i].id_inst - 1].acb)
+				tab->tabyte[file->j++] = -3;
 		param_fill(tab, file);
 		if (!tab->info_ins[file->i].label)
 		{
@@ -70,7 +73,10 @@ int		get_label_pos(t_tab *tab, t_file *file)
 				tab->n_label[file->k] = file->j;
 		}
 		else
-			tab->label_name[file->k++] = tab->info_ins[file->i].label;
+		{
+			tab->label_name[file->k] = ft_strcpy(tab->label_name[file->k], tab->info_ins[file->i].label);
+			file->k++;
+		}
 	}
 	tab->tabyte[file->j] = -5;
 	tab->n_label[file->k] = file->j - 1;
@@ -118,8 +124,9 @@ int		write_param(t_file *file, t_tab *tab, int actual_inst)
 				file->op_c += (192 >> 4);
 		}
 	}
-	if (file->op[tab->info_ins[actual_inst].id_inst - 1].acb)
-		write(file->fd, &(file->op_c),
-		file->op[tab->info_ins[actual_inst].id_inst - 1].acb);
+	if (tab->info_ins[actual_inst].id_inst > 0)
+		if (file->op[tab->info_ins[actual_inst].id_inst - 1].acb)
+			write(file->fd, &(file->op_c),
+				file->op[tab->info_ins[actual_inst].id_inst - 1].acb);
 	return (SUCCESS);
 }

@@ -48,6 +48,9 @@ void	init_struct_file(t_file *file, t_header *head)
 	file->count = -1;
 	file->error = 0;
 	file->n = 0;
+	file->free_cnt = 0;
+	file->free_cnt2 = 0;
+	file->free_cnt3 = 0;
 	head->magic = COREWAR_EXEC_MAGIC;
 	ft_bzero(&head->prog_name, PROG_NAME_LENGTH + 1);
 	head->prog_size = file->max_byte;
@@ -61,9 +64,19 @@ int		init_instruction_tab(t_tab *tab, t_file *file)
 
 	i = -1;
 	tab->nb_instruction = file->nb_instruction;
-	if (!(tab->info_ins = malloc(sizeof(t_instruction) * tab->nb_instruction)))
-		return (ERROR_MALLOC);
+	if (tab->nb_instruction)
+	{
+		if (!(tab->info_ins = malloc(sizeof(t_instruction) * tab->nb_instruction)))
+			return (ERROR_MALLOC);
+	}
+	else
+		return (ERROR_INSTRUCT);
 	while (++i < tab->nb_instruction)
+	{
+		tab->info_ins[i].label = NULL;
+		tab->info_ins[i].instruction = NULL;
 		tab->info_ins[i].nb_parameter = 0;
+		tab->info_ins[i].id_inst = 0;
+	}
 	return (SUCCESS);
 }

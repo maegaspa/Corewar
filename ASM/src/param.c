@@ -83,7 +83,7 @@ int 	ft_check_type(int d_type, int type)
 	if (d_type == (T_REG + T_DIR + T_IND))
 		if (type == T_REG || type == T_DIR || type == T_IND)
 			return (SUCCESS);
-	return (FAILURE);
+	return (ERROR_TYPE_PARAM);
 }
 
 int 	define_param(t_tab *tab, t_file *file)

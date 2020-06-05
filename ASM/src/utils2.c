@@ -54,6 +54,11 @@ char	**get_file(char *filename)
 		res = ft_realloc(res, sizeof(*res) * (i + 1), sizeof(*res) * (i + 2));
 	res[i] = NULL;
 	close(fd);
+	if (i == 0)
+	{
+		free(res);
+		return (NULL);
+	}
 	return (res);
 }
 

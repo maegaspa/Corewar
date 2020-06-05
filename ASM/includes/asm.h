@@ -73,6 +73,8 @@ typedef struct s_file
 	int 	ligne_error;
 	int 	nb_instruction;
 	int 	free_cnt;
+	int 	free_cnt2;
+	int 	free_cnt3;
 	char 	**split;
 	int 	cnt_tab;
 	int 	cnt_split;
@@ -89,6 +91,8 @@ typedef struct s_file
 	int 	n_param;
 }				t_file;
 
+#define MAX_LABEL 50
+#define FREE 2
 #define SUCCESS 1
 #define ERROR_MALLOC 0
 #define ERROR_INSTRUCT -1
@@ -105,6 +109,9 @@ typedef struct s_file
 #define ERROR_COMMENT -12
 #define ERROR_OPEN -13
 #define FAILURE -14
+#define ERROR_PARAM_C -15
+#define TOO_BIG -16
+# define ERROR_TYPE_PARAM -17
 
 /* PARSING FUNCTIONS
 **
@@ -129,10 +136,10 @@ void	set_op_tab(t_file *file);
 int 	is_label_or_instruction(t_tab *tab, t_file *file);
 int 	check_param(t_tab *tab, t_file *file);
 char	**ft_strsplit2(char const *s);
-void 	free_error(t_tab *tab, t_file *file);
-void	free_error_2(t_file *file, int i);
-void	free_error_3(t_tab *tab, int i);
-void	free_error_4(t_tab *tab);
+void 	free_error(t_tab *tab, t_file *file, int error);
+//void	free_error_2(t_file *file, int i);
+//void	free_error_3(t_tab *tab, int i);
+//void	free_error_4(t_tab *tab);
 void	print_line_error(t_file *file);
 void 	print_error(t_file *file);
 void	print_error2(t_file *file);
