@@ -71,3 +71,32 @@ int	get_nb(char c, char *base)
 		i++;
 	return (i);
 }
+
+int			ft_atoi_bis(char const *str)
+{
+	int		i;
+	int		nbr;
+	int		neg;
+
+	i = 0;
+	nbr = 0;
+	neg = 1;
+	while (str[i] == ' ' || str[i] == '\n' || str[i] == '\t' || str[i] == '\v'
+	|| str[i] == '\f' || str[i] == '\r' || ft_isalpha(str[i]) || str[i] == '%')
+		i++;
+	if (str[i] == '+')
+		i++;
+	if (str[i] == '-')
+	{
+		if (i > 0 && str[i - 1] == '+')
+			;
+		else
+		{
+			neg = -1;
+			i++;
+		}
+	}
+	while (str[i] >= '0' && str[i] <= '9')
+		nbr = nbr * 10 + str[i++] - '0';
+	return (nbr * neg);
+}

@@ -13,9 +13,9 @@
 #include "../includes/asm.h"
 #include <stdio.h>
 
-int 		is_instruction_name(char *str, t_file *file, t_tab *tab)
+int			is_instruction_name(char *str, t_file *file, t_tab *tab)
 {
-	int 	i;
+	int		i;
 
 	i = -1;
 	while (++i < 16)
@@ -29,11 +29,11 @@ int 		is_instruction_name(char *str, t_file *file, t_tab *tab)
 	return (FAILURE);
 }
 
-int 		is_label(char *str)
+int			is_label(char *str)
 {
-	int 	i;
-	int 	j;
-	unsigned int 	count;
+	int				i;
+	int				j;
+	unsigned int	count;
 
 	i = -1;
 	count = 0;
@@ -53,10 +53,10 @@ int 		is_label(char *str)
 	return (FAILURE);
 }
 
-int 		is_instruction(char *str)
+int			is_instruction(char *str)
 {
-	int 	i;
-	int 	j;
+	int		i;
+	int		j;
 
 	i = -1;
 	j = 0;
@@ -70,9 +70,9 @@ int 		is_instruction(char *str)
 	return (FAILURE);
 }
 
-int 		is_name_or_comment(char *str, int chose)
+int			is_name_or_comment(char *str, int chose)
 {
-	int 	i;
+	int		i;
 
 	i = 0;
 	if (chose == 1)
@@ -86,35 +86,62 @@ int 		is_name_or_comment(char *str, int chose)
 	{
 		while (str[i] == ' ' || str[i] == '\t')
 			i++;
-		if (!(ft_strncmp(&str[i], COMMENT_CMD_STRING, ft_strlen(COMMENT_CMD_STRING))))
+		if (!(ft_strncmp(&str[i], COMMENT_CMD_STRING,
+						ft_strlen(COMMENT_CMD_STRING))))
 			return (SUCCESS);
 	}
 	return (0);
 }
 
-int 		true_syntaxe_info(t_header *head, char *str, int select, int chose)
+int			true_syntaxe2(char *str, int tmp, int chose, t_header *head)
 {
 	int i;
-	int count;
-	int tmp;
 
-	i = 0;
-	count = 0;
+	i = -1;
+	while (str[++tmp] != '\"')
+	{
+		if (chose == 1)
+			head->prog_name[++i] = str[tmp];
+		if (chose == 2)
+			head->comment[++i] = str[tmp];
+	}
+	if (chose == 1)
+		head->prog_name[++i] = '\0';
+	if (chose == 2)
+		head->comment[++i] = '\0';
+	if (i >= PROG_NAME_LENGTH)
+		return (ERROR_MEMORY);
+	if (i >= COMMENT_LENGTH)
+		return (ERROR_MEMORY);
+	return (SUCCESS);
+}
+
+int			true_syntaxe1(char *str, int count, int select)
+{
+	select++;
+	while (str[select] != '\"' && str[select])
+	{
+		if (count > 1 && str[select] != ' ' && str[select] != '\t')
+			return (ERROR_INFO);
+		select++;
+	}
+	if (str[select] != '\"')
+		return (ERROR_CHAR);
+	select++;
+	return (select);
+}
+
+int			true_syntaxe_info(t_header *head, char *str, int select, int chose)
+{
+	int		tmp;
+
 	while (str[select] == ' ' || str[select] == '\t')
 		select++;
 	if (str[select] == '\"')
 	{
 		tmp = select;
-		select++;
-		while (str[select] != '\"' && str[select])
-		{
-			if (count > 1 && str[select] != ' ' && str[select] != '\t')
-				return (ERROR_INFO);
-			select++;
-		}
-		if (str[select] != '\"')
-			return (ERROR_CHAR);
-		select++;
+		if ((select = true_syntaxe1(str, 0, select)) < 0)
+			return (select);
 		while (str[select])
 		{
 			while (str[select] == ' ' || str[select] == '\t')
@@ -124,21 +151,7 @@ int 		true_syntaxe_info(t_header *head, char *str, int select, int chose)
 			else
 				break ;
 		}
-		i = -1;
-		while (str[++tmp] != '\"')
-		{
-			if (chose == 1)
-				head->prog_name[++i] = str[tmp];
-			if (chose == 2)
-				head->comment[++i] = str[tmp];
-		}
-		if (chose == 1)
-			head->prog_name[++i] = '\0';
-		if (chose == 2)
-			head->comment[++i] = '\0';
-		if (i >= PROG_NAME_LENGTH)
-			return (ERROR_MEMORY);
-		if (i >= COMMENT_LENGTH)
+		if (true_syntaxe2(str, tmp, chose, head) < 0)
 			return (ERROR_MEMORY);
 	}
 	else

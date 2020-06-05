@@ -21,7 +21,7 @@ void	param_fill_dir(t_tab *tab, t_file *file)
 			tab->tabyte[file->j] = -2;
 			tab->tabyte[file->j + 1] = -2;
 			if (ft_strstr(tab->info_ins[file->i].parameter[file->n_param],
-				file->tmp))
+						file->tmp))
 			{
 				tab->tabyte[file->j] = 5;
 				tab->tabyte[file->j + 1] = 5;
@@ -49,6 +49,21 @@ void	param_fill(t_tab *tab, t_file *file)
 	}
 }
 
+void	get_label_pos2(t_tab *tab, t_file *file)
+{
+	if (!tab->info_ins[file->i].label)
+	{
+		if (tab->tabyte[file->j] != -5)
+			tab->n_label[file->k] = file->j;
+	}
+	else
+	{
+		tab->label_name[file->k] = ft_strcpy(tab->label_name[file->k],
+				tab->info_ins[file->i].label);
+		file->k++;
+	}
+}
+
 int		get_label_pos(t_tab *tab, t_file *file)
 {
 	file->i = -1;
@@ -67,66 +82,10 @@ int		get_label_pos(t_tab *tab, t_file *file)
 			if (file->op[tab->info_ins[file->i].id_inst - 1].acb)
 				tab->tabyte[file->j++] = -3;
 		param_fill(tab, file);
-		if (!tab->info_ins[file->i].label)
-		{
-			if (tab->tabyte[file->j] != -5)
-				tab->n_label[file->k] = file->j;
-		}
-		else
-		{
-			tab->label_name[file->k] = ft_strcpy(tab->label_name[file->k], tab->info_ins[file->i].label);
-			file->k++;
-		}
+		get_label_pos2(tab, file);
 	}
 	tab->tabyte[file->j] = -5;
 	tab->n_label[file->k] = file->j - 1;
 	file->max_byte = file->j - 1;
-	return (SUCCESS);
-}
-
-void	stock_reg_dir(t_tab *tab, t_file *file, int n_param, int actual_inst)
-{
-	if (tab->info_ins[actual_inst].param[n_param].type_param == T_REG)
-	{
-		if (n_param == 0)
-			file->op_c += 64;
-		if (n_param == 1)
-			file->op_c += (64 >> 2);
-		if (n_param == 2)
-			file->op_c += (64 >> 4);
-	}
-	if (tab->info_ins[actual_inst].param[n_param].type_param == T_DIR)
-	{
-		if (n_param == 0)
-			file->op_c += 128;
-		if (n_param == 1)
-			file->op_c += (128 >> 2);
-		if (n_param == 2)
-			file->op_c += (128 >> 4);
-	}
-}
-
-int		write_param(t_file *file, t_tab *tab, int actual_inst)
-{
-	int	n_param;
-
-	n_param = -1;
-	while (++n_param < tab->info_ins[actual_inst].nb_parameter)
-	{
-		stock_reg_dir(tab, file, n_param, actual_inst);
-		if (tab->info_ins[actual_inst].param[n_param].type_param == T_IND)
-		{
-			if (n_param == 0)
-				file->op_c += 192;
-			if (n_param == 1)
-				file->op_c += (192 >> 2);
-			if (n_param == 2)
-				file->op_c += (192 >> 4);
-		}
-	}
-	if (tab->info_ins[actual_inst].id_inst > 0)
-		if (file->op[tab->info_ins[actual_inst].id_inst - 1].acb)
-			write(file->fd, &(file->op_c),
-				file->op[tab->info_ins[actual_inst].id_inst - 1].acb);
 	return (SUCCESS);
 }

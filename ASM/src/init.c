@@ -66,7 +66,8 @@ int		init_instruction_tab(t_tab *tab, t_file *file)
 	tab->nb_instruction = file->nb_instruction;
 	if (tab->nb_instruction)
 	{
-		if (!(tab->info_ins = malloc(sizeof(t_instruction) * tab->nb_instruction)))
+		if (!(tab->info_ins =
+			malloc(sizeof(t_instruction) * tab->nb_instruction)))
 			return (ERROR_MALLOC);
 	}
 	else

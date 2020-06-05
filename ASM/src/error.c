@@ -14,19 +14,20 @@
 
 void	print_line_error(t_file *file)
 {
-		ft_putstr_fd("Line ", 2);
-		ft_putnbr_fd(file->ligne_error + 1, 2);
-		ft_putstr_fd(": \"", 2);
-		ft_putstr_fd(file->file[file->ligne_error], 2);
-		ft_putstr_fd("\"", 2);
-		ft_putstr_fd("\n", 2);
+	ft_putstr_fd("Line ", 2);
+	ft_putnbr_fd(file->ligne_error + 1, 2);
+	ft_putstr_fd(": \"", 2);
+	ft_putstr_fd(file->file[file->ligne_error], 2);
+	ft_putstr_fd("\"", 2);
+	ft_putstr_fd("\n", 2);
 }
 
 void	print_error(t_file *file)
 {
 	if (file->error == TOO_BIG)
 	{
-		ft_putstr_fd("ERROR: Champion is > 682 bytes, VM will not compile.\n", 2);
+		ft_putstr_fd("ERROR: Champion is > 682 bytes, VM will not compile.\n",
+		2);
 		print_line_error(file);
 	}
 	if (file->error == ERROR_MALLOC)
@@ -51,7 +52,7 @@ void	print_error(t_file *file)
 void	print_error2(t_file *file)
 {
 	if (file->error == ERROR_PARAM || file->error == ERROR_PARAM_C
-		|| file->error == ERROR_TYPE_PARAM)
+			|| file->error == ERROR_TYPE_PARAM)
 	{
 		ft_putstr_fd("ERROR: Bad parameter\n", 2);
 		print_line_error(file);
@@ -62,10 +63,7 @@ void	print_error2(t_file *file)
 		print_line_error(file);
 	}
 	if (file->error == ERROR_EMPTY)
-	{
 		ft_putstr_fd("ERROR: Empty file\n", 2);
-		//print_line_error(file);
-	}
 	if (file->error == ERROR_INFO)
 	{
 		ft_putstr_fd("ERROR: Unexpected CMD string\n", 2);

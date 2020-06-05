@@ -159,6 +159,8 @@ t_op			get_op_by_name(t_file *file, char *name);
 ** WRITE FUNCTIONS
 */
 
+void			free_tab(t_tab *tab, t_file *file, int error);
+int				ft_atoi_bis(char const *str);
 char			*add_cor(char *str);
 int				create_cor(t_header *head, t_file *file, t_tab *tab);
 int				convertion(t_header *head, t_file *file, t_tab *tab);

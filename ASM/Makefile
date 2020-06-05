@@ -11,6 +11,7 @@ HEADER = include
 
 FILES = src/error\
 		src/free_error\
+		src/free_error2\
 		src/file_check\
 		src/ft_strsplitwhitspace\
 		src/init\
@@ -20,6 +21,7 @@ FILES = src/error\
 		src/utils\
 		src/utils2\
 		src/utils3\
+		src/utils_bytes\
 		src/param\
 		src/convert_desc\
 		src/create_cor\
