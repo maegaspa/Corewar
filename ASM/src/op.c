@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   op.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zaz <marvin@42.fr>                         +#+  +:+       +#+        */
+/*   By: maegaspa <maegaspa@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/10/04 11:43:01 by zaz               #+#    #+#             */
-/*   Updated: 2013/11/06 14:44:35 by zaz              ###   ########.fr       */
+/*   Created: 2020/02/18 17:21:56 by seanseau          #+#    #+#             */
+/*   Updated: 2020/05/22 17:10:33 by maegaspa         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/asm.h"
 
-t_op    op_tab[16] =
+t_op	g_op_tab[16] =
 {
 	{"live", 1, {T_DIR}, 1, 10, "alive", 0, 0},
 	{"ld", 2, {T_DIR | T_IND, T_REG}, 2, 5, "load", 1, 0},
@@ -44,10 +44,10 @@ void	set_op_tab(t_file *file)
 
 	i = -1;
 	while (++i < 16)
-		file->op[i] = op_tab[i];
+		file->op[i] = g_op_tab[i];
 }
 
-t_op		get_op_by_name(t_file *file, char *name)
+t_op	get_op_by_name(t_file *file, char *name)
 {
 	int i;
 

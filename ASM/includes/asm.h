@@ -86,6 +86,7 @@ typedef struct	s_file
 	int				i;
 	int				j;
 	int				k;
+	int				i_temp;
 	unsigned int	n;
 	int				max_byte;
 	int				n_param;
@@ -117,6 +118,7 @@ typedef struct	s_file
 ** PARSING FUNCTIONS
 */
 
+int				lexer_check_instruction(t_file *file, t_tab *tab);
 char			**get_file(char *filename);
 void			*ft_realloc(void *old, size_t old_size, size_t new_size);
 char			*strndup(const char *s, size_t n);

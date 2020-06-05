@@ -16,7 +16,9 @@ FILES = src/error\
 		src/ft_strsplitwhitspace\
 		src/init\
 		src/lexer\
+		src/syntaxe\
 		src/main\
+		src/main_fnct\
 		src/op\
 		src/utils\
 		src/utils2\

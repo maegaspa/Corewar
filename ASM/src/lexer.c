@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "../includes/asm.h"
-#include <stdio.h>
 
 int			is_instruction_name(char *str, t_file *file, t_tab *tab)
 {
@@ -91,70 +90,4 @@ int			is_name_or_comment(char *str, int chose)
 			return (SUCCESS);
 	}
 	return (0);
-}
-
-int			true_syntaxe2(char *str, int tmp, int chose, t_header *head)
-{
-	int i;
-
-	i = -1;
-	while (str[++tmp] != '\"')
-	{
-		if (chose == 1)
-			head->prog_name[++i] = str[tmp];
-		if (chose == 2)
-			head->comment[++i] = str[tmp];
-	}
-	if (chose == 1)
-		head->prog_name[++i] = '\0';
-	if (chose == 2)
-		head->comment[++i] = '\0';
-	if (i >= PROG_NAME_LENGTH)
-		return (ERROR_MEMORY);
-	if (i >= COMMENT_LENGTH)
-		return (ERROR_MEMORY);
-	return (SUCCESS);
-}
-
-int			true_syntaxe1(char *str, int count, int select)
-{
-	select++;
-	while (str[select] != '\"' && str[select])
-	{
-		if (count > 1 && str[select] != ' ' && str[select] != '\t')
-			return (ERROR_INFO);
-		select++;
-	}
-	if (str[select] != '\"')
-		return (ERROR_CHAR);
-	select++;
-	return (select);
-}
-
-int			true_syntaxe_info(t_header *head, char *str, int select, int chose)
-{
-	int		tmp;
-
-	while (str[select] == ' ' || str[select] == '\t')
-		select++;
-	if (str[select] == '\"')
-	{
-		tmp = select;
-		if ((select = true_syntaxe1(str, 0, select)) < 0)
-			return (select);
-		while (str[select])
-		{
-			while (str[select] == ' ' || str[select] == '\t')
-				select++;
-			if (str[select] != COMMENT_CHAR)
-				return (ERROR_COMMENT);
-			else
-				break ;
-		}
-		if (true_syntaxe2(str, tmp, chose, head) < 0)
-			return (ERROR_MEMORY);
-	}
-	else
-		return (ERROR_CHAR);
-	return (SUCCESS);
 }
