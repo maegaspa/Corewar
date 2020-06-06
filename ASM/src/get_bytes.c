@@ -45,11 +45,11 @@ void	param_fill(t_tab *tab, t_file *file)
 			tab->tabyte[file->j] = -2;
 			tab->tabyte[file->j + 1] = -2;
 			if (ft_strstr(tab->info_ins[file->i].parameter[file->n_param],
-            						file->tmp))
-            {
-            		tab->tabyte[file->j] = 17;
-            		tab->tabyte[file->j + 1] = 17;
-            }
+						file->tmp))
+			{
+				tab->tabyte[file->j] = 17;
+				tab->tabyte[file->j + 1] = 17;
+			}
 			file->j += 2;
 		}
 	}
@@ -68,7 +68,7 @@ void	get_label_pos2(t_tab *tab, t_file *file)
 	else
 	{
 		if (file->i > 0 && tab->info_ins[file->i].label &&
-			tab->info_ins[file->i - 1].label)
+				tab->info_ins[file->i - 1].label)
 			tab->n_label[file->k] = file->j;
 		tab->label_name[file->k] = ft_strcpy(tab->label_name[file->k],
 				tab->info_ins[file->i].label);
@@ -83,7 +83,7 @@ int		get_label_pos(t_tab *tab, t_file *file)
 	file->k = 1;
 	file->f = 1;
 	if (!(tab->r_pos = (int*)malloc(sizeof(int) * tab->nb_instruction)))
-    		return (ERROR_MALLOC);
+		return (ERROR_MALLOC);
 	if ((file->error = get_label_init(tab)) < 1)
 		return (file->error);
 	while (++file->i < tab->nb_instruction)

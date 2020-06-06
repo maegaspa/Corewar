@@ -58,7 +58,6 @@ char		**get_file(char *filename)
 		free(res);
 		return (NULL);
 	}
-
 	return (res);
 }
 

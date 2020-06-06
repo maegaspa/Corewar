@@ -30,7 +30,7 @@ void		delete_hash(t_file *file)
 				{
 					file->file[i][j] = '\0';
 				}
-				break;
+				break ;
 			}
 		}
 	}
@@ -56,7 +56,7 @@ void		utils_reg_dir_ind(t_file *file, t_tab *tab, int i, int n)
 	}
 }
 
-void	get_label_pos_bis(t_tab *tab, t_file *file)
+void		get_label_pos_bis(t_tab *tab, t_file *file)
 {
 	file->n_param = -1;
 	if (tab->info_ins[file->i].id_inst > 0)

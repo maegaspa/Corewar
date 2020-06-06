@@ -59,7 +59,7 @@ int		which_direct(t_tab *tab, int actual_inst)
 		tab->info_ins[actual_inst].id_inst == 10
 			|| tab->info_ins[actual_inst].id_inst == 11
 			|| tab->info_ins[actual_inst].id_inst == 12 ||
-		tab->info_ins[actual_inst].id_inst == 15 )
+		tab->info_ins[actual_inst].id_inst == 15)
 		return (1);
 	if (tab->info_ins[actual_inst].id_inst == 1 ||
 		tab->info_ins[actual_inst].id_inst == 2

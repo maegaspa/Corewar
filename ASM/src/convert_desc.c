@@ -24,7 +24,7 @@ void		write_dir_int_lab(int n, t_file *file, t_tab *tab, int actual_inst)
 		if (tab->label_name[i])
 		{
 			if (tab->info_ins[actual_inst].param[n].direct_str &&
-			ft_strcmp(tab->label_name[i],
+					ft_strcmp(tab->label_name[i],
 						tab->info_ins[actual_inst].param[n].direct_str) == 0)
 			{
 				val = tab->n_label[i] - tab->dir_pos[actual_inst];
@@ -66,22 +66,21 @@ void		write_dir_short_lab(int n, t_file *file, t_tab *tab, int act_inst)
 	{
 		if (tab->label_name[i] && ft_strlen(tab->label_name[i]) > 0)
 		{
-			if (tab->info_ins[act_inst].param[n].indirect_str &&
-				ft_strcmp(tab->label_name[i],
-						tab->info_ins[act_inst].param[n].indirect_str) == 0)
+			if (tab->info_ins[act_inst].param[n].indirect_str && ft_strcmp(
+	tab->label_name[i], tab->info_ins[act_inst].param[n].indirect_str) == 0)
 			{
 				val = tab->r_pos[i] - tab->dir_pos[act_inst];
 				swap_2(&val);
 				write(file->fd, &val, IND_SIZE);
 			}
-			else if  (tab->info_ins[act_inst].param[n].direct_str &&
-				ft_strcmp(tab->label_name[i],
-                     		tab->info_ins[act_inst].param[n].direct_str) == 0)
-            {
-            	val = tab->r_pos[i] - tab->dir_pos[act_inst];
-            	swap_2(&val);
-                write(file->fd, &val, IND_SIZE);
-            }
+			else if (tab->info_ins[act_inst].param[n].direct_str &&
+					ft_strcmp(tab->label_name[i],
+						tab->info_ins[act_inst].param[n].direct_str) == 0)
+			{
+				val = tab->r_pos[i] - tab->dir_pos[act_inst];
+				swap_2(&val);
+				write(file->fd, &val, IND_SIZE);
+			}
 		}
 	}
 }
@@ -115,7 +114,7 @@ int			write_reg_dir_ind(t_file *file, t_tab *tab, int i)
 	{
 		utils_reg_dir_ind(file, tab, i, n);
 		if (tab->info_ins[i].param[n].type_param == T_IND)
-           	write_short(n, file, tab, i);
+			write_short(n, file, tab, i);
 	}
 	return (SUCCESS);
 }
