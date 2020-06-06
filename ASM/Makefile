@@ -23,6 +23,7 @@ FILES = src/error\
 		src/utils\
 		src/utils2\
 		src/utils3\
+		src/utils4\
 		src/utils_bytes\
 		src/param\
 		src/convert_desc\

@@ -47,11 +47,9 @@ void	free_error(t_tab *tab, t_file *file, int error)
 			free(tab->label_name);
 			free(tab->info_ins);
 			free(tab->n_label);
+			free(tab->r_pos);
 			if (error != TOO_BIG)
-			{
 				free(tab->dir_pos);
-				free(tab->r_pos);
-			}
 		}
 	}
 }

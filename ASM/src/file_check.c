@@ -52,6 +52,7 @@ int		init_file(t_file *file, t_header *head, char *file_name)
 {
 	if (!(file->file = get_file(file_name)))
 		return (ERROR_EMPTY);
+	delete_hash(file);
 	init_struct_file(file, head);
 	while (file->file[++file->count])
 	{

@@ -59,7 +59,7 @@ int		which_direct(t_tab *tab, int actual_inst)
 		tab->info_ins[actual_inst].id_inst == 10
 			|| tab->info_ins[actual_inst].id_inst == 11
 			|| tab->info_ins[actual_inst].id_inst == 12 ||
-		tab->info_ins[actual_inst].id_inst == 15)
+		tab->info_ins[actual_inst].id_inst == 15 )
 		return (1);
 	if (tab->info_ins[actual_inst].id_inst == 1 ||
 		tab->info_ins[actual_inst].id_inst == 2
@@ -75,21 +75,15 @@ int		get_dir_pos(t_tab *tab, t_file *file)
 {
 	int		i;
 	int		k;
-	int		j;
 
 	i = -1;
 	k = 0;
-	j = 0;
 	if (!(tab->dir_pos = (int*)malloc(sizeof(int) * tab->nb_instruction)))
-		return (ERROR_MALLOC);
-	if (!(tab->r_pos = (int*)malloc(sizeof(int) * tab->nb_instruction)))
 		return (ERROR_MALLOC);
 	while (++i < file->max_byte)
 	{
-		if (tab->tabyte[i] > 0 && tab->tabyte[i] != 5)
+		if (tab->tabyte[i] > 0 && tab->tabyte[i] != 17)
 			tab->dir_pos[k++] = i;
-		if (tab->tabyte[i] == 5)
-			tab->r_pos[j++] = i;
 	}
 	return (SUCCESS);
 }

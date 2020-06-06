@@ -51,6 +51,7 @@ void	init_struct_file(t_file *file, t_header *head)
 	file->free_cnt = 0;
 	file->free_cnt2 = 0;
 	file->free_cnt3 = 0;
+	file->f = 0;
 	head->magic = COREWAR_EXEC_MAGIC;
 	ft_bzero(&head->prog_name, PROG_NAME_LENGTH + 1);
 	head->prog_size = file->max_byte;

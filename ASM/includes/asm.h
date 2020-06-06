@@ -90,6 +90,7 @@ typedef struct	s_file
 	unsigned int	n;
 	int				max_byte;
 	int				n_param;
+	int				f;
 }				t_file;
 
 # define MAX_LABEL 50
@@ -118,6 +119,7 @@ typedef struct	s_file
 ** PARSING FUNCTIONS
 */
 
+void			delete_hash(t_file *file);
 int				lexer_check_instruction(t_file *file, t_tab *tab);
 char			**get_file(char *filename);
 void			*ft_realloc(void *old, size_t old_size, size_t new_size);
@@ -161,6 +163,9 @@ t_op			get_op_by_name(t_file *file, char *name);
 ** WRITE FUNCTIONS
 */
 
+void			get_label_pos2(t_tab *tab, t_file *file);
+void			get_label_pos_bis(t_tab *tab, t_file *file);
+void			utils_reg_dir_ind(t_file *file, t_tab *tab, int i, int n);
 void			free_tab(t_tab *tab, t_file *file, int error);
 int				ft_atoi_bis(char const *str);
 char			*add_cor(char *str);

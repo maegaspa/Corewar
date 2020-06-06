@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "../includes/asm.h"
+#include <stdio.h>
 
 void		write_dir_int_lab(int n, t_file *file, t_tab *tab, int actual_inst)
 {
@@ -22,7 +23,8 @@ void		write_dir_int_lab(int n, t_file *file, t_tab *tab, int actual_inst)
 	{
 		if (tab->label_name[i])
 		{
-			if (ft_strcmp(tab->label_name[i],
+			if (tab->info_ins[actual_inst].param[n].direct_str &&
+			ft_strcmp(tab->label_name[i],
 						tab->info_ins[actual_inst].param[n].direct_str) == 0)
 			{
 				val = tab->n_label[i] - tab->dir_pos[actual_inst];
@@ -64,15 +66,22 @@ void		write_dir_short_lab(int n, t_file *file, t_tab *tab, int act_inst)
 	{
 		if (tab->label_name[i] && ft_strlen(tab->label_name[i]) > 0)
 		{
-			if (ft_strcmp(tab->label_name[i],
-						tab->info_ins[act_inst].param[n].direct_str) == 0)
+			if (tab->info_ins[act_inst].param[n].indirect_str &&
+				ft_strcmp(tab->label_name[i],
+						tab->info_ins[act_inst].param[n].indirect_str) == 0)
 			{
-				val = tab->n_label[i] - tab->dir_pos[act_inst];
-				if (tab->n_label[i] <= tab->dir_pos[act_inst])
-					val = 65536 - (tab->dir_pos[act_inst] - tab->n_label[i]);
+				val = tab->r_pos[i] - tab->dir_pos[act_inst];
 				swap_2(&val);
 				write(file->fd, &val, IND_SIZE);
 			}
+			else if  (tab->info_ins[act_inst].param[n].direct_str &&
+				ft_strcmp(tab->label_name[i],
+                     		tab->info_ins[act_inst].param[n].direct_str) == 0)
+            {
+            	val = tab->r_pos[i] - tab->dir_pos[act_inst];
+            	swap_2(&val);
+                write(file->fd, &val, IND_SIZE);
+            }
 		}
 	}
 }
@@ -104,24 +113,9 @@ int			write_reg_dir_ind(t_file *file, t_tab *tab, int i)
 	n = -1;
 	while (++n < tab->info_ins[i].nb_parameter)
 	{
-		if (tab->info_ins[i].param[n].type_param == T_REG)
-		{
-			if (n == 0)
-				write(file->fd, &(tab->info_ins[i].param[n].reg), REG_SIZE);
-			if (n == 1)
-				write(file->fd, &(tab->info_ins[i].param[n].reg), REG_SIZE);
-			if (n == 2)
-				write(file->fd, &(tab->info_ins[i].param[n].reg), REG_SIZE);
-		}
-		if (tab->info_ins[i].param[n].type_param == T_DIR)
-		{
-			if (which_direct(tab, i) == 1)
-				write_short(n, file, tab, i);
-			else
-				write_dir_int(n, file, tab, i);
-		}
+		utils_reg_dir_ind(file, tab, i, n);
 		if (tab->info_ins[i].param[n].type_param == T_IND)
-			write_short(n, file, tab, i);
+           	write_short(n, file, tab, i);
 	}
 	return (SUCCESS);
 }

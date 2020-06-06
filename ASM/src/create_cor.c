@@ -20,10 +20,10 @@ void	param_fill_dir2(t_tab *tab, t_file *file)
 	tab->tabyte[file->j + 3] = -4;
 	if (ft_strstr(tab->info_ins[file->i].parameter[file->n_param], file->tmp))
 	{
-		tab->tabyte[file->j] = 5;
-		tab->tabyte[file->j + 1] = 5;
-		tab->tabyte[file->j + 2] = 5;
-		tab->tabyte[file->j + 3] = 5;
+		tab->tabyte[file->j] = 17;
+		tab->tabyte[file->j + 1] = 17;
+		tab->tabyte[file->j + 2] = 17;
+		tab->tabyte[file->j + 3] = 17;
 	}
 	file->j += 4;
 }

@@ -51,10 +51,11 @@ int		write_param(t_file *file, t_tab *tab, int actual_inst)
 			if (n_param == 2)
 				file->op_c += (192 >> 4);
 		}
+
 	}
 	if (tab->info_ins[actual_inst].id_inst > 0)
 		if (file->op[tab->info_ins[actual_inst].id_inst - 1].acb)
 			write(file->fd, &(file->op_c),
-					file->op[tab->info_ins[actual_inst].id_inst - 1].acb);
+				file->op[tab->info_ins[actual_inst].id_inst - 1].acb);
 	return (SUCCESS);
 }
